@@ -121,10 +121,18 @@ class CommunityScreen extends React.Component {
     return (
       <View style={styles.communities}>
         <ScrollView>
-          <Image
-            style={{ height: 100, width: 200 }}
-            source={require("./logo.png")}
-          />
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Image
+              style={{ height: 100, width: 200 }}
+              source={require("./logo.png")}
+            />
+          </View>
           <Card borderRadius={15}>
             <Text style={{ fontSize: 30, padding: 10 }}>
               Name: {this.state.community.name}
@@ -146,22 +154,26 @@ class CommunityScreen extends React.Component {
             >
               <Text style={styles.communityButtonText}>View Communites</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.editButton}
-              onPress={() =>
-                this.props.navigation.navigate("Edit", {
-                  communityId: `${this.state.community._id}`
-                })
-              }
-            >
-              <Text style={styles.editButtonText}>Edit Community</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.deleteButton}
-              onPress={this.deleteCommunity}
-            >
-              <Text style={styles.deleteButtonText}>Delete Community</Text>
-            </TouchableOpacity>
+            {this.state.creator === this.state.community.creator && (
+              <TouchableOpacity
+                style={styles.editButton}
+                onPress={() =>
+                  this.props.navigation.navigate("Edit", {
+                    communityId: `${this.state.community._id}`
+                  })
+                }
+              >
+                <Text style={styles.editButtonText}>Edit Community</Text>
+              </TouchableOpacity>
+            )}
+            {this.state.creator === this.state.community.creator && (
+              <TouchableOpacity
+                style={styles.deleteButton}
+                onPress={this.deleteCommunity}
+              >
+                <Text style={styles.deleteButtonText}>Delete Community</Text>
+              </TouchableOpacity>
+            )}
           </Card>
           <Card borderRadius={15}>
             <View style={styles.inputContainer}>
