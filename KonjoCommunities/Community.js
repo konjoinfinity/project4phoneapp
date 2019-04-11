@@ -35,7 +35,7 @@ class CommunityScreen extends React.Component {
   componentDidMount() {
     Vibration.vibrate();
     fetch(
-      `http://localhost:4000/community/${
+      `https://konjomeet.herokuapp.com/community/${
         this.props.navigation.state.params.communityId
       }`
     )
@@ -46,7 +46,9 @@ class CommunityScreen extends React.Component {
   }
 
   getCommunity() {
-    fetch(`http://localhost:4000/community/${this.state.community._id}`)
+    fetch(
+      `https://konjomeet.herokuapp.com/community/${this.state.community._id}`
+    )
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
@@ -54,9 +56,12 @@ class CommunityScreen extends React.Component {
   }
 
   deleteCommunity() {
-    fetch(`http://localhost:4000/community/${this.state.community._id}`, {
-      method: "DELETE"
-    })
+    fetch(
+      `https://konjomeet.herokuapp.com/community/${this.state.community._id}`,
+      {
+        method: "DELETE"
+      }
+    )
       .then(res => res.json())
       .then(res => console.log(res))
       .then(this.props.navigation.navigate("Home"))
@@ -66,7 +71,9 @@ class CommunityScreen extends React.Component {
   deleteComment(e) {
     const data = { body: e };
     fetch(
-      `http://localhost:4000/community/${this.state.community._id}/delete`,
+      `https://konjomeet.herokuapp.com/community/${
+        this.state.community._id
+      }/delete`,
       {
         method: "PUT",
         headers: {
@@ -86,7 +93,9 @@ class CommunityScreen extends React.Component {
   handleComment() {
     const data = { comment: this.state.comment };
     fetch(
-      `http://localhost:4000/community/${this.state.community._id}/comment`,
+      `https://konjomeet.herokuapp.com/community/${
+        this.state.community._id
+      }/comment`,
       {
         method: "PUT",
         headers: {
@@ -106,7 +115,9 @@ class CommunityScreen extends React.Component {
   joinCommunity() {
     const data = { member: this.state.creator };
     fetch(
-      `http://localhost:4000/community/${this.state.community._id}/adduser`,
+      `https://konjomeet.herokuapp.com/community/${
+        this.state.community._id
+      }/adduser`,
       {
         method: "PUT",
         headers: {
@@ -126,7 +137,9 @@ class CommunityScreen extends React.Component {
   deleteMember(e) {
     const data = { body: e };
     fetch(
-      `http://localhost:4000/community/${this.state.community._id}/removeuser`,
+      `https://konjomeet.herokuapp.com/community/${
+        this.state.community._id
+      }/removeuser`,
       {
         method: "PUT",
         headers: {
@@ -146,7 +159,9 @@ class CommunityScreen extends React.Component {
   deleteMeet(e) {
     const data = { body: e };
     fetch(
-      `http://localhost:4000/community/${this.state.community._id}/meet/delete`,
+      `https://konjomeet.herokuapp.com/community/${
+        this.state.community._id
+      }/meet/delete`,
       {
         method: "PUT",
         headers: {
@@ -161,6 +176,11 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
       });
+  }
+
+  viewCommunities() {
+    Vibration.vibrate();
+    this.props.navigation.navigate("Communities");
   }
 
   render() {
@@ -267,7 +287,7 @@ class CommunityScreen extends React.Component {
           <Card borderRadius={15}>
             <TouchableOpacity
               style={styles.communityButton}
-              onPress={() => this.props.navigation.navigate("Communities")}
+              onPress={() => this.viewCommunities()}
             >
               <Text style={styles.communityButtonText}>View Communites</Text>
             </TouchableOpacity>

@@ -28,6 +28,10 @@ class NewScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
 
+  componentDidMount() {
+    Vibration.vibrate();
+  }
+
   static navigationOptions = {
     header: null
   };
@@ -44,7 +48,7 @@ class NewScreen extends React.Component {
 
   handleSubmit() {
     const data = this.state;
-    fetch("http://localhost:4000/community", {
+    fetch("https://konjomeet.herokuapp.com/community", {
       method: "POST",
       headers: {
         "Content-type": "application/json"

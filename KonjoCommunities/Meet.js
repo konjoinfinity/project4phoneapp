@@ -35,6 +35,10 @@ class MeetScreen extends React.Component {
     header: null
   };
 
+  componentDidMount() {
+    Vibration.vibrate();
+  }
+
   handleNameChange(name) {
     this.setState({ name });
   }
@@ -54,7 +58,7 @@ class MeetScreen extends React.Component {
   handleSubmit() {
     const data = { meet: this.state };
     fetch(
-      `http://localhost:4000/community/${
+      `https://konjomeet.herokuapp.com/community/${
         this.props.navigation.state.params.communityId
       }/meet`,
       {

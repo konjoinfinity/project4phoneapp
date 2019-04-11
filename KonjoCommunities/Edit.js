@@ -35,7 +35,7 @@ class EditScreen extends React.Component {
 
   componentDidMount() {
     fetch(
-      `http://localhost:4000/community/${
+      `https://konjomeet.herokuapp.com/community/${
         this.props.navigation.state.params.communityId
       }`
     )
@@ -63,7 +63,7 @@ class EditScreen extends React.Component {
 
   handleSubmit() {
     const data = this.state;
-    fetch(`http://localhost:4000/community/${this.state.id}`, {
+    fetch(`https://konjomeet.herokuapp.com/community/${this.state.id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json"
