@@ -259,6 +259,16 @@ class CommunityScreen extends React.Component {
                 <Text style={styles.deleteButtonText}>Delete Community</Text>
               </TouchableOpacity>
             )}
+            <TouchableOpacity
+              style={styles.meetButton}
+              onPress={() =>
+                this.props.navigation.navigate("Meet", {
+                  communityId: `${this.state.community._id}`
+                })
+              }
+            >
+              <Text style={styles.meetButtonText}>Create Meet</Text>
+            </TouchableOpacity>
           </Card>
           <Card borderRadius={15}>
             <View style={styles.inputContainer}>
@@ -355,6 +365,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   editButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  meetButton: {
+    borderWidth: 1,
+    borderColor: "#752794",
+    backgroundColor: "#752794",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  meetButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
