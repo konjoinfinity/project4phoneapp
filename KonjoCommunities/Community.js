@@ -213,13 +213,16 @@ class CommunityScreen extends React.Component {
             <View>
               <Text>{meet.name}</Text>
               <Text>{meet.description}</Text>
-              <Text>{meet.date}</Text>
-              <Text>{meet.time}</Text>
+              <Text>Location: {meet.location}</Text>
+              <Text>Date: {meet.date}</Text>
+              <Text>Time: {meet.time}</Text>
             </View>
-            <Button
-              title="Delete"
-              onPress={() => this.deleteMeet(`${meet._id}`)}
-            />
+            {this.state.creator === this.state.community.creator && (
+              <Button
+                title="Delete"
+                onPress={() => this.deleteMeet(`${meet._id}`)}
+              />
+            )}
           </Card>
         );
       }));
@@ -256,7 +259,10 @@ class CommunityScreen extends React.Component {
             <Text style={{ fontSize: 30, padding: 10 }}>
               Creator: {this.state.community.creator}
             </Text>
-            {members}
+            {this.state.creator === this.state.community.creator && (
+              <View>{members}</View>
+            )}
+            {member.length === 1 && <View>{members}</View>}
           </Card>
           <Card borderRadius={15}>
             <TouchableOpacity
@@ -294,41 +300,91 @@ class CommunityScreen extends React.Component {
                 <Text style={styles.deleteButtonText}>Delete Community</Text>
               </TouchableOpacity>
             )}
-            <TouchableOpacity
-              style={styles.meetButton}
-              onPress={() =>
-                this.props.navigation.navigate("Meet", {
-                  communityId: `${this.state.community._id}`
-                })
-              }
-            >
-              <Text style={styles.meetButtonText}>Create Meet</Text>
-            </TouchableOpacity>
-            {meetlist}
-          </Card>
-          <Card borderRadius={15}>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.textInput}
-                name="comment"
-                id="comment"
-                onBlur={Keyboard.dismiss}
-                onChangeText={this.handleCommentChange}
-              />
-            </View>
-            <View style={styles.inputContainer}>
+            {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
               <TouchableOpacity
-                style={styles.saveButton}
-                onPress={this.handleComment}
+                style={styles.meetButton}
+                onPress={() =>
+                  this.props.navigation.navigate("Meet", {
+                    communityId: `${this.state.community._id}`
+                  })
+                }
               >
-                <Text style={styles.saveButtonText}>Add Comment</Text>
+                <Text style={styles.meetButtonText}>Create Meet</Text>
               </TouchableOpacity>
-            </View>
+            )}
           </Card>
-          <Text style={{ fontSize: 35, padding: 20, fontWeight: "bold" }}>
-            Comments
-          </Text>
-          <Card borderRadius={15}>{commentlist}</Card>
+          {member.length === 1 && (
+            <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+              Meets
+            </Text>
+          )}
+          {this.state.creator === this.state.community.creator && (
+            <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+              Meets
+            </Text>
+          )}
+          {this.state.creator === this.state.community.creator && (
+            <View>{meetlist}</View>
+          )}
+          {member.length === 1 && <View>{meetlist}</View>}
+          {member.length === 1 && (
+            <Card borderRadius={15}>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.textInput}
+                  name="comment"
+                  id="comment"
+                  onBlur={Keyboard.dismiss}
+                  onChangeText={this.handleCommentChange}
+                />
+              </View>
+              <View style={styles.inputContainer}>
+                <TouchableOpacity
+                  style={styles.saveButton}
+                  onPress={this.handleComment}
+                >
+                  <Text style={styles.saveButtonText}>Add Comment</Text>
+                </TouchableOpacity>
+              </View>
+            </Card>
+          )}
+          {this.state.creator === this.state.community.creator && (
+            <Card borderRadius={15}>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.textInput}
+                  name="comment"
+                  id="comment"
+                  onBlur={Keyboard.dismiss}
+                  onChangeText={this.handleCommentChange}
+                />
+              </View>
+              <View style={styles.inputContainer}>
+                <TouchableOpacity
+                  style={styles.saveButton}
+                  onPress={this.handleComment}
+                >
+                  <Text style={styles.saveButtonText}>Add Comment</Text>
+                </TouchableOpacity>
+              </View>
+            </Card>
+          )}
+          {this.state.creator === this.state.community.creator && (
+            <Text style={{ fontSize: 35, padding: 20, fontWeight: "bold" }}>
+              Comments
+            </Text>
+          )}
+          {member.length === 1 && (
+            <Text style={{ fontSize: 35, padding: 20, fontWeight: "bold" }}>
+              Comments
+            </Text>
+          )}
+          {this.state.creator === this.state.community.creator && (
+            <View style={{ margin: 20 }}>{commentlist}</View>
+          )}
+          {member.length === 1 && (
+            <View style={{ margin: 20 }}>{commentlist}</View>
+          )}
         </ScrollView>
       </View>
     );
