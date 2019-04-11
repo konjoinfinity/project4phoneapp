@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from "./Home";
-// import CommunitiesScreen from "./Communites";
+import CommunitiesScreen from "./Communities";
 // import CommunityScreen from "./Community";
 import NewScreen from "./New";
 // import EditScreen from "./Edit";
@@ -9,7 +9,7 @@ import NewScreen from "./New";
 const Project = createStackNavigator(
   {
     Home: HomeScreen,
-    // Communities: CommunitiesScreen,
+    Communities: CommunitiesScreen,
     // Community: CommunityScreen,
     New: NewScreen
     // Edit: EditScreen
