@@ -159,10 +159,12 @@ class CommunityScreen extends React.Component {
               }}
             >
               <Text style={{ fontSize: 20 }}>{member.name}</Text>
-              <Button
-                title="Remove"
-                onPress={() => this.deleteMember(`${member._id}`)}
-              />
+              {this.state.creator === this.state.community.creator && (
+                <Button
+                  title="Remove"
+                  onPress={() => this.deleteMember(`${member._id}`)}
+                />
+              )}
             </View>
           </Card>
         );
