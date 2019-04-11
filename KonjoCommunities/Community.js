@@ -124,14 +124,47 @@ class CommunityScreen extends React.Component {
       });
   }
 
+  deleteMember(e) {
+    console.log(e);
+    const data = { body: e };
+    fetch(
+      `http://localhost:4000/community/${this.state.community._id}/removeuser`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
+    )
+      .then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+      });
+  }
+
   render() {
     let members;
     this.state.community &&
       (members = this.state.community.members.map((member, id) => {
         return (
-          <Text key={id} style={{ fontSize: 20 }}>
-            {member.name}
-          </Text>
+          <Card key={id} borderRadius={15}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <Text style={{ fontSize: 20 }}>{member.name}</Text>
+              <Button
+                title="Remove"
+                onPress={() => this.deleteMember(`${member._id}`)}
+              />
+            </View>
+          </Card>
         );
       }));
     let commentlist;
