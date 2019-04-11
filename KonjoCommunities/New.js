@@ -17,45 +17,42 @@ class NewScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      author: "",
-      notes: "",
-      lyrics: ""
+      name: "",
+      description: "",
+      category: "",
+      creator: "konjo@konjoweb.com"
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleAuthorChange = this.handleAuthorChange.bind(this);
-    this.handleNotesChange = this.handleNotesChange.bind(this);
-    this.handleLyricsChange = this.handleLyricsChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
 
   static navigationOptions = {
     header: null
   };
 
-  handleTitleChange(title) {
-    this.setState({ title });
+  handleNameChange(name) {
+    this.setState({ name });
   }
-  handleAuthorChange(author) {
-    this.setState({ author });
+  handleDescriptionChange(description) {
+    this.setState({ description });
   }
-  handleNotesChange(notes) {
-    this.setState({ notes });
-  }
-  handleLyricsChange(lyrics) {
-    this.setState({ lyrics });
+  handleCategoryChange(category) {
+    this.setState({ category });
   }
 
   handleSubmit() {
     const data = this.state;
-    fetch("http://konjomusicbackend.herokuapp.com/songs", {
+    fetch("http://localhost:4000/community", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
       },
       body: JSON.stringify(data)
     });
-    this.props.navigation.navigate("Songs");
+    //change to Communities after test
+    this.props.navigation.navigate("Home");
     Vibration.vibrate();
   }
 
@@ -78,45 +75,35 @@ class NewScreen extends React.Component {
             </View>
             <View>
               <Card borderRadius={15}>
-                <Text style={styles.header}>New Song</Text>
+                <Text style={styles.header}>New Community</Text>
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.textInput}
-                    placeholder="Title"
-                    name="title"
-                    id="title"
+                    placeholder="Name"
+                    name="name"
+                    id="name"
                     onBlur={Keyboard.dismiss}
-                    onChangeText={this.handleTitleChange}
+                    onChangeText={this.handleNameChange}
                   />
                 </View>
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.textInput}
-                    placeholder="Author"
-                    name="author"
-                    id="author"
+                    placeholder="Description"
+                    name="description"
+                    id="description"
                     onBlur={Keyboard.dismiss}
-                    onChangeText={this.handleAuthorChange}
+                    onChangeText={this.handleDescriptionChange}
                   />
                 </View>
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.textInput}
-                    placeholder="Notes"
-                    name="notes"
-                    id="notes"
+                    placeholder="Category"
+                    name="category"
+                    id="category"
                     onBlur={Keyboard.dismiss}
-                    onChangeText={this.handleNotesChange}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Lyrics"
-                    name="lyrics"
-                    id="lyrics"
-                    onBlur={Keyboard.dismiss}
-                    onChangeText={this.handleLyricsChange}
+                    onChangeText={this.handleCategoryChange}
                   />
                 </View>
                 <View style={styles.inputContainer}>
