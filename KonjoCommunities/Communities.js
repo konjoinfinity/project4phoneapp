@@ -52,13 +52,13 @@ class CommunitiesScreen extends React.Component {
             >
               <Text style={styles.communityButtonText}>{community.name}</Text>
             </TouchableOpacity>
-            <Text style={{ fontSize: 20, textAlign: "center" }}>
+            <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
               {community.description}
             </Text>
-            <Text style={{ fontSize: 20, textAlign: "center" }}>
+            <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
               Members: {community.numberOfMembers}
             </Text>
-            <Text style={{ fontSize: 20, textAlign: "center" }}>
+            <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
               Creator: {community.creator}
             </Text>
           </Card>
@@ -67,11 +67,19 @@ class CommunitiesScreen extends React.Component {
     return (
       <View style={styles.communities}>
         <ScrollView>
-          <Image
-            style={{ height: 100, width: 200 }}
-            source={require("./logo.png")}
-          />
-          <Text style={{ fontSize: 50, justifyContent: "center", padding: 20 }}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Image
+              style={{ height: 100, width: 200 }}
+              source={require("./logo.png")}
+            />
+          </View>
+          <Text style={{ fontSize: 50, textAlign: "center", padding: 20 }}>
             Communities
           </Text>
           {communities}
