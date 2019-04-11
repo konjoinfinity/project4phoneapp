@@ -148,6 +148,11 @@ class CommunityScreen extends React.Component {
           </TouchableOpacity>
         );
       }));
+    const member =
+      this.state.community &&
+      this.state.community.members.filter(
+        member => member.name === this.state.creator
+      );
     return (
       <View style={styles.communities}>
         <ScrollView>
@@ -190,15 +195,15 @@ class CommunityScreen extends React.Component {
             >
               <Text style={styles.communityButtonText}>View Communites</Text>
             </TouchableOpacity>
-            {/* {(username !== this.state.community.creator &&
-                member.length === 0 && (
-                ))} */}
-            <TouchableOpacity
-              style={styles.joinButton}
-              onPress={this.joinCommunity}
-            >
-              <Text style={styles.joinButtonText}>Join Community</Text>
-            </TouchableOpacity>
+            {this.state.creator !== this.state.community.creator &&
+              member.length === 0 && (
+                <TouchableOpacity
+                  style={styles.joinButton}
+                  onPress={this.joinCommunity}
+                >
+                  <Text style={styles.joinButtonText}>Join Community</Text>
+                </TouchableOpacity>
+              )}
             {this.state.creator === this.state.community.creator && (
               <TouchableOpacity
                 style={styles.editButton}
