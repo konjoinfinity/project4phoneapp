@@ -104,6 +104,15 @@ class CommunityScreen extends React.Component {
   }
 
   render() {
+    let members;
+    this.state.community &&
+      (members = this.state.community.members.map((member, id) => {
+        return (
+          <Text key={id} style={{ fontSize: 20 }}>
+            {member.name}
+          </Text>
+        );
+      }));
     let commentlist;
     this.state.community &&
       (commentlist = this.state.community.comments.map((comment, id) => {
@@ -143,9 +152,15 @@ class CommunityScreen extends React.Component {
             <Text style={{ fontSize: 30, padding: 10 }}>
               Category: {this.state.community.category}
             </Text>
+          </Card>
+          <Card borderRadius={15}>
+            <Text style={{ fontSize: 40, padding: 10 }}>
+              Members: {this.state.community.numberOfMembers}
+            </Text>
             <Text style={{ fontSize: 30, padding: 10 }}>
               Creator: {this.state.community.creator}
             </Text>
+            {members}
           </Card>
           <Card borderRadius={15}>
             <TouchableOpacity
