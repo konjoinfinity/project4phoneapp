@@ -64,7 +64,6 @@ class CommunityScreen extends React.Component {
   }
 
   deleteComment(e) {
-    console.log(e);
     const data = { body: e };
     fetch(
       `http://localhost:4000/community/${this.state.community._id}/delete`,
@@ -125,10 +124,29 @@ class CommunityScreen extends React.Component {
   }
 
   deleteMember(e) {
-    console.log(e);
     const data = { body: e };
     fetch(
       `http://localhost:4000/community/${this.state.community._id}/removeuser`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
+    )
+      .then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+      });
+  }
+
+  deleteMeet(e) {
+    const data = { body: e };
+    fetch(
+      `http://localhost:4000/community/${this.state.community._id}/meet/delete`,
       {
         method: "PUT",
         headers: {
@@ -178,7 +196,6 @@ class CommunityScreen extends React.Component {
             <Button
               title="Delete"
               onPress={() => this.deleteComment(`${comment._id}`)}
-              style={styles.deleteButton}
             />
           </TouchableOpacity>
         );
@@ -188,6 +205,24 @@ class CommunityScreen extends React.Component {
       this.state.community.members.filter(
         member => member.name === this.state.creator
       );
+    let meetlist;
+    this.state.community &&
+      (meetlist = this.state.community.meets.map((meet, id) => {
+        return (
+          <Card borderRadius={15} key={id}>
+            <View>
+              <Text>{meet.name}</Text>
+              <Text>{meet.description}</Text>
+              <Text>{meet.date}</Text>
+              <Text>{meet.time}</Text>
+            </View>
+            <Button
+              title="Delete"
+              onPress={() => this.deleteMeet(`${meet._id}`)}
+            />
+          </Card>
+        );
+      }));
     return (
       <View style={styles.communities}>
         <ScrollView>
@@ -269,6 +304,7 @@ class CommunityScreen extends React.Component {
             >
               <Text style={styles.meetButtonText}>Create Meet</Text>
             </TouchableOpacity>
+            {meetlist}
           </Card>
           <Card borderRadius={15}>
             <View style={styles.inputContainer}>
