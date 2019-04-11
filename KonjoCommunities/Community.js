@@ -25,6 +25,7 @@ class CommunityScreen extends React.Component {
     this.deleteCommunity = this.deleteCommunity.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
+    this.joinCommunity = this.joinCommunity.bind(this);
   }
 
   handleCommentChange(comment) {
@@ -87,6 +88,26 @@ class CommunityScreen extends React.Component {
     const data = { comment: this.state.comment };
     fetch(
       `http://localhost:4000/community/${this.state.community._id}/comment`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
+    )
+      .then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+      });
+  }
+
+  joinCommunity() {
+    const data = { member: this.state.creator };
+    fetch(
+      `http://localhost:4000/community/${this.state.community._id}/adduser`,
       {
         method: "PUT",
         headers: {
@@ -169,6 +190,15 @@ class CommunityScreen extends React.Component {
             >
               <Text style={styles.communityButtonText}>View Communites</Text>
             </TouchableOpacity>
+            {/* {(username !== this.state.community.creator &&
+                member.length === 0 && (
+                ))} */}
+            <TouchableOpacity
+              style={styles.joinButton}
+              onPress={this.joinCommunity}
+            >
+              <Text style={styles.joinButtonText}>Join Community</Text>
+            </TouchableOpacity>
             {this.state.creator === this.state.community.creator && (
               <TouchableOpacity
                 style={styles.editButton}
@@ -241,6 +271,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   deleteButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  joinButton: {
+    borderWidth: 1,
+    borderColor: "#3D7E9A",
+    backgroundColor: "#3D7E9A",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  joinButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
