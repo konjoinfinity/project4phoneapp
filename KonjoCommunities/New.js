@@ -51,8 +51,7 @@ class NewScreen extends React.Component {
       },
       body: JSON.stringify(data)
     });
-    //change to Communities after test
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("Communities");
     Vibration.vibrate();
   }
 
