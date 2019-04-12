@@ -291,6 +291,12 @@ class CommunityScreen extends React.Component {
             >
               <Text style={styles.communityButtonText}>View Communites</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.myCommunitiesButton}
+              onPress={() => this.props.navigation.navigate("MyCommunities")}
+            >
+              <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
+            </TouchableOpacity>
             {this.state.creator !== this.state.community.creator &&
               member.length === 0 && (
                 <TouchableOpacity
@@ -511,6 +517,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   saveButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  myCommunitiesButton: {
+    borderWidth: 1,
+    borderColor: "#FF8300",
+    backgroundColor: "#FF8300",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  myCommunitiesButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

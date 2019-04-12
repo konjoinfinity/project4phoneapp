@@ -26,13 +26,19 @@ class HomeScreen extends React.Component {
           style={styles.communitiesButton}
           onPress={() => this.props.navigation.navigate("Communities")}
         >
-          <Text style={styles.communitiesButtonText}>View Communities</Text>
+          <Text style={styles.communitiesButtonText}>All Communities</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.newButton}
           onPress={() => this.props.navigation.navigate("New")}
         >
           <Text style={styles.newButtonText}>New Community</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.myCommunitiesButton}
+          onPress={() => this.props.navigation.navigate("MyCommunities")}
+        >
+          <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
         </TouchableOpacity>
       </View>
     );
@@ -63,6 +69,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   newButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  myCommunitiesButton: {
+    borderWidth: 1,
+    borderColor: "#FF8300",
+    backgroundColor: "#FF8300",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  myCommunitiesButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
