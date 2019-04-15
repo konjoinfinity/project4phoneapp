@@ -338,6 +338,19 @@ class CommunityScreen extends React.Component {
                 <Text style={styles.meetButtonText}>Create Meet</Text>
               </TouchableOpacity>
             )}
+            {this.state.community.numberOfMembers >= 3 &&
+              this.state.creator === this.state.community.creator && (
+                <TouchableOpacity
+                  style={styles.meetButton}
+                  onPress={() =>
+                    this.props.navigation.navigate("Meet", {
+                      communityId: `${this.state.community._id}`
+                    })
+                  }
+                >
+                  <Text style={styles.meetButtonText}>Create Meet</Text>
+                </TouchableOpacity>
+              )}
           </Card>
           {member.length === 1 && (
             <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>

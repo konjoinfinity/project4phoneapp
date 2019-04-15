@@ -40,6 +40,14 @@ class HomeScreen extends React.Component {
         >
           <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.joinedCommunitiesButton}
+          onPress={() => this.props.navigation.navigate("JoinedCommunities")}
+        >
+          <Text style={styles.joinedCommunitiesButtonText}>
+            Joined Communities
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -82,6 +90,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   myCommunitiesButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  joinedCommunitiesButton: {
+    borderWidth: 1,
+    borderColor: "#E0118A",
+    backgroundColor: "#E0118A",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  joinedCommunitiesButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

@@ -7,6 +7,7 @@ import NewScreen from "./New";
 import EditScreen from "./Edit";
 import MeetScreen from "./Meet";
 import MyCommunitiesScreen from "./MyCommunities";
+import JoinedCommunitiesScreen from "./JoinedCommunities";
 
 const Project = createStackNavigator(
   {
@@ -16,7 +17,8 @@ const Project = createStackNavigator(
     New: NewScreen,
     Edit: EditScreen,
     Meet: MeetScreen,
-    MyCommunities: MyCommunitiesScreen
+    MyCommunities: MyCommunitiesScreen,
+    JoinedCommunities: JoinedCommunitiesScreen
   },
   {
     initialRouteName: "Home"

@@ -31,10 +31,6 @@ class MeetScreen extends React.Component {
     this.handleTimeChange = this.handleTimeChange.bind(this);
   }
 
-  static navigationOptions = {
-    header: null
-  };
-
   componentDidMount() {
     Vibration.vibrate();
   }

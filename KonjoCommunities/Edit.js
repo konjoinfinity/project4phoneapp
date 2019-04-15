@@ -29,10 +29,6 @@ class EditScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
 
-  static navigationOptions = {
-    header: null
-  };
-
   componentDidMount() {
     fetch(
       `https://konjomeet.herokuapp.com/community/${

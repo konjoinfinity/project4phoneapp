@@ -32,10 +32,6 @@ class NewScreen extends React.Component {
     Vibration.vibrate();
   }
 
-  static navigationOptions = {
-    header: null
-  };
-
   handleNameChange(name) {
     this.setState({ name });
   }
