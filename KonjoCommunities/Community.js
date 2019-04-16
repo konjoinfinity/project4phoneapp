@@ -12,6 +12,9 @@ import {
   Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_USER = "username";
 
 class CommunityScreen extends React.Component {
   constructor(props) {
@@ -19,7 +22,7 @@ class CommunityScreen extends React.Component {
     this.state = {
       community: "",
       comment: "",
-      creator: "konjo@konjoweb.com"
+      creator: ""
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.deleteCommunity = this.deleteCommunity.bind(this);
@@ -30,6 +33,12 @@ class CommunityScreen extends React.Component {
 
   handleCommentChange(comment) {
     this.setState({ comment });
+  }
+
+  async getUsername() {
+    var username = await AsyncStorage.getItem(STORAGE_USER);
+    console.log(username);
+    this.setState({ creator: username });
   }
 
   componentDidMount() {
@@ -43,6 +52,7 @@ class CommunityScreen extends React.Component {
       .then(res => {
         this.setState({ community: res });
       });
+    this.getUsername();
   }
 
   getCommunity() {

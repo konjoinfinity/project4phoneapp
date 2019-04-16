@@ -9,15 +9,24 @@ import {
   Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_USER = "username";
 
 class JoinedCommunitiesScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       communities: "",
-      creator: "konjo@konjoweb.com"
+      creator: ""
     };
     this.getCommunities = this.getCommunities.bind(this);
+  }
+
+  async getUsername() {
+    var username = await AsyncStorage.getItem(STORAGE_USER);
+    console.log(username);
+    this.setState({ creator: username });
   }
 
   componentDidMount() {
@@ -27,6 +36,7 @@ class JoinedCommunitiesScreen extends React.Component {
         this.setState({ communities: res });
       });
     Vibration.vibrate();
+    this.getUsername();
   }
 
   getCommunities() {

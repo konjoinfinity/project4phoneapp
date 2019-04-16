@@ -12,6 +12,9 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_USER = "username";
 
 class NewScreen extends React.Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class NewScreen extends React.Component {
       name: "",
       description: "",
       category: "",
-      creator: "konjo@konjoweb.com"
+      creator: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -28,8 +31,15 @@ class NewScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
 
+  async getUsername() {
+    var username = await AsyncStorage.getItem(STORAGE_USER);
+    console.log(username);
+    this.setState({ creator: username });
+  }
+
   componentDidMount() {
     Vibration.vibrate();
+    this.getUsername();
   }
 
   handleNameChange(name) {

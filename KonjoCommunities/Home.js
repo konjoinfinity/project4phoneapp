@@ -5,7 +5,6 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  AlertIOS,
   Vibration
 } from "react-native";
 
@@ -16,7 +15,6 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     Vibration.vibrate();
-    AlertIOS.alert("Welcome to Konjo!");
   }
 
   render() {
