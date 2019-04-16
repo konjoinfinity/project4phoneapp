@@ -82,7 +82,7 @@ class MeetScreen extends React.Component {
               }}
             >
               <Image
-                style={{ height: 100, width: 200 }}
+                style={{ height: 50, width: 100 }}
                 source={require("./logo.png")}
               />
             </View>
@@ -160,7 +160,7 @@ class MeetScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 45
+    paddingTop: 5
   },
   header: {
     fontSize: 25,

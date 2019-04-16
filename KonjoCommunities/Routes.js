@@ -8,6 +8,8 @@ import EditScreen from "./Edit";
 import MeetScreen from "./Meet";
 import MyCommunitiesScreen from "./MyCommunities";
 import JoinedCommunitiesScreen from "./JoinedCommunities";
+import SearchScreen from "./Search";
+import LoginScreen from "./Login";
 
 const Project = createStackNavigator(
   {
@@ -18,7 +20,9 @@ const Project = createStackNavigator(
     Edit: EditScreen,
     Meet: MeetScreen,
     MyCommunities: MyCommunitiesScreen,
-    JoinedCommunities: JoinedCommunitiesScreen
+    JoinedCommunities: JoinedCommunitiesScreen,
+    Search: SearchScreen,
+    Login: LoginScreen
   },
   {
     initialRouteName: "Home"

@@ -75,7 +75,7 @@ class CommunitiesScreen extends React.Component {
             }}
           >
             <Image
-              style={{ height: 100, width: 200 }}
+              style={{ height: 50, width: 100 }}
               source={require("./logo.png")}
             />
           </View>

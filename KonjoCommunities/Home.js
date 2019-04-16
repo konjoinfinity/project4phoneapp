@@ -1,10 +1,23 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  AlertIOS,
+  Vibration
+} from "react-native";
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  componentDidMount() {
+    Vibration.vibrate();
+    AlertIOS.alert("Welcome to Konjo!");
+  }
 
   render() {
     return (
@@ -47,6 +60,18 @@ class HomeScreen extends React.Component {
           <Text style={styles.joinedCommunitiesButtonText}>
             Joined Communities
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.searchButton}
+          onPress={() => this.props.navigation.navigate("Search")}
+        >
+          <Text style={styles.searchButtonText}>Search</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.communitiesButton}
+          onPress={() => this.props.navigation.navigate("Login")}
+        >
+          <Text style={styles.communitiesButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
     );
@@ -103,6 +128,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   joinedCommunitiesButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  searchButton: {
+    borderWidth: 1,
+    borderColor: "#FFE713",
+    backgroundColor: "#FFE713",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  searchButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

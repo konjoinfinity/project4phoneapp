@@ -9,12 +9,17 @@ import {
   Keyboard,
   TouchableOpacity,
   Vibration,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  AlertIOS
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import axios from "axios";
 
-class Login extends React.Component {
+var STORAGE_KEY = "id_token";
+var STORAGE_USER = "username";
+
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,18 +42,37 @@ class Login extends React.Component {
     this.setState({ password });
   }
 
-  handleLogin() {
-    AsyncStorage.setItem("username", this.state.email);
-    this.props.navigation.navigate("Home");
-    Vibration.vibrate();
+  async _onValueChange(item, selectedValue) {
+    try {
+      await AsyncStorage.setItem(item, selectedValue);
+    } catch (error) {
+      console.log("AsyncStorage error: " + error.message);
+    }
   }
+
+  handleLogIn() {
+    axios
+      .post("https://konjomeet.herokuapp.com/users/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => response.json())
+      .then(responseData => {
+        AlertIOS.alert("Login Success!"),
+          this._onValueChange(STORAGE_KEY, responseData.id_token);
+        this._onValueChange(STORAGE_USER, this.state.email);
+      });
+    this.props.navigation.navigate("Home");
+    Vibration.vibrate().catch(err => console.log(err));
+  }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
           <View>
             <Image
-              style={{ height: 100, width: 200 }}
+              style={{ height: 50, width: 100 }}
               source={require("./logo.png")}
             />
             <View>
@@ -92,7 +116,7 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {

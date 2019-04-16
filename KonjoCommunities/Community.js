@@ -257,7 +257,7 @@ class CommunityScreen extends React.Component {
             }}
           >
             <Image
-              style={{ height: 100, width: 200 }}
+              style={{ height: 50, width: 100 }}
               source={require("./logo.png")}
             />
           </View>
@@ -352,16 +352,17 @@ class CommunityScreen extends React.Component {
                 </TouchableOpacity>
               )}
           </Card>
-          {member.length === 1 && (
+          {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
             <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
               Meets
             </Text>
           )}
-          {this.state.creator === this.state.community.creator && (
-            <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-              Meets
-            </Text>
-          )}
+          {this.state.community.numberOfMembers >= 3 &&
+            this.state.creator === this.state.community.creator && (
+              <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                Meets
+              </Text>
+            )}
           {this.state.creator === this.state.community.creator && (
             <View>{meetlist}</View>
           )}

@@ -68,7 +68,7 @@ class NewScreen extends React.Component {
               }}
             >
               <Image
-                style={{ height: 100, width: 200 }}
+                style={{ height: 50, width: 100 }}
                 source={require("./logo.png")}
               />
             </View>
@@ -126,7 +126,7 @@ class NewScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 45
+    paddingTop: 10
   },
   header: {
     fontSize: 25,
