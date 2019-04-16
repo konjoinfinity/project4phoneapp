@@ -51,6 +51,7 @@ class LoginScreen extends React.Component {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
       Alert.alert("Logout Success!");
+      Vibration.vibrate();
       this.getUsername();
     } catch (error) {
       console.log("AsyncStorage error: " + error.message);

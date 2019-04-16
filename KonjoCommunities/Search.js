@@ -69,16 +69,17 @@ class SearchScreen extends React.Component {
               <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
                 {community.description}
               </Text>
-              <Text style={{ fontSize: 10, textAlign: "center", padding: 5 }}>
+              <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
                 Members: {community.numberOfMembers}
               </Text>
-              <Text style={{ fontSize: 10, textAlign: "center", padding: 5 }}>
+              <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
                 Creator: {community.creator}
               </Text>
             </Card>
           )
         );
       }));
+    this.state.communities && console.log(results);
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
@@ -110,6 +111,20 @@ class SearchScreen extends React.Component {
             </Card>
           </View>
           {results}
+          {this.state.search !== "" &&
+            (results.length === 0 && (
+              <Card borderRadius={15}>
+                <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
+                  Create a New Community
+                </Text>
+                <TouchableOpacity
+                  style={styles.newButton}
+                  onPress={() => this.props.navigation.navigate("New")}
+                >
+                  <Text style={styles.newButtonText}>New Community</Text>
+                </TouchableOpacity>
+              </Card>
+            ))}
         </ScrollView>
         <View style={{ height: 60 }} />
       </KeyboardAvoidingView>
@@ -157,6 +172,19 @@ const styles = StyleSheet.create({
     flex: 2,
     alignItems: "center",
     justifyContent: "center"
+  },
+  newButton: {
+    borderWidth: 1,
+    borderColor: "#12C16D",
+    backgroundColor: "#12C16D",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  newButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
   }
 });
 

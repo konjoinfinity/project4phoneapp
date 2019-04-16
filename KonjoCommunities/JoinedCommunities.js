@@ -68,13 +68,13 @@ class JoinedCommunitiesScreen extends React.Component {
             >
               <Text style={styles.communityButtonText}>{community.name}</Text>
             </TouchableOpacity>
-            <Text style={{ fontSize: 10, textAlign: "center", padding: 5 }}>
+            <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
               {community.description}
             </Text>
-            <Text style={{ fontSize: 10, textAlign: "center", padding: 5 }}>
+            <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
               Members: {community.numberOfMembers}
             </Text>
-            <Text style={{ fontSize: 10, textAlign: "center", padding: 5 }}>
+            <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
               Creator: {community.creator}
             </Text>
           </Card>
