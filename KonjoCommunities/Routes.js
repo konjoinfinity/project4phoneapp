@@ -10,6 +10,7 @@ import MyCommunitiesScreen from "./MyCommunities";
 import JoinedCommunitiesScreen from "./JoinedCommunities";
 import SearchScreen from "./Search";
 import LoginScreen from "./Login";
+import SearchNewScreen from "./SearchNew";
 
 const Project = createStackNavigator(
   {
@@ -22,7 +23,8 @@ const Project = createStackNavigator(
     MyCommunities: MyCommunitiesScreen,
     JoinedCommunities: JoinedCommunitiesScreen,
     Search: SearchScreen,
-    Login: LoginScreen
+    Login: LoginScreen,
+    SearchNew: SearchNewScreen
   },
   {
     initialRouteName: "Home"

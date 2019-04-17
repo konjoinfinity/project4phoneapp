@@ -41,8 +41,6 @@ class SearchScreen extends React.Component {
     this.state.communities && (communitySearch = this.state.communities);
     let search = this.state.search.trim().toLowerCase();
 
-    this.state.communities && console.log(search);
-
     if (search.length > 0) {
       this.state.communities &&
         (communitySearch = communitySearch.filter(function(community) {
@@ -79,7 +77,6 @@ class SearchScreen extends React.Component {
           )
         );
       }));
-    this.state.communities && console.log(results);
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
@@ -119,7 +116,11 @@ class SearchScreen extends React.Component {
                 </Text>
                 <TouchableOpacity
                   style={styles.newButton}
-                  onPress={() => this.props.navigation.navigate("New")}
+                  onPress={() =>
+                    this.props.navigation.navigate("SearchNew", {
+                      newName: this.state.search
+                    })
+                  }
                 >
                   <Text style={styles.newButtonText}>New Community</Text>
                 </TouchableOpacity>
