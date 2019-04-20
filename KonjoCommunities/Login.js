@@ -44,6 +44,9 @@ class LoginScreen extends React.Component {
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
     console.log(username);
+    Alert.alert(
+      username === null ? "No user logged in" : username + ": is logged in."
+    );
   }
 
   async userLogout() {
@@ -52,7 +55,6 @@ class LoginScreen extends React.Component {
       await AsyncStorage.removeItem(STORAGE_USER);
       Alert.alert("Logout Success!");
       Vibration.vibrate();
-      this.getUsername();
     } catch (error) {
       console.log("AsyncStorage error: " + error.message);
     }
@@ -84,7 +86,6 @@ class LoginScreen extends React.Component {
         console.log(responseData.token);
         this.onValueChange(STORAGE_KEY, responseData.token);
         this.onValueChange(STORAGE_USER, this.state.email);
-        this.getUsername();
         this.props.navigation.navigate("Home");
       })
       .catch(err => {
@@ -144,6 +145,12 @@ class LoginScreen extends React.Component {
                   onPress={this.userLogout}
                 >
                   <Text style={styles.loginButtonText}>Logout</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.loginButton}
+                  onPress={this.getUsername}
+                >
+                  <Text style={styles.loginButtonText}>Check User</Text>
                 </TouchableOpacity>
               </View>
             </Card>

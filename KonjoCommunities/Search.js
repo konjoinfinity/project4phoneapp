@@ -77,6 +77,26 @@ class SearchScreen extends React.Component {
           )
         );
       }));
+    let newsearch;
+    newsearch =
+      this.state.search !== "" &&
+      (results.length === 0 && (
+        <Card borderRadius={15}>
+          <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
+            Create a New Community
+          </Text>
+          <TouchableOpacity
+            style={styles.newButton}
+            onPress={() =>
+              this.props.navigation.navigate("SearchNew", {
+                newName: this.state.search
+              })
+            }
+          >
+            <Text style={styles.newButtonText}>New Community</Text>
+          </TouchableOpacity>
+        </Card>
+      ));
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
@@ -108,24 +128,7 @@ class SearchScreen extends React.Component {
             </Card>
           </View>
           {results}
-          {this.state.search !== "" &&
-            (results.length === 0 && (
-              <Card borderRadius={15}>
-                <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
-                  Create a New Community
-                </Text>
-                <TouchableOpacity
-                  style={styles.newButton}
-                  onPress={() =>
-                    this.props.navigation.navigate("SearchNew", {
-                      newName: this.state.search
-                    })
-                  }
-                >
-                  <Text style={styles.newButtonText}>New Community</Text>
-                </TouchableOpacity>
-              </Card>
-            ))}
+          {newsearch}
         </ScrollView>
         <View style={{ height: 60 }} />
       </KeyboardAvoidingView>
