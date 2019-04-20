@@ -241,18 +241,26 @@ class CommunityScreen extends React.Component {
         return (
           <Card borderRadius={15} key={id}>
             <View>
-              <Text>{meet.name}</Text>
-              <Text>{meet.description}</Text>
-              <Text>Location: {meet.location}</Text>
-              <Text>Date: {meet.date}</Text>
-              <Text>Time: {meet.time}</Text>
+              <Text style={{ fontSize: 20, padding: 5 }}>{meet.name}</Text>
+              <Text style={{ fontSize: 20, padding: 5 }}>
+                {meet.description}
+              </Text>
+              <Text style={{ fontSize: 20, padding: 5 }}>
+                Location: {meet.location}
+              </Text>
+              <Text style={{ fontSize: 20, padding: 5 }}>
+                Date: {meet.date}
+              </Text>
+              <Text style={{ fontSize: 20, padding: 5 }}>
+                Time: {meet.time}
+              </Text>
+              {this.state.creator === this.state.community.creator && (
+                <Button
+                  title="Delete"
+                  onPress={() => this.deleteMeet(`${meet._id}`)}
+                />
+              )}
             </View>
-            {this.state.creator === this.state.community.creator && (
-              <Button
-                title="Delete"
-                onPress={() => this.deleteMeet(`${meet._id}`)}
-              />
-            )}
           </Card>
         );
       }));
@@ -272,95 +280,104 @@ class CommunityScreen extends React.Component {
             />
           </View>
           <Card borderRadius={15}>
-            <Text style={{ fontSize: 30, padding: 10 }}>
-              Name: {this.state.community.name}
-            </Text>
-            <Text style={{ fontSize: 30, padding: 10 }}>
-              Description: {this.state.community.description}
-            </Text>
-            <Text style={{ fontSize: 30, padding: 10 }}>
-              Category: {this.state.community.category}
-            </Text>
+            <View>
+              <Text style={{ fontSize: 40, padding: 10 }}>
+                Name: {this.state.community.name}
+              </Text>
+              <Text style={{ fontSize: 30, padding: 10 }}>
+                Description: {this.state.community.description}
+              </Text>
+              <Text style={{ fontSize: 30, padding: 10 }}>
+                Category: {this.state.community.category}
+              </Text>
+            </View>
           </Card>
           <Card borderRadius={15}>
-            <Text style={{ fontSize: 40, padding: 10 }}>
-              Members: {this.state.community.numberOfMembers}
-            </Text>
-            <Text style={{ fontSize: 30, padding: 10 }}>
-              Creator: {this.state.community.creator}
-            </Text>
-            {this.state.creator === this.state.community.creator && (
-              <View>{members}</View>
-            )}
-            {member.length === 1 && <View>{members}</View>}
-          </Card>
-          <Card borderRadius={15}>
-            <TouchableOpacity
-              style={styles.communityButton}
-              onPress={() => this.viewCommunities()}
-            >
-              <Text style={styles.communityButtonText}>View Communites</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.myCommunitiesButton}
-              onPress={() => this.props.navigation.navigate("MyCommunities")}
-            >
-              <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
-            </TouchableOpacity>
-            {this.state.creator !== this.state.community.creator &&
-              member.length === 0 && (
-                <TouchableOpacity
-                  style={styles.joinButton}
-                  onPress={this.joinCommunity}
-                >
-                  <Text style={styles.joinButtonText}>Join Community</Text>
-                </TouchableOpacity>
+            <View>
+              <Text style={{ fontSize: 30, padding: 10 }}>
+                Members: {this.state.community.numberOfMembers}
+              </Text>
+              <Text style={{ fontSize: 30, padding: 10 }}>
+                Creator: {this.state.community.creator}
+              </Text>
+              {this.state.creator === this.state.community.creator && (
+                <View>{members}</View>
               )}
-            {this.state.creator === this.state.community.creator && (
+              {member.length === 1 && <View>{members}</View>}
+            </View>
+          </Card>
+          <Card borderRadius={15}>
+            <View>
               <TouchableOpacity
-                style={styles.editButton}
-                onPress={() =>
-                  this.props.navigation.navigate("Edit", {
-                    communityId: `${this.state.community._id}`
-                  })
-                }
+                style={styles.communityButton}
+                onPress={() => this.viewCommunities()}
               >
-                <Text style={styles.editButtonText}>Edit Community</Text>
+                <Text style={styles.communityButtonText}>View Communites</Text>
               </TouchableOpacity>
-            )}
-            {this.state.creator === this.state.community.creator && (
               <TouchableOpacity
-                style={styles.deleteButton}
-                onPress={this.deleteCommunity}
+                style={styles.myCommunitiesButton}
+                onPress={() => this.props.navigation.navigate("MyCommunities")}
               >
-                <Text style={styles.deleteButtonText}>Delete Community</Text>
+                <Text style={styles.myCommunitiesButtonText}>
+                  My Communities
+                </Text>
               </TouchableOpacity>
-            )}
-            {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
-              <TouchableOpacity
-                style={styles.meetButton}
-                onPress={() =>
-                  this.props.navigation.navigate("Meet", {
-                    communityId: `${this.state.community._id}`
-                  })
-                }
-              >
-                <Text style={styles.meetButtonText}>Create Meet</Text>
-              </TouchableOpacity>
-            )}
-            {this.state.community.numberOfMembers >= 3 &&
-              this.state.creator === this.state.community.creator && (
+              {this.state.creator !== this.state.community.creator &&
+                member.length === 0 && (
+                  <TouchableOpacity
+                    style={styles.joinButton}
+                    onPress={this.joinCommunity}
+                  >
+                    <Text style={styles.joinButtonText}>Join Community</Text>
+                  </TouchableOpacity>
+                )}
+              {this.state.creator === this.state.community.creator && (
                 <TouchableOpacity
-                  style={styles.meetButton}
+                  style={styles.editButton}
                   onPress={() =>
-                    this.props.navigation.navigate("Meet", {
+                    this.props.navigation.navigate("Edit", {
                       communityId: `${this.state.community._id}`
                     })
                   }
                 >
-                  <Text style={styles.meetButtonText}>Create Meet</Text>
+                  <Text style={styles.editButtonText}>Edit Community</Text>
                 </TouchableOpacity>
               )}
+              {this.state.creator === this.state.community.creator && (
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={this.deleteCommunity}
+                >
+                  <Text style={styles.deleteButtonText}>Delete Community</Text>
+                </TouchableOpacity>
+              )}
+              {this.state.community.numberOfMembers >= 3 &&
+                member.length === 1 && (
+                  <TouchableOpacity
+                    style={styles.meetButton}
+                    onPress={() =>
+                      this.props.navigation.navigate("Meet", {
+                        communityId: `${this.state.community._id}`
+                      })
+                    }
+                  >
+                    <Text style={styles.meetButtonText}>Create Meet</Text>
+                  </TouchableOpacity>
+                )}
+              {this.state.community.numberOfMembers >= 3 &&
+                this.state.creator === this.state.community.creator && (
+                  <TouchableOpacity
+                    style={styles.meetButton}
+                    onPress={() =>
+                      this.props.navigation.navigate("Meet", {
+                        communityId: `${this.state.community._id}`
+                      })
+                    }
+                  >
+                    <Text style={styles.meetButtonText}>Create Meet</Text>
+                  </TouchableOpacity>
+                )}
+            </View>
           </Card>
           {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
             <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>

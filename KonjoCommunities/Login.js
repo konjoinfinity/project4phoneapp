@@ -151,7 +151,7 @@ class LoginScreen extends React.Component {
           </View>
           <View>
             <Card borderRadius={15}>
-              <Text style={styles.header}>Login</Text>
+              <Text style={styles.header}>Login or Signup</Text>
               <View style={styles.inputContainer}>
                 <TextInput
                   style={styles.textInput}
