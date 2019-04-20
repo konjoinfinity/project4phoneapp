@@ -27,7 +27,7 @@ const Project = createStackNavigator(
     SearchNew: SearchNewScreen
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Login"
   }
 );
 

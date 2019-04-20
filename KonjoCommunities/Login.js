@@ -28,7 +28,12 @@ class LoginScreen extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
+
+  static navigationOptions = {
+    header: null
+  };
 
   componentDidMount() {
     Vibration.vibrate();
@@ -81,12 +86,47 @@ class LoginScreen extends React.Component {
     })
       .then(response => response.json())
       .then(responseData => {
-        Vibration.vibrate();
-        Alert.alert("Login Success!");
-        console.log(responseData.token);
-        this.onValueChange(STORAGE_KEY, responseData.token);
-        this.onValueChange(STORAGE_USER, this.state.email);
-        this.props.navigation.navigate("Home");
+        if (responseData.error) {
+          console.log(responseData.error);
+          Alert.alert(responseData.error);
+        } else {
+          Vibration.vibrate();
+          Alert.alert("Login Success!");
+          console.log(responseData.token);
+          this.onValueChange(STORAGE_KEY, responseData.token);
+          this.onValueChange(STORAGE_USER, this.state.email);
+          this.props.navigation.navigate("Home");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  handleSignup() {
+    fetch("https://konjomeet.herokuapp.com/users/signup", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        if (responseData.error) {
+          console.log(responseData.error);
+          Alert.alert(responseData.error);
+        } else {
+          Vibration.vibrate();
+          Alert.alert("User Signup Success!");
+          console.log(responseData.token);
+          this.onValueChange(STORAGE_KEY, responseData.token);
+          this.onValueChange(STORAGE_USER, this.state.email);
+          this.props.navigation.navigate("Home");
+        }
       })
       .catch(err => {
         console.log(err);
@@ -141,16 +181,22 @@ class LoginScreen extends React.Component {
                   <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.loginButton}
+                  style={styles.logoutButton}
                   onPress={this.userLogout}
                 >
-                  <Text style={styles.loginButtonText}>Logout</Text>
+                  <Text style={styles.logoutButtonText}>Logout</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.loginButton}
+                  style={styles.signupButton}
+                  onPress={this.handleSignup}
+                >
+                  <Text style={styles.signupButtonText}>User Signup</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.checkButton}
                   onPress={this.getUsername}
                 >
-                  <Text style={styles.loginButtonText}>Check User</Text>
+                  <Text style={styles.checkButtonText}>Check User</Text>
                 </TouchableOpacity>
               </View>
             </Card>
@@ -195,6 +241,45 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   loginButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  logoutButton: {
+    borderWidth: 1,
+    borderColor: "#FFD517",
+    backgroundColor: "#FFD517",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  logoutButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  checkButton: {
+    borderWidth: 1,
+    borderColor: "#752794",
+    backgroundColor: "#752794",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  checkButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  signupButton: {
+    borderWidth: 1,
+    borderColor: "#12C16D",
+    backgroundColor: "#12C16D",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  signupButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
