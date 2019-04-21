@@ -40,39 +40,39 @@ class HomeScreen extends React.Component {
             style={styles.communitiesButton}
             onPress={() => this.props.navigation.navigate("Communities")}
           >
-            <Text style={styles.communitiesButtonText}>All Communities</Text>
+            <Text style={styles.communitiesButtonText}>All Communities 👥</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.newButton}
             onPress={() => this.props.navigation.navigate("New")}
           >
-            <Text style={styles.newButtonText}>New Community</Text>
+            <Text style={styles.newButtonText}>New Community ➕</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.myCommunitiesButton}
             onPress={() => this.props.navigation.navigate("MyCommunities")}
           >
-            <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
+            <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.joinedCommunitiesButton}
             onPress={() => this.props.navigation.navigate("JoinedCommunities")}
           >
             <Text style={styles.joinedCommunitiesButtonText}>
-              Joined Communities
+              Joined Communities 👤👥
           </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.searchButton}
             onPress={() => this.props.navigation.navigate("Search")}
           >
-            <Text style={styles.searchButtonText}>Search</Text>
+            <Text style={styles.searchButtonText}>Search 🔍</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.communitiesButton}
             onPress={() => this.props.navigation.navigate("Login")}
           >
-            <Text style={styles.communitiesButtonText}>Login</Text>
+            <Text style={styles.communitiesButtonText}>Login 🔑</Text>
           </TouchableOpacity>
         </Card>
       </View>

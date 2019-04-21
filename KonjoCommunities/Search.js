@@ -108,7 +108,7 @@ class SearchScreen extends React.Component {
               })
             }
           >
-            <Text style={styles.newButtonText}>New Community</Text>
+            <Text style={styles.newButtonText}>{this.state.search} ➕</Text>
           </TouchableOpacity>
         </Card>
       ));
