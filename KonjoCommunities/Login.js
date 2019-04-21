@@ -159,6 +159,7 @@ class LoginScreen extends React.Component {
                 <TextInput
                   style={styles.textInput}
                   placeholder="Email"
+                  keyboardType="email-address"
                   name="email"
                   id="email"
                   onBlur={Keyboard.dismiss}

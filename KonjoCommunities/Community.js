@@ -29,6 +29,7 @@ class CommunityScreen extends React.Component {
     this.handleComment = this.handleComment.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.joinCommunity = this.joinCommunity.bind(this);
+    this.commentInput = React.createRef();
   }
 
   handleCommentChange(comment) {
@@ -119,7 +120,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-      });
+      })
   }
 
   joinCommunity() {
@@ -422,6 +423,8 @@ class CommunityScreen extends React.Component {
                   id="comment"
                   onBlur={Keyboard.dismiss}
                   onChangeText={this.handleCommentChange}
+                  ref={this.commentInput}
+                  onSubmitEditing={this.commentInput.clear()}
                 />
               </View>
               <View style={styles.inputContainer}>
