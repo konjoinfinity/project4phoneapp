@@ -88,6 +88,7 @@ class LoginScreen extends React.Component {
       .then(responseData => {
         if (responseData.error) {
           console.log(responseData.error);
+          Vibration.vibrate();
           Alert.alert(responseData.error);
         } else {
           Vibration.vibrate();
@@ -118,6 +119,7 @@ class LoginScreen extends React.Component {
       .then(responseData => {
         if (responseData.error) {
           console.log(responseData.error);
+          Vibration.vibrate();
           Alert.alert(responseData.error);
         } else {
           Vibration.vibrate();

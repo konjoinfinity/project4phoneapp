@@ -45,7 +45,7 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.props.navigation.state.params.communityId
+      this.props.navigation.state.params.communityId
       }`
     )
       .then(res => res.json())
@@ -82,7 +82,7 @@ class CommunityScreen extends React.Component {
     const data = { body: e };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.state.community._id
+      this.state.community._id
       }/delete`,
       {
         method: "PUT",
@@ -104,7 +104,7 @@ class CommunityScreen extends React.Component {
     const data = { comment: this.state.comment };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.state.community._id
+      this.state.community._id
       }/comment`,
       {
         method: "PUT",
@@ -126,7 +126,7 @@ class CommunityScreen extends React.Component {
     const data = { member: this.state.creator };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.state.community._id
+      this.state.community._id
       }/adduser`,
       {
         method: "PUT",
@@ -148,7 +148,7 @@ class CommunityScreen extends React.Component {
     const data = { body: e };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.state.community._id
+      this.state.community._id
       }/removeuser`,
       {
         method: "PUT",
@@ -170,7 +170,7 @@ class CommunityScreen extends React.Component {
     const data = { body: e };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.state.community._id
+      this.state.community._id
       }/meet/delete`,
       {
         method: "PUT",
@@ -191,6 +191,11 @@ class CommunityScreen extends React.Component {
   viewCommunities() {
     Vibration.vibrate();
     this.props.navigation.navigate("Communities");
+  }
+
+  goHome() {
+    Vibration.vibrate();
+    this.props.navigation.navigate("Home");
   }
 
   render() {
@@ -308,6 +313,12 @@ class CommunityScreen extends React.Component {
           </Card>
           <Card borderRadius={15}>
             <View>
+              <TouchableOpacity
+                style={styles.homeButton}
+                onPress={() => this.goHome()}
+              >
+                <Text style={styles.homeButtonText}>Go Home</Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 style={styles.communityButton}
                 onPress={() => this.viewCommunities()}
@@ -571,6 +582,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   myCommunitiesButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  homeButton: {
+    borderWidth: 1,
+    borderColor: "#FFB944",
+    backgroundColor: "#FFB944",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  homeButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
