@@ -217,10 +217,10 @@ class CommunityScreen extends React.Component {
                 justifyContent: "center"
               }}
             >
-              <Text style={{ fontSize: 20 }}>{member.name}</Text>
+              <Text style={{ fontSize: 20 }}>👤 {member.name}</Text>
               {this.state.creator === this.state.community.creator && (
                 <Button
-                  title="Remove"
+                  title="🗑 Remove"
                   onPress={() => this.deleteMember(`${member._id}`)}
                 />
               )}
@@ -235,7 +235,7 @@ class CommunityScreen extends React.Component {
           <TouchableOpacity key={id} style={styles.comment}>
             <Text style={{ fontSize: 40, padding: 20 }}>{comment.text}</Text>
             <Button
-              title="Delete"
+              title="🗑 Delete"
               onPress={() => this.deleteComment(`${comment._id}`)}
             />
           </TouchableOpacity>
@@ -254,20 +254,20 @@ class CommunityScreen extends React.Component {
             <View>
               <Text style={{ fontSize: 20, padding: 5 }}>{meet.name}</Text>
               <Text style={{ fontSize: 20, padding: 5 }}>
-                {meet.description}
+                🗒 {meet.description}
               </Text>
               <Text style={{ fontSize: 20, padding: 5 }}>
-                Location: {meet.location}
+                🗺 {meet.location}
               </Text>
               <Text style={{ fontSize: 20, padding: 5 }}>
-                Date: {meet.date}
+                📆 {meet.date}
               </Text>
               <Text style={{ fontSize: 20, padding: 5 }}>
-                Time: {meet.time}
+                🕒 {meet.time}
               </Text>
               {this.state.creator === this.state.community.creator && (
                 <Button
-                  title="Delete"
+                  title="🗑 Delete"
                   onPress={() => this.deleteMeet(`${meet._id}`)}
                 />
               )}
@@ -293,23 +293,23 @@ class CommunityScreen extends React.Component {
           <Card borderRadius={15}>
             <View>
               <Text style={{ fontSize: 40, padding: 10 }}>
-                Name: {this.state.community.name}
+                {this.state.community.name}
               </Text>
               <Text style={{ fontSize: 30, padding: 10 }}>
-                Description: {this.state.community.description}
+                🗒 {this.state.community.description}
               </Text>
               <Text style={{ fontSize: 30, padding: 10 }}>
-                Category: {this.state.community.category}
+                📝 {this.state.community.category}
               </Text>
             </View>
           </Card>
           <Card borderRadius={15}>
             <View>
               <Text style={{ fontSize: 30, padding: 10 }}>
-                Members: {this.state.community.numberOfMembers}
+                👥 {this.state.community.numberOfMembers}
               </Text>
               <Text style={{ fontSize: 30, padding: 10 }}>
-                Creator: {this.state.community.creator}
+                👤 {this.state.community.creator}
               </Text>
               {this.state.creator === this.state.community.creator && (
                 <View>{members}</View>
@@ -323,20 +323,20 @@ class CommunityScreen extends React.Component {
                 style={styles.homeButton}
                 onPress={() => this.goHome()}
               >
-                <Text style={styles.homeButtonText}>Go Home</Text>
+                <Text style={styles.homeButtonText}>Go Home 🏠</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.communityButton}
                 onPress={() => this.viewCommunities()}
               >
-                <Text style={styles.communityButtonText}>View Communites</Text>
+                <Text style={styles.communityButtonText}>View Communites 👥</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.myCommunitiesButton}
                 onPress={() => this.props.navigation.navigate("MyCommunities")}
               >
                 <Text style={styles.myCommunitiesButtonText}>
-                  My Communities
+                  My Communities 👤
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -344,7 +344,7 @@ class CommunityScreen extends React.Component {
                 onPress={() => this.props.navigation.navigate("JoinedCommunities")}
               >
                 <Text style={styles.joinedCommunitiesButtonText}>
-                  Joined Communities
+                  Joined Communities 👤👥
           </Text>
               </TouchableOpacity>
               {this.state.creator !== this.state.community.creator &&
@@ -353,7 +353,7 @@ class CommunityScreen extends React.Component {
                     style={styles.joinButton}
                     onPress={this.joinCommunity}
                   >
-                    <Text style={styles.joinButtonText}>Join Community</Text>
+                    <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
                   </TouchableOpacity>
                 )}
               {this.state.creator === this.state.community.creator && (
@@ -365,7 +365,7 @@ class CommunityScreen extends React.Component {
                     })
                   }
                 >
-                  <Text style={styles.editButtonText}>Edit Community</Text>
+                  <Text style={styles.editButtonText}>Edit Community ✏️</Text>
                 </TouchableOpacity>
               )}
               {this.state.creator === this.state.community.creator && (
@@ -373,7 +373,7 @@ class CommunityScreen extends React.Component {
                   style={styles.deleteButton}
                   onPress={this.deleteCommunity}
                 >
-                  <Text style={styles.deleteButtonText}>Delete Community</Text>
+                  <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
                 </TouchableOpacity>
               )}
               {this.state.community.numberOfMembers >= 3 &&
@@ -386,7 +386,7 @@ class CommunityScreen extends React.Component {
                       })
                     }
                   >
-                    <Text style={styles.meetButtonText}>Create Meet</Text>
+                    <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
                   </TouchableOpacity>
                 )}
               {this.state.community.numberOfMembers >= 3 &&
@@ -399,7 +399,7 @@ class CommunityScreen extends React.Component {
                       })
                     }
                   >
-                    <Text style={styles.meetButtonText}>Create Meet</Text>
+                    <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
                   </TouchableOpacity>
                 )}
             </View>
@@ -437,7 +437,7 @@ class CommunityScreen extends React.Component {
                   style={styles.saveButton}
                   onPress={this.handleComment}
                 >
-                  <Text style={styles.saveButtonText}>Add Comment</Text>
+                  <Text style={styles.saveButtonText}>Add Comment 💬</Text>
                 </TouchableOpacity>
               </View>
             </Card>
@@ -458,7 +458,7 @@ class CommunityScreen extends React.Component {
                   style={styles.saveButton}
                   onPress={this.handleComment}
                 >
-                  <Text style={styles.saveButtonText}>Add Comment</Text>
+                  <Text style={styles.saveButtonText}>Add Comment 💬</Text>
                 </TouchableOpacity>
               </View>
             </Card>

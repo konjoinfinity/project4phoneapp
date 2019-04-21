@@ -79,7 +79,7 @@ class CommunitiesScreen extends React.Component {
               source={require("./logo.png")}
             />
           </View>
-          <Text style={{ fontSize: 50, textAlign: "center", padding: 20 }}>
+          <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             Communities
           </Text>
           {communities}

@@ -50,7 +50,7 @@ class LoginScreen extends React.Component {
     var username = await AsyncStorage.getItem(STORAGE_USER);
     console.log(username);
     Alert.alert(
-      username === null ? "No user logged in" : username + " is logged in."
+      username === null ? "No user logged in" : username + " is logged in"
     );
     Vibration.vibrate();
   }
@@ -59,7 +59,7 @@ class LoginScreen extends React.Component {
     try {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
-      Alert.alert("Logout Success!");
+      Alert.alert("Logout Success! ✅");
       Vibration.vibrate();
     } catch (error) {
       console.log("AsyncStorage error: " + error.message);
@@ -90,10 +90,10 @@ class LoginScreen extends React.Component {
         if (responseData.error) {
           console.log(responseData.error);
           Vibration.vibrate();
-          Alert.alert(responseData.error);
+          Alert.alert(responseData.error + " ❌");
         } else {
           Vibration.vibrate();
-          Alert.alert("Login Success!");
+          Alert.alert("Login Success! ✓");
           console.log(responseData.token);
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
@@ -121,10 +121,10 @@ class LoginScreen extends React.Component {
         if (responseData.error) {
           console.log(responseData.error);
           Vibration.vibrate();
-          Alert.alert(responseData.error);
+          Alert.alert(responseData.error + " ❌");
         } else {
           Vibration.vibrate();
-          Alert.alert("User Signup Success!");
+          Alert.alert("User Signup Success! ✓");
           console.log(responseData.token);
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
@@ -188,25 +188,25 @@ class LoginScreen extends React.Component {
                   style={styles.loginButton}
                   onPress={this.handleLogin}
                 >
-                  <Text style={styles.loginButtonText}>Login</Text>
+                  <Text style={styles.loginButtonText}>Login 🔑</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.logoutButton}
                   onPress={this.userLogout}
                 >
-                  <Text style={styles.logoutButtonText}>Logout</Text>
+                  <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.signupButton}
                   onPress={this.handleSignup}
                 >
-                  <Text style={styles.signupButtonText}>User Signup</Text>
+                  <Text style={styles.signupButtonText}>User Signup ⌨️</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.checkButton}
                   onPress={this.getUsername}
                 >
-                  <Text style={styles.checkButtonText}>Check User</Text>
+                  <Text style={styles.checkButtonText}>Check User ❔</Text>
                 </TouchableOpacity>
               </View>
             </Card>
