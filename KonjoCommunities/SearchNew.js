@@ -29,6 +29,7 @@ class SearchNewScreen extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.newClear = this.newClear.bind(this);
   }
 
   async getUsername() {
@@ -41,6 +42,14 @@ class SearchNewScreen extends React.Component {
     Vibration.vibrate();
     this.getUsername();
     this.setState({ name: this.props.navigation.state.params.newName });
+  }
+
+  newClear() {
+    this.setState({
+      name: "",
+      description: "",
+      category: ""
+    });
   }
 
   handleNameChange(name) {
@@ -64,6 +73,7 @@ class SearchNewScreen extends React.Component {
     });
     this.props.navigation.navigate("Communities");
     Vibration.vibrate();
+    this.newClear();
   }
 
   render() {
@@ -92,8 +102,11 @@ class SearchNewScreen extends React.Component {
                     value={this.state.name}
                     name="name"
                     id="name"
-                    onBlur={Keyboard.dismiss}
+                    blurOnSubmit={false}
                     onChangeText={this.handleNameChange}
+                    autoFocus={true}
+                    returnKeyType={"next"}
+                    onSubmitEditing={() => { this.descInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -102,8 +115,12 @@ class SearchNewScreen extends React.Component {
                     placeholder="Description"
                     name="description"
                     id="description"
-                    onBlur={Keyboard.dismiss}
+                    blurOnSubmit={false}
                     onChangeText={this.handleDescriptionChange}
+                    returnKeyType={"next"}
+                    ref={(input) => { this.descInput = input; }}
+                    onSubmitEditing={() => { this.catInput.focus(); }}
+                    value={this.state.description}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -112,8 +129,11 @@ class SearchNewScreen extends React.Component {
                     placeholder="Category"
                     name="category"
                     id="category"
-                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleCategoryChange}
+                    ref={(input) => { this.catInput = input; }}
+                    onSubmitEditing={this.handleSubmit}
+                    value={this.state.category}
+                    returnKeyType='send'
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -121,7 +141,7 @@ class SearchNewScreen extends React.Component {
                     style={styles.saveButton}
                     onPress={this.handleSubmit}
                   >
-                    <Text style={styles.saveButtonText}>Save</Text>
+                    <Text style={styles.saveButtonText}>Create</Text>
                   </TouchableOpacity>
                 </View>
               </Card>

@@ -485,7 +485,6 @@ class CommunityScreen extends React.Component {
             <View style={{ margin: 20 }}>{commentlist}</View>
           )}
         </ScrollView>
-        <View style={{ height: 60 }} />
       </KeyboardAvoidingView>
     );
   }
