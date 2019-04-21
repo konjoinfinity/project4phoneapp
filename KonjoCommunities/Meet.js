@@ -12,6 +12,17 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class MeetScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +41,10 @@ class MeetScreen extends React.Component {
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.meetClear = this.meetClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   componentDidMount() {
     Vibration.vibrate();
@@ -85,18 +100,6 @@ class MeetScreen extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
           <View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Image
-                style={{ height: 50, width: 100 }}
-                source={require("./logo.png")}
-              />
-            </View>
             <View>
               <Card borderRadius={15}>
                 <Text style={styles.header}>New Meet</Text>

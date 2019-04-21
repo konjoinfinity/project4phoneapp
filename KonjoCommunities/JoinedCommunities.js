@@ -13,6 +13,17 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class JoinedCommunitiesScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +33,10 @@ class JoinedCommunitiesScreen extends React.Component {
     };
     this.getCommunities = this.getCommunities.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
@@ -83,18 +98,6 @@ class JoinedCommunitiesScreen extends React.Component {
     return (
       <View style={styles.communities}>
         <ScrollView>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Image
-              style={{ height: 50, width: 100 }}
-              source={require("./logo.png")}
-            />
-          </View>
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             Joined Communities
           </Text>

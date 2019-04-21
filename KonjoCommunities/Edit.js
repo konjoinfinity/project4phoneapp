@@ -12,6 +12,17 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class EditScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +39,10 @@ class EditScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.editClear = this.editClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   componentDidMount() {
     fetch(
@@ -88,18 +103,6 @@ class EditScreen extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
           <View style={styles.container}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Image
-                style={{ height: 50, width: 100 }}
-                source={require("./logo.png")}
-              />
-            </View>
             <View>
               <Card borderRadius={15}>
                 <Text style={styles.header}>Edit Community</Text>
@@ -165,7 +168,7 @@ class EditScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 45
+    paddingTop: 10
   },
   header: {
     fontSize: 25,

@@ -7,10 +7,22 @@ import {
   TouchableOpacity,
   Vibration
 } from "react-native";
+import { Card } from "react-native-elements";
+
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    headerTitle: <LogoTitle />
   };
 
   componentDidMount() {
@@ -19,58 +31,50 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <Image
-          style={{ height: 100, width: 200 }}
-          source={require("./logo.png")}
-        />
-        <Text style={{ fontSize: 50, textAlign: "center" }}>
+      <View>
+        <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
           Beautiful Communities
         </Text>
-        <TouchableOpacity
-          style={styles.communitiesButton}
-          onPress={() => this.props.navigation.navigate("Communities")}
-        >
-          <Text style={styles.communitiesButtonText}>All Communities</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.newButton}
-          onPress={() => this.props.navigation.navigate("New")}
-        >
-          <Text style={styles.newButtonText}>New Community</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.myCommunitiesButton}
-          onPress={() => this.props.navigation.navigate("MyCommunities")}
-        >
-          <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.joinedCommunitiesButton}
-          onPress={() => this.props.navigation.navigate("JoinedCommunities")}
-        >
-          <Text style={styles.joinedCommunitiesButtonText}>
-            Joined Communities
+        <Card borderRadius={15}>
+          <TouchableOpacity
+            style={styles.communitiesButton}
+            onPress={() => this.props.navigation.navigate("Communities")}
+          >
+            <Text style={styles.communitiesButtonText}>All Communities</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.newButton}
+            onPress={() => this.props.navigation.navigate("New")}
+          >
+            <Text style={styles.newButtonText}>New Community</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.myCommunitiesButton}
+            onPress={() => this.props.navigation.navigate("MyCommunities")}
+          >
+            <Text style={styles.myCommunitiesButtonText}>My Communities</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.joinedCommunitiesButton}
+            onPress={() => this.props.navigation.navigate("JoinedCommunities")}
+          >
+            <Text style={styles.joinedCommunitiesButtonText}>
+              Joined Communities
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.searchButton}
-          onPress={() => this.props.navigation.navigate("Search")}
-        >
-          <Text style={styles.searchButtonText}>Search</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.communitiesButton}
-          onPress={() => this.props.navigation.navigate("Login")}
-        >
-          <Text style={styles.communitiesButtonText}>Login</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.searchButton}
+            onPress={() => this.props.navigation.navigate("Search")}
+          >
+            <Text style={styles.searchButtonText}>Search</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.communitiesButton}
+            onPress={() => this.props.navigation.navigate("Login")}
+          >
+            <Text style={styles.communitiesButtonText}>Login</Text>
+          </TouchableOpacity>
+        </Card>
       </View>
     );
   }

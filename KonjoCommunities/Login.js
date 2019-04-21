@@ -17,6 +17,17 @@ import AsyncStorage from "@react-native-community/async-storage";
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./klogo.png")}
+        style={{ width: 30, height: 30 }}
+      />
+    );
+  }
+}
+
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +43,7 @@ class LoginScreen extends React.Component {
   }
 
   static navigationOptions = {
-    header: null
+    headerTitle: <LogoTitle />
   };
 
   componentDidMount() {
@@ -149,18 +160,6 @@ class LoginScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Image
-              style={{ height: 50, width: 100 }}
-              source={require("./logo.png")}
-            />
-          </View>
           <View>
             <Card borderRadius={15}>
               <Text style={styles.header}>Login or Signup</Text>
@@ -232,7 +231,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 45
+    paddingTop: 10
   },
   header: {
     fontSize: 25,

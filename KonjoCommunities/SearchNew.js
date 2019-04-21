@@ -16,6 +16,17 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class SearchNewScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +42,10 @@ class SearchNewScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.newClear = this.newClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
@@ -81,18 +96,6 @@ class SearchNewScreen extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
           <View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Image
-                style={{ height: 50, width: 100 }}
-                source={require("./logo.png")}
-              />
-            </View>
             <View>
               <Card borderRadius={15}>
                 <Text style={styles.header}>New Community</Text>

@@ -17,6 +17,17 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class CommunityScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +43,10 @@ class CommunityScreen extends React.Component {
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   handleCommentChange(comment) {
     this.setState({ comment });
@@ -279,18 +294,6 @@ class CommunityScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.communities} behavior="padding">
         <ScrollView>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <Image
-              style={{ height: 50, width: 100 }}
-              source={require("./logo.png")}
-            />
-          </View>
           <Card borderRadius={15}>
             <View>
               <Text style={{ fontSize: 40, padding: 10 }}>

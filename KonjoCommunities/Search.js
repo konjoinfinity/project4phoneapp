@@ -13,6 +13,17 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +33,10 @@ class SearchScreen extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   componentDidMount() {
     fetch("https://konjomeet.herokuapp.com/community")
@@ -43,7 +58,7 @@ class SearchScreen extends React.Component {
 
     if (search.length > 0) {
       this.state.communities &&
-        (communitySearch = communitySearch.filter(function(community) {
+        (communitySearch = communitySearch.filter(function (community) {
           return community.name.toLowerCase().match(search);
         }));
     }
@@ -102,18 +117,6 @@ class SearchScreen extends React.Component {
         <ScrollView>
           <View>
             <Card borderRadius={15}>
-              <View
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-              >
-                <Image
-                  style={{ height: 50, width: 100 }}
-                  source={require("./logo.png")}
-                />
-              </View>
               <Text style={styles.header}>Search Communities</Text>
               <View style={styles.inputContainer}>
                 <TextInput
