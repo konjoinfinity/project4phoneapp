@@ -30,7 +30,6 @@ class CommunityScreen extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
-    this.commentInput = React.createRef();
   }
 
   handleCommentChange(comment) {
@@ -38,9 +37,7 @@ class CommunityScreen extends React.Component {
   }
 
   commentClear() {
-    console.log(this.state.comment)
     this.setState({ comment: "" });
-    console.log(this.state.comment)
   }
 
   async getUsername() {
@@ -431,7 +428,6 @@ class CommunityScreen extends React.Component {
                   id="comment"
                   onBlur={Keyboard.dismiss}
                   onChangeText={this.handleCommentChange}
-                  ref={this.commentInput}
                   returnKeyType="send"
                   value={this.state.comment}
                   onSubmitEditing={this.handleComment}
@@ -456,7 +452,6 @@ class CommunityScreen extends React.Component {
                   id="comment"
                   onBlur={Keyboard.dismiss}
                   onChangeText={this.handleCommentChange}
-                  ref={this.commentInput}
                   returnKeyType='send'
                   value={this.state.comment}
                   onSubmitEditing={this.handleComment}

@@ -29,6 +29,7 @@ class LoginScreen extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
+    this.loginClear = this.loginClear.bind(this);
   }
 
   static navigationOptions = {
@@ -44,6 +45,13 @@ class LoginScreen extends React.Component {
   }
   handlePasswordChange(password) {
     this.setState({ password });
+  }
+
+  loginClear() {
+    this.setState({
+      email: "",
+      password: ""
+    });
   }
 
   async getUsername() {
@@ -98,6 +106,7 @@ class LoginScreen extends React.Component {
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
           this.props.navigation.navigate("Home");
+          this.loginClear();
         }
       })
       .catch(err => {
@@ -129,6 +138,7 @@ class LoginScreen extends React.Component {
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
           this.props.navigation.navigate("Home");
+          this.loginClear();
         }
       })
       .catch(err => {
@@ -167,6 +177,7 @@ class LoginScreen extends React.Component {
                   returnKeyType={"next"}
                   blurOnSubmit={false}
                   onChangeText={this.handleEmailChange}
+                  value={this.state.email}
                   onSubmitEditing={() => { this.passInput.focus(); }}
                 />
               </View>
@@ -177,10 +188,11 @@ class LoginScreen extends React.Component {
                   secureTextEntry={true}
                   name="password"
                   id="password"
-                  blurOnSubmit={false}
                   onChangeText={this.handlePasswordChange}
                   ref={(input) => { this.passInput = input; }}
-                  onSubmitEditing={Keyboard.dismiss}
+                  onSubmitEditing={this.handleLogin}
+                  value={this.state.password}
+                  returnKeyType='send'
                 />
               </View>
               <View style={styles.inputContainer}>
