@@ -50,7 +50,7 @@ class LoginScreen extends React.Component {
     var username = await AsyncStorage.getItem(STORAGE_USER);
     console.log(username);
     Alert.alert(
-      username === null ? "No user logged in" : username + ": is logged in."
+      username === null ? "No user logged in" : username + " is logged in."
     );
   }
 
