@@ -52,6 +52,7 @@ class LoginScreen extends React.Component {
     Alert.alert(
       username === null ? "No user logged in" : username + " is logged in."
     );
+    Vibration.vibrate();
   }
 
   async userLogout() {
