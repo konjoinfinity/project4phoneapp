@@ -6,7 +6,6 @@ import {
   View,
   ScrollView,
   TextInput,
-  Keyboard,
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView
@@ -29,10 +28,21 @@ class MeetScreen extends React.Component {
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.meetClear = this.meetClear.bind(this);
   }
 
   componentDidMount() {
     Vibration.vibrate();
+  }
+
+  meetClear() {
+    this.setState({
+      name: "",
+      description: "",
+      location: "",
+      date: "",
+      time: ""
+    });
   }
 
   handleNameChange(name) {
@@ -67,6 +77,7 @@ class MeetScreen extends React.Component {
     );
     this.props.navigation.navigate("Communities");
     Vibration.vibrate();
+    this.meetClear();
   }
 
   render() {
@@ -100,6 +111,7 @@ class MeetScreen extends React.Component {
                     blurOnSubmit={false}
                     autoFocus={true}
                     onSubmitEditing={() => { this.descInput.focus(); }}
+                    value={this.state.name}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -113,6 +125,7 @@ class MeetScreen extends React.Component {
                     blurOnSubmit={false}
                     ref={(input) => { this.descInput = input; }}
                     onSubmitEditing={() => { this.locInput.focus(); }}
+                    value={this.state.description}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -126,6 +139,7 @@ class MeetScreen extends React.Component {
                     blurOnSubmit={false}
                     ref={(input) => { this.locInput = input; }}
                     onSubmitEditing={() => { this.dateInput.focus(); }}
+                    value={this.state.location}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -139,6 +153,7 @@ class MeetScreen extends React.Component {
                     blurOnSubmit={false}
                     ref={(input) => { this.dateInput = input; }}
                     onSubmitEditing={() => { this.timeInput.focus(); }}
+                    value={this.state.date}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -148,9 +163,10 @@ class MeetScreen extends React.Component {
                     name="time"
                     id="time"
                     onChangeText={this.handleTimeChange}
-                    blurOnSubmit={false}
                     ref={(input) => { this.timeInput = input; }}
-                    onSubmitEditing={Keyboard.dismiss}
+                    onSubmitEditing={this.handleSubmit}
+                    value={this.state.time}
+                    returnKeyType='send'
                   />
                 </View>
                 <View style={styles.inputContainer}>

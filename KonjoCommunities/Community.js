@@ -9,7 +9,8 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Vibration
+  Vibration,
+  KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -276,7 +277,7 @@ class CommunityScreen extends React.Component {
         );
       }));
     return (
-      <View style={styles.communities}>
+      <KeyboardAvoidingView style={styles.communities} behavior="padding">
         <ScrollView>
           <View
             style={{
@@ -484,7 +485,8 @@ class CommunityScreen extends React.Component {
             <View style={{ margin: 20 }}>{commentlist}</View>
           )}
         </ScrollView>
-      </View>
+        <View style={{ height: 60 }} />
+      </KeyboardAvoidingView>
     );
   }
 }

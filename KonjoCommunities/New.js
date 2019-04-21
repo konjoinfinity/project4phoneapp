@@ -6,7 +6,6 @@ import {
   View,
   ScrollView,
   TextInput,
-  Keyboard,
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView
@@ -29,6 +28,7 @@ class NewScreen extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.newClear = this.newClear.bind(this);
   }
 
   async getUsername() {
@@ -40,6 +40,14 @@ class NewScreen extends React.Component {
   componentDidMount() {
     Vibration.vibrate();
     this.getUsername();
+  }
+
+  newClear() {
+    this.setState({
+      name: "",
+      description: "",
+      category: ""
+    });
   }
 
   handleNameChange(name) {
@@ -63,6 +71,7 @@ class NewScreen extends React.Component {
     });
     this.props.navigation.navigate("Communities");
     Vibration.vibrate();
+    this.newClear();
   }
 
   render() {
@@ -96,6 +105,7 @@ class NewScreen extends React.Component {
                     autoFocus={true}
                     returnKeyType={"next"}
                     onSubmitEditing={() => { this.descInput.focus(); }}
+                    value={this.state.name}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -109,6 +119,7 @@ class NewScreen extends React.Component {
                     returnKeyType={"next"}
                     ref={(input) => { this.descInput = input; }}
                     onSubmitEditing={() => { this.catInput.focus(); }}
+                    value={this.state.description}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -117,10 +128,11 @@ class NewScreen extends React.Component {
                     placeholder="Category"
                     name="category"
                     id="category"
-                    blurOnSubmit={false}
                     onChangeText={this.handleCategoryChange}
                     ref={(input) => { this.catInput = input; }}
-                    onSubmitEditing={Keyboard.dismiss}
+                    onSubmitEditing={this.handleSubmit}
+                    value={this.state.category}
+                    returnKeyType='send'
                   />
                 </View>
                 <View style={styles.inputContainer}>

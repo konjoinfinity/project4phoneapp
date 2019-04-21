@@ -6,7 +6,6 @@ import {
   View,
   ScrollView,
   TextInput,
-  Keyboard,
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView
@@ -27,6 +26,7 @@ class EditScreen extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.editClear = this.editClear.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +45,14 @@ class EditScreen extends React.Component {
         });
       });
     Vibration.vibrate();
+  }
+
+  editClear() {
+    this.setState({
+      name: "",
+      description: "",
+      category: ""
+    });
   }
 
   handleNameChange(name) {
@@ -71,6 +79,7 @@ class EditScreen extends React.Component {
         console.log(result);
         this.props.navigation.navigate("Communities");
         Vibration.vibrate();
+        this.editClear();
       });
   }
 
@@ -105,6 +114,7 @@ class EditScreen extends React.Component {
                     onChangeText={this.handleNameChange}
                     autoFocus={true}
                     onSubmitEditing={() => { this.descInput.focus(); }}
+                    value={this.state.name}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -118,6 +128,7 @@ class EditScreen extends React.Component {
                     onChangeText={this.handleDescriptionChange}
                     ref={(input) => { this.descInput = input; }}
                     onSubmitEditing={() => { this.catInput.focus(); }}
+                    value={this.state.description}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -126,10 +137,11 @@ class EditScreen extends React.Component {
                     value={this.state.category}
                     name="category"
                     id="category"
-                    blurOnSubmit={false}
                     onChangeText={this.handleCategoryChange}
                     ref={(input) => { this.catInput = input; }}
-                    onSubmitEditing={Keyboard.dismiss}
+                    onSubmitEditing={this.handleSubmit}
+                    value={this.state.category}
+                    returnKeyType='send'
                   />
                 </View>
                 <View style={styles.inputContainer}>
