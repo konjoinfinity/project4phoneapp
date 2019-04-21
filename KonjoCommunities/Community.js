@@ -36,6 +36,10 @@ class CommunityScreen extends React.Component {
     this.setState({ comment });
   }
 
+  commentClear() {
+    console.log(this.commentInput)
+  }
+
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
     console.log(username);
@@ -119,6 +123,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
+        this.commentClear()
         Vibration.vibrate();
       })
   }
@@ -423,8 +428,8 @@ class CommunityScreen extends React.Component {
                   id="comment"
                   onBlur={Keyboard.dismiss}
                   onChangeText={this.handleCommentChange}
-                  ref={this.commentInput}
-                  onSubmitEditing={this.commentInput.clear()}
+                  ref={(comment) => { this.commentInput = comment }}
+                  value={this.state.comment}
                 />
               </View>
               <View style={styles.inputContainer}>

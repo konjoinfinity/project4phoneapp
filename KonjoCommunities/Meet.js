@@ -55,7 +55,7 @@ class MeetScreen extends React.Component {
     const data = { meet: this.state };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.props.navigation.state.params.communityId
+      this.props.navigation.state.params.communityId
       }/meet`,
       {
         method: "PUT",
@@ -95,8 +95,11 @@ class MeetScreen extends React.Component {
                     placeholder="Name"
                     name="name"
                     id="name"
-                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleNameChange}
+                    returnKeyType={"next"}
+                    blurOnSubmit={false}
+                    autoFocus={true}
+                    onSubmitEditing={() => { this.descInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -105,8 +108,11 @@ class MeetScreen extends React.Component {
                     placeholder="Description"
                     name="description"
                     id="description"
-                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleDescriptionChange}
+                    returnKeyType={"next"}
+                    blurOnSubmit={false}
+                    ref={(input) => { this.descInput = input; }}
+                    onSubmitEditing={() => { this.locInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -115,8 +121,11 @@ class MeetScreen extends React.Component {
                     placeholder="Location"
                     name="location"
                     id="location"
-                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleLocationChange}
+                    returnKeyType={"next"}
+                    blurOnSubmit={false}
+                    ref={(input) => { this.locInput = input; }}
+                    onSubmitEditing={() => { this.dateInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -125,8 +134,11 @@ class MeetScreen extends React.Component {
                     placeholder="Date"
                     name="date"
                     id="date"
-                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleDateChange}
+                    returnKeyType={"next"}
+                    blurOnSubmit={false}
+                    ref={(input) => { this.dateInput = input; }}
+                    onSubmitEditing={() => { this.timeInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -135,8 +147,10 @@ class MeetScreen extends React.Component {
                     placeholder="Time"
                     name="time"
                     id="time"
-                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleTimeChange}
+                    blurOnSubmit={false}
+                    ref={(input) => { this.timeInput = input; }}
+                    onSubmitEditing={Keyboard.dismiss}
                   />
                 </View>
                 <View style={styles.inputContainer}>

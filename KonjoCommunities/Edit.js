@@ -32,7 +32,7 @@ class EditScreen extends React.Component {
   componentDidMount() {
     fetch(
       `https://konjomeet.herokuapp.com/community/${
-        this.props.navigation.state.params.communityId
+      this.props.navigation.state.params.communityId
       }`
     )
       .then(res => res.json())
@@ -100,8 +100,11 @@ class EditScreen extends React.Component {
                     value={this.state.name}
                     name="name"
                     id="name"
-                    onBlur={Keyboard.dismiss}
+                    returnKeyType={"next"}
+                    blurOnSubmit={false}
                     onChangeText={this.handleNameChange}
+                    autoFocus={true}
+                    onSubmitEditing={() => { this.descInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -110,8 +113,11 @@ class EditScreen extends React.Component {
                     value={this.state.description}
                     name="description"
                     id="description"
-                    onBlur={Keyboard.dismiss}
+                    returnKeyType={"next"}
+                    blurOnSubmit={false}
                     onChangeText={this.handleDescriptionChange}
+                    ref={(input) => { this.descInput = input; }}
+                    onSubmitEditing={() => { this.catInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -120,8 +126,10 @@ class EditScreen extends React.Component {
                     value={this.state.category}
                     name="category"
                     id="category"
-                    onBlur={Keyboard.dismiss}
+                    blurOnSubmit={false}
                     onChangeText={this.handleCategoryChange}
+                    ref={(input) => { this.catInput = input; }}
+                    onSubmitEditing={Keyboard.dismiss}
                   />
                 </View>
                 <View style={styles.inputContainer}>

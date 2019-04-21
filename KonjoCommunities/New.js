@@ -91,8 +91,11 @@ class NewScreen extends React.Component {
                     placeholder="Name"
                     name="name"
                     id="name"
-                    onBlur={Keyboard.dismiss}
+                    blurOnSubmit={false}
                     onChangeText={this.handleNameChange}
+                    autoFocus={true}
+                    returnKeyType={"next"}
+                    onSubmitEditing={() => { this.descInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -101,8 +104,11 @@ class NewScreen extends React.Component {
                     placeholder="Description"
                     name="description"
                     id="description"
-                    onBlur={Keyboard.dismiss}
+                    blurOnSubmit={false}
                     onChangeText={this.handleDescriptionChange}
+                    returnKeyType={"next"}
+                    ref={(input) => { this.descInput = input; }}
+                    onSubmitEditing={() => { this.catInput.focus(); }}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -111,8 +117,10 @@ class NewScreen extends React.Component {
                     placeholder="Category"
                     name="category"
                     id="category"
-                    onBlur={Keyboard.dismiss}
+                    blurOnSubmit={false}
                     onChangeText={this.handleCategoryChange}
+                    ref={(input) => { this.catInput = input; }}
+                    onSubmitEditing={Keyboard.dismiss}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -120,7 +128,7 @@ class NewScreen extends React.Component {
                     style={styles.saveButton}
                     onPress={this.handleSubmit}
                   >
-                    <Text style={styles.saveButtonText}>Save</Text>
+                    <Text style={styles.saveButtonText}>Create</Text>
                   </TouchableOpacity>
                 </View>
               </Card>

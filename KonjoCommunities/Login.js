@@ -160,10 +160,14 @@ class LoginScreen extends React.Component {
                   style={styles.textInput}
                   placeholder="Email"
                   keyboardType="email-address"
+                  autoFocus={true}
+                  autoCapitalize="none"
                   name="email"
                   id="email"
-                  onBlur={Keyboard.dismiss}
+                  returnKeyType={"next"}
+                  blurOnSubmit={false}
                   onChangeText={this.handleEmailChange}
+                  onSubmitEditing={() => { this.passInput.focus(); }}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -173,8 +177,10 @@ class LoginScreen extends React.Component {
                   secureTextEntry={true}
                   name="password"
                   id="password"
-                  onBlur={Keyboard.dismiss}
+                  blurOnSubmit={false}
                   onChangeText={this.handlePasswordChange}
+                  ref={(input) => { this.passInput = input; }}
+                  onSubmitEditing={Keyboard.dismiss}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -206,7 +212,6 @@ class LoginScreen extends React.Component {
             </Card>
           </View>
         </ScrollView>
-        <View style={{ height: 60 }} />
       </KeyboardAvoidingView>
     );
   }
