@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from "./Home";
 import CommunitiesScreen from "./Communities";
 import CommunityScreen from "./Community";
@@ -11,8 +11,11 @@ import JoinedCommunitiesScreen from "./JoinedCommunities";
 import SearchScreen from "./Search";
 import LoginScreen from "./Login";
 import SearchNewScreen from "./SearchNew";
+import AuthLoadingScreen from "./AuthLoading"
 
-const Project = createStackNavigator(
+
+
+const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
     Communities: CommunitiesScreen,
@@ -27,8 +30,21 @@ const Project = createStackNavigator(
     SearchNew: SearchNewScreen
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: 'Home',
   }
 );
+const AuthStack = createStackNavigator({ Login: LoginScreen },
+  {
+    initialRouteName: 'Login',
+  });
 
-export default createAppContainer(Project);
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));
