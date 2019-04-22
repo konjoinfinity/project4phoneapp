@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Vibration
+  Vibration,
+  Button
 } from "react-native";
 import { Card } from "react-native-elements";
 
@@ -59,7 +60,7 @@ class HomeScreen extends React.Component {
             onPress={() => this.props.navigation.navigate("JoinedCommunities")}
           >
             <Text style={styles.joinedCommunitiesButtonText}>
-              Joined Communities 👤👥
+              Joined Communities 👤➡️👥
           </Text>
           </TouchableOpacity>
           <TouchableOpacity
