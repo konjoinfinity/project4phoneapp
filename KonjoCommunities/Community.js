@@ -351,7 +351,7 @@ class CommunityScreen extends React.Component {
                 onPress={() => this.props.navigation.navigate("JoinedCommunities")}
               >
                 <Text style={styles.joinedCommunitiesButtonText}>
-                  Joined Communities 👤👥
+                  Joined Communities 👤➡️👥
           </Text>
               </TouchableOpacity>
               {this.state.creator !== this.state.community.creator &&
