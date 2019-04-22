@@ -250,10 +250,13 @@ class CommunityScreen extends React.Component {
         return (
           <TouchableOpacity key={id} style={styles.comment}>
             <Text style={{ fontSize: 40, padding: 20 }}>{comment.text}</Text>
-            <Button
-              title="🗑 Delete"
-              onPress={() => this.deleteComment(`${comment._id}`)}
-            />
+            <Text style={{ fontSize: 15, padding: 10 }}>{comment.creator}</Text>
+            {this.state.creator === comment.creator && (
+              <Button
+                title="🗑 Delete"
+                onPress={() => this.deleteComment(`${comment._id}`)}
+              />
+            )}
           </TouchableOpacity>
         );
       }));
