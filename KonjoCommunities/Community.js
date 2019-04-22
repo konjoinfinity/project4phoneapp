@@ -122,7 +122,7 @@ class CommunityScreen extends React.Component {
   }
 
   handleComment() {
-    const data = { comment: this.state.comment };
+    const data = { comment: this.state.comment, creator: this.state.creator };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
       this.state.community._id
