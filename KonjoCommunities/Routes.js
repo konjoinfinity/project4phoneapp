@@ -13,21 +13,48 @@ import LoginScreen from "./Login";
 import SearchNewScreen from "./SearchNew";
 import AuthLoadingScreen from "./AuthLoading"
 import ProfileScreen from "./Profile";
+import Nav from "./Nav"
 
 const AppStack = createDrawerNavigator(
   {
     Home: HomeScreen,
     Communities: CommunitiesScreen,
-    Community: CommunityScreen,
+    Community: {
+      screen: CommunityScreen,
+      navigationOptions: {
+        drawerLabel: () => null,
+      }
+    },
     New: NewScreen,
-    Edit: EditScreen,
-    Meet: MeetScreen,
+    Edit: {
+      screen: EditScreen,
+      navigationOptions: {
+        drawerLabel: () => null,
+      }
+    },
+    Meet: {
+      screen: MeetScreen,
+      navigationOptions: {
+        drawerLabel: () => null,
+      }
+    },
     MyCommunities: MyCommunitiesScreen,
     JoinedCommunities: JoinedCommunitiesScreen,
     Search: SearchScreen,
     Login: LoginScreen,
-    SearchNew: SearchNewScreen,
-    Profile: ProfileScreen
+    SearchNew: {
+      screen: SearchNewScreen,
+      navigationOptions: {
+        drawerLabel: () => null,
+      }
+    },
+    Nav: {
+      screen: Nav,
+      navigationOptions: {
+        drawerLabel: () => null,
+      }
+    },
+    Profile: ProfileScreen,
   },
   {
     initialRouteName: 'Home',
