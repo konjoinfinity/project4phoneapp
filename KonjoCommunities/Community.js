@@ -276,7 +276,7 @@ class CommunityScreen extends React.Component {
                 🗒 {meet.description}
               </Text>
               <Text style={{ fontSize: 20, padding: 5 }}>
-                🗺 {meet.location}
+                📍 {meet.location}
               </Text>
               <Text style={{ fontSize: 20, padding: 5 }}>
                 📆 {meet.date}
@@ -284,7 +284,10 @@ class CommunityScreen extends React.Component {
               <Text style={{ fontSize: 20, padding: 5 }}>
                 🕒 {meet.time}
               </Text>
-              {this.state.creator === this.state.community.creator && (
+              <Text style={{ fontSize: 10, padding: 5 }}>
+                👤 {meet.creator}
+              </Text>
+              {this.state.creator === meet.creator && (
                 <Button
                   title="🗑 Delete"
                   onPress={() => this.deleteMeet(`${meet._id}`)}
@@ -393,7 +396,7 @@ class CommunityScreen extends React.Component {
                       })
                     }
                   >
-                    <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
+                    <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
                   </TouchableOpacity>
                 )}
               {this.state.community.numberOfMembers >= 3 &&
