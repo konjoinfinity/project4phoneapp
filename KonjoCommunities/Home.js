@@ -51,17 +51,9 @@ class HomeScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.myCommunitiesButton}
-            onPress={() => this.props.navigation.navigate("MyCommunities")}
+            onPress={() => this.props.navigation.navigate("Profile")}
           >
-            <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.joinedCommunitiesButton}
-            onPress={() => this.props.navigation.navigate("JoinedCommunities")}
-          >
-            <Text style={styles.joinedCommunitiesButtonText}>
-              Joined Communities 👤➡️👥
-          </Text>
+            <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.searchButton}
@@ -70,10 +62,10 @@ class HomeScreen extends React.Component {
             <Text style={styles.searchButtonText}>Search 🔍</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.communitiesButton}
+            style={styles.loginButton}
             onPress={() => this.props.navigation.navigate("Login")}
           >
-            <Text style={styles.communitiesButtonText}>Login 🔑</Text>
+            <Text style={styles.loginButtonText}>Login 🔑</Text>
           </TouchableOpacity>
         </Card>
       </View>
@@ -122,19 +114,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center"
   },
-  joinedCommunitiesButton: {
-    borderWidth: 1,
-    borderColor: "#E0118A",
-    backgroundColor: "#E0118A",
-    padding: 15,
-    margin: 5,
-    borderRadius: 15
-  },
-  joinedCommunitiesButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   searchButton: {
     borderWidth: 1,
     borderColor: "#FFE713",
@@ -144,6 +123,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   searchButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  loginButton: {
+    borderWidth: 1,
+    borderColor: "#E0118A",
+    backgroundColor: "#E0118A",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  loginButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

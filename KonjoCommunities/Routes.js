@@ -12,6 +12,7 @@ import SearchScreen from "./Search";
 import LoginScreen from "./Login";
 import SearchNewScreen from "./SearchNew";
 import AuthLoadingScreen from "./AuthLoading"
+import ProfileScreen from "./Profile";
 
 
 
@@ -27,7 +28,8 @@ const AppStack = createStackNavigator(
     JoinedCommunities: JoinedCommunitiesScreen,
     Search: SearchScreen,
     Login: LoginScreen,
-    SearchNew: SearchNewScreen
+    SearchNew: SearchNewScreen,
+    Profile: ProfileScreen
   },
   {
     initialRouteName: 'Home',
