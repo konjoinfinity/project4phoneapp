@@ -56,12 +56,13 @@ class SearchScreen extends React.Component {
     this.state.communities && (communitySearch = this.state.communities);
     let search = this.state.search.trim().toLowerCase();
 
-    if (search.length > 0) {
-      this.state.communities &&
+
+    this.state.communities &&
+      search.length > 0 && (
         (communitySearch = communitySearch.filter(function (community) {
           return community.name.toLowerCase().match(search);
-        }));
-    }
+        }))
+      )
 
     let results;
     this.state.communities &&
@@ -93,7 +94,8 @@ class SearchScreen extends React.Component {
         );
       }));
     let newsearch;
-    newsearch =
+    this.state.communities && (
+      newsearch =
       this.state.search !== "" &&
       (results.length === 0 && (
         <Card borderRadius={15}>
@@ -111,7 +113,7 @@ class SearchScreen extends React.Component {
             <Text style={styles.newButtonText}>{this.state.search} ➕</Text>
           </TouchableOpacity>
         </Card>
-      ));
+      )));
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
