@@ -74,7 +74,7 @@ class ProfileScreen extends React.Component {
 
         return (
             <ScrollView>
-                <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
+                <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>
                     Profile
         </Text>
                 <Card borderRadius={15}>

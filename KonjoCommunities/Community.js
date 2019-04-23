@@ -249,8 +249,8 @@ class CommunityScreen extends React.Component {
       (commentlist = this.state.community.comments.map((comment, id) => {
         return (
           <TouchableOpacity key={id} style={styles.comment}>
-            <Text style={{ fontSize: 40, padding: 20 }}>{comment.text}</Text>
-            <Text style={{ fontSize: 15, padding: 10 }}>{comment.creator}</Text>
+            <Text style={{ fontSize: 40, padding: 20, textAlign: "center" }}>{comment.text}</Text>
+            <Text style={{ fontSize: 15, padding: 10, textAlign: "center" }}>{comment.creator}</Text>
             {this.state.creator === comment.creator && (
               <Button
                 title="🗑 Delete"
@@ -271,20 +271,20 @@ class CommunityScreen extends React.Component {
         return (
           <Card borderRadius={15} key={id}>
             <View>
-              <Text style={{ fontSize: 20, padding: 5 }}>{meet.name}</Text>
-              <Text style={{ fontSize: 20, padding: 5 }}>
+              <Text style={{ fontSize: 30, padding: 5, textAlign: "center" }}>{meet.name}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
                 🗒 {meet.description}
               </Text>
-              <Text style={{ fontSize: 20, padding: 5 }}>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
                 📍 {meet.location}
               </Text>
-              <Text style={{ fontSize: 20, padding: 5 }}>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
                 📆 {meet.date}
               </Text>
-              <Text style={{ fontSize: 20, padding: 5 }}>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
                 🕒 {meet.time}
               </Text>
-              <Text style={{ fontSize: 10, padding: 5 }}>
+              <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>
                 👤 {meet.creator}
               </Text>
               {this.state.creator === meet.creator && (
@@ -302,23 +302,23 @@ class CommunityScreen extends React.Component {
         <ScrollView>
           <Card borderRadius={15}>
             <View>
-              <Text style={{ fontSize: 40, padding: 10 }}>
+              <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>
                 {this.state.community.name}
               </Text>
-              <Text style={{ fontSize: 30, padding: 10 }}>
+              <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                 🗒 {this.state.community.description}
               </Text>
-              <Text style={{ fontSize: 30, padding: 10 }}>
+              <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                 📝 {this.state.community.category}
               </Text>
             </View>
           </Card>
           <Card borderRadius={15}>
             <View>
-              <Text style={{ fontSize: 30, padding: 10 }}>
+              <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                 👥 {this.state.community.numberOfMembers}
               </Text>
-              <Text style={{ fontSize: 30, padding: 10 }}>
+              <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                 👤 {this.state.community.creator}
               </Text>
               {this.state.creator === this.state.community.creator && (
@@ -478,12 +478,12 @@ class CommunityScreen extends React.Component {
             </Card>
           )}
           {this.state.creator === this.state.community.creator && (
-            <Text style={{ fontSize: 35, padding: 20, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
               Comments
             </Text>
           )}
           {member.length === 1 && (
-            <Text style={{ fontSize: 35, padding: 20, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
               Comments
             </Text>
           )}

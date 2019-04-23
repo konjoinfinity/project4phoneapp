@@ -21,9 +21,21 @@ class LogoTitle extends React.Component {
   }
 }
 
+class Nav extends React.Component {
+  render() {
+    return (
+      <Button
+        title="="
+        onPress={() => this.props.navigation.openDrawer()}
+      ></Button>
+    )
+  }
+}
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: <LogoTitle />
+    headerTitle: <LogoTitle />,
+    headerLeft: <Nav />
   };
 
   componentDidMount() {
@@ -141,3 +153,4 @@ const styles = StyleSheet.create({
     textAlign: "center"
   }
 });
+
