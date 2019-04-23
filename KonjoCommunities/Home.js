@@ -5,8 +5,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Vibration,
-  Button
+  Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
 
@@ -24,26 +23,19 @@ class HomeScreen extends React.Component {
           <View
             style={{
               flex: 1,
-              alignItems: "left",
-              justifyContent: "left"
-            }}
-          >
-            <Button
-              title="="
-              onPress={() => this.props.navigation.openDrawer()}
-            ></Button>
-          </View>
-          <View
-            style={{
-              flex: 1,
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
+              padding: 20
             }}
           >
-            <Image
-              source={require("./logo.png")}
-              style={{ width: 60, height: 30 }}
-            />
+            <TouchableOpacity
+              onPress={() => this.props.navigation.openDrawer()}
+            >
+              <Image
+                source={require("./logo.png")}
+                style={{ width: 60, height: 30 }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
@@ -155,10 +147,11 @@ const styles = StyleSheet.create({
   },
   nav: {
     borderBottomWidth: 1,
-    padding: 10,
     borderRightWidth: 0,
     borderLeftWidth: 0,
     borderTopWidth: 0,
+    padding: 15,
+    borderColor: "#DAD5D5"
   }
 });
 
