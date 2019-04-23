@@ -13,7 +13,6 @@ import LoginScreen from "./Login";
 import SearchNewScreen from "./SearchNew";
 import AuthLoadingScreen from "./AuthLoading"
 import ProfileScreen from "./Profile";
-import Nav from "./Nav"
 
 const AppStack = createDrawerNavigator(
   {
@@ -44,12 +43,6 @@ const AppStack = createDrawerNavigator(
     Login: LoginScreen,
     SearchNew: {
       screen: SearchNewScreen,
-      navigationOptions: {
-        drawerLabel: () => null,
-      }
-    },
-    Nav: {
-      screen: Nav,
       navigationOptions: {
         drawerLabel: () => null,
       }

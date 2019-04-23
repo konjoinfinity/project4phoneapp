@@ -9,7 +9,6 @@ import {
   Button
 } from "react-native";
 import { Card } from "react-native-elements";
-import Nav from "./Nav"
 
 
 class HomeScreen extends React.Component {
@@ -22,14 +21,30 @@ class HomeScreen extends React.Component {
     return (
       <View>
         <View style={styles.nav}>
-          <Button
-            title="="
-            onPress={() => this.props.navigation.openDrawer()}
-          ></Button>
-          <Image
-            source={require("./logo.png")}
-            style={{ width: 60, height: 30 }}
-          />
+          <View
+            style={{
+              flex: 1,
+              alignItems: "left",
+              justifyContent: "left"
+            }}
+          >
+            <Button
+              title="="
+              onPress={() => this.props.navigation.openDrawer()}
+            ></Button>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Image
+              source={require("./logo.png")}
+              style={{ width: 60, height: 30 }}
+            />
+          </View>
         </View>
         <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
           Beautiful Communities
