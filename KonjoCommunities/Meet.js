@@ -88,7 +88,6 @@ class MeetScreen extends React.Component {
   }
 
   handleSubmit() {
-    console.log(this.state.creator)
     const data = { meet: this.state };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
