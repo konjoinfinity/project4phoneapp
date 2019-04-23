@@ -11,6 +11,9 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_USER = "username";
 
 class LogoTitle extends React.Component {
   render() {
@@ -31,7 +34,8 @@ class MeetScreen extends React.Component {
       description: "",
       location: "",
       date: "",
-      time: ""
+      time: "",
+      creator: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -46,8 +50,15 @@ class MeetScreen extends React.Component {
     headerTitle: <LogoTitle />
   };
 
+  async getUsername() {
+    var username = await AsyncStorage.getItem(STORAGE_USER);
+    console.log(username);
+    this.setState({ creator: username });
+  }
+
   componentDidMount() {
     Vibration.vibrate();
+    this.getUsername();
   }
 
   meetClear() {
@@ -77,6 +88,7 @@ class MeetScreen extends React.Component {
   }
 
   handleSubmit() {
+    console.log(this.state.creator)
     const data = { meet: this.state };
     fetch(
       `https://konjomeet.herokuapp.com/community/${
