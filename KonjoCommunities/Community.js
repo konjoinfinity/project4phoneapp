@@ -14,8 +14,20 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import Nav from "./Nav"
 
 var STORAGE_USER = "username";
+
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
 
 class CommunityScreen extends React.Component {
   constructor(props) {
@@ -23,8 +35,10 @@ class CommunityScreen extends React.Component {
     this.state = {
       community: "",
       comment: "",
-      creator: ""
+      creator: "",
+      nav: false
     };
+    this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.deleteCommunity = this.deleteCommunity.bind(this);
     this.handleComment = this.handleComment.bind(this);
@@ -59,6 +73,28 @@ class CommunityScreen extends React.Component {
         this.setState({ community: res });
       });
     this.getUsername();
+    this.props.navigation.setParams({
+      openCloseNav: this.openCloseNav
+    });
+  }
+
+  openCloseNav() {
+    if (this.state.nav === false) {
+      this.setState({ nav: true });
+    } else {
+      this.setState({ nav: false });
+    }
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <LogoTitle />,
+      headerLeft: (<Button
+        title="="
+        onPress={navigation.getParam('openCloseNav')}
+      ></Button>
+      )
+    };
   }
 
   getCommunity() {
@@ -285,6 +321,7 @@ class CommunityScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.communities} behavior="padding">
         <ScrollView>
+          {this.state.nav === true && <Nav />}
           <Card borderRadius={15}>
             <View>
               <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>
