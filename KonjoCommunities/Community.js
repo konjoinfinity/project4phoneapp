@@ -321,7 +321,7 @@ class CommunityScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.communities} behavior="padding">
         <ScrollView>
-          {this.state.nav === true && <Nav />}
+          {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <Card borderRadius={15}>
             <View>
               <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>

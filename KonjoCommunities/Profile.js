@@ -95,7 +95,7 @@ class ProfileScreen extends React.Component {
 
         return (
             <ScrollView>
-                {this.state.nav === true && <Nav />}
+                {this.state.nav === true && <Nav navigation={this.props.navigation} />}
                 <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>
                     Profile
         </Text>

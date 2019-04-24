@@ -103,7 +103,7 @@ class CommunitiesScreen extends React.Component {
       }));
     return (
       <ScrollView>
-        {this.state.nav === true && <Nav />}
+        {this.state.nav === true && <Nav navigation={this.props.navigation} />}
         <View style={styles.communities}>
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             Communities

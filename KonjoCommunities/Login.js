@@ -22,21 +22,10 @@ class LogoTitle extends React.Component {
   render() {
     return (
       <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
+        source={require("./klogo.png")}
+        style={{ width: 30, height: 30 }}
       />
     );
-  }
-}
-
-class Nav extends React.Component {
-  render() {
-    return (
-      <Button
-        title="="
-        onPress={() => console.log("open")}
-      ></Button>
-    )
   }
 }
 
@@ -55,8 +44,7 @@ class LoginScreen extends React.Component {
   }
 
   static navigationOptions = {
-    headerTitle: <LogoTitle />,
-    headerLeft: <Nav />
+    headerTitle: <LogoTitle />
   };
 
   componentDidMount() {

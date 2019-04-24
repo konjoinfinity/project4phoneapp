@@ -12,6 +12,17 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class EditScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +39,10 @@ class EditScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.editClear = this.editClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   componentDidMount() {
     fetch(

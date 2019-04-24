@@ -9,17 +9,32 @@ import {
   Keyboard,
   TouchableOpacity,
   Vibration,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Button
 } from "react-native";
 import { Card } from "react-native-elements";
+import Nav from "./Nav"
+
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
 
 class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       communities: "",
-      search: ""
+      search: "",
+      nav: false
     };
+    this.openCloseNav = this.openCloseNav.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -30,6 +45,28 @@ class SearchScreen extends React.Component {
         this.setState({ communities: res });
       });
     Vibration.vibrate();
+    this.props.navigation.setParams({
+      openCloseNav: this.openCloseNav
+    });
+  }
+
+  openCloseNav() {
+    if (this.state.nav === false) {
+      this.setState({ nav: true });
+    } else {
+      this.setState({ nav: false });
+    }
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <LogoTitle />,
+      headerLeft: (<Button
+        title="="
+        onPress={navigation.getParam('openCloseNav')}
+      ></Button>
+      )
+    };
   }
 
   handleChange(search) {
@@ -102,32 +139,7 @@ class SearchScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
-          <View style={{
-            borderBottomWidth: 1,
-            borderRightWidth: 0,
-            borderLeftWidth: 0,
-            borderTopWidth: 0,
-            padding: 15,
-            borderColor: "#DAD5D5"
-          }}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 20
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => this.props.navigation.openDrawer()}
-              >
-                <Image
-                  source={require("./logo.png")}
-                  style={{ width: 60, height: 30 }}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
+          {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <View>
             <Card borderRadius={15}>
               <Text style={styles.header}>Search Communities</Text>

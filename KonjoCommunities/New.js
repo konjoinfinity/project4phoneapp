@@ -15,6 +15,17 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
 class NewScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +41,10 @@ class NewScreen extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.newClear = this.newClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
@@ -78,32 +93,6 @@ class NewScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
-          <View style={{
-            borderBottomWidth: 1,
-            borderRightWidth: 0,
-            borderLeftWidth: 0,
-            borderTopWidth: 0,
-            padding: 15,
-            borderColor: "#DAD5D5"
-          }}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 20
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => this.props.navigation.openDrawer()}
-              >
-                <Image
-                  source={require("./logo.png")}
-                  style={{ width: 60, height: 30 }}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
           <View>
             <View>
               <Card borderRadius={15}>
