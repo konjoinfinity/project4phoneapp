@@ -6,20 +6,35 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Vibration
+  Vibration,
+  Button
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import Nav from "./Nav"
 
 var STORAGE_USER = "username";
+
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
 
 class JoinedCommunitiesScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       communities: "",
-      creator: ""
+      creator: "",
+      nav: false
     };
+    this.openCloseNav = this.openCloseNav.bind(this);
     this.getCommunities = this.getCommunities.bind(this);
   }
 
@@ -37,6 +52,28 @@ class JoinedCommunitiesScreen extends React.Component {
       });
     Vibration.vibrate();
     this.getUsername();
+    this.props.navigation.setParams({
+      openCloseNav: this.openCloseNav
+    });
+  }
+
+  openCloseNav() {
+    if (this.state.nav === false) {
+      this.setState({ nav: true });
+    } else {
+      this.setState({ nav: false });
+    }
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <LogoTitle />,
+      headerLeft: (<Button
+        title="="
+        onPress={navigation.getParam('openCloseNav')}
+      ></Button>
+      )
+    };
   }
 
   getCommunities() {
@@ -83,32 +120,7 @@ class JoinedCommunitiesScreen extends React.Component {
     return (
       <View style={styles.communities}>
         <ScrollView>
-          <View style={{
-            borderBottomWidth: 1,
-            borderRightWidth: 0,
-            borderLeftWidth: 0,
-            borderTopWidth: 0,
-            padding: 15,
-            borderColor: "#DAD5D5"
-          }}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 20
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => this.props.navigation.openDrawer()}
-              >
-                <Image
-                  source={require("./logo.png")}
-                  style={{ width: 60, height: 30 }}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
+          {this.state.nav === true && <Nav />}
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             Joined Communities
           </Text>
