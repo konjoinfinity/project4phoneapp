@@ -17,19 +17,19 @@ class Nav extends React.Component {
                     <View>
                         <TouchableOpacity
                             style={styles.homeButton}
-                            onPress={() => this.props.navigation.navigate("Home")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Home") }}
                         >
                             <Text style={styles.homeButtonText}>Go Home 🏠</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.communityButton}
-                            onPress={() => this.props.navigation.navigate("Communities")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Communities") }}
                         >
                             <Text style={styles.communityButtonText}>View Communites 👥</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.joinButton}
-                            onPress={() => this.props.navigation.navigate("MyCommunities")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("MyCommunities") }}
                         >
                             <Text style={styles.joinButtonText}>
                                 My Communities 👤
@@ -37,7 +37,7 @@ class Nav extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.joinedCommunitiesButton}
-                            onPress={() => this.props.navigation.navigate("JoinedCommunities")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("JoinedCommunities") }}
                         >
                             <Text style={styles.joinedCommunitiesButtonText}>
                                 Joined Communities 👤➡️👥
@@ -45,25 +45,25 @@ class Nav extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.newButton}
-                            onPress={() => this.props.navigation.navigate("New")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("New") }}
                         >
                             <Text style={styles.newButtonText}>New Community ➕</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.myCommunitiesButton}
-                            onPress={() => this.props.navigation.navigate("Profile")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Profile") }}
                         >
                             <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.searchButton}
-                            onPress={() => this.props.navigation.navigate("Search")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Search") }}
                         >
                             <Text style={styles.searchButtonText}>Search 🔍</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.meetButton}
-                            onPress={() => this.props.navigation.navigate("Login")}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Login") }}
                         >
                             <Text style={styles.meetButtonText}>Login 🔑</Text>
                         </TouchableOpacity>
