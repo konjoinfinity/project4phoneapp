@@ -11,17 +11,6 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
-
 var STORAGE_USER = "username";
 
 class MyCommunitiesScreen extends React.Component {
@@ -33,10 +22,6 @@ class MyCommunitiesScreen extends React.Component {
     };
     this.getCommunities = this.getCommunities.bind(this);
   }
-
-  static navigationOptions = {
-    headerTitle: <LogoTitle />
-  };
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
@@ -98,6 +83,32 @@ class MyCommunitiesScreen extends React.Component {
     return (
       <View style={styles.communities}>
         <ScrollView>
+          <View style={{
+            borderBottomWidth: 1,
+            borderRightWidth: 0,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+            padding: 15,
+            borderColor: "#DAD5D5"
+          }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 20
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.openDrawer()}
+              >
+                <Image
+                  source={require("./logo.png")}
+                  style={{ width: 60, height: 30 }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             My Communities
           </Text>

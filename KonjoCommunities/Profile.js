@@ -13,18 +13,6 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
 
-class LogoTitle extends React.Component {
-    render() {
-        return (
-            <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-            />
-        );
-    }
-}
-
-
 class ProfileScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -33,10 +21,6 @@ class ProfileScreen extends React.Component {
             creator: ""
         };
     }
-
-    static navigationOptions = {
-        headerTitle: <LogoTitle />
-    };
 
     async getUsername() {
         var username = await AsyncStorage.getItem(STORAGE_USER);
@@ -74,6 +58,32 @@ class ProfileScreen extends React.Component {
 
         return (
             <ScrollView>
+                <View style={{
+                    borderBottomWidth: 1,
+                    borderRightWidth: 0,
+                    borderLeftWidth: 0,
+                    borderTopWidth: 0,
+                    padding: 15,
+                    borderColor: "#DAD5D5"
+                }}>
+                    <View
+                        style={{
+                            flex: 1,
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: 20
+                        }}
+                    >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.openDrawer()}
+                        >
+                            <Image
+                                source={require("./logo.png")}
+                                style={{ width: 60, height: 30 }}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </View>
                 <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>
                     Profile
         </Text>

@@ -10,16 +10,6 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
 
 class CommunitiesScreen extends React.Component {
   constructor(props) {
@@ -29,10 +19,6 @@ class CommunitiesScreen extends React.Component {
     };
     this.getCommunities = this.getCommunities.bind(this);
   }
-
-  static navigationOptions = {
-    headerTitle: <LogoTitle />
-  };
 
   componentDidMount() {
     fetch("https://konjomeet.herokuapp.com/community")
@@ -80,14 +66,40 @@ class CommunitiesScreen extends React.Component {
         );
       }));
     return (
-      <View style={styles.communities}>
-        <ScrollView>
+      <ScrollView>
+        <View style={{
+          borderBottomWidth: 1,
+          borderRightWidth: 0,
+          borderLeftWidth: 0,
+          borderTopWidth: 0,
+          padding: 15,
+          borderColor: "#DAD5D5"
+        }}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 20
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => this.props.navigation.openDrawer()}
+            >
+              <Image
+                source={require("./logo.png")}
+                style={{ width: 60, height: 30 }}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.communities}>
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             Communities
           </Text>
           {communities}
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
 }

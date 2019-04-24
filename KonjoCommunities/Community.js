@@ -17,17 +17,6 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
 
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
-
 class CommunityScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -43,10 +32,6 @@ class CommunityScreen extends React.Component {
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
   }
-
-  static navigationOptions = {
-    headerTitle: <LogoTitle />
-  };
 
   handleCommentChange(comment) {
     this.setState({ comment });
@@ -300,6 +285,32 @@ class CommunityScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.communities} behavior="padding">
         <ScrollView>
+          <View style={{
+            borderBottomWidth: 1,
+            borderRightWidth: 0,
+            borderLeftWidth: 0,
+            borderTopWidth: 0,
+            padding: 15,
+            borderColor: "#DAD5D5"
+          }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 20
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => this.props.navigation.openDrawer()}
+              >
+                <Image
+                  source={require("./logo.png")}
+                  style={{ width: 60, height: 30 }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
           <Card borderRadius={15}>
             <View>
               <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>

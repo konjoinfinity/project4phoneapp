@@ -19,7 +19,14 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View>
-        <View style={styles.nav}>
+        <View style={{
+          borderBottomWidth: 1,
+          borderRightWidth: 0,
+          borderLeftWidth: 0,
+          borderTopWidth: 0,
+          padding: 15,
+          borderColor: "#DAD5D5"
+        }}>
           <View
             style={{
               flex: 1,
@@ -144,14 +151,6 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
-  },
-  nav: {
-    borderBottomWidth: 1,
-    borderRightWidth: 0,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-    padding: 15,
-    borderColor: "#DAD5D5"
   }
 });
 
