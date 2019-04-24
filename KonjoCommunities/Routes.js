@@ -16,7 +16,6 @@ import ProfileScreen from "./Profile";
 
 const AppStack = createStackNavigator(
   {
-    Home: HomeScreen,
     Communities: CommunitiesScreen,
     Community: CommunityScreen,
     New: NewScreen,
@@ -28,6 +27,7 @@ const AppStack = createStackNavigator(
     Login: LoginScreen,
     SearchNew: SearchNewScreen,
     Profile: ProfileScreen,
+    Home: HomeScreen
   },
   {
     initialRouteName: 'Home',

@@ -10,7 +10,6 @@ import {
   ScrollView
 } from "react-native";
 import { Card } from "react-native-elements";
-import Nav from "./Nav"
 
 class LogoTitle extends React.Component {
   render() {
@@ -24,44 +23,18 @@ class LogoTitle extends React.Component {
 }
 
 class HomeScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nav: false
-    };
-    this.openCloseNav = this.openCloseNav.bind(this);
-  }
 
   componentDidMount() {
     Vibration.vibrate();
-    this.props.navigation.setParams({
-      openCloseNav: this.openCloseNav
-    });
   }
 
-  openCloseNav() {
-    if (this.state.nav === false) {
-      this.setState({ nav: true });
-    } else {
-      this.setState({ nav: false });
-    }
-  }
-
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: <LogoTitle />,
-      headerLeft: (<Button
-        title="="
-        onPress={navigation.getParam('openCloseNav')}
-      ></Button>
-      )
-    };
-  }
+  static navigationOptions = {
+    headerTitle: <LogoTitle />
+  };
 
   render() {
     return (
       <ScrollView>
-        {this.state.nav === true && <Nav navigation={this.props.navigation} />}
         <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
           Beautiful Communities
         </Text>

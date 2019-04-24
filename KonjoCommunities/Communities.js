@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Vibration,
-  Button
+  Button,
+  TouchableHighlight
 } from "react-native";
 import { Card } from "react-native-elements";
 import Nav from "./Nav"
@@ -57,10 +58,12 @@ class CommunitiesScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: <LogoTitle />,
-      headerLeft: (<Button
-        title="="
-        onPress={navigation.getParam('openCloseNav')}
-      ></Button>
+      headerLeft: (<TouchableHighlight
+        onPress={navigation.getParam('openCloseNav')}>
+        <Image
+          source={require("./menu.png")}
+          style={{ width: 30, height: 30, marginLeft: 5 }} />
+      </TouchableHighlight>
       )
     };
   }
