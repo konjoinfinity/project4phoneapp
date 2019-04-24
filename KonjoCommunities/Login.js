@@ -17,6 +17,28 @@ import AsyncStorage from "@react-native-community/async-storage";
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
+class Nav extends React.Component {
+  render() {
+    return (
+      <Button
+        title="="
+        onPress={() => console.log("open")}
+      ></Button>
+    )
+  }
+}
+
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +52,11 @@ class LoginScreen extends React.Component {
     this.handleSignup = this.handleSignup.bind(this);
     this.loginClear = this.loginClear.bind(this);
   }
+
+  static navigationOptions = {
+    headerTitle: <LogoTitle />,
+    headerLeft: <Nav />
+  };
 
   componentDidMount() {
     Vibration.vibrate();
@@ -145,28 +172,6 @@ class LoginScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <ScrollView>
-          <View style={{
-            borderBottomWidth: 1,
-            borderRightWidth: 0,
-            borderLeftWidth: 0,
-            borderTopWidth: 0,
-            padding: 15,
-            borderColor: "#DAD5D5"
-          }}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 20
-              }}
-            >
-              <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-              />
-            </View>
-          </View>
           <View>
             <Card borderRadius={15}>
               <Text style={styles.header}>Login or Signup</Text>

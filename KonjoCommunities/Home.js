@@ -9,8 +9,33 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require("./logo.png")}
+        style={{ width: 60, height: 30 }}
+      />
+    );
+  }
+}
+
+class Nav extends React.Component {
+  render() {
+    return (
+      <Button
+        title="="
+        onPress={() => console.log("open")}
+      ></Button>
+    )
+  }
+}
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    headerTitle: <LogoTitle />,
+    headerLeft: <Nav />
+  };
 
   componentDidMount() {
     Vibration.vibrate();
@@ -19,32 +44,6 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View>
-        <View style={{
-          borderBottomWidth: 1,
-          borderRightWidth: 0,
-          borderLeftWidth: 0,
-          borderTopWidth: 0,
-          padding: 15,
-          borderColor: "#DAD5D5"
-        }}>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              padding: 20
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => this.props.navigation.openDrawer()}
-            >
-              <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
         <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
           Beautiful Communities
         </Text>

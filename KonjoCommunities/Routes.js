@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createSwitchNavigator, createStackNavigator, createAppContainer, createDrawerNavigator } from "react-navigation";
+import { createSwitchNavigator, createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from "./Home";
 import CommunitiesScreen from "./Communities";
 import CommunityScreen from "./Community";
@@ -14,39 +14,19 @@ import SearchNewScreen from "./SearchNew";
 import AuthLoadingScreen from "./AuthLoading"
 import ProfileScreen from "./Profile";
 
-const AppStack = createDrawerNavigator(
+const AppStack = createStackNavigator(
   {
     Home: HomeScreen,
     Communities: CommunitiesScreen,
-    Community: {
-      screen: CommunityScreen,
-      navigationOptions: {
-        drawerLabel: () => null,
-      }
-    },
+    Community: CommunityScreen,
     New: NewScreen,
-    Edit: {
-      screen: EditScreen,
-      navigationOptions: {
-        drawerLabel: () => null,
-      }
-    },
-    Meet: {
-      screen: MeetScreen,
-      navigationOptions: {
-        drawerLabel: () => null,
-      }
-    },
+    Edit: EditScreen,
+    Meet: MeetScreen,
     MyCommunities: MyCommunitiesScreen,
     JoinedCommunities: JoinedCommunitiesScreen,
     Search: SearchScreen,
     Login: LoginScreen,
-    SearchNew: {
-      screen: SearchNewScreen,
-      navigationOptions: {
-        drawerLabel: () => null,
-      }
-    },
+    SearchNew: SearchNewScreen,
     Profile: ProfileScreen,
   },
   {
