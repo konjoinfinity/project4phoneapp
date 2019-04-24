@@ -61,7 +61,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <ScrollView>
-        {this.state.nav === true && <Nav />}
+        {this.state.nav === true && <Nav navigation={this.props.navigation} />}
         <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
           Beautiful Communities
         </Text>
