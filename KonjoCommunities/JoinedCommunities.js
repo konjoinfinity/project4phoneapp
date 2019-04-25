@@ -69,12 +69,14 @@ class JoinedCommunitiesScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: <LogoTitle />,
-      headerLeft: (<TouchableHighlight
+      headerLeft: (<TouchableOpacity
         onPress={navigation.getParam('openCloseNav')}>
-        <Image
-          source={require("./menu.png")}
-          style={{ width: 30, height: 30, marginLeft: 10 }} />
-      </TouchableHighlight>
+        <View>
+          <Image
+            source={require("./menu.png")}
+            style={{ width: 30, height: 30, marginLeft: 10 }} />
+        </View>
+      </TouchableOpacity>
       )
     };
   }
