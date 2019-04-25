@@ -45,7 +45,7 @@ class ProfileScreen extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:4000/community")
+        fetch("https://konjomeet.herokuapp.com/community")
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
