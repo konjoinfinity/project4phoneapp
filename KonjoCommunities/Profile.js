@@ -77,7 +77,7 @@ class ProfileScreen extends React.Component {
                 onPress={navigation.getParam('openCloseNav')}>
                 <Image
                     source={require("./menu.png")}
-                    style={{ width: 30, height: 30, marginLeft: 5 }} />
+                    style={{ width: 30, height: 30, marginLeft: 10 }} />
             </TouchableHighlight>
             )
         };
@@ -176,13 +176,13 @@ class ProfileScreen extends React.Component {
                             {joinedcom}
                         </View>
                     </Card>
-                    <TouchableOpacity
-                        style={styles.homeButton}
-                        onPress={() => this.goHome()}
-                    >
-                        <Text style={styles.homeButtonText}>Go Home 🏠</Text>
-                    </TouchableOpacity>
                 </Card>
+                <TouchableOpacity
+                    style={styles.homeButton}
+                    onPress={() => this.goHome()}
+                >
+                    <Text style={styles.homeButtonText}>Go Home 🏠</Text>
+                </TouchableOpacity>
             </ScrollView>
 
         );

@@ -62,7 +62,7 @@ class CommunitiesScreen extends React.Component {
         onPress={navigation.getParam('openCloseNav')}>
         <Image
           source={require("./menu.png")}
-          style={{ width: 30, height: 30, marginLeft: 5 }} />
+          style={{ width: 30, height: 30, marginLeft: 10 }} />
       </TouchableHighlight>
       )
     };
