@@ -6,9 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Vibration,
-  Button,
-  TouchableHighlight
+  Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
 import Nav from "./Nav"
