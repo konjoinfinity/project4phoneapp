@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView,
-  Button
+  Button,
+  TouchableHighlight
 } from "react-native";
 import { Card } from "react-native-elements";
 import Nav from "./Nav"

@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Vibration,
-  Button
+  Button,
+  TouchableHighlight
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";

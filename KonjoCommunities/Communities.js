@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   communities: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center"
   }
