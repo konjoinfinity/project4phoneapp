@@ -45,7 +45,7 @@ class ProfileScreen extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://konjomeet.herokuapp.com/community")
+        fetch("http://localhost:4000/community")
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
@@ -96,6 +96,51 @@ class ProfileScreen extends React.Component {
                 community.members.some(member => member.name === this.state.creator)
             ));
 
+        let mycommunities;
+        this.state.communities &&
+            (mycommunities = this.state.communities.filter(
+                community => community.creator === this.state.creator
+            ));
+        let mine;
+        this.state.communities &&
+            (mine = mycommunities.map((community, id) => {
+                return (
+                    <TouchableOpacity
+                        key={id}
+                        style={styles.communityButton}
+                        onPress={() =>
+                            this.props.navigation.navigate("Community", {
+                                communityId: `${community._id}`
+                            })
+                        }
+                    >
+                        <Text style={styles.communityButtonText}>{community.name}</Text>
+                    </TouchableOpacity>
+                );
+            }));
+        let joinedcommunities;
+        this.state.communities &&
+            (joinedcommunities = this.state.communities.filter(community =>
+                community.members.some(member => member.name === this.state.creator)
+            ));
+        let joinedcom;
+        this.state.communities &&
+            (joinedcom = joinedcommunities.map((community, id) => {
+                return (
+                    <TouchableOpacity
+                        key={id}
+                        style={styles.communityButton}
+                        onPress={() =>
+                            this.props.navigation.navigate("Community", {
+                                communityId: `${community._id}`
+                            })
+                        }
+                    >
+                        <Text style={styles.communityButtonText}>{community.name}</Text>
+                    </TouchableOpacity>
+                );
+            }));
+
         return (
             <ScrollView>
                 {this.state.nav === true && <Nav navigation={this.props.navigation} />}
@@ -110,7 +155,13 @@ class ProfileScreen extends React.Component {
                     >
                         <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}> Communities I've Created: {created && created.length}</Text>
+
+                    <Card borderRadius={15}>
+                        <View>
+                            <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}> Communities I've Created: {created && created.length}</Text>
+                            {mine}
+                        </View>
+                    </Card>
                     <TouchableOpacity
                         style={styles.joinedCommunitiesButton}
                         onPress={() => this.props.navigation.navigate("JoinedCommunities")}
@@ -119,7 +170,12 @@ class ProfileScreen extends React.Component {
                             Joined Communities 👤➡️👥
           </Text>
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Communities I've Joined: {joined && joined.length}</Text>
+                    <Card borderRadius={15}>
+                        <View>
+                            <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Communities I've Joined: {joined && joined.length}</Text>
+                            {joinedcom}
+                        </View>
+                    </Card>
                     <TouchableOpacity
                         style={styles.homeButton}
                         onPress={() => this.goHome()}
@@ -172,6 +228,19 @@ const styles = StyleSheet.create({
     homeButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
+        textAlign: "center"
+    },
+    communityButton: {
+        borderWidth: 1,
+        borderColor: "#007BFF",
+        backgroundColor: "#007BFF",
+        padding: 10,
+        margin: 5,
+        borderRadius: 15
+    },
+    communityButtonText: {
+        color: "#FFFFFF",
+        fontSize: 15,
         textAlign: "center"
     }
 })
