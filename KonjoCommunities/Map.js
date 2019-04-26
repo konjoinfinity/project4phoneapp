@@ -27,7 +27,8 @@ class MapScreen extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:4000/community")
+        // switch to http://localhost:4000/community for dev and https://konjomeet.herokuapp.com/community for production
+        fetch("https://konjomeet.herokuapp.com/community")
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
