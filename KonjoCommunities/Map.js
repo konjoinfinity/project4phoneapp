@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Vibration } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
@@ -21,11 +21,18 @@ class MapScreen extends Component {
         this.state = {
             latitude: null,
             longitude: null,
-            error: null
+            error: null,
+            communities: ""
         };
     }
 
     componentDidMount() {
+        fetch("https://konjomeet.herokuapp.com/community")
+            .then(res => res.json())
+            .then(res => {
+                this.setState({ communities: res });
+            });
+        Vibration.vibrate();
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -49,9 +56,25 @@ class MapScreen extends Component {
             latitude: this.state.latitude,
             longitude: this.state.longitude
         }
+        let commcoords;
+        this.state.communities &&
+            (commcoords = this.state.communities.map((community, id) => {
+                let commlatlong;
+                commlatlong = {
+                    latitude: community.location.lat,
+                    longitude: community.location.long
+                };
+                return (
+                    <Marker
+                        key={id}
+                        coordinate={commlatlong}
+                        title={`Latitude: ${community.location.lat}`}
+                        description={`Longitude: ${community.location.long}`}
+                    />
+                )
+            }))
         return (
             <View style={styles.container}>
-
                 <MapView
                     style={styles.map}
                     initialRegion={{
@@ -63,9 +86,11 @@ class MapScreen extends Component {
                     {this.state.latitude &&
                         <Marker
                             coordinate={LatLng}
-                            title="Test"
-                            description="This is a test"
+                            title={`Latitude: ${this.state.latitude}`}
+                            description={`Longitude: ${this.state.longitude}`}
+                            pinColor='#000000'
                         />}
+                    {commcoords}
                 </MapView>
             </View>
 
