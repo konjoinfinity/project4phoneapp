@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, Vibration } from 'react-native';
+import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
+import { Marker, Callout } from 'react-native-maps';
 
 class LogoTitle extends React.Component {
     render() {
@@ -40,7 +40,6 @@ class MapScreen extends Component {
                     longitude: position.coords.longitude,
                     error: null,
                 });
-                console.log(position)
             },
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
@@ -53,10 +52,11 @@ class MapScreen extends Component {
 
     render() {
         const LatLng = {
-            //replace with this.state.latitude/longitude
-            latitude: 38.875917,
-            longitude: -77.122655
+            //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
+            latitude: this.state.latitude,
+            longitude: this.state.longitude
         }
+
         let commcoords;
         this.state.communities &&
             (commcoords = this.state.communities.map((community, id) => {
@@ -70,8 +70,8 @@ class MapScreen extends Component {
                         key={id}
                         coordinate={commlatlong}
                         title={community.name}
-                        description={community.description}
-                    />
+                        description={community.description}>
+                    </Marker>
                 )
             }))
         return (
@@ -80,9 +80,9 @@ class MapScreen extends Component {
                     <MapView
                         style={styles.map}
                         initialRegion={{
-                            //replace with this.state.latitude/longitude
-                            latitude: 38.875917,
-                            longitude: -77.122655,
+                            //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
+                            latitude: this.state.latitude,
+                            longitude: this.state.longitude,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
                         }}>
@@ -90,8 +90,8 @@ class MapScreen extends Component {
                             coordinate={LatLng}
                             title={`Latitude: ${this.state.latitude}`}
                             description={`Longitude: ${this.state.longitude}`}
-                            pinColor='#000000'
-                        />
+                            pinColor='#000000'>
+                        </Marker>
                         {commcoords}
                     </MapView>}
             </View>
@@ -119,4 +119,17 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
     },
+    communityButton: {
+        borderWidth: 1,
+        borderColor: "#12C16D",
+        backgroundColor: "#12C16D",
+        padding: 15,
+        margin: 5,
+        borderRadius: 15
+    },
+    communityButtonText: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        textAlign: "center"
+    }
 });
