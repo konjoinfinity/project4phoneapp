@@ -13,6 +13,7 @@ import LoginScreen from "./Login";
 import SearchNewScreen from "./SearchNew";
 import AuthLoadingScreen from "./AuthLoading"
 import ProfileScreen from "./Profile";
+import MapScreen from "./Map"
 
 const AppStack = createStackNavigator(
   {
@@ -27,7 +28,8 @@ const AppStack = createStackNavigator(
     Login: LoginScreen,
     SearchNew: SearchNewScreen,
     Profile: ProfileScreen,
-    Home: HomeScreen
+    Home: HomeScreen,
+    Map: MapScreen
   },
   {
     initialRouteName: 'Home',

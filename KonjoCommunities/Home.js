@@ -69,6 +69,12 @@ class HomeScreen extends React.Component {
           >
             <Text style={styles.loginButtonText}>Login 🔑</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => this.props.navigation.navigate("Map")}
+          >
+            <Text style={styles.loginButtonText}>Map 🗺</Text>
+          </TouchableOpacity>
         </Card>
       </ScrollView>
     );
