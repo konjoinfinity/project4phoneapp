@@ -64,16 +64,16 @@ class HomeScreen extends React.Component {
             <Text style={styles.searchButtonText}>Search 🔍</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.joinButton}
+            onPress={() => this.props.navigation.navigate("Map")}
+          >
+            <Text style={styles.joinButtonText}>Map 🗺</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.loginButton}
             onPress={() => this.props.navigation.navigate("Login")}
           >
             <Text style={styles.loginButtonText}>Login 🔑</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={() => this.props.navigation.navigate("Map")}
-          >
-            <Text style={styles.loginButtonText}>Map 🗺</Text>
           </TouchableOpacity>
         </Card>
       </ScrollView>
@@ -144,6 +144,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   loginButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  joinButton: {
+    borderWidth: 1,
+    borderColor: "#3D7E9A",
+    backgroundColor: "#3D7E9A",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  joinButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

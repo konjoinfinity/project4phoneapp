@@ -27,7 +27,7 @@ class MapScreen extends Component {
     }
 
     componentDidMount() {
-        fetch("https://konjomeet.herokuapp.com/community")
+        fetch("http://localhost:4000/community")
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
@@ -53,8 +53,9 @@ class MapScreen extends Component {
 
     render() {
         const LatLng = {
-            latitude: this.state.latitude,
-            longitude: this.state.longitude
+            //replace with this.state.latitude/longitude
+            latitude: 38.875917,
+            longitude: -77.122655
         }
         let commcoords;
         this.state.communities &&
@@ -68,30 +69,31 @@ class MapScreen extends Component {
                     <Marker
                         key={id}
                         coordinate={commlatlong}
-                        title={`Latitude: ${community.location.lat}`}
-                        description={`Longitude: ${community.location.long}`}
+                        title={community.name}
+                        description={community.description}
                     />
                 )
             }))
         return (
             <View style={styles.container}>
-                <MapView
-                    style={styles.map}
-                    initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}>
-                    {this.state.latitude &&
+                {this.state.latitude &&
+                    <MapView
+                        style={styles.map}
+                        initialRegion={{
+                            //replace with this.state.latitude/longitude
+                            latitude: 38.875917,
+                            longitude: -77.122655,
+                            latitudeDelta: 0.1011,
+                            longitudeDelta: 0.1011,
+                        }}>
                         <Marker
                             coordinate={LatLng}
                             title={`Latitude: ${this.state.latitude}`}
                             description={`Longitude: ${this.state.longitude}`}
                             pinColor='#000000'
-                        />}
-                    {commcoords}
-                </MapView>
+                        />
+                        {commcoords}
+                    </MapView>}
             </View>
 
         );
