@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
 import MapView from 'react-native-maps';
-import { Marker, Callout } from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 class LogoTitle extends React.Component {
     render() {

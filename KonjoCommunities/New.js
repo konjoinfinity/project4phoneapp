@@ -33,7 +33,11 @@ class NewScreen extends React.Component {
       name: "",
       description: "",
       category: "",
-      creator: ""
+      creator: "",
+      location: {
+        lat: null,
+        long: null
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -55,6 +59,18 @@ class NewScreen extends React.Component {
   componentDidMount() {
     Vibration.vibrate();
     this.getUsername();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          location: {
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+        });
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   newClear() {
