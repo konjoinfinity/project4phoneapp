@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
 class LogoTitle extends React.Component {
@@ -51,11 +51,17 @@ class MapScreen extends Component {
         headerTitle: <LogoTitle />
     };
 
+    // navigateToView(viewName, { param: value }) {
+    //     console.log(viewName);
+    //     const { navigate } = this.props.navigation;
+    //     navigate(viewName, { param: value });
+    // }
+
     render() {
         const LatLng = {
             //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
-            latitude: this.state.latitude,
-            longitude: this.state.longitude
+            latitude: 38.875917,
+            longitude: -77.122655
         }
 
         let commcoords;
@@ -71,7 +77,14 @@ class MapScreen extends Component {
                         key={id}
                         coordinate={commlatlong}
                         title={community.name}
-                        description={community.description}>
+                        onCalloutPress={() => this.props.navigation.navigate("Community", { communityId: `${community._id}` })}>
+                        <Callout>
+                            <TouchableOpacity
+                                style={styles.communityButton}>
+                                <Text style={styles.communityButtonText}>{community.name}</Text>
+                                <Text style={styles.descButtonText}>{community.description}</Text>
+                            </TouchableOpacity>
+                        </Callout>
                     </Marker>
                 )
             }))
@@ -82,8 +95,8 @@ class MapScreen extends Component {
                         style={styles.map}
                         initialRegion={{
                             //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
-                            latitude: this.state.latitude,
-                            longitude: this.state.longitude,
+                            latitude: 38.875917,
+                            longitude: -77.122655,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
                         }}>
@@ -125,12 +138,16 @@ const styles = StyleSheet.create({
         borderColor: "#12C16D",
         backgroundColor: "#12C16D",
         padding: 15,
-        margin: 5,
         borderRadius: 15
     },
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
+        textAlign: "center"
+    },
+    descButtonText: {
+        color: "#FFFFFF",
+        fontSize: 15,
         textAlign: "center"
     }
 });
