@@ -62,6 +62,12 @@ class Nav extends React.Component {
                             <Text style={styles.searchButtonText}>Search 🔍</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            style={styles.mapButton}
+                            onPress={() => this.props.navigation.navigate("Map")}
+                        >
+                            <Text style={styles.mapButtonText}>Map 🗺</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
                             style={styles.meetButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Login") }}
                         >
@@ -204,6 +210,19 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     newButtonText: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        textAlign: "center"
+    },
+    mapButton: {
+        borderWidth: 1,
+        borderColor: "#B8E35D",
+        backgroundColor: "#B8E35D",
+        padding: 15,
+        margin: 5,
+        borderRadius: 15
+    },
+    mapButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"

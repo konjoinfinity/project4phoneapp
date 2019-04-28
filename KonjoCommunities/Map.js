@@ -76,7 +76,6 @@ class MapScreen extends Component {
                             <TouchableOpacity
                                 style={styles.communityButton}>
                                 <Text style={styles.communityButtonText}>{community.name}</Text>
-                                <Text style={styles.descButtonText}>{community.description}</Text>
                             </TouchableOpacity>
                         </Callout>
                     </Marker>
@@ -137,11 +136,6 @@ const styles = StyleSheet.create({
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
-        textAlign: "center"
-    },
-    descButtonText: {
-        color: "#FFFFFF",
-        fontSize: 15,
         textAlign: "center"
     }
 });
