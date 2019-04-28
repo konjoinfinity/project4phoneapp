@@ -51,17 +51,11 @@ class MapScreen extends Component {
         headerTitle: <LogoTitle />
     };
 
-    // navigateToView(viewName, { param: value }) {
-    //     console.log(viewName);
-    //     const { navigate } = this.props.navigation;
-    //     navigate(viewName, { param: value });
-    // }
-
     render() {
         const LatLng = {
             //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
-            latitude: 38.875917,
-            longitude: -77.122655
+            latitude: this.state.latitude,
+            longitude: this.state.longitude
         }
 
         let commcoords;
@@ -95,8 +89,8 @@ class MapScreen extends Component {
                         style={styles.map}
                         initialRegion={{
                             //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
-                            latitude: 38.875917,
-                            longitude: -77.122655,
+                            latitude: this.state.latitude,
+                            longitude: this.state.longitude,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
                         }}>
