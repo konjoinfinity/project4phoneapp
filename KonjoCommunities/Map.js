@@ -92,12 +92,15 @@ class MapScreen extends Component {
                             longitude: this.state.longitude,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
-                        }}>
+
+                        }}
+                        onRegionChangeComplete={() => this.marker.showCallout()}>
                         <Marker
                             coordinate={LatLng}
-                            title={`Latitude: ${this.state.latitude}`}
-                            description={`Longitude: ${this.state.longitude}`}
-                            pinColor='#000000'>
+                            ref={marker => (this.marker = marker)}
+                            title={"You are here"}
+                            description={"Find communities nearby"}
+                            pinColor='#007BFF'>
                         </Marker>
                         {commcoords}
                     </MapView>}
