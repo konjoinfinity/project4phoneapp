@@ -51,13 +51,18 @@ class MapScreen extends Component {
         headerTitle: <LogoTitle />
     };
 
+    iAmHere() {
+        setTimeout(() => {
+            this.marker.showCallout()
+        }, 3000);
+    }
+
     render() {
         const LatLng = {
             //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
             latitude: this.state.latitude,
             longitude: this.state.longitude
         }
-
         let commcoords;
         this.state.communities &&
             (commcoords = this.state.communities.map((community, id) => {
@@ -66,6 +71,7 @@ class MapScreen extends Component {
                     latitude: community.location.lat,
                     longitude: community.location.long
                 };
+                this.iAmHere();
                 return (
                     <Marker
                         key={id}
@@ -93,8 +99,7 @@ class MapScreen extends Component {
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
 
-                        }}
-                        onRegionChangeComplete={() => this.marker.showCallout()}>
+                        }}>
                         <Marker
                             coordinate={LatLng}
                             ref={marker => (this.marker = marker)}
