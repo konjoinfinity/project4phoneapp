@@ -28,7 +28,8 @@ class HomeScreen extends React.Component {
   }
 
   static navigationOptions = {
-    headerTitle: <LogoTitle />
+    headerTitle: <LogoTitle />,
+    headerLeft: null
   };
 
   render() {
