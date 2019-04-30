@@ -17,66 +17,56 @@ class Nav extends React.Component {
                     <View>
                         <TouchableOpacity
                             style={styles.homeButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Home") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Home") }}>
                             <Text style={styles.homeButtonText}>Go Home 🏠</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.communityButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Communities") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Communities") }}>
                             <Text style={styles.communityButtonText}>View Communites 👥</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.joinButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("MyCommunities") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("MyCommunities") }}>
                             <Text style={styles.joinButtonText}>
                                 My Communities 👤
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.joinedCommunitiesButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("JoinedCommunities") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("JoinedCommunities") }}>
                             <Text style={styles.joinedCommunitiesButtonText}>
                                 Joined Communities 👤➡️👥
                          </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.newButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("New") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("New") }}>
                             <Text style={styles.newButtonText}>New Community ➕</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.myCommunitiesButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Profile") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Profile") }}>
                             <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.searchButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Search") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Search") }}>
                             <Text style={styles.searchButtonText}>Search 🔍</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.mapButton}
-                            onPress={() => this.props.navigation.navigate("Map")}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Map") }}>
                             <Text style={styles.mapButtonText}>Map 🗺</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.meetButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.navigate("Login") }}
-                        >
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Login") }}>
                             <Text style={styles.meetButtonText}>Login 🔑</Text>
                         </TouchableOpacity>
                     </View>
                 </Card>
             </View>
-
         )
     }
 }

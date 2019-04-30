@@ -92,7 +92,7 @@ class EditScreen extends React.Component {
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        this.props.navigation.navigate("Communities");
+        this.props.navigation.push("Communities");
         Vibration.vibrate();
         this.editClear();
       });

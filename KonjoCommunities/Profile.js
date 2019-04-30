@@ -65,7 +65,7 @@ class ProfileScreen extends React.Component {
 
     goHome() {
         Vibration.vibrate();
-        this.props.navigation.navigate("Home");
+        this.props.navigation.push("Home");
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -109,7 +109,7 @@ class ProfileScreen extends React.Component {
                         key={id}
                         style={styles.communityButton}
                         onPress={() =>
-                            this.props.navigation.navigate("Community", {
+                            this.props.navigation.push("Community", {
                                 communityId: `${community._id}`
                             })
                         }
@@ -131,7 +131,7 @@ class ProfileScreen extends React.Component {
                         key={id}
                         style={styles.communityButton}
                         onPress={() =>
-                            this.props.navigation.navigate("Community", {
+                            this.props.navigation.push("Community", {
                                 communityId: `${community._id}`
                             })
                         }
@@ -151,7 +151,7 @@ class ProfileScreen extends React.Component {
                     <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
                     <TouchableOpacity
                         style={styles.myCommunitiesButton}
-                        onPress={() => this.props.navigation.navigate("MyCommunities")}
+                        onPress={() => this.props.navigation.push("MyCommunities")}
                     >
                         <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
                     </TouchableOpacity>
@@ -164,7 +164,7 @@ class ProfileScreen extends React.Component {
                     </Card>
                     <TouchableOpacity
                         style={styles.joinedCommunitiesButton}
-                        onPress={() => this.props.navigation.navigate("JoinedCommunities")}
+                        onPress={() => this.props.navigation.push("JoinedCommunities")}
                     >
                         <Text style={styles.joinedCommunitiesButtonText}>
                             Joined Communities 👤➡️👥

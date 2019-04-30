@@ -101,7 +101,7 @@ class MeetScreen extends React.Component {
         body: JSON.stringify(data)
       }
     );
-    this.props.navigation.navigate("Communities");
+    this.props.navigation.push("Communities");
     Vibration.vibrate();
     this.meetClear();
   }

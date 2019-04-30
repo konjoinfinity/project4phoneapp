@@ -98,7 +98,7 @@ class SearchScreen extends React.Component {
               <TouchableOpacity
                 style={styles.communityButton}
                 onPress={() =>
-                  this.props.navigation.navigate("Community", {
+                  this.props.navigation.push("Community", {
                     communityId: `${community._id}`
                   })
                 }
@@ -130,7 +130,7 @@ class SearchScreen extends React.Component {
           <TouchableOpacity
             style={styles.newButton}
             onPress={() =>
-              this.props.navigation.navigate("SearchNew", {
+              this.props.navigation.push("SearchNew", {
                 newName: this.state.search
               })
             }

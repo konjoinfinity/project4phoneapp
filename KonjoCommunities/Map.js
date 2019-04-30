@@ -77,7 +77,7 @@ class MapScreen extends Component {
                         key={id}
                         coordinate={commlatlong}
                         title={community.name}
-                        onCalloutPress={() => this.props.navigation.navigate("Community", { communityId: `${community._id}` })}>
+                        onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
                         <Callout>
                             <TouchableOpacity
                                 style={styles.communityButton}>

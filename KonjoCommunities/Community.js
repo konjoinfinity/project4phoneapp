@@ -120,7 +120,7 @@ class CommunityScreen extends React.Component {
     )
       .then(res => res.json())
       .then(res => console.log(res))
-      .then(this.props.navigation.navigate("Home"))
+      .then(this.props.navigation.push("Home"))
       .then(Vibration.vibrate());
   }
 
@@ -237,12 +237,12 @@ class CommunityScreen extends React.Component {
 
   viewCommunities() {
     Vibration.vibrate();
-    this.props.navigation.navigate("Communities");
+    this.props.navigation.push("Communities");
   }
 
   goHome() {
     Vibration.vibrate();
-    this.props.navigation.navigate("Home");
+    this.props.navigation.push("Home");
   }
 
   render() {
@@ -369,7 +369,7 @@ class CommunityScreen extends React.Component {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.myCommunitiesButton}
-                onPress={() => this.props.navigation.navigate("MyCommunities")}
+                onPress={() => this.props.navigation.push("MyCommunities")}
               >
                 <Text style={styles.myCommunitiesButtonText}>
                   My Communities 👤
@@ -377,7 +377,7 @@ class CommunityScreen extends React.Component {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.joinedCommunitiesButton}
-                onPress={() => this.props.navigation.navigate("JoinedCommunities")}
+                onPress={() => this.props.navigation.push("JoinedCommunities")}
               >
                 <Text style={styles.joinedCommunitiesButtonText}>
                   Joined Communities 👤➡️👥
@@ -396,7 +396,7 @@ class CommunityScreen extends React.Component {
                 <TouchableOpacity
                   style={styles.editButton}
                   onPress={() =>
-                    this.props.navigation.navigate("Edit", {
+                    this.props.navigation.push("Edit", {
                       communityId: `${this.state.community._id}`
                     })
                   }
@@ -417,7 +417,7 @@ class CommunityScreen extends React.Component {
                   <TouchableOpacity
                     style={styles.meetButton}
                     onPress={() =>
-                      this.props.navigation.navigate("Meet", {
+                      this.props.navigation.push("Meet", {
                         communityId: `${this.state.community._id}`
                       })
                     }
@@ -430,7 +430,7 @@ class CommunityScreen extends React.Component {
                   <TouchableOpacity
                     style={styles.meetButton}
                     onPress={() =>
-                      this.props.navigation.navigate("Meet", {
+                      this.props.navigation.push("Meet", {
                         communityId: `${this.state.community._id}`
                       })
                     }

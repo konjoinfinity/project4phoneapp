@@ -101,7 +101,7 @@ class MyCommunitiesScreen extends React.Component {
             <TouchableOpacity
               style={styles.communityButton}
               onPress={() =>
-                this.props.navigation.navigate("Community", {
+                this.props.navigation.push("Community", {
                   communityId: `${community._id}`
                 })
               }

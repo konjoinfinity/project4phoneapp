@@ -118,7 +118,7 @@ class LoginScreen extends React.Component {
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
           this.loginClear();
-          this.props.navigation.navigate("Home");
+          this.props.navigation.push("Home");
         }
       })
       .catch(err => {
@@ -150,7 +150,7 @@ class LoginScreen extends React.Component {
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
           this.loginClear();
-          this.props.navigation.navigate("Home");
+          this.props.navigation.push("Home");
         }
       })
       .catch(err => {

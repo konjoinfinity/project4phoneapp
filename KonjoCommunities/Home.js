@@ -41,37 +41,37 @@ class HomeScreen extends React.Component {
         <Card borderRadius={15}>
           <TouchableOpacity
             style={styles.communitiesButton}
-            onPress={() => this.props.navigation.navigate("Communities")}
+            onPress={() => this.props.navigation.push("Communities")}
           >
             <Text style={styles.communitiesButtonText}>All Communities 👥</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.newButton}
-            onPress={() => this.props.navigation.navigate("New")}
+            onPress={() => this.props.navigation.push("New")}
           >
             <Text style={styles.newButtonText}>New Community ➕</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.myCommunitiesButton}
-            onPress={() => this.props.navigation.navigate("Profile")}
+            onPress={() => this.props.navigation.push("Profile")}
           >
             <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.searchButton}
-            onPress={() => this.props.navigation.navigate("Search")}
+            onPress={() => this.props.navigation.push("Search")}
           >
             <Text style={styles.searchButtonText}>Search 🔍</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.joinButton}
-            onPress={() => this.props.navigation.navigate("Map")}
+            onPress={() => this.props.navigation.push("Map")}
           >
             <Text style={styles.joinButtonText}>Map 🗺</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.loginButton}
-            onPress={() => this.props.navigation.navigate("Login")}
+            onPress={() => this.props.navigation.push("Login")}
           >
             <Text style={styles.loginButtonText}>Login 🔑</Text>
           </TouchableOpacity>
