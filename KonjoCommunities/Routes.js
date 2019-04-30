@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from "react-navigation";
+import { createSwitchNavigator, createStackNavigator, createAppContainer, createDrawerNavigator } from "react-navigation";
 import HomeScreen from "./Home";
 import CommunitiesScreen from "./Communities";
 import CommunityScreen from "./Community";
@@ -35,6 +35,53 @@ const AppStack = createStackNavigator(
     initialRouteName: 'Home',
   }
 );
+
+// const AppStack = createDrawerNavigator(
+//   {
+//     Home: HomeScreen,
+//     Communities: CommunitiesScreen,
+//     Community: {
+//       screen: CommunityScreen,
+//       navigationOptions: {
+//         drawerLabel: () => null,
+//       }
+//     },
+//     New: NewScreen,
+//     Edit: {
+//       screen: EditScreen,
+//       navigationOptions: {
+//         drawerLabel: () => null,
+//       }
+//     },
+//     Meet: {
+//       screen: MeetScreen,
+//       navigationOptions: {
+//         drawerLabel: () => null,
+//       }
+//     },
+//     MyCommunities: MyCommunitiesScreen,
+//     JoinedCommunities: JoinedCommunitiesScreen,
+//     Search: SearchScreen,
+//     Login: LoginScreen,
+//     Map: MapScreen,
+//     SearchNew: {
+//       screen: SearchNewScreen,
+//       navigationOptions: {
+//         drawerLabel: () => null,
+//       }
+//     },
+//     // Nav: {
+//     //   screen: Nav,
+//     //   navigationOptions: {
+//     //     drawerLabel: () => null,
+//     //   }
+//     // },
+//     Profile: ProfileScreen,
+//   },
+//   {
+//     initialRouteName: 'Home',
+//   }
+// );
 
 const AuthStack = createStackNavigator({ Login: LoginScreen },
   {

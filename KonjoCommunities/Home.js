@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
   Vibration,
-  Button,
   ScrollView
 } from "react-native";
 import { Card } from "react-native-elements";
