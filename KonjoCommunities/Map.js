@@ -64,7 +64,7 @@ class MapScreen extends Component {
     iAmHere() {
         setTimeout(() => {
             this.marker.showCallout()
-        }, 2000);
+        }, 1500);
     }
 
     render() {
