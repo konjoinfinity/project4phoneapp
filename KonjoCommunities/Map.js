@@ -47,9 +47,19 @@ class MapScreen extends Component {
         );
     }
 
-    static navigationOptions = {
-        headerTitle: <LogoTitle />
-    };
+    static navigationOptions = ({ navigation }) => {
+        return {
+            headerTitle: <LogoTitle />,
+            headerLeft: (<TouchableOpacity
+                onPress={() => navigation.push("Home")}>
+                <View>
+                    <Text
+                        style={{ fontSize: 30, marginLeft: 10 }}>🏠</Text>
+                </View>
+            </TouchableOpacity>
+            )
+        };
+    }
 
     iAmHere() {
         setTimeout(() => {
