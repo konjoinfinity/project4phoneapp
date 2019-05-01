@@ -49,13 +49,99 @@ class NewScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: <LogoTitle />,
-      headerLeft: (<TouchableOpacity
-        onPress={() => navigation.push("Home")}>
-        <View>
-          <Text
-            style={{ fontSize: 30, marginLeft: 10 }}>🏠</Text>
-        </View>
-      </TouchableOpacity>
+      headerLeft: (<View style={{ flexDirection: "row" }}>
+        <TouchableOpacity
+          style={{
+            height: 35,
+            width: 35,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(250, 250, 250, 0.7)',
+            borderRadius: 50,
+            margin: 10,
+            shadowColor: 'black',
+            shadowOpacity: 0.5,
+            shadowOffset: {
+              width: 2,
+              height: 2,
+            }
+          }}
+          onPress={() => navigation.push("Home")}>
+          <View>
+            <Text
+              style={{ fontSize: 25 }}>🏠</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            height: 35,
+            width: 35,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(250, 250, 250, 0.7)',
+            borderRadius: 50,
+            margin: 10,
+            shadowColor: 'black',
+            shadowOpacity: 0.5,
+            shadowOffset: {
+              width: 2,
+              height: 2,
+            }
+          }}
+          onPress={() => navigation.push("Profile")}>
+          <View>
+            <Text
+              style={{ fontSize: 25 }}>👤</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      ),
+      headerRight: (<View style={{ flexDirection: "row" }}>
+        <TouchableOpacity
+          style={{
+            height: 35,
+            width: 35,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(250, 250, 250, 0.7)',
+            borderRadius: 50,
+            margin: 10,
+            shadowColor: 'black',
+            shadowOpacity: 0.5,
+            shadowOffset: {
+              width: 2,
+              height: 2,
+            }
+          }}
+          onPress={() => navigation.push("New")}>
+          <View>
+            <Text
+              style={{ fontSize: 25 }}>➕</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            height: 35,
+            width: 35,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(250, 250, 250, 0.7)',
+            borderRadius: 50,
+            margin: 10,
+            shadowColor: 'black',
+            shadowOpacity: 0.5,
+            shadowOffset: {
+              width: 2,
+              height: 2,
+            }
+          }}
+          onPress={() => navigation.push("Search")}>
+          <View>
+            <Text
+              style={{ fontSize: 25 }}>🔎</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
       )
     };
   }
