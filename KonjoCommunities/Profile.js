@@ -50,16 +50,15 @@ class ProfileScreen extends React.Component {
             });
         Vibration.vibrate();
         this.getUsername();
-        this.props.navigation.setParams({
-            openCloseNav: this.openCloseNav
-        });
     }
 
     openCloseNav() {
         if (this.state.nav === false) {
             this.setState({ nav: true });
+            Vibration.vibrate();
         } else {
             this.setState({ nav: false });
+            Vibration.vibrate();
         }
     }
 

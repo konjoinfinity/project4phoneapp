@@ -73,9 +73,6 @@ class CommunityScreen extends React.Component {
         this.setState({ community: res });
       });
     this.getUsername();
-    this.props.navigation.setParams({
-      openCloseNav: this.openCloseNav
-    });
   }
 
   openCloseNav() {
