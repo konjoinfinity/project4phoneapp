@@ -40,6 +40,11 @@ class Nav extends React.Component {
                          </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            style={styles.growButton}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("GrowCommunities") }}>
+                            <Text style={styles.growButtonText}>Growing Communities 👤🌻</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
                             style={styles.newButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("New") }}>
                             <Text style={styles.newButtonText}>New Community ➕</Text>
@@ -213,6 +218,19 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     mapButtonText: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        textAlign: "center"
+    },
+    growButton: {
+        borderWidth: 1,
+        borderColor: "#00B6B6",
+        backgroundColor: "#00B6B6",
+        padding: 15,
+        margin: 5,
+        borderRadius: 15
+    },
+    growButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
