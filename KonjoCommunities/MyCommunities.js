@@ -51,6 +51,9 @@ class MyCommunitiesScreen extends React.Component {
       });
     Vibration.vibrate();
     this.getUsername();
+    this.props.navigation.setParams({
+      openCloseNav: this.openCloseNav
+    });
   }
 
   openCloseNav() {

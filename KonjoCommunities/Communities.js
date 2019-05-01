@@ -40,6 +40,9 @@ class CommunitiesScreen extends React.Component {
         this.setState({ communities: res });
       });
     Vibration.vibrate();
+    this.props.navigation.setParams({
+      openCloseNav: this.openCloseNav
+    });
   }
 
   openCloseNav() {
