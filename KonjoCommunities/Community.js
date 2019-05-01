@@ -81,8 +81,10 @@ class CommunityScreen extends React.Component {
   openCloseNav() {
     if (this.state.nav === false) {
       this.setState({ nav: true });
+      Vibration.vibrate();
     } else {
       this.setState({ nav: false });
+      Vibration.vibrate();
     }
   }
 
