@@ -52,21 +52,7 @@ class MapScreen extends Component {
             headerTitle: <LogoTitle />,
             headerLeft: (<View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
-                    style={{
-                        height: 35,
-                        width: 35,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(250, 250, 250, 0.7)',
-                        borderRadius: 50,
-                        margin: 10,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.5,
-                        shadowOffset: {
-                            width: 2,
-                            height: 2,
-                        }
-                    }}
+                    style={styles.headerButton}
                     onPress={() => navigation.push("Home")}>
                     <View>
                         <Text
@@ -74,21 +60,7 @@ class MapScreen extends Component {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={{
-                        height: 35,
-                        width: 35,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(250, 250, 250, 0.7)',
-                        borderRadius: 50,
-                        margin: 10,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.5,
-                        shadowOffset: {
-                            width: 2,
-                            height: 2,
-                        }
-                    }}
+                    style={styles.headerButton}
                     onPress={() => navigation.push("Profile")}>
                     <View>
                         <Text
@@ -99,21 +71,7 @@ class MapScreen extends Component {
             ),
             headerRight: (<View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
-                    style={{
-                        height: 35,
-                        width: 35,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(250, 250, 250, 0.7)',
-                        borderRadius: 50,
-                        margin: 10,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.5,
-                        shadowOffset: {
-                            width: 2,
-                            height: 2,
-                        }
-                    }}
+                    style={styles.headerButton}
                     onPress={() => navigation.push("New")}>
                     <View>
                         <Text
@@ -121,21 +79,7 @@ class MapScreen extends Component {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={{
-                        height: 35,
-                        width: 35,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(250, 250, 250, 0.7)',
-                        borderRadius: 50,
-                        margin: 10,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.5,
-                        shadowOffset: {
-                            width: 2,
-                            height: 2,
-                        }
-                    }}
+                    style={styles.headerButton}
                     onPress={() => navigation.push("Search")}>
                     <View>
                         <Text
@@ -241,5 +185,20 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
+    },
+    headerButton: {
+        height: 35,
+        width: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(250, 250, 250, 0.7)',
+        borderRadius: 50,
+        margin: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        }
     }
 });

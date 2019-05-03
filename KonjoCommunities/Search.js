@@ -156,6 +156,7 @@ class SearchScreen extends React.Component {
                   id="search"
                   onBlur={Keyboard.dismiss}
                   onChangeText={this.handleChange}
+                  autoFocus={true}
                 />
               </View>
             </Card>
