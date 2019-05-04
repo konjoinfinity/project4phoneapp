@@ -34,7 +34,6 @@ class CommunitiesScreen extends React.Component {
       userToken: ""
     };
     this.openCloseNav = this.openCloseNav.bind(this);
-    this.getCommunities = this.getCommunities.bind(this);
   }
 
   async getToken() {
@@ -45,8 +44,7 @@ class CommunitiesScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
-    // https://konjomeet.herokuapp.com/community
-    await fetch("http://localhost:4000/community", {
+    await fetch("https://konjomeet.herokuapp.com/community", {
       method: "GET",
       headers: {
         "user-token": `${this.state.userToken}`
@@ -85,14 +83,6 @@ class CommunitiesScreen extends React.Component {
       </TouchableOpacity>
       )
     };
-  }
-
-  getCommunities() {
-    fetch("https://konjomeet.herokuapp.com/community")
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ communities: res });
-      });
   }
 
   render() {

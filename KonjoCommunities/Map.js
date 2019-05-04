@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text, TextInput } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
     render() {
@@ -17,18 +20,31 @@ class LogoTitle extends React.Component {
 class MapScreen extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             latitude: null,
             longitude: null,
             error: null,
-            communities: ""
+            communities: "",
+            userToken: ""
         };
     }
 
-    componentDidMount() {
-        // switch to http://localhost:4000/community for dev and https://konjomeet.herokuapp.com/community for production
-        fetch("https://konjomeet.herokuapp.com/community")
+    async getToken() {
+        var token = await AsyncStorage.getItem(STORAGE_KEY);
+        console.log(token);
+        this.setState({ userToken: token });
+    }
+
+    async componentDidMount() {
+        await this.getToken();
+        // switch to http://localhost:4000/community for dev
+        // https://konjomeet.herokuapp.com/community for production
+        await fetch("http://localhost:4000/community", {
+            method: "GET",
+            headers: {
+                "user-token": `${this.state.userToken}`
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
@@ -99,9 +115,10 @@ class MapScreen extends Component {
 
     render() {
         const LatLng = {
-            //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
-            latitude: this.state.latitude,
-            longitude: this.state.longitude
+            //replace with this.state.latitude/longitude for production
+            //dev - latitude: 38.875917, longitude: -77.122655
+            latitude: 38.875917,
+            longitude: -77.122655
         }
         let commcoords;
         this.state.communities &&
@@ -133,9 +150,10 @@ class MapScreen extends Component {
                     <MapView
                         style={styles.map}
                         initialRegion={{
-                            //replace with this.state.latitude/longitude for production/dev - latitude: 38.875917, longitude: -77.122655
-                            latitude: this.state.latitude,
-                            longitude: this.state.longitude,
+                            //replace with this.state.latitude/longitude for production
+                            //dev - latitude: 38.875917, longitude: -77.122655
+                            latitude: 38.875917,
+                            longitude: -77.122655,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
 

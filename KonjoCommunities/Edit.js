@@ -96,8 +96,7 @@ class EditScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
-    // https://konjomeet.herokuapp.com/community
-    await fetch(`http://localhost:4000/community/${
+    await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -142,8 +141,7 @@ class EditScreen extends React.Component {
       description: this.state.description,
       category: this.state.category
     };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${this.state.id}`, {
+    fetch(`https://konjomeet.herokuapp.com/community/${this.state.id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
