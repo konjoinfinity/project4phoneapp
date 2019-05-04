@@ -147,8 +147,7 @@ class MeetScreen extends React.Component {
         creator: this.state.creator
       }
     };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }/meet`,
       {

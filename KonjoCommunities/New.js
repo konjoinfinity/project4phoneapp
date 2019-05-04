@@ -151,8 +151,7 @@ class NewScreen extends React.Component {
         long: this.state.location.long
       }
     };
-    // https://konjomeet.herokuapp.com/community
-    fetch("http://localhost:4000/community", {
+    fetch("https://konjomeet.herokuapp.com/community", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
