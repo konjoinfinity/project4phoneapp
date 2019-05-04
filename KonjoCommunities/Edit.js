@@ -11,6 +11,9 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
   render() {
@@ -30,7 +33,8 @@ class EditScreen extends React.Component {
       id: "",
       name: "",
       description: "",
-      category: ""
+      category: "",
+      userToken: ""
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -84,12 +88,23 @@ class EditScreen extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${
+  async getToken() {
+    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    console.log(token);
+    this.setState({ userToken: token });
+  }
+
+  async componentDidMount() {
+    await this.getToken();
+    // https://konjomeet.herokuapp.com/community
+    await fetch(`http://localhost:4000/community/${
       this.props.navigation.state.params.communityId
-      }`
-    )
+      }`, {
+        method: "GET",
+        headers: {
+          "user-token": `${this.state.userToken}`
+        }
+      })
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -121,18 +136,27 @@ class EditScreen extends React.Component {
   }
 
   handleSubmit() {
-    const data = this.state;
-    fetch(`https://konjomeet.herokuapp.com/community/${this.state.id}`, {
+    const data = {
+      id: this.state.id,
+      name: this.state.name,
+      description: this.state.description,
+      category: this.state.category
+    };
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${this.state.id}`, {
       method: "PUT",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        "user-token": `${this.state.userToken}`
       },
       body: JSON.stringify(data)
     })
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        this.props.navigation.push("Communities");
+        this.props.navigation.push("Community", {
+          communityId: `${this.state.id}`
+        })
         Vibration.vibrate();
         this.editClear();
       });
