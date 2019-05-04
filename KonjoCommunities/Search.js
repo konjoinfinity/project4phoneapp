@@ -12,7 +12,10 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
+
+var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
   render() {
@@ -31,14 +34,28 @@ class SearchScreen extends React.Component {
     this.state = {
       communities: "",
       search: "",
-      nav: false
+      nav: false,
+      userToken: ""
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    fetch("https://konjomeet.herokuapp.com/community")
+  async getToken() {
+    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    console.log(token);
+    this.setState({ userToken: token });
+  }
+
+  async componentDidMount() {
+    await this.getToken();
+    // https://konjomeet.herokuapp.com/community
+    await fetch("http://localhost:4000/community", {
+      method: "GET",
+      headers: {
+        "user-token": `${this.state.userToken}`
+      }
+    })
       .then(res => res.json())
       .then(res => {
         this.setState({ communities: res });
