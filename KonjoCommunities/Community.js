@@ -240,14 +240,15 @@ class CommunityScreen extends React.Component {
 
   deleteMeet(e) {
     const data = { body: e };
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${
       this.state.community._id
       }/meet/delete`,
       {
         method: "PUT",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
         },
         body: JSON.stringify(data)
       }

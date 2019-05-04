@@ -14,6 +14,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
+var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
   render() {
@@ -35,7 +36,8 @@ class MeetScreen extends React.Component {
       location: "",
       date: "",
       time: "",
-      creator: ""
+      creator: "",
+      userToken: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -96,9 +98,16 @@ class MeetScreen extends React.Component {
     this.setState({ creator: username });
   }
 
+  async getToken() {
+    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    console.log(token);
+    this.setState({ userToken: token });
+  }
+
   componentDidMount() {
     Vibration.vibrate();
     this.getUsername();
+    this.getToken();
   }
 
   meetClear() {
@@ -128,15 +137,25 @@ class MeetScreen extends React.Component {
   }
 
   handleSubmit() {
-    const data = { meet: this.state };
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${
+    const data = {
+      meet: {
+        name: this.state.name,
+        description: this.state.description,
+        location: this.state.location,
+        date: this.state.date,
+        time: this.state.time,
+        creator: this.state.creator
+      }
+    };
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${
       this.props.navigation.state.params.communityId
       }/meet`,
       {
         method: "PUT",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
         },
         body: JSON.stringify(data)
       }
