@@ -17,6 +17,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
 
 var STORAGE_USER = "username";
+var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
   render() {
@@ -36,7 +37,8 @@ class CommunityScreen extends React.Component {
       community: "",
       comment: "",
       creator: "",
-      nav: false
+      nav: false,
+      userToken: ""
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -61,13 +63,23 @@ class CommunityScreen extends React.Component {
     this.setState({ creator: username });
   }
 
-  componentDidMount() {
-    Vibration.vibrate();
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${
+  async getToken() {
+    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    console.log(token);
+    this.setState({ userToken: token });
+  }
+
+  async componentDidMount() {
+    await this.getToken();
+    // https://konjomeet.herokuapp.com/community
+    await fetch(`http://localhost:4000/community/${
       this.props.navigation.state.params.communityId
-      }`
-    )
+      }`, {
+        method: "GET",
+        headers: {
+          "user-token": `${this.state.userToken}`
+        }
+      })
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
@@ -104,9 +116,14 @@ class CommunityScreen extends React.Component {
   }
 
   getCommunity() {
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${this.state.community._id}`
-    )
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${this.state.community._id}`
+      , {
+        method: "GET",
+        headers: {
+          "user-token": `${this.state.userToken}`
+        }
+      })
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
@@ -114,12 +131,14 @@ class CommunityScreen extends React.Component {
   }
 
   deleteCommunity() {
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${this.state.community._id}`,
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${this.state.community._id}`,
       {
-        method: "DELETE"
-      }
-    )
+        method: "DELETE",
+        headers: {
+          "user-token": `${this.state.userToken}`
+        }
+      })
       .then(res => res.json())
       .then(res => console.log(res))
       .then(this.props.navigation.push("Home"))
