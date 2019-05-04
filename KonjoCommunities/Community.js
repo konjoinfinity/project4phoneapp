@@ -290,6 +290,12 @@ class CommunityScreen extends React.Component {
                   onPress={() => this.deleteMember(`${member._id}`)}
                 />
               )}
+              {this.state.creator === member.name && (
+                <Button
+                  title="🗑 Remove"
+                  onPress={() => this.deleteMember(`${member._id}`)}
+                />
+              )}
             </View>
           </Card>
         );
