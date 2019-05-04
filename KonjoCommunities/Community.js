@@ -147,14 +147,15 @@ class CommunityScreen extends React.Component {
 
   deleteComment(e) {
     const data = { body: e };
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${
       this.state.community._id
       }/delete`,
       {
         method: "PUT",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
         },
         body: JSON.stringify(data)
       }
@@ -169,14 +170,15 @@ class CommunityScreen extends React.Component {
 
   handleComment() {
     const data = { comment: this.state.comment, creator: this.state.creator };
-    fetch(
-      `https://konjomeet.herokuapp.com/community/${
+    // https://konjomeet.herokuapp.com/community
+    fetch(`http://localhost:4000/community/${
       this.state.community._id
       }/comment`,
       {
         method: "PUT",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
         },
         body: JSON.stringify(data)
       }
