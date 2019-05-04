@@ -15,6 +15,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 
 var STORAGE_USER = "username";
+var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
   render() {
@@ -34,7 +35,12 @@ class SearchNewScreen extends React.Component {
       name: "",
       description: "",
       category: "",
-      creator: ""
+      creator: "",
+      location: {
+        lat: null,
+        long: null
+      },
+      userToken: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -93,10 +99,29 @@ class SearchNewScreen extends React.Component {
     this.setState({ creator: username });
   }
 
+  async getToken() {
+    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    console.log(token);
+    this.setState({ userToken: token });
+  }
+
   componentDidMount() {
     Vibration.vibrate();
     this.getUsername();
+    this.getToken();
     this.setState({ name: this.props.navigation.state.params.newName });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          location: {
+            lat: position.coords.latitude,
+            long: position.coords.longitude
+          }
+        });
+      },
+      (error) => console.log(error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   newClear() {
@@ -118,11 +143,22 @@ class SearchNewScreen extends React.Component {
   }
 
   handleSubmit() {
-    const data = this.state;
-    fetch("https://konjomeet.herokuapp.com/community", {
+    const data = {
+      name: this.state.name,
+      description: this.state.description,
+      category: this.state.category,
+      creator: this.state.creator,
+      location: {
+        lat: this.state.location.lat,
+        long: this.state.location.long
+      }
+    };
+    // https://konjomeet.herokuapp.com/community
+    fetch("http://localhost:4000/community", {
       method: "POST",
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        "user-token": `${this.state.userToken}`
       },
       body: JSON.stringify(data)
     });
