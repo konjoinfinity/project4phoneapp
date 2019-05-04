@@ -12,10 +12,10 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
-import AsyncStorage from "@react-native-community/async-storage";
+// import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
 
-var STORAGE_KEY = "id_token";
+// var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
   render() {
@@ -34,27 +34,22 @@ class SearchScreen extends React.Component {
     this.state = {
       communities: "",
       search: "",
-      nav: false,
-      userToken: ""
+      nav: false
+      // userToken: ""
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  async getToken() {
-    var token = await AsyncStorage.getItem(STORAGE_KEY);
-    console.log(token);
-    this.setState({ userToken: token });
-  }
+  // async getToken() {
+  //   var token = await AsyncStorage.getItem(STORAGE_KEY);
+  //   console.log(token);
+  //   this.setState({ userToken: token });
+  // }
 
   async componentDidMount() {
-    await this.getToken();
-    await fetch("https://konjomeet.herokuapp.com/community", {
-      method: "GET",
-      headers: {
-        "user-token": `${this.state.userToken}`
-      }
-    })
+    // await this.getToken();
+    fetch("https://konjomeet.herokuapp.com/community/search")
       .then(res => res.json())
       .then(res => {
         this.setState({ communities: res });
