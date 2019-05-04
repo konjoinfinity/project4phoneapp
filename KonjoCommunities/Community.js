@@ -71,8 +71,7 @@ class CommunityScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
-    // https://konjomeet.herokuapp.com/community
-    await fetch(`http://localhost:4000/community/${
+    await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -116,8 +115,7 @@ class CommunityScreen extends React.Component {
   }
 
   getCommunity() {
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${this.state.community._id}`
+    fetch(`https://konjomeet.herokuapp.com/community/${this.state.community._id}`
       , {
         method: "GET",
         headers: {
@@ -131,8 +129,7 @@ class CommunityScreen extends React.Component {
   }
 
   deleteCommunity() {
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${this.state.community._id}`,
+    fetch(`https://konjomeet.herokuapp.com/community/${this.state.community._id}`,
       {
         method: "DELETE",
         headers: {
@@ -147,8 +144,7 @@ class CommunityScreen extends React.Component {
 
   deleteComment(e) {
     const data = { body: e };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.state.community._id
       }/delete`,
       {
@@ -170,8 +166,7 @@ class CommunityScreen extends React.Component {
 
   handleComment() {
     const data = { comment: this.state.comment, creator: this.state.creator };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.state.community._id
       }/comment`,
       {
@@ -194,8 +189,7 @@ class CommunityScreen extends React.Component {
 
   joinCommunity() {
     const data = { member: this.state.creator };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.state.community._id
       }/adduser`,
       {
@@ -217,8 +211,7 @@ class CommunityScreen extends React.Component {
 
   deleteMember(e) {
     const data = { body: e };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.state.community._id
       }/removeuser`,
       {
@@ -240,8 +233,7 @@ class CommunityScreen extends React.Component {
 
   deleteMeet(e) {
     const data = { body: e };
-    // https://konjomeet.herokuapp.com/community
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.state.community._id
       }/meet/delete`,
       {
