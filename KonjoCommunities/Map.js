@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text, TextInput } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import AsyncStorage from "@react-native-community/async-storage";
+// import AsyncStorage from "@react-native-community/async-storage";
 
-var STORAGE_KEY = "id_token";
+// var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
     render() {
@@ -24,27 +24,21 @@ class MapScreen extends Component {
             latitude: null,
             longitude: null,
             error: null,
-            communities: "",
-            userToken: ""
+            communities: ""
         };
     }
 
-    async getToken() {
-        var token = await AsyncStorage.getItem(STORAGE_KEY);
-        console.log(token);
-        this.setState({ userToken: token });
-    }
+    // async getToken() {
+    //     var token = await AsyncStorage.getItem(STORAGE_KEY);
+    //     console.log(token);
+    //     this.setState({ userToken: token });
+    // }
 
-    async componentDidMount() {
-        await this.getToken();
+    componentDidMount() {
+        // await this.getToken();
         // switch to http://localhost:4000/community for dev
         // https://konjomeet.herokuapp.com/community for production
-        await fetch("https://konjomeet.herokuapp.com/community", {
-            method: "GET",
-            headers: {
-                "user-token": `${this.state.userToken}`
-            }
-        })
+        fetch("https://konjomeet.herokuapp.com/community/search")
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
