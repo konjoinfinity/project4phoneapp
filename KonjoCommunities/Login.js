@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView,
-  Alert,
-  Button
+  Alert
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -39,7 +38,6 @@ class LoginScreen extends React.Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSignup = this.handleSignup.bind(this);
     this.loginClear = this.loginClear.bind(this);
   }
 
@@ -126,38 +124,6 @@ class LoginScreen extends React.Component {
       });
   }
 
-  handleSignup() {
-    fetch("https://konjomeet.herokuapp.com/users/signup", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
-      })
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        if (responseData.error) {
-          console.log(responseData.error);
-          Vibration.vibrate();
-          Alert.alert(responseData.error + " ❌");
-        } else {
-          Vibration.vibrate();
-          Alert.alert("User Signup Success! ✓");
-          console.log(responseData.token);
-          this.onValueChange(STORAGE_KEY, responseData.token);
-          this.onValueChange(STORAGE_USER, this.state.email);
-          this.loginClear();
-          this.props.navigation.push("Home");
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -198,26 +164,22 @@ class LoginScreen extends React.Component {
               <View style={styles.inputContainer}>
                 <TouchableOpacity
                   style={styles.loginButton}
-                  onPress={this.handleLogin}
-                >
+                  onPress={this.handleLogin}>
                   <Text style={styles.loginButtonText}>Login 🔑</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.logoutButton}
-                  onPress={this.userLogout}
-                >
+                  onPress={this.userLogout}>
                   <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.signupButton}
-                  onPress={this.handleSignup}
-                >
-                  <Text style={styles.signupButtonText}>User Signup ⌨️</Text>
+                  onPress={() => this.props.navigation.push("Signup")}>
+                  <Text style={styles.signupButtonText}>Don't have an Account? Signup! ⌨️</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.checkButton}
-                  onPress={this.getUsername}
-                >
+                  onPress={this.getUsername}>
                   <Text style={styles.checkButtonText}>Check User ❔</Text>
                 </TouchableOpacity>
               </View>

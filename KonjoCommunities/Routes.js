@@ -15,6 +15,7 @@ import AuthLoadingScreen from "./AuthLoading"
 import ProfileScreen from "./Profile";
 import MapScreen from "./Map"
 import GrowCommunitiesScreen from "./GrowCommunities";
+import SignupScreen from "./Signup";
 
 const AppStack = createStackNavigator(
   {
@@ -31,7 +32,8 @@ const AppStack = createStackNavigator(
     Profile: ProfileScreen,
     Home: HomeScreen,
     Map: MapScreen,
-    GrowCommunities: GrowCommunitiesScreen
+    GrowCommunities: GrowCommunitiesScreen,
+    Signup: SignupScreen
   },
   {
     initialRouteName: 'Home',
