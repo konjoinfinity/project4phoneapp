@@ -73,17 +73,6 @@ class LoginScreen extends React.Component {
     Vibration.vibrate();
   }
 
-  async userLogout() {
-    try {
-      await AsyncStorage.removeItem(STORAGE_KEY);
-      await AsyncStorage.removeItem(STORAGE_USER);
-      Alert.alert("Logout Success! ✅");
-      Vibration.vibrate();
-    } catch (error) {
-      console.log("AsyncStorage error: " + error.message);
-    }
-  }
-
   async onValueChange(item, selectedValue) {
     try {
       await AsyncStorage.setItem(item, selectedValue);
@@ -130,7 +119,7 @@ class LoginScreen extends React.Component {
         <ScrollView>
           <View>
             <Card borderRadius={15}>
-              <Text style={styles.header}>Login or Signup</Text>
+              <Text style={styles.header}>Login</Text>
               <View style={styles.inputContainer}>
                 <TextInput
                   style={styles.textInput}
@@ -166,11 +155,6 @@ class LoginScreen extends React.Component {
                   style={styles.loginButton}
                   onPress={this.handleLogin}>
                   <Text style={styles.loginButtonText}>Login 🔑</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.logoutButton}
-                  onPress={this.userLogout}>
-                  <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.signupButton}
@@ -224,19 +208,6 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   loginButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
-  logoutButton: {
-    borderWidth: 1,
-    borderColor: "#FFD517",
-    backgroundColor: "#FFD517",
-    padding: 15,
-    margin: 5,
-    borderRadius: 15
-  },
-  logoutButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

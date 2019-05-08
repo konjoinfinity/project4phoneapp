@@ -6,9 +6,14 @@ import {
   Image,
   TouchableOpacity,
   Vibration,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
+var STORAGE_KEY = "id_token";
+var STORAGE_USER = "username";
 
 class LogoTitle extends React.Component {
   render() {
@@ -31,6 +36,18 @@ class HomeScreen extends React.Component {
     headerTitle: <LogoTitle />,
     headerLeft: null
   };
+
+  async userLogout() {
+    try {
+      await AsyncStorage.removeItem(STORAGE_KEY);
+      await AsyncStorage.removeItem(STORAGE_USER);
+      Alert.alert("Logout Success! ✅");
+      Vibration.vibrate();
+      this.props.navigation.push("Login")
+    } catch (error) {
+      console.log("AsyncStorage error: " + error.message);
+    }
+  }
 
   render() {
     return (
@@ -64,16 +81,15 @@ class HomeScreen extends React.Component {
             <Text style={styles.searchButtonText}>Search 🔍</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.joinButton}
+            style={styles.mapButton}
             onPress={() => this.props.navigation.push("Map")}
           >
-            <Text style={styles.joinButtonText}>Map 🗺</Text>
+            <Text style={styles.mapButtonText}>Map 🗺</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.loginButton}
-            onPress={() => this.props.navigation.push("Login")}
-          >
-            <Text style={styles.loginButtonText}>Login 🔑</Text>
+            style={styles.logoutButton}
+            onPress={this.userLogout}>
+            <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
           </TouchableOpacity>
         </Card>
       </ScrollView>
@@ -122,10 +138,23 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center"
   },
+  logoutButton: {
+    borderWidth: 1,
+    borderColor: "#FFD517",
+    backgroundColor: "#FFD517",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  logoutButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
   searchButton: {
     borderWidth: 1,
-    borderColor: "#FFE713",
-    backgroundColor: "#FFE713",
+    borderColor: "#E0118A",
+    backgroundColor: "#E0118A",
     padding: 15,
     margin: 5,
     borderRadius: 15
@@ -135,28 +164,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center"
   },
-  loginButton: {
+  mapButton: {
     borderWidth: 1,
-    borderColor: "#E0118A",
-    backgroundColor: "#E0118A",
+    borderColor: "#752794",
+    backgroundColor: "#752794",
     padding: 15,
     margin: 5,
     borderRadius: 15
   },
-  loginButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
-  joinButton: {
-    borderWidth: 1,
-    borderColor: "#3D7E9A",
-    backgroundColor: "#3D7E9A",
-    padding: 15,
-    margin: 5,
-    borderRadius: 15
-  },
-  joinButtonText: {
+  mapButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"

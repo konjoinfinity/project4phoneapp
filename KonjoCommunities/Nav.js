@@ -4,11 +4,28 @@ import {
     Text,
     View,
     TouchableOpacity,
+    Alert,
+    Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
 
+var STORAGE_KEY = "id_token";
+var STORAGE_USER = "username";
 
 class Nav extends React.Component {
+
+    async userLogout() {
+        try {
+            await AsyncStorage.removeItem(STORAGE_KEY);
+            await AsyncStorage.removeItem(STORAGE_USER);
+            Alert.alert("Logout Success! ✅");
+            Vibration.vibrate();
+            this.props.navigation.push("Login")
+        } catch (error) {
+            console.log("AsyncStorage error: " + error.message);
+        }
+    }
 
     render() {
         return (
@@ -65,9 +82,9 @@ class Nav extends React.Component {
                             <Text style={styles.mapButtonText}>Map 🗺</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.meetButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Login") }}>
-                            <Text style={styles.meetButtonText}>Login 🔑</Text>
+                            style={styles.logoutButton}
+                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.userLogout() }}>
+                            <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
                         </TouchableOpacity>
                     </View>
                 </Card>
@@ -118,7 +135,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: "center"
     },
-    meetButton: {
+    searchButton: {
         borderWidth: 1,
         borderColor: "#752794",
         backgroundColor: "#752794",
@@ -126,7 +143,7 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    meetButtonText: {
+    searchButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
@@ -170,7 +187,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: "center"
     },
-    searchButton: {
+    logoutButton: {
         borderWidth: 1,
         borderColor: "#FFE713",
         backgroundColor: "#FFE713",
@@ -178,7 +195,7 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    searchButtonText: {
+    logoutButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
