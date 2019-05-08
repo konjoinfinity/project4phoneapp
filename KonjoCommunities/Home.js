@@ -52,7 +52,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text style={{ fontSize: 40, textAlign: "center", padding: 15 }}>
+        <Text style={{ fontSize: 35, textAlign: "center", padding: 10 }}>
           Beautiful Communities
         </Text>
         <Card borderRadius={15}>
@@ -90,6 +90,11 @@ class HomeScreen extends React.Component {
             style={styles.logoutButton}
             onPress={this.userLogout}>
             <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.newHomeButton}
+            onPress={() => this.props.navigation.push("NewHome")}>
+            <Text style={styles.newHomeButtonText}>New Home 🆕🏠</Text>
           </TouchableOpacity>
         </Card>
       </ScrollView>
@@ -173,6 +178,19 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   mapButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  newHomeButton: {
+    borderWidth: 1,
+    borderColor: "#B8E35D",
+    backgroundColor: "#B8E35D",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  newHomeButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
