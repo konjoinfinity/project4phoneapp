@@ -92,13 +92,11 @@ class SignupScreen extends React.Component {
             .then(response => response.json())
             .then(responseData => {
                 if (responseData.error) {
-                    console.log(responseData.error);
                     Vibration.vibrate();
                     Alert.alert(responseData.error + " ❌");
                 } else {
                     Vibration.vibrate();
                     Alert.alert("User Signup Success! ✓");
-                    console.log(responseData.token);
                     this.onValueChange(STORAGE_KEY, responseData.token);
                     this.onValueChange(STORAGE_USER, this.state.email);
                     this.loginClear();

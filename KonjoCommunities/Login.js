@@ -95,13 +95,11 @@ class LoginScreen extends React.Component {
       .then(response => response.json())
       .then(responseData => {
         if (responseData.error) {
-          console.log(responseData.error);
           Vibration.vibrate();
           Alert.alert(responseData.error + " ❌");
         } else {
           Vibration.vibrate();
           Alert.alert("Login Success! ✓");
-          console.log(responseData.token);
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
           this.loginClear();

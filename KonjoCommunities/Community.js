@@ -381,6 +381,16 @@ class CommunityScreen extends React.Component {
           <Card borderRadius={15}>
             <View>
               <TouchableOpacity
+                style={styles.mapButton}
+                onPress={() =>
+                  this.props.navigation.push("CommMap", {
+                    communityId: `${this.state.community._id}`
+                  })
+                }
+              >
+                <Text style={styles.mapButtonText}>Map 🗺</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={styles.homeButton}
                 onPress={() => this.goHome()}
               >
@@ -693,21 +703,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center"
   },
-  container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+  mapButton: {
+    borderWidth: 1,
+    borderColor: "#00B6B6",
+    backgroundColor: "#00B6B6",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
   },
-  map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  mapButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    textAlign: "center"
   }
 });
 
