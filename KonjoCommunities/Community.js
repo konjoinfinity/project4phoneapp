@@ -72,6 +72,7 @@ class CommunityScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
+    await this.getUsername();
     await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
@@ -85,7 +86,6 @@ class CommunityScreen extends React.Component {
         this.setState({ community: res });
       });
     Vibration.vibrate();
-    this.getUsername();
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
     });
@@ -109,27 +109,40 @@ class CommunityScreen extends React.Component {
   }
 
   meetAlert() {
-    if (this.state.community.numberOfMembers >= 3) {
-      if (this.state.community.meets.length === 0) {
-        Alert.alert(
-          'Create a Meet!',
-          'You have 3 members!',
-          [
-            {
-              text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel',
-            },
-            { text: 'Create', onPress: () => this.meetNav() },
-          ],
-          { cancelable: false },
-        );
-        Vibration.vibrate();
+    console.log(this.state.community.members)
+    console.log(this.state.creator)
+    const meetMember =
+      this.state.community &&
+      this.state.community.members.filter(
+        member => member.name === this.state.creator
+      );
+    console.log(this.state.community.members)
+    console.log(meetMember)
+    if (meetMember.length === 1 || this.state.community.creator === this.state.creator) {
+      if (this.state.community.numberOfMembers >= 3) {
+        if (this.state.community.meets.length === 0) {
+          Alert.alert(
+            'Create a Meet!',
+            'You have 3 members!',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              { text: 'Create', onPress: () => this.meetNav() },
+            ],
+            { cancelable: false },
+          );
+          Vibration.vibrate();
+        } else {
+          console.log("Meets already created")
+        }
       } else {
-        console.log("Meets already created")
+        console.log("More members required")
       }
     } else {
-      console.log("More members required")
+      console.log("Required to Join")
     }
   }
 

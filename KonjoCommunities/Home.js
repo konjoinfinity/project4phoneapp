@@ -88,7 +88,7 @@ class HomeScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.logoutButton}
-            onPress={this.userLogout}>
+            onPress={() => this.userLogout()}>
             <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
           </TouchableOpacity>
           <TouchableOpacity
