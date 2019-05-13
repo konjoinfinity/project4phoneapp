@@ -88,6 +88,7 @@ class CommunityScreen extends React.Component {
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
     });
+    console.log(this.state.community)
   }
 
   openCloseNav() {
@@ -539,15 +540,17 @@ class CommunityScreen extends React.Component {
             </Card>
           )}
           {this.state.creator === this.state.community.creator && (
-            <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
-              Comments
+            this.state.community.comments.length !== 0 && (
+              <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
+                Comments
             </Text>
-          )}
+            ))}
           {member.length === 1 && (
-            <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
-              Comments
+            this.state.community.comments.length !== 0 && (
+              <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
+                Comments
             </Text>
-          )}
+            ))}
           {this.state.creator === this.state.community.creator && (
             <View style={{ margin: 20 }}>{commentlist}</View>
           )}
