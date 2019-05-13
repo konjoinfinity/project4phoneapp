@@ -162,7 +162,6 @@ class MeetScreen extends React.Component {
     this.props.navigation.push("Community", {
       communityId: `${this.props.navigation.state.params.communityId}`
     })
-    Vibration.vibrate();
     this.meetClear();
   }
 
