@@ -66,7 +66,6 @@ class CommunityScreen extends React.Component {
 
   async getToken() {
     var token = await AsyncStorage.getItem(STORAGE_KEY);
-    console.log(token);
     this.setState({ userToken: token });
   }
 
@@ -109,15 +108,11 @@ class CommunityScreen extends React.Component {
   }
 
   meetAlert() {
-    console.log(this.state.community.members)
-    console.log(this.state.creator)
     const meetMember =
       this.state.community &&
       this.state.community.members.filter(
         member => member.name === this.state.creator
       );
-    console.log(this.state.community.members)
-    console.log(meetMember)
     if (meetMember.length === 1 || this.state.community.creator === this.state.creator) {
       if (this.state.community.numberOfMembers >= 3) {
         if (this.state.community.meets.length === 0) {
@@ -127,7 +122,7 @@ class CommunityScreen extends React.Component {
             [
               {
                 text: 'Cancel',
-                onPress: () => console.log('Cancel Pressed'),
+                onPress: () => Vibration.vibrate(),
                 style: 'cancel',
               },
               { text: 'Create', onPress: () => this.meetNav() },
