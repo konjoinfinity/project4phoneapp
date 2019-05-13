@@ -10,7 +10,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Vibration,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -88,7 +89,7 @@ class CommunityScreen extends React.Component {
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
     });
-    console.log(this.state.community)
+    this.meetAlert();
   }
 
   openCloseNav() {
@@ -98,6 +99,37 @@ class CommunityScreen extends React.Component {
     } else {
       this.setState({ nav: false });
       Vibration.vibrate();
+    }
+  }
+
+  meetNav() {
+    this.props.navigation.push("Meet", {
+      communityId: `${this.state.community._id}`
+    })
+  }
+
+  meetAlert() {
+    if (this.state.community.numberOfMembers >= 3) {
+      if (this.state.community.meets.length === 0) {
+        Alert.alert(
+          'Create a Meet!',
+          'You have 3 members!',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+            { text: 'Create', onPress: () => this.meetNav() },
+          ],
+          { cancelable: false },
+        );
+        Vibration.vibrate();
+      } else {
+        console.log("Meets already created")
+      }
+    } else {
+      console.log("More members required")
     }
   }
 
