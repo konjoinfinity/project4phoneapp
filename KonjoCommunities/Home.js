@@ -70,7 +70,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={410}
+            delay={420}
             duration={1500}
             style={styles.newButton}
             onPress={() => this.props.navigation.push("New")}
@@ -79,7 +79,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={420}
+            delay={440}
             duration={1500}
             style={styles.myCommunitiesButton}
             onPress={() => this.props.navigation.push("Profile")}
@@ -88,7 +88,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={430}
+            delay={460}
             duration={1500}
             style={styles.searchButton}
             onPress={() => this.props.navigation.push("Search")}
@@ -97,7 +97,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={440}
+            delay={480}
             duration={1500}
             style={styles.mapButton}
             onPress={() => this.props.navigation.push("Map")}
@@ -106,7 +106,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={450}
+            delay={500}
             duration={1500}
             style={styles.logoutButton}
             onPress={() => this.userLogout()}>
@@ -114,7 +114,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={460}
+            delay={520}
             duration={1500}
             style={styles.newHomeButton}
             onPress={() => this.props.navigation.push("NewHome")}>
