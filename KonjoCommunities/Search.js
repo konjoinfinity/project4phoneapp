@@ -38,7 +38,8 @@ class SearchScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://konjomeet.herokuapp.com/community/search")
+    // https://konjomeet.herokuapp.com/community/search
+    fetch("http://localhost:4000/community/search")
       .then(res => res.json())
       .then(res => {
         this.setState({ communities: res });
@@ -52,6 +53,7 @@ class SearchScreen extends React.Component {
   openCloseNav() {
     if (this.state.nav === false) {
       this.setState({ nav: true });
+      this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
       Vibration.vibrate();
     } else {
       this.setState({ nav: false });
@@ -146,7 +148,7 @@ class SearchScreen extends React.Component {
       )));
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <ScrollView>
+        <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <View>
             <Card borderRadius={15}>
