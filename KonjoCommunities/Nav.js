@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import * as Animatable from 'react-native-animatable';
+
+AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -32,60 +35,90 @@ class Nav extends React.Component {
             <View>
                 <Card borderRadius={15}>
                     <View>
-                        <TouchableOpacity
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={50}
+                            duration={1500}
                             style={styles.homeButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Home") }}>
                             <Text style={styles.homeButtonText}>Go Home 🏠</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={70}
+                            duration={1500}
                             style={styles.communityButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Communities") }}>
                             <Text style={styles.communityButtonText}>View Communites 👥</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={90}
+                            duration={1500}
                             style={styles.joinButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("MyCommunities") }}>
                             <Text style={styles.joinButtonText}>
                                 My Communities 👤
                             </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={110}
+                            duration={1500}
                             style={styles.joinedCommunitiesButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("JoinedCommunities") }}>
                             <Text style={styles.joinedCommunitiesButtonText}>
                                 Joined Communities 👤➡️👥
                          </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={130}
+                            duration={1500}
                             style={styles.growButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("GrowCommunities") }}>
                             <Text style={styles.growButtonText}>Growing Communities 👤🌻</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={150}
+                            duration={1500}
                             style={styles.newButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("New") }}>
                             <Text style={styles.newButtonText}>New Community ➕</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={170}
+                            duration={1500}
                             style={styles.myCommunitiesButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Profile") }}>
                             <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={190}
+                            duration={1500}
                             style={styles.searchButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Search") }}>
                             <Text style={styles.searchButtonText}>Search 🔍</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={210}
+                            duration={1500}
                             style={styles.mapButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Map") }}>
                             <Text style={styles.mapButtonText}>Map 🗺</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
+                        </AnimatableTouchableOpacity>
+                        <AnimatableTouchableOpacity
+                            animation="bounceInRight"
+                            delay={230}
+                            duration={1500}
                             style={styles.logoutButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.userLogout() }}>
                             <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
-                        </TouchableOpacity>
+                        </AnimatableTouchableOpacity>
                     </View>
                 </Card>
             </View>

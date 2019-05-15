@@ -181,8 +181,7 @@ class ProfileScreen extends React.Component {
                     <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
                     <TouchableOpacity
                         style={styles.myCommunitiesButton}
-                        onPress={() => this.props.navigation.push("MyCommunities")}
-                    >
+                        onPress={() => this.props.navigation.push("MyCommunities")}>
                         <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
                     </TouchableOpacity>
 

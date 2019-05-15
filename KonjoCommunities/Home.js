@@ -55,7 +55,8 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text style={{ fontSize: 35, textAlign: "center", padding: 10 }}>
+        <Text
+          style={{ fontSize: 35, textAlign: "center", padding: 10 }}>
           Beautiful Communities
         </Text>
         <Card borderRadius={15}>
