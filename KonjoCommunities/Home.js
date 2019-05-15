@@ -11,6 +11,9 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import * as Animatable from 'react-native-animatable';
+
+AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -56,51 +59,73 @@ class HomeScreen extends React.Component {
           Beautiful Communities
         </Text>
         <Card borderRadius={15}>
-          <TouchableOpacity
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={400}
+            duration={1500}
             style={styles.communitiesButton}
             onPress={() => this.props.navigation.push("Communities")}
           >
             <Text style={styles.communitiesButtonText}>All Communities 👥</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </AnimatableTouchableOpacity>
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={410}
+            duration={1500}
             style={styles.newButton}
             onPress={() => this.props.navigation.push("New")}
           >
             <Text style={styles.newButtonText}>New Community ➕</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </AnimatableTouchableOpacity>
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={420}
+            duration={1500}
             style={styles.myCommunitiesButton}
             onPress={() => this.props.navigation.push("Profile")}
           >
             <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </AnimatableTouchableOpacity>
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={430}
+            duration={1500}
             style={styles.searchButton}
             onPress={() => this.props.navigation.push("Search")}
           >
             <Text style={styles.searchButtonText}>Search 🔍</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </AnimatableTouchableOpacity>
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={440}
+            duration={1500}
             style={styles.mapButton}
             onPress={() => this.props.navigation.push("Map")}
           >
             <Text style={styles.mapButtonText}>Map 🗺</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </AnimatableTouchableOpacity>
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={450}
+            duration={1500}
             style={styles.logoutButton}
             onPress={() => this.userLogout()}>
             <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          </AnimatableTouchableOpacity>
+          <AnimatableTouchableOpacity
+            animation="bounceInLeft"
+            delay={460}
+            duration={1500}
             style={styles.newHomeButton}
             onPress={() => this.props.navigation.push("NewHome")}>
             <Text style={styles.newHomeButtonText}>New Home 🆕🏠</Text>
-          </TouchableOpacity>
+          </AnimatableTouchableOpacity>
         </Card>
       </ScrollView>
     );
   }
 }
+
 export default HomeScreen;
 
 const styles = StyleSheet.create({
