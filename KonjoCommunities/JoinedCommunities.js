@@ -76,7 +76,6 @@ class JoinedCommunitiesScreen extends React.Component {
       Vibration.vibrate();
     } else {
       this.setState({ nav: false });
-      this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
       Vibration.vibrate();
     }
   }

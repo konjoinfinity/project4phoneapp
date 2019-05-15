@@ -52,7 +52,8 @@ class MyCommunitiesScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
-    await fetch("https://konjomeet.herokuapp.com/community", {
+    // https://konjomeet.herokuapp.com/community
+    await fetch("http://localhost:4000/community", {
       method: "GET",
       headers: {
         "user-token": `${this.state.userToken}`
@@ -72,6 +73,7 @@ class MyCommunitiesScreen extends React.Component {
   openCloseNav() {
     if (this.state.nav === false) {
       this.setState({ nav: true });
+      this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
       Vibration.vibrate();
     } else {
       this.setState({ nav: false });
@@ -129,7 +131,7 @@ class MyCommunitiesScreen extends React.Component {
       }));
     return (
       <View style={styles.communities}>
-        <ScrollView>
+        <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             My Communities
