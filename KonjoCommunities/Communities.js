@@ -74,7 +74,7 @@ class CommunitiesScreen extends React.Component {
     return {
       headerTitle: <LogoTitle />,
       headerLeft: (<TouchableOpacity
-        onPress={navigation.getParam('openCloseNav')}>
+        onPress={() => { navigation.getParam('openCloseNav'); this.refs.scrolltop.scrollTo(0) }}>
         <View>
           <Image
             source={require("./menu.png")}
@@ -115,9 +115,8 @@ class CommunitiesScreen extends React.Component {
       }));
     return (
       <View style={styles.communities}>
-        <ScrollView>
+        <ScrollView ref='scrolltop'>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
-
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             Communities
           </Text>

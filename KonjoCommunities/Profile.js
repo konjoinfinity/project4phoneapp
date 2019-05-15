@@ -47,13 +47,13 @@ class ProfileScreen extends React.Component {
 
     async getToken() {
         var token = await AsyncStorage.getItem(STORAGE_KEY);
-        console.log(token);
         this.setState({ userToken: token });
     }
 
     async componentDidMount() {
         await this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
+        // https://konjomeet.herokuapp.com/community
+        await fetch("http://localhost:4000/community", {
             method: "GET",
             headers: {
                 "user-token": `${this.state.userToken}`
@@ -73,9 +73,11 @@ class ProfileScreen extends React.Component {
     openCloseNav() {
         if (this.state.nav === false) {
             this.setState({ nav: true });
+            this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
             Vibration.vibrate();
         } else {
             this.setState({ nav: false });
+            this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
             Vibration.vibrate();
         }
     }
@@ -171,7 +173,7 @@ class ProfileScreen extends React.Component {
             }));
 
         return (
-            <ScrollView>
+            <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
                 {this.state.nav === true && <Nav navigation={this.props.navigation} />}
                 <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>
                     Profile
