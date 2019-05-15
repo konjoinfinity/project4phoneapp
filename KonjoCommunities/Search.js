@@ -38,8 +38,7 @@ class SearchScreen extends React.Component {
   }
 
   componentDidMount() {
-    // https://konjomeet.herokuapp.com/community/search
-    fetch("http://localhost:4000/community/search")
+    fetch("https://konjomeet.herokuapp.com/community/search")
       .then(res => res.json())
       .then(res => {
         this.setState({ communities: res });

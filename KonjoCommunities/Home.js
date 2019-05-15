@@ -62,7 +62,7 @@ class HomeScreen extends React.Component {
         <Card borderRadius={15}>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={400}
+            delay={10}
             duration={1500}
             style={styles.communitiesButton}
             onPress={() => this.props.navigation.push("Communities")}
@@ -71,7 +71,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={420}
+            delay={30}
             duration={1500}
             style={styles.newButton}
             onPress={() => this.props.navigation.push("New")}
@@ -80,7 +80,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={440}
+            delay={50}
             duration={1500}
             style={styles.myCommunitiesButton}
             onPress={() => this.props.navigation.push("Profile")}
@@ -89,7 +89,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={460}
+            delay={70}
             duration={1500}
             style={styles.searchButton}
             onPress={() => this.props.navigation.push("Search")}
@@ -98,7 +98,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={480}
+            delay={90}
             duration={1500}
             style={styles.mapButton}
             onPress={() => this.props.navigation.push("Map")}
@@ -107,7 +107,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={500}
+            delay={110}
             duration={1500}
             style={styles.logoutButton}
             onPress={() => this.userLogout()}>
@@ -115,7 +115,7 @@ class HomeScreen extends React.Component {
           </AnimatableTouchableOpacity>
           <AnimatableTouchableOpacity
             animation="bounceInLeft"
-            delay={520}
+            delay={130}
             duration={1500}
             style={styles.newHomeButton}
             onPress={() => this.props.navigation.push("NewHome")}>

@@ -72,8 +72,7 @@ class CommunityScreen extends React.Component {
   async componentDidMount() {
     await this.getToken();
     await this.getUsername();
-    // https://konjomeet.herokuapp.com/community/
-    await fetch(`http://localhost:4000/community/${
+    await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",

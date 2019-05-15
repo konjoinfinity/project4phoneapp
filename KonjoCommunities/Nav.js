@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 
 AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -35,17 +36,19 @@ class Nav extends React.Component {
             <View>
                 <Card borderRadius={15}>
                     <View>
+                        <AnimatableView
+                            animation="bounceInRight"
+                            delay={10}
+                            duration={1500}>
+                            <TouchableOpacity
+                                style={styles.homeButton}
+                                onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Home") }}>
+                                <Text style={styles.homeButtonText}>Go Home 🏠</Text>
+                            </TouchableOpacity>
+                        </AnimatableView>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={50}
-                            duration={1500}
-                            style={styles.homeButton}
-                            onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Home") }}>
-                            <Text style={styles.homeButtonText}>Go Home 🏠</Text>
-                        </AnimatableTouchableOpacity>
-                        <AnimatableTouchableOpacity
-                            animation="bounceInRight"
-                            delay={70}
+                            delay={30}
                             duration={1500}
                             style={styles.communityButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Communities") }}>
@@ -53,7 +56,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={90}
+                            delay={50}
                             duration={1500}
                             style={styles.joinButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("MyCommunities") }}>
@@ -63,7 +66,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={110}
+                            delay={70}
                             duration={1500}
                             style={styles.joinedCommunitiesButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("JoinedCommunities") }}>
@@ -73,7 +76,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={130}
+                            delay={90}
                             duration={1500}
                             style={styles.growButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("GrowCommunities") }}>
@@ -81,7 +84,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={150}
+                            delay={110}
                             duration={1500}
                             style={styles.newButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("New") }}>
@@ -89,7 +92,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={170}
+                            delay={130}
                             duration={1500}
                             style={styles.myCommunitiesButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Profile") }}>
@@ -97,7 +100,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={190}
+                            delay={150}
                             duration={1500}
                             style={styles.searchButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Search") }}>
@@ -105,7 +108,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={210}
+                            delay={170}
                             duration={1500}
                             style={styles.mapButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Map") }}>
@@ -113,7 +116,7 @@ class Nav extends React.Component {
                         </AnimatableTouchableOpacity>
                         <AnimatableTouchableOpacity
                             animation="bounceInRight"
-                            delay={230}
+                            delay={190}
                             duration={1500}
                             style={styles.logoutButton}
                             onPress={() => { this.props.navigation.getParam('openCloseNav'); this.userLogout() }}>
