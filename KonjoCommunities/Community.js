@@ -72,7 +72,8 @@ class CommunityScreen extends React.Component {
   async componentDidMount() {
     await this.getToken();
     await this.getUsername();
-    await fetch(`https://konjomeet.herokuapp.com/community/${
+    // https://konjomeet.herokuapp.com/community/
+    await fetch(`http://localhost:4000/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -94,9 +95,11 @@ class CommunityScreen extends React.Component {
   openCloseNav() {
     if (this.state.nav === false) {
       this.setState({ nav: true });
+      this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
       Vibration.vibrate();
     } else {
       this.setState({ nav: false });
+      this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
       Vibration.vibrate();
     }
   }
@@ -390,7 +393,7 @@ class CommunityScreen extends React.Component {
       }));
     return (
       <KeyboardAvoidingView style={styles.communities} behavior="padding">
-        <ScrollView>
+        <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <Card borderRadius={15}>
             <View>
