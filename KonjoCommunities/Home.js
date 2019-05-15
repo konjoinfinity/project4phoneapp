@@ -13,7 +13,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 
-AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -60,67 +60,76 @@ class HomeScreen extends React.Component {
           Beautiful Communities
         </Text>
         <Card borderRadius={15}>
-          <AnimatableTouchableOpacity
+          <AnimatableView
             animation="bounceInLeft"
             delay={10}
-            duration={1500}
-            style={styles.communitiesButton}
-            onPress={() => this.props.navigation.push("Communities")}
-          >
-            <Text style={styles.communitiesButtonText}>All Communities 👥</Text>
-          </AnimatableTouchableOpacity>
-          <AnimatableTouchableOpacity
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.communitiesButton}
+              onPress={() => this.props.navigation.push("Communities")}>
+              <Text style={styles.communitiesButtonText}>All Communities 👥</Text>
+            </TouchableOpacity>
+          </AnimatableView>
+          <AnimatableView
             animation="bounceInLeft"
             delay={30}
-            duration={1500}
-            style={styles.newButton}
-            onPress={() => this.props.navigation.push("New")}
-          >
-            <Text style={styles.newButtonText}>New Community ➕</Text>
-          </AnimatableTouchableOpacity>
-          <AnimatableTouchableOpacity
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.newButton}
+              onPress={() => this.props.navigation.push("New")}>
+              <Text style={styles.newButtonText}>New Community ➕</Text>
+            </TouchableOpacity>
+          </AnimatableView>
+          <AnimatableView
             animation="bounceInLeft"
             delay={50}
-            duration={1500}
-            style={styles.myCommunitiesButton}
-            onPress={() => this.props.navigation.push("Profile")}
-          >
-            <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
-          </AnimatableTouchableOpacity>
-          <AnimatableTouchableOpacity
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.myCommunitiesButton}
+              onPress={() => this.props.navigation.push("Profile")}>
+              <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
+            </TouchableOpacity>
+          </AnimatableView>
+          <AnimatableView
             animation="bounceInLeft"
             delay={70}
-            duration={1500}
-            style={styles.searchButton}
-            onPress={() => this.props.navigation.push("Search")}
-          >
-            <Text style={styles.searchButtonText}>Search 🔍</Text>
-          </AnimatableTouchableOpacity>
-          <AnimatableTouchableOpacity
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.searchButton}
+              onPress={() => this.props.navigation.push("Search")}>
+              <Text style={styles.searchButtonText}>Search 🔍</Text>
+            </TouchableOpacity>
+          </AnimatableView>
+          <AnimatableView
             animation="bounceInLeft"
             delay={90}
-            duration={1500}
-            style={styles.mapButton}
-            onPress={() => this.props.navigation.push("Map")}
-          >
-            <Text style={styles.mapButtonText}>Map 🗺</Text>
-          </AnimatableTouchableOpacity>
-          <AnimatableTouchableOpacity
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.mapButton}
+              onPress={() => this.props.navigation.push("Map")}>
+              <Text style={styles.mapButtonText}>Map 🗺</Text>
+            </TouchableOpacity>
+          </AnimatableView>
+          <AnimatableView
             animation="bounceInLeft"
             delay={110}
-            duration={1500}
-            style={styles.logoutButton}
-            onPress={() => this.userLogout()}>
-            <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
-          </AnimatableTouchableOpacity>
-          <AnimatableTouchableOpacity
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.logoutButton}
+              onPress={() => this.userLogout()}>
+              <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
+            </TouchableOpacity>
+          </AnimatableView>
+          <AnimatableView
             animation="bounceInLeft"
             delay={130}
-            duration={1500}
-            style={styles.newHomeButton}
-            onPress={() => this.props.navigation.push("NewHome")}>
-            <Text style={styles.newHomeButtonText}>New Home 🆕🏠</Text>
-          </AnimatableTouchableOpacity>
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.newHomeButton}
+              onPress={() => this.props.navigation.push("NewHome")}>
+              <Text style={styles.newHomeButtonText}>New Home 🆕🏠</Text>
+            </TouchableOpacity>
+          </AnimatableView>
         </Card>
       </ScrollView>
     );
