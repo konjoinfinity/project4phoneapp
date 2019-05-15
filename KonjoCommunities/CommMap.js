@@ -78,7 +78,15 @@ class CommMapScreen extends Component {
         };
     }
 
+    iAmHere() {
+        setTimeout(() => {
+            this.marker.showCallout()
+        }, 2500);
+    }
     render() {
+        this.state.community !== "" && (
+            this.iAmHere()
+        )
         return (
             <View style={styles.container}>
                 {this.state.community !== "" &&
@@ -89,8 +97,7 @@ class CommMapScreen extends Component {
                             longitude: this.state.community.location.long,
                             latitudeDelta: 0.0511,
                             longitudeDelta: 0.0511
-                        }}
-                        onRegionChangeComplete={() => this.marker.showCallout()}>
+                        }}>
                         <Marker
                             coordinate={{
                                 latitude: this.state.community.location.lat,

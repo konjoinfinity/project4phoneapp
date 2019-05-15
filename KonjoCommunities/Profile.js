@@ -6,7 +6,8 @@ import {
     View,
     TouchableOpacity,
     Vibration,
-    ScrollView
+    ScrollView,
+    Alert
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -82,6 +83,18 @@ class ProfileScreen extends React.Component {
     goHome() {
         Vibration.vibrate();
         this.props.navigation.push("Home");
+    }
+
+    async userLogout() {
+        try {
+            await AsyncStorage.removeItem(STORAGE_KEY);
+            await AsyncStorage.removeItem(STORAGE_USER);
+            Alert.alert("Logout Success! ✅");
+            Vibration.vibrate();
+            this.props.navigation.push("Login")
+        } catch (error) {
+            console.log("AsyncStorage error: " + error.message);
+        }
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -192,13 +205,18 @@ class ProfileScreen extends React.Component {
                             {joinedcom}
                         </View>
                     </Card>
+                    <TouchableOpacity
+                        style={styles.homeButton}
+                        onPress={() => this.goHome()}
+                    >
+                        <Text style={styles.homeButtonText}>Go Home 🏠</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.logoutButton}
+                        onPress={() => this.userLogout()}>
+                        <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
+                    </TouchableOpacity>
                 </Card>
-                <TouchableOpacity
-                    style={styles.homeButton}
-                    onPress={() => this.goHome()}
-                >
-                    <Text style={styles.homeButtonText}>Go Home 🏠</Text>
-                </TouchableOpacity>
             </ScrollView>
 
         );
@@ -257,6 +275,19 @@ const styles = StyleSheet.create({
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 15,
+        textAlign: "center"
+    },
+    logoutButton: {
+        borderWidth: 1,
+        borderColor: "#FFD517",
+        backgroundColor: "#FFD517",
+        padding: 15,
+        margin: 5,
+        borderRadius: 15
+    },
+    logoutButtonText: {
+        color: "#FFFFFF",
+        fontSize: 20,
         textAlign: "center"
     }
 })
