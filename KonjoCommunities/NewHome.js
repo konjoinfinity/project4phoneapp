@@ -89,10 +89,10 @@ class NewHomeScreen extends React.Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.headerButton}
-                    onPress={() => navigation.push("Search")}>
+                    onPress={() => navigation.push("Map")}>
                     <View>
                         <Text
-                            style={{ fontSize: 25 }}>🔎</Text>
+                            style={{ fontSize: 25 }}>🗺</Text>
                     </View>
                 </TouchableOpacity>
             </View>

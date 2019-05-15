@@ -37,7 +37,8 @@ class MeetScreen extends React.Component {
       date: "",
       time: "",
       creator: "",
-      userToken: ""
+      userToken: "",
+      community: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -104,10 +105,22 @@ class MeetScreen extends React.Component {
     this.setState({ userToken: token });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     Vibration.vibrate();
-    this.getUsername();
-    this.getToken();
+    await this.getToken();
+    await this.getUsername();
+    await fetch(`https://konjomeet.herokuapp.com/community/${
+      this.props.navigation.state.params.communityId
+      }`, {
+        method: "GET",
+        headers: {
+          "user-token": `${this.state.userToken}`
+        }
+      })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ community: res });
+      });
   }
 
   meetClear() {
@@ -173,6 +186,7 @@ class MeetScreen extends React.Component {
             <View>
               <Card borderRadius={15}>
                 <Text style={styles.header}>New Meet</Text>
+                <Text style={styles.comm}>{this.state.community !== "" && this.state.community.name}</Text>
                 <View style={styles.inputContainer}>
                   <TextInput
                     style={styles.textInput}
@@ -270,6 +284,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10,
     fontWeight: "bold"
+  },
+  comm: {
+    textAlign: "center",
+    fontSize: 15
   },
   inputContainer: {
     paddingTop: 15
