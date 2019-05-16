@@ -11,6 +11,9 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -135,7 +138,12 @@ class MyCommunitiesScreen extends React.Component {
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
             My Communities
           </Text>
-          {mine}
+          <AnimatableView
+            animation="fadeInUpBig"
+            delay={10}
+            duration={1300}>
+            {mine}
+          </AnimatableView>
         </ScrollView>
       </View>
     );
