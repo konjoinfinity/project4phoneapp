@@ -138,9 +138,9 @@ class JoinedCommunitiesScreen extends React.Component {
             Joined Communities
           </Text>
           <AnimatableView
-            animation="fadeInUpBig"
+            animation="bounceInUp"
             delay={10}
-            duration={1300}>
+            duration={1800}>
             {joined}
           </AnimatableView>
         </ScrollView>

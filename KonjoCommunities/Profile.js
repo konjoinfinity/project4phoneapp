@@ -180,9 +180,9 @@ class ProfileScreen extends React.Component {
                     Profile
         </Text>
                 <AnimatableView
-                    animation="fadeInUpBig"
+                    animation="bounceInUp"
                     delay={10}
-                    duration={1300}>
+                    duration={1800}>
                     <Card borderRadius={15}>
                         <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
                         <TouchableOpacity

@@ -139,9 +139,9 @@ class MyCommunitiesScreen extends React.Component {
             My Communities
           </Text>
           <AnimatableView
-            animation="fadeInUpBig"
+            animation="bounceInUp"
             delay={10}
-            duration={1300}>
+            duration={1800}>
             {mine}
           </AnimatableView>
         </ScrollView>

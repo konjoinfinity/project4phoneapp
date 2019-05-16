@@ -139,9 +139,9 @@ class GrowCommunitiesScreen extends React.Component {
                         Growing Communities
           </Text>
                     <AnimatableView
-                        animation="fadeInUpBig"
+                        animation="bounceInUp"
                         delay={10}
-                        duration={1300}>
+                        duration={1800}>
                         {growing}
                     </AnimatableView>
                 </ScrollView>
