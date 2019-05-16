@@ -522,16 +522,18 @@ class CommunityScreen extends React.Component {
               </View>
             </Card>
             {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
-              <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                Meets
-            </Text>
-            )}
-            {this.state.community.numberOfMembers >= 3 &&
-              this.state.creator === this.state.community.creator && (
+              this.state.community.meets.length !== 0 && (
                 <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                   Meets
+            </Text>
+              ))}
+            {this.state.community.numberOfMembers >= 3 &&
+              this.state.creator === this.state.community.creator && (
+                this.state.community.meets.length !== 0 && (
+                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                    Meets
               </Text>
-              )}
+                ))}
             {this.state.creator === this.state.community.creator && (
               <View>{meetlist}</View>
             )}
