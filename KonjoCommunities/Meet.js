@@ -12,6 +12,9 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -53,41 +56,61 @@ class MeetScreen extends React.Component {
     return {
       headerTitle: <LogoTitle />,
       headerLeft: (<View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("Home")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>🏠</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("Profile")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>👤</Text>
-          </View>
-        </TouchableOpacity>
+        <AnimatableView
+          animation="bounceInLeft"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("Home")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>🏠</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
+        <AnimatableView
+          animation="bounceInLeft"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("Profile")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>👤</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
       </View>
       ),
       headerRight: (<View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("New")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>➕</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("Search")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>🔎</Text>
-          </View>
-        </TouchableOpacity>
+        <AnimatableView
+          animation="bounceInRight"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("New")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>➕</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
+        <AnimatableView
+          animation="bounceInRight"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("Search")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>🔎</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
       </View>
       )
     };
@@ -184,87 +207,92 @@ class MeetScreen extends React.Component {
         <ScrollView>
           <View>
             <View>
-              <Card borderRadius={15}>
-                <Text style={styles.header}>New Meet</Text>
-                <Text style={styles.comm}>{this.state.community !== "" && this.state.community.name}</Text>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Name"
-                    name="name"
-                    id="name"
-                    onChangeText={this.handleNameChange}
-                    returnKeyType={"next"}
-                    blurOnSubmit={false}
-                    autoFocus={true}
-                    onSubmitEditing={() => { this.descInput.focus(); }}
-                    value={this.state.name}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Description"
-                    name="description"
-                    id="description"
-                    onChangeText={this.handleDescriptionChange}
-                    returnKeyType={"next"}
-                    blurOnSubmit={false}
-                    ref={(input) => { this.descInput = input; }}
-                    onSubmitEditing={() => { this.locInput.focus(); }}
-                    value={this.state.description}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Location"
-                    name="location"
-                    id="location"
-                    onChangeText={this.handleLocationChange}
-                    returnKeyType={"next"}
-                    blurOnSubmit={false}
-                    ref={(input) => { this.locInput = input; }}
-                    onSubmitEditing={() => { this.dateInput.focus(); }}
-                    value={this.state.location}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Date"
-                    name="date"
-                    id="date"
-                    onChangeText={this.handleDateChange}
-                    returnKeyType={"next"}
-                    blurOnSubmit={false}
-                    ref={(input) => { this.dateInput = input; }}
-                    onSubmitEditing={() => { this.timeInput.focus(); }}
-                    value={this.state.date}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Time"
-                    name="time"
-                    id="time"
-                    onChangeText={this.handleTimeChange}
-                    ref={(input) => { this.timeInput = input; }}
-                    onSubmitEditing={this.handleSubmit}
-                    value={this.state.time}
-                    returnKeyType='send'
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TouchableOpacity
-                    style={styles.saveButton}
-                    onPress={this.handleSubmit}
-                  >
-                    <Text style={styles.saveButtonText}>Create Meet</Text>
-                  </TouchableOpacity>
-                </View>
-              </Card>
+              <AnimatableView
+                animation="bounceInUp"
+                delay={10}
+                duration={1800}>
+                <Card borderRadius={15}>
+                  <Text style={styles.header}>New Meet</Text>
+                  <Text style={styles.comm}>{this.state.community !== "" && this.state.community.name}</Text>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Name"
+                      name="name"
+                      id="name"
+                      onChangeText={this.handleNameChange}
+                      returnKeyType={"next"}
+                      blurOnSubmit={false}
+                      autoFocus={true}
+                      onSubmitEditing={() => { this.descInput.focus(); }}
+                      value={this.state.name}
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Description"
+                      name="description"
+                      id="description"
+                      onChangeText={this.handleDescriptionChange}
+                      returnKeyType={"next"}
+                      blurOnSubmit={false}
+                      ref={(input) => { this.descInput = input; }}
+                      onSubmitEditing={() => { this.locInput.focus(); }}
+                      value={this.state.description}
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Location"
+                      name="location"
+                      id="location"
+                      onChangeText={this.handleLocationChange}
+                      returnKeyType={"next"}
+                      blurOnSubmit={false}
+                      ref={(input) => { this.locInput = input; }}
+                      onSubmitEditing={() => { this.dateInput.focus(); }}
+                      value={this.state.location}
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Date"
+                      name="date"
+                      id="date"
+                      onChangeText={this.handleDateChange}
+                      returnKeyType={"next"}
+                      blurOnSubmit={false}
+                      ref={(input) => { this.dateInput = input; }}
+                      onSubmitEditing={() => { this.timeInput.focus(); }}
+                      value={this.state.date}
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Time"
+                      name="time"
+                      id="time"
+                      onChangeText={this.handleTimeChange}
+                      ref={(input) => { this.timeInput = input; }}
+                      onSubmitEditing={this.handleSubmit}
+                      value={this.state.time}
+                      returnKeyType='send'
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TouchableOpacity
+                      style={styles.saveButton}
+                      onPress={this.handleSubmit}
+                    >
+                      <Text style={styles.saveButtonText}>Create Meet</Text>
+                    </TouchableOpacity>
+                  </View>
+                </Card>
+              </AnimatableView>
             </View>
           </View>
         </ScrollView>

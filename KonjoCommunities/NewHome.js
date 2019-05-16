@@ -66,7 +66,7 @@ class NewHomeScreen extends React.Component {
                 <AnimatableView
                     animation="bounceInLeft"
                     delay={10}
-                    duration={1500}>
+                    duration={2000}>
                     <TouchableOpacity
                         style={styles.headerButton}
                         onPress={() => navigation.push("Home")}>
@@ -79,7 +79,7 @@ class NewHomeScreen extends React.Component {
                 <AnimatableView
                     animation="bounceInLeft"
                     delay={10}
-                    duration={1500}>
+                    duration={2000}>
                     <TouchableOpacity
                         style={styles.headerButton}
                         onPress={() => navigation.push("Profile")}>
@@ -95,7 +95,7 @@ class NewHomeScreen extends React.Component {
                 <AnimatableView
                     animation="bounceInRight"
                     delay={10}
-                    duration={1500}>
+                    duration={2000}>
                     <TouchableOpacity
                         style={styles.headerButton}
                         onPress={() => navigation.push("New")}>
@@ -108,7 +108,7 @@ class NewHomeScreen extends React.Component {
                 <AnimatableView
                     animation="bounceInRight"
                     delay={10}
-                    duration={1500}>
+                    duration={2000}>
                     <TouchableOpacity
                         style={styles.headerButton}
                         onPress={() => navigation.push("Map")}>
@@ -189,20 +189,25 @@ class NewHomeScreen extends React.Component {
                 <ScrollView>
                     {this.state.nav === true && <Nav navigation={this.props.navigation} />}
                     <View>
-                        <Card borderRadius={15}>
-                            <Text style={styles.header}>What would you like to do?</Text>
-                            <View style={styles.inputContainer}>
-                                <TextInput
-                                    style={styles.textInput}
-                                    placeholder="Verb, Activity"
-                                    name="search"
-                                    id="search"
-                                    onBlur={Keyboard.dismiss}
-                                    onChangeText={this.handleChange}
-                                    autoFocus={true}
-                                />
-                            </View>
-                        </Card>
+                        <AnimatableView
+                            animation="bounceInUp"
+                            delay={10}
+                            duration={1800}>
+                            <Card borderRadius={15}>
+                                <Text style={styles.header}>What would you like to do?</Text>
+                                <View style={styles.inputContainer}>
+                                    <TextInput
+                                        style={styles.textInput}
+                                        placeholder="Verb, Activity"
+                                        name="search"
+                                        id="search"
+                                        onBlur={Keyboard.dismiss}
+                                        onChangeText={this.handleChange}
+                                        autoFocus={true}
+                                    />
+                                </View>
+                            </Card>
+                        </AnimatableView>
                     </View>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
                         {results}

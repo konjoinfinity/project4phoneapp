@@ -12,6 +12,9 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -52,41 +55,61 @@ class NewScreen extends React.Component {
     return {
       headerTitle: <LogoTitle />,
       headerLeft: (<View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("Home")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>🏠</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("Profile")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>👤</Text>
-          </View>
-        </TouchableOpacity>
+        <AnimatableView
+          animation="bounceInLeft"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("Home")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>🏠</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
+        <AnimatableView
+          animation="bounceInLeft"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("Profile")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>👤</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
       </View>
       ),
       headerRight: (<View style={{ flexDirection: "row" }}>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("New")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>➕</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => navigation.push("Search")}>
-          <View>
-            <Text
-              style={{ fontSize: 25 }}>🔎</Text>
-          </View>
-        </TouchableOpacity>
+        <AnimatableView
+          animation="bounceInRight"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("New")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>➕</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
+        <AnimatableView
+          animation="bounceInRight"
+          delay={10}
+          duration={2000}>
+          <TouchableOpacity
+            style={styles.headerButton}
+            onPress={() => navigation.push("Search")}>
+            <View>
+              <Text
+                style={{ fontSize: 25 }}>🔎</Text>
+            </View>
+          </TouchableOpacity>
+        </AnimatableView>
       </View>
       )
     };
@@ -170,58 +193,63 @@ class NewScreen extends React.Component {
         <ScrollView>
           <View>
             <View>
-              <Card borderRadius={15}>
-                <Text style={styles.header}>New Community</Text>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Name"
-                    name="name"
-                    id="name"
-                    blurOnSubmit={false}
-                    onChangeText={this.handleNameChange}
-                    autoFocus={true}
-                    returnKeyType={"next"}
-                    onSubmitEditing={() => { this.descInput.focus(); }}
-                    value={this.state.name}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Description"
-                    name="description"
-                    id="description"
-                    blurOnSubmit={false}
-                    onChangeText={this.handleDescriptionChange}
-                    returnKeyType={"next"}
-                    ref={(input) => { this.descInput = input; }}
-                    onSubmitEditing={() => { this.catInput.focus(); }}
-                    value={this.state.description}
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="Category"
-                    name="category"
-                    id="category"
-                    onChangeText={this.handleCategoryChange}
-                    ref={(input) => { this.catInput = input; }}
-                    onSubmitEditing={this.handleSubmit}
-                    value={this.state.category}
-                    returnKeyType='send'
-                  />
-                </View>
-                <View style={styles.inputContainer}>
-                  <TouchableOpacity
-                    style={styles.saveButton}
-                    onPress={this.handleSubmit}
-                  >
-                    <Text style={styles.saveButtonText}>Create</Text>
-                  </TouchableOpacity>
-                </View>
-              </Card>
+              <AnimatableView
+                animation="bounceInUp"
+                delay={10}
+                duration={1800}>
+                <Card borderRadius={15}>
+                  <Text style={styles.header}>New Community</Text>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Name"
+                      name="name"
+                      id="name"
+                      blurOnSubmit={false}
+                      onChangeText={this.handleNameChange}
+                      autoFocus={true}
+                      returnKeyType={"next"}
+                      onSubmitEditing={() => { this.descInput.focus(); }}
+                      value={this.state.name}
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Description"
+                      name="description"
+                      id="description"
+                      blurOnSubmit={false}
+                      onChangeText={this.handleDescriptionChange}
+                      returnKeyType={"next"}
+                      ref={(input) => { this.descInput = input; }}
+                      onSubmitEditing={() => { this.catInput.focus(); }}
+                      value={this.state.description}
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="Category"
+                      name="category"
+                      id="category"
+                      onChangeText={this.handleCategoryChange}
+                      ref={(input) => { this.catInput = input; }}
+                      onSubmitEditing={this.handleSubmit}
+                      value={this.state.category}
+                      returnKeyType='send'
+                    />
+                  </View>
+                  <View style={styles.inputContainer}>
+                    <TouchableOpacity
+                      style={styles.saveButton}
+                      onPress={this.handleSubmit}
+                    >
+                      <Text style={styles.saveButtonText}>Create</Text>
+                    </TouchableOpacity>
+                  </View>
+                </Card>
+              </AnimatableView>
             </View>
           </View>
         </ScrollView>

@@ -13,6 +13,9 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import Nav from "./Nav"
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 class LogoTitle extends React.Component {
   render() {
@@ -150,20 +153,25 @@ class SearchScreen extends React.Component {
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <View>
-            <Card borderRadius={15}>
-              <Text style={styles.header}>Search Communities</Text>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder="Search Communities"
-                  name="search"
-                  id="search"
-                  onBlur={Keyboard.dismiss}
-                  onChangeText={this.handleChange}
-                  autoFocus={true}
-                />
-              </View>
-            </Card>
+            <AnimatableView
+              animation="bounceInUp"
+              delay={10}
+              duration={1800}>
+              <Card borderRadius={15}>
+                <Text style={styles.header}>Search Communities</Text>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Search Communities"
+                    name="search"
+                    id="search"
+                    onBlur={Keyboard.dismiss}
+                    onChangeText={this.handleChange}
+                    autoFocus={true}
+                  />
+                </View>
+              </Card>
+            </AnimatableView>
           </View>
           {results}
           {newsearch}

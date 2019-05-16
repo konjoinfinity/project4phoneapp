@@ -163,6 +163,7 @@ class MapScreen extends Component {
                     </MapView>}
             </View>
 
+
         );
     }
 }
