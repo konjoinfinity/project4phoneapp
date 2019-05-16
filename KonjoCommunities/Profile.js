@@ -12,6 +12,9 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -52,7 +55,8 @@ class ProfileScreen extends React.Component {
 
     async componentDidMount() {
         await this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
+        // https://konjomeet.herokuapp.com/community
+        await fetch("http://localhost:4000/community", {
             method: "GET",
             headers: {
                 "user-token": `${this.state.userToken}`
@@ -177,44 +181,69 @@ class ProfileScreen extends React.Component {
                     Profile
         </Text>
                 <Card borderRadius={15}>
-                    <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
-                    <TouchableOpacity
-                        style={styles.myCommunitiesButton}
-                        onPress={() => this.props.navigation.push("MyCommunities")}>
-                        <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
-                    </TouchableOpacity>
-
-                    <Card borderRadius={15}>
-                        <View>
-                            <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}> Communities I've Created: {created && created.length}</Text>
-                            {mine}
-                        </View>
-                    </Card>
-                    <TouchableOpacity
-                        style={styles.joinedCommunitiesButton}
-                        onPress={() => this.props.navigation.push("JoinedCommunities")}
-                    >
-                        <Text style={styles.joinedCommunitiesButtonText}>
-                            Joined Communities 👤➡️👥
-          </Text>
-                    </TouchableOpacity>
-                    <Card borderRadius={15}>
-                        <View>
-                            <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Communities I've Joined: {joined && joined.length}</Text>
-                            {joinedcom}
-                        </View>
-                    </Card>
-                    <TouchableOpacity
-                        style={styles.homeButton}
-                        onPress={() => this.goHome()}
-                    >
-                        <Text style={styles.homeButtonText}>Go Home 🏠</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.logoutButton}
-                        onPress={() => this.userLogout()}>
-                        <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
-                    </TouchableOpacity>
+                    <AnimatableView
+                        animation="fadeInUpBig"
+                        delay={10}
+                        duration={1300}>
+                        <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
+                        <TouchableOpacity
+                            style={styles.myCommunitiesButton}
+                            onPress={() => this.props.navigation.push("MyCommunities")}>
+                            <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
+                        </TouchableOpacity>
+                    </AnimatableView>
+                    <AnimatableView
+                        animation="fadeInUpBig"
+                        delay={10}
+                        duration={1300}>
+                        <Card borderRadius={15}>
+                            <View>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}> Communities I've Created: {created && created.length}</Text>
+                                {mine}
+                            </View>
+                        </Card>
+                    </AnimatableView>
+                    <AnimatableView
+                        animation="fadeInUpBig"
+                        delay={10}
+                        duration={1300}>
+                        <TouchableOpacity
+                            style={styles.joinedCommunitiesButton}
+                            onPress={() => this.props.navigation.push("JoinedCommunities")}>
+                            <Text style={styles.joinedCommunitiesButtonText}>Joined Communities 👤➡️👥</Text>
+                        </TouchableOpacity>
+                    </AnimatableView>
+                    <AnimatableView
+                        animation="fadeInUpBig"
+                        delay={10}
+                        duration={1300}>
+                        <Card borderRadius={15}>
+                            <View>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Communities I've Joined: {joined && joined.length}</Text>
+                                {joinedcom}
+                            </View>
+                        </Card>
+                    </AnimatableView>
+                    <AnimatableView
+                        animation="fadeInUpBig"
+                        delay={10}
+                        duration={1300}>
+                        <TouchableOpacity
+                            style={styles.homeButton}
+                            onPress={() => this.goHome()}>
+                            <Text style={styles.homeButtonText}>Go Home 🏠</Text>
+                        </TouchableOpacity>
+                    </AnimatableView>
+                    <AnimatableView
+                        animation="fadeInUpBig"
+                        delay={10}
+                        duration={1300}>
+                        <TouchableOpacity
+                            style={styles.logoutButton}
+                            onPress={() => this.userLogout()}>
+                            <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
+                        </TouchableOpacity>
+                    </AnimatableView>
                 </Card>
             </ScrollView>
 

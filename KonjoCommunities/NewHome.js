@@ -13,6 +13,9 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import Nav from "./Nav"
+import * as Animatable from 'react-native-animatable';
+
+AnimatableView = Animatable.createAnimatableComponent(View);
 
 class LogoTitle extends React.Component {
     render() {
@@ -60,41 +63,61 @@ class NewHomeScreen extends React.Component {
         return {
             headerTitle: <LogoTitle />,
             headerLeft: (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Home")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>🏠</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Profile")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>👤</Text>
-                    </View>
-                </TouchableOpacity>
+                <AnimatableView
+                    animation="bounceInLeft"
+                    delay={10}
+                    duration={1500}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("Home")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>🏠</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInLeft"
+                    delay={10}
+                    duration={1500}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("Profile")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>👤</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
             </View>
             ),
             headerRight: (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("New")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>➕</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Map")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>🗺</Text>
-                    </View>
-                </TouchableOpacity>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={10}
+                    duration={1500}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("New")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>➕</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={10}
+                    duration={1500}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("Map")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>🗺</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
             </View>
             )
         };
