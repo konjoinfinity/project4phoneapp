@@ -130,6 +130,16 @@ class HomeScreen extends React.Component {
               <Text style={styles.newHomeButtonText}>New Home 🆕🏠</Text>
             </TouchableOpacity>
           </AnimatableView>
+          <AnimatableView
+            animation="bounceInLeft"
+            delay={150}
+            duration={1500}>
+            <TouchableOpacity
+              style={styles.newHomeButton}
+              onPress={() => this.props.navigation.push("DateTime")}>
+              <Text style={styles.newHomeButtonText}>Date Time 📅🕑</Text>
+            </TouchableOpacity>
+          </AnimatableView>
         </Card>
       </ScrollView>
     );
