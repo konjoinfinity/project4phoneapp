@@ -198,24 +198,23 @@ class MeetScreen extends React.Component {
         creator: this.state.creator
       }
     };
-    console.log(data)
-    // // https://konjomeet.herokuapp.com
-    // fetch(`http://localhost:4000/community/${
-    //   this.props.navigation.state.params.communityId
-    //   }/meet`,
-    //   {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-type": "application/json",
-    //       "user-token": `${this.state.userToken}`
-    //     },
-    //     body: JSON.stringify(data)
-    //   }
-    // );
-    // this.props.navigation.push("Community", {
-    //   communityId: `${this.props.navigation.state.params.communityId}`
-    // })
-    // this.meetClear();
+    // https://konjomeet.herokuapp.com
+    fetch(`http://localhost:4000/community/${
+      this.props.navigation.state.params.communityId
+      }/meet`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
+        },
+        body: JSON.stringify(data)
+      }
+    );
+    this.props.navigation.push("Community", {
+      communityId: `${this.props.navigation.state.params.communityId}`
+    })
+    this.meetClear();
   }
 
   render() {
@@ -274,53 +273,26 @@ class MeetScreen extends React.Component {
                     />
                   </View>
                   <DatePicker
-                    style={{ width: 300 }}
+                    style={{ width: 350, paddingTop: 15 }}
                     date={this.state.date}
+                    showIcon={false}
                     mode="date"
                     placeholder="Select Date"
                     format="MMMM Do YYYY"
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
                     ref={(input) => { this.dateInput = input; }}
-                    customStyles={{
-                      dateIcon: {
-                        position: 'absolute',
-                        left: 0,
-                        top: 4,
-                        marginLeft: 0
-                      },
-                      dateInput: {
-                        marginLeft: 36
-                      }
-                    }}
                     onDateChange={(date) => this.handleDateChange(date)}
                   />
                   <DatePicker
-                    style={{ width: 300 }}
-                    iconComponent={
-                      <Icon
-                        size={30}
-                        color='#333333'
-                        name='access-time'
-                      />
-                    }
+                    style={{ width: 350, paddingTop: 15 }}
+                    showIcon={false}
                     date={this.state.time}
                     mode="time"
                     placeholder="Select Time"
                     format="h:mm A"
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
-                    customStyles={{
-                      iconComponent: {
-                        position: 'absolute',
-                        left: 0,
-                        top: 4,
-                        marginLeft: 0
-                      },
-                      dateInput: {
-                        marginLeft: 36
-                      }
-                    }}
                     onDateChange={(time) => this.handleTimeChange(time)}
                   />
                   <View style={styles.inputContainer}>
