@@ -82,7 +82,8 @@ class LoginScreen extends React.Component {
   }
 
   handleLogin() {
-    fetch("https://konjomeet.herokuapp.com/users/login", {
+    // https://konjomeet.herokuapp.com
+    fetch("http://localhost:4000/users/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json"

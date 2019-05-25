@@ -13,6 +13,8 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
+import DatePicker from 'react-native-datepicker'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -132,7 +134,8 @@ class MeetScreen extends React.Component {
     Vibration.vibrate();
     await this.getToken();
     await this.getUsername();
-    await fetch(`https://konjomeet.herokuapp.com/community/${
+    // https://konjomeet.herokuapp.com
+    await fetch(`http://localhost:4000/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -165,11 +168,23 @@ class MeetScreen extends React.Component {
   handleLocationChange(location) {
     this.setState({ location });
   }
-  handleDateChange(date) {
-    this.setState({ date });
+
+  updateDateState() {
+    console.log(this.state.date);
   }
+
+  updateTimeState() {
+    console.log(this.state.time);
+  }
+
+  handleDateChange(date) {
+    console.log(date)
+    this.setState({ date }, () => this.updateDateState())
+  }
+
   handleTimeChange(time) {
-    this.setState({ time });
+    console.log(time)
+    this.setState({ time }, () => this.updateTimeState())
   }
 
   handleSubmit() {
@@ -183,22 +198,24 @@ class MeetScreen extends React.Component {
         creator: this.state.creator
       }
     };
-    fetch(`https://konjomeet.herokuapp.com/community/${
-      this.props.navigation.state.params.communityId
-      }/meet`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-          "user-token": `${this.state.userToken}`
-        },
-        body: JSON.stringify(data)
-      }
-    );
-    this.props.navigation.push("Community", {
-      communityId: `${this.props.navigation.state.params.communityId}`
-    })
-    this.meetClear();
+    console.log(data)
+    // // https://konjomeet.herokuapp.com
+    // fetch(`http://localhost:4000/community/${
+    //   this.props.navigation.state.params.communityId
+    //   }/meet`,
+    //   {
+    //     method: "PUT",
+    //     headers: {
+    //       "Content-type": "application/json",
+    //       "user-token": `${this.state.userToken}`
+    //     },
+    //     body: JSON.stringify(data)
+    //   }
+    // );
+    // this.props.navigation.push("Community", {
+    //   communityId: `${this.props.navigation.state.params.communityId}`
+    // })
+    // this.meetClear();
   }
 
   render() {
@@ -256,33 +273,56 @@ class MeetScreen extends React.Component {
                       value={this.state.location}
                     />
                   </View>
-                  <View style={styles.inputContainer}>
-                    <TextInput
-                      style={styles.textInput}
-                      placeholder="Date"
-                      name="date"
-                      id="date"
-                      onChangeText={this.handleDateChange}
-                      returnKeyType={"next"}
-                      blurOnSubmit={false}
-                      ref={(input) => { this.dateInput = input; }}
-                      onSubmitEditing={() => { this.timeInput.focus(); }}
-                      value={this.state.date}
-                    />
-                  </View>
-                  <View style={styles.inputContainer}>
-                    <TextInput
-                      style={styles.textInput}
-                      placeholder="Time"
-                      name="time"
-                      id="time"
-                      onChangeText={this.handleTimeChange}
-                      ref={(input) => { this.timeInput = input; }}
-                      onSubmitEditing={this.handleSubmit}
-                      value={this.state.time}
-                      returnKeyType='send'
-                    />
-                  </View>
+                  <DatePicker
+                    style={{ width: 300 }}
+                    date={this.state.date}
+                    mode="date"
+                    placeholder="Select Date"
+                    format="MMMM Do YYYY"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    ref={(input) => { this.dateInput = input; }}
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                    }}
+                    onDateChange={(date) => this.handleDateChange(date)}
+                  />
+                  <DatePicker
+                    style={{ width: 300 }}
+                    iconComponent={
+                      <Icon
+                        size={30}
+                        color='#333333'
+                        name='access-time'
+                      />
+                    }
+                    date={this.state.time}
+                    mode="time"
+                    placeholder="Select Time"
+                    format="h:mm A"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                      iconComponent: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                    }}
+                    onDateChange={(time) => this.handleTimeChange(time)}
+                  />
                   <View style={styles.inputContainer}>
                     <TouchableOpacity
                       style={styles.saveButton}
