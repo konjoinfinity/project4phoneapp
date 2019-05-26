@@ -55,8 +55,7 @@ class ProfileScreen extends React.Component {
 
     async componentDidMount() {
         await this.getToken();
-        // https://konjomeet.herokuapp.com
-        await fetch("http://localhost:4000/community", {
+        await fetch("https://konjomeet.herokuapp.com/community", {
             method: "GET",
             headers: {
                 "user-token": `${this.state.userToken}`

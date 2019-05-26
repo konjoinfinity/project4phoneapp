@@ -134,8 +134,7 @@ class MeetScreen extends React.Component {
     Vibration.vibrate();
     await this.getToken();
     await this.getUsername();
-    // https://konjomeet.herokuapp.com
-    await fetch(`http://localhost:4000/community/${
+    await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -198,8 +197,7 @@ class MeetScreen extends React.Component {
         creator: this.state.creator
       }
     };
-    // https://konjomeet.herokuapp.com
-    fetch(`http://localhost:4000/community/${
+    fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }/meet`,
       {
