@@ -195,7 +195,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingLeft: 20,
     paddingRight: 20,
-    borderRadius: 15
+    borderRadius: 15,
+    textAlign: "center"
   },
   loginButton: {
     borderWidth: 1,

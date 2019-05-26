@@ -280,7 +280,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingLeft: 20,
     paddingRight: 20,
-    borderRadius: 15
+    borderRadius: 15,
+    textAlign: "center"
   },
   saveButton: {
     borderWidth: 1,
