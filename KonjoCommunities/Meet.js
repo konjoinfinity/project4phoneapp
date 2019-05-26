@@ -263,15 +263,13 @@ class MeetScreen extends React.Component {
                       name="location"
                       id="location"
                       onChangeText={this.handleLocationChange}
-                      returnKeyType={"next"}
-                      blurOnSubmit={false}
+                      blurOnSubmit={true}
                       ref={(input) => { this.locInput = input; }}
-                      onSubmitEditing={() => { this.dateInput.focus(); }}
                       value={this.state.location}
                     />
                   </View>
                   <DatePicker
-                    style={{ width: 350, paddingTop: 25 }}
+                    style={{ width: 300, paddingTop: 25 }}
                     date={this.state.date}
                     showIcon={false}
                     customStyles={{
@@ -297,7 +295,7 @@ class MeetScreen extends React.Component {
                     onDateChange={(date) => this.handleDateChange(date)}
                   />
                   <DatePicker
-                    style={{ width: 350, paddingTop: 25 }}
+                    style={{ width: 300, paddingTop: 25 }}
                     showIcon={false}
                     date={this.state.time}
                     customStyles={{
