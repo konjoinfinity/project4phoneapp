@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#12C16D",
         backgroundColor: "#12C16D",
-        padding: 5,
+        padding: 15,
         borderRadius: 15
     },
     communityButtonText: {
