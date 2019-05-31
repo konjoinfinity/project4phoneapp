@@ -116,18 +116,20 @@ class MapScreen extends Component {
                 };
                 coords.push(latlong)
             })
+        }, 1000);
+        setTimeout(() => {
             const coord = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
             this.coordValue(coord)
-        }, 1000);
+        }, 2000);
     }
 
     coordValue(value) {
         setTimeout(() => {
             this.setState({ coord: value })
-        }, 1000);
+        }, 500);
         setTimeout(() => {
             this.marker.showCallout()
-        }, 3000);
+        }, 1000);
     }
 
     render() {
