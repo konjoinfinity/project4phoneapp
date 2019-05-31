@@ -18,7 +18,6 @@ import GrowCommunitiesScreen from "./GrowCommunities";
 import SignupScreen from "./Signup";
 import CommMapScreen from "./CommMap";
 import NewHomeScreen from "./NewHome"
-import DateTimeScreen from "./DateTime";
 
 const AppStack = createStackNavigator(
   {
@@ -38,60 +37,12 @@ const AppStack = createStackNavigator(
     GrowCommunities: GrowCommunitiesScreen,
     Signup: SignupScreen,
     CommMap: CommMapScreen,
-    NewHome: NewHomeScreen,
-    DateTime: DateTimeScreen
+    NewHome: NewHomeScreen
   },
   {
     initialRouteName: 'Home',
   }
 );
-
-// const AppStack = createDrawerNavigator(
-//   {
-//     Home: HomeScreen,
-//     Communities: CommunitiesScreen,
-//     Community: {
-//       screen: CommunityScreen,
-//       navigationOptions: {
-//         drawerLabel: () => null,
-//       }
-//     },
-//     New: NewScreen,
-//     Edit: {
-//       screen: EditScreen,
-//       navigationOptions: {
-//         drawerLabel: () => null,
-//       }
-//     },
-//     Meet: {
-//       screen: MeetScreen,
-//       navigationOptions: {
-//         drawerLabel: () => null,
-//       }
-//     },
-//     MyCommunities: MyCommunitiesScreen,
-//     JoinedCommunities: JoinedCommunitiesScreen,
-//     Search: SearchScreen,
-//     Login: LoginScreen,
-//     Map: MapScreen,
-//     SearchNew: {
-//       screen: SearchNewScreen,
-//       navigationOptions: {
-//         drawerLabel: () => null,
-//       }
-//     },
-//     // Nav: {
-//     //   screen: Nav,
-//     //   navigationOptions: {
-//     //     drawerLabel: () => null,
-//     //   }
-//     // },
-//     Profile: ProfileScreen,
-//   },
-//   {
-//     initialRouteName: 'Home',
-//   }
-// );
 
 const AuthStack = createStackNavigator({ Login: LoginScreen },
   {
