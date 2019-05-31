@@ -44,7 +44,8 @@ class SignupScreen extends React.Component {
     }
 
     static navigationOptions = {
-        headerTitle: <LogoTitle />
+        headerTitle: <LogoTitle />,
+        headerLeft: null
     };
 
     componentDidMount() {
@@ -128,8 +129,7 @@ class SignupScreen extends React.Component {
                                     blurOnSubmit={false}
                                     onChangeText={this.handleEmailChange}
                                     value={this.state.email}
-                                    onSubmitEditing={() => { this.passInput.focus(); }}
-                                />
+                                    onSubmitEditing={() => { this.passInput.focus(); }} />
                             </View>
                             <View style={styles.inputContainer}>
                                 <TextInput
@@ -143,8 +143,7 @@ class SignupScreen extends React.Component {
                                     onChangeText={this.handlePasswordChange}
                                     ref={(input) => { this.passInput = input; }}
                                     onSubmitEditing={() => { this.confirmpassInput.focus(); }}
-                                    value={this.state.password}
-                                />
+                                    value={this.state.password} />
                             </View>
                             <View style={styles.inputContainer}>
                                 <TextInput
@@ -157,15 +156,13 @@ class SignupScreen extends React.Component {
                                     ref={(input) => { this.confirmpassInput = input; }}
                                     onSubmitEditing={this.handleSignup}
                                     value={this.state.confirmpass}
-                                    returnKeyType='send'
-                                />
+                                    returnKeyType='send' />
                             </View>
                             <View style={styles.inputContainer}>
                                 <TouchableOpacity
                                     style={styles.signupButton}
-                                    onPress={this.handleSignup}
-                                >
-                                    <Text style={styles.signupButtonText}>User Signup ⌨️</Text>
+                                    onPress={this.handleSignup}>
+                                    <Text style={styles.signupButtonText}>Signup ⌨️</Text>
                                 </TouchableOpacity>
                             </View>
                         </Card>
