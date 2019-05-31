@@ -101,11 +101,11 @@ class MapScreen extends Component {
         };
     }
 
-    iAmHere() {
-        setTimeout(() => {
-            this.marker.showCallout()
-        }, 1500);
-    }
+    // iAmHere() {
+    //     setTimeout(() => {
+    //         this.marker.showCallout()
+    //     }, 1500);
+    // }
 
     render() {
         const LatLng = {
@@ -122,7 +122,7 @@ class MapScreen extends Component {
                     latitude: community.location.lat,
                     longitude: community.location.long
                 };
-                this.iAmHere();
+                // this.iAmHere();
                 return (
                     <Marker
                         key={id}
@@ -152,13 +152,13 @@ class MapScreen extends Component {
                             longitudeDelta: 0.1011,
 
                         }}>
-                        <Marker
+                        {/* <Marker
                             coordinate={LatLng}
                             ref={marker => (this.marker = marker)}
                             title={"You are here"}
                             description={"Find communities nearby"}
                             pinColor='#007BFF'>
-                        </Marker>
+                        </Marker> */}
                         {commcoords}
                     </MapView>}
             </View>
