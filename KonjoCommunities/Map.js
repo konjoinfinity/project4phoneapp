@@ -29,7 +29,6 @@ class MapScreen extends Component {
             coord: ""
         };
         this.iAmHere = this.iAmHere.bind(this);
-        this.coordValue = this.coordValue.bind(this);
     }
 
     // async getToken() {
@@ -116,20 +115,17 @@ class MapScreen extends Component {
                 };
                 coords.push(latlong)
             })
-        }, 1000);
+        }, 500);
+        let value;
         setTimeout(() => {
-            const coord = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
-            this.coordValue(coord)
-        }, 2000);
-    }
-
-    coordValue(value) {
+            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
+        }, 1500);
         setTimeout(() => {
             this.setState({ coord: value })
-        }, 500);
+        }, 2500);
         setTimeout(() => {
             this.marker.showCallout()
-        }, 1000);
+        }, 3500);
     }
 
     render() {
