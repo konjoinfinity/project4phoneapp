@@ -25,8 +25,11 @@ class MapScreen extends Component {
             latitude: null,
             longitude: null,
             error: null,
-            communities: ""
+            communities: "",
+            coord: ""
         };
+        this.iAmHere = this.iAmHere.bind(this);
+        this.coordValue = this.coordValue.bind(this);
     }
 
     // async getToken() {
@@ -56,6 +59,7 @@ class MapScreen extends Component {
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         )
+        this.iAmHere();
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -103,19 +107,32 @@ class MapScreen extends Component {
     }
 
     iAmHere() {
-        var coords = []
-        this.state.communities.map(community => {
-            latlong = {
-                latitude: community.location.lat,
-                longitude: community.location.long
-            };
-            coords.push(latlong)
-        })
-        var closest = geolib.findNearest({ latitude: 38.875917, longitude: -77.122655 }, coords);
-        console.log(closest)
-        // setTimeout(() => {
-        //     this.marker.showCallout()
-        // }, 1500);
+        const coords = []
+        setTimeout(() => {
+            this.state.communities !== "" && this.state.communities.map(community => {
+                latlong = {
+                    latitude: community.location.lat,
+                    longitude: community.location.long
+                };
+                coords.push(latlong)
+            })
+            const coord = geolib.findNearest({ latitude: 38.889659, longitude: -77.034828 }, coords);
+            console.log(coord)
+            this.coordValue(coord)
+        }, 1000);
+    }
+
+    coordValue(value) {
+        console.log(value)
+        setTimeout(() => {
+            this.setState({ coord: value })
+        }, 1000);
+        setTimeout(() => {
+            console.log(this.state.coord)
+        }, 2000);
+        setTimeout(() => {
+            this.marker.showCallout()
+        }, 3000);
     }
 
     render() {
@@ -133,11 +150,13 @@ class MapScreen extends Component {
                     latitude: community.location.lat,
                     longitude: community.location.long
                 };
+
                 return (
                     <Marker
                         key={id}
                         coordinate={commlatlong}
                         title={community.name}
+                        ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
                         onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
                         <Callout>
                             <TouchableOpacity
@@ -148,7 +167,6 @@ class MapScreen extends Component {
                     </Marker>
                 )
             }))
-        this.state.communities !== "" && this.iAmHere();
         return (
             <View style={styles.container}>
                 {this.state.latitude &&
@@ -157,8 +175,8 @@ class MapScreen extends Component {
                         initialRegion={{
                             //replace with this.state.latitude, this.state.longitude, for production
                             //dev - latitude: 38.875917, longitude: -77.122655
-                            latitude: 38.875917,
-                            longitude: -77.122655,
+                            latitude: 38.889659,
+                            longitude: -77.034828,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
 
