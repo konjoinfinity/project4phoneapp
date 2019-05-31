@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text, TextInput } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+import * as geolib from 'geolib';
 // import AsyncStorage from "@react-native-community/async-storage";
 
 // var STORAGE_KEY = "id_token";
@@ -54,7 +55,7 @@ class MapScreen extends Component {
             },
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-        );
+        )
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -101,11 +102,21 @@ class MapScreen extends Component {
         };
     }
 
-    // iAmHere() {
-    //     setTimeout(() => {
-    //         this.marker.showCallout()
-    //     }, 1500);
-    // }
+    iAmHere() {
+        var coords = []
+        this.state.communities.map(community => {
+            latlong = {
+                latitude: community.location.lat,
+                longitude: community.location.long
+            };
+            coords.push(latlong)
+        })
+        var closest = geolib.findNearest({ latitude: 38.875917, longitude: -77.122655 }, coords);
+        console.log(closest)
+        // setTimeout(() => {
+        //     this.marker.showCallout()
+        // }, 1500);
+    }
 
     render() {
         const LatLng = {
@@ -122,7 +133,6 @@ class MapScreen extends Component {
                     latitude: community.location.lat,
                     longitude: community.location.long
                 };
-                // this.iAmHere();
                 return (
                     <Marker
                         key={id}
@@ -138,6 +148,7 @@ class MapScreen extends Component {
                     </Marker>
                 )
             }))
+        this.state.communities !== "" && this.iAmHere();
         return (
             <View style={styles.container}>
                 {this.state.latitude &&
@@ -146,8 +157,8 @@ class MapScreen extends Component {
                         initialRegion={{
                             //replace with this.state.latitude, this.state.longitude, for production
                             //dev - latitude: 38.875917, longitude: -77.122655
-                            latitude: this.state.latitude,
-                            longitude: this.state.longitude,
+                            latitude: 38.875917,
+                            longitude: -77.122655,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
 
