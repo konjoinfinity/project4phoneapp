@@ -116,32 +116,21 @@ class MapScreen extends Component {
                 };
                 coords.push(latlong)
             })
-            const coord = geolib.findNearest({ latitude: 38.889659, longitude: -77.034828 }, coords);
-            console.log(coord)
+            const coord = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
             this.coordValue(coord)
         }, 1000);
     }
 
     coordValue(value) {
-        console.log(value)
         setTimeout(() => {
             this.setState({ coord: value })
         }, 1000);
-        setTimeout(() => {
-            console.log(this.state.coord)
-        }, 2000);
         setTimeout(() => {
             this.marker.showCallout()
         }, 3000);
     }
 
     render() {
-        const LatLng = {
-            //replace with this.state.latitude, this.state.longitude for production
-            //dev - latitude: 38.875917, longitude: -77.122655
-            latitude: this.state.latitude,
-            longitude: this.state.longitude
-        }
         let commcoords;
         this.state.communities &&
             (commcoords = this.state.communities.map((community, id) => {
@@ -175,19 +164,12 @@ class MapScreen extends Component {
                         initialRegion={{
                             //replace with this.state.latitude, this.state.longitude, for production
                             //dev - latitude: 38.875917, longitude: -77.122655
-                            latitude: 38.889659,
-                            longitude: -77.034828,
+                            latitude: this.state.latitude,
+                            longitude: this.state.longitude,
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011,
 
                         }}>
-                        {/* <Marker
-                            coordinate={LatLng}
-                            ref={marker => (this.marker = marker)}
-                            title={"You are here"}
-                            description={"Find communities nearby"}
-                            pinColor='#007BFF'>
-                        </Marker> */}
                         {commcoords}
                     </MapView>}
             </View>
@@ -220,7 +202,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#12C16D",
         backgroundColor: "#12C16D",
-        padding: 15,
+        padding: 5,
         borderRadius: 15
     },
     communityButtonText: {
