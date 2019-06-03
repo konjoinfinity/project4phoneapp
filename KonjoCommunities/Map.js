@@ -58,7 +58,9 @@ class MapScreen extends Component {
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         )
-        this.iAmHere();
+        setTimeout(() => {
+            this.iAmHere()
+        }, 1000);
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -107,25 +109,21 @@ class MapScreen extends Component {
 
     iAmHere() {
         const coords = []
-        setTimeout(() => {
-            this.state.communities !== "" && this.state.communities.map(community => {
-                latlong = {
-                    latitude: community.location.lat,
-                    longitude: community.location.long
-                };
-                coords.push(latlong)
-            })
-        }, 500);
+        this.state.communities !== "" && this.state.communities.map(community => {
+            latlong = {
+                latitude: community.location.lat,
+                longitude: community.location.long
+            };
+            coords.push(latlong)
+        })
         let value;
-        setTimeout(() => {
-            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
-        }, 1500);
+        value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
         setTimeout(() => {
             this.setState({ coord: value })
-        }, 2500);
+        }, 3500);
         setTimeout(() => {
             this.marker.showCallout()
-        }, 3500);
+        }, 4000);
     }
 
     render() {
@@ -137,7 +135,6 @@ class MapScreen extends Component {
                     latitude: community.location.lat,
                     longitude: community.location.long
                 };
-
                 return (
                     <Marker
                         key={id}
