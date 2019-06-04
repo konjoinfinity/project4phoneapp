@@ -49,7 +49,8 @@ class MapScreen extends Component {
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         )
         setTimeout(() => {
-            this.iAmHere()
+            this.state.communities !== "" &&
+                this.iAmHere()
         }, 1000);
     }
 
@@ -107,13 +108,16 @@ class MapScreen extends Component {
             coords.push(latlong)
         })
         let value;
-        value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords);
+        coords !== [] && (
+            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
         setTimeout(() => {
-            this.setState({ coord: value })
-        }, 3500);
+            value !== undefined &&
+                this.setState({ coord: value })
+        }, 2000);
         setTimeout(() => {
-            this.marker.showCallout()
-        }, 4000);
+            this.state.coord !== "" &&
+                this.marker.showCallout()
+        }, 3000);
     }
 
     render() {
