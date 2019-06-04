@@ -46,8 +46,17 @@ class LoginScreen extends React.Component {
     headerLeft: null
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     Vibration.vibrate();
+    var username = await AsyncStorage.getItem(STORAGE_USER);
+    console.log(username);
+    if (username !== null) {
+      await AsyncStorage.removeItem(STORAGE_KEY);
+      await AsyncStorage.removeItem(STORAGE_USER);
+      Alert.alert("Logout Success! ✅");
+    } else {
+      console.log("User has already logged out")
+    }
   }
 
   handleEmailChange(email) {
