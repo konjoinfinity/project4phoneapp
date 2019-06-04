@@ -3,9 +3,6 @@ import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text, TextInput }
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
-// import AsyncStorage from "@react-native-community/async-storage";
-
-// var STORAGE_KEY = "id_token";
 
 class LogoTitle extends React.Component {
     render() {
@@ -31,14 +28,7 @@ class MapScreen extends Component {
         this.iAmHere = this.iAmHere.bind(this);
     }
 
-    // async getToken() {
-    //     var token = await AsyncStorage.getItem(STORAGE_KEY);
-    //     console.log(token);
-    //     this.setState({ userToken: token });
-    // }
-
     componentDidMount() {
-        // await this.getToken();
         // switch to http://localhost:4000/community for dev
         // https://konjomeet.herokuapp.com/community for production
         fetch("https://konjomeet.herokuapp.com/community/search")
@@ -163,14 +153,11 @@ class MapScreen extends Component {
                             latitude: this.state.latitude,
                             longitude: this.state.longitude,
                             latitudeDelta: 0.1011,
-                            longitudeDelta: 0.1011,
-
+                            longitudeDelta: 0.1011
                         }}>
                         {commcoords}
                     </MapView>}
             </View>
-
-
         );
     }
 }
@@ -208,7 +195,7 @@ const styles = StyleSheet.create({
     },
     membersText: {
         color: "#FFFFFF",
-        fontSize: 15,
+        fontSize: 17,
         textAlign: "center",
         paddingTop: 5
     },
