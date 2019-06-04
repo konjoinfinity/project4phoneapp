@@ -426,6 +426,7 @@
 		C2F681DE4D1F478D82968D24 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		C85AB53365834A87A016349D /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		C9B983CDACE249498ED5E2EA /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
+		D520FB3522A6FF57004C98BA /* dclocal.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = dclocal.gpx; path = ../../../../../Downloads/dclocal.gpx; sourceTree = "<group>"; };
 		D58EC0212260DD3300E7DB89 /* klogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = klogo.png; path = ../../../../../Downloads/klogo.png; sourceTree = "<group>"; };
 		D5BCFF7D22661CC700ED40D1 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		DB356ABE35554FE0B8728A64 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
@@ -684,6 +685,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D520FB3522A6FF57004C98BA /* dclocal.gpx */,
 				13B07FAE1A68108700A75B9A /* KonjoCommunities */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* KonjoCommunitiesTests */,

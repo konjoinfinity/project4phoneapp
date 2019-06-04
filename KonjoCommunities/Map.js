@@ -146,6 +146,7 @@ class MapScreen extends Component {
                             <TouchableOpacity
                                 style={styles.communityButton}>
                                 <Text style={styles.communityButtonText}>{community.name}</Text>
+                                <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text>
                             </TouchableOpacity>
                         </Callout>
                     </Marker>
@@ -197,13 +198,19 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#12C16D",
         backgroundColor: "#12C16D",
-        padding: 15,
+        padding: 10,
         borderRadius: 15
     },
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
+    },
+    membersText: {
+        color: "#FFFFFF",
+        fontSize: 15,
+        textAlign: "center",
+        paddingTop: 5
     },
     headerButton: {
         height: 35,
