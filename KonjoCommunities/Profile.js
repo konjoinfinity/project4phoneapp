@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
-import Nav from "./Nav"
 import * as Animatable from 'react-native-animatable';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
@@ -36,10 +35,8 @@ class ProfileScreen extends React.Component {
         this.state = {
             communities: "",
             creator: "",
-            nav: false,
             userToken: ""
         };
-        this.openCloseNav = this.openCloseNav.bind(this);
     }
 
     async getUsername() {
@@ -67,20 +64,6 @@ class ProfileScreen extends React.Component {
             });
         Vibration.vibrate();
         this.getUsername();
-        this.props.navigation.setParams({
-            openCloseNav: this.openCloseNav
-        });
-    }
-
-    openCloseNav() {
-        if (this.state.nav === false) {
-            this.setState({ nav: true });
-            this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-            Vibration.vibrate();
-        } else {
-            this.setState({ nav: false });
-            Vibration.vibrate();
-        }
     }
 
     goHome() {
@@ -103,14 +86,45 @@ class ProfileScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             headerTitle: <LogoTitle />,
-            headerLeft: (<TouchableOpacity
-                onPress={navigation.getParam('openCloseNav')}>
-                <View>
-                    <Image
-                        source={require("./menu.png")}
-                        style={{ width: 30, height: 30, marginLeft: 10 }} />
-                </View>
-            </TouchableOpacity>
+            headerLeft: (<View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                    style={styles.headerButton}
+                    onPress={() => navigation.push("Home")}>
+                    <View>
+                        <Text
+                            style={{ fontSize: 25 }}>🏠</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.headerButton}
+                    onPress={() => navigation.push("Search")}>
+                    <View>
+                        <Text
+                            style={{ fontSize: 25 }}>🔎</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+            ),
+            headerRight: (<View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                    style={styles.headerButton}
+                    onPress={() => navigation.push("New")}>
+                    <View>
+                        <Text
+                            style={{ fontSize: 25 }}>➕</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.headerButton}
+                    onPress={() => navigation.push("Profile")}>
+                    <View>
+                        <Image
+                            source={require("./logout.png")}
+                            style={{ width: 20, height: 20 }}
+                        />
+                    </View>
+                </TouchableOpacity>
+            </View>
             )
         };
     }
@@ -291,5 +305,20 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
+    },
+    headerButton: {
+        height: 35,
+        width: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(250, 250, 250, 0.7)',
+        borderRadius: 50,
+        margin: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        }
     }
 })
