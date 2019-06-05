@@ -40,7 +40,7 @@ class CommunityScreen extends React.Component {
       creator: "",
       nav: false,
       userToken: "",
-      joined: false
+      joined: ""
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -91,16 +91,6 @@ class CommunityScreen extends React.Component {
       openCloseNav: this.openCloseNav
     });
     this.meetAlert();
-    const member =
-      this.state.community &&
-      this.state.community.members.filter(
-        member => member.name === this.state.creator
-      );
-    if (member.length === 1) {
-      this.setState({ joined: true })
-    } else {
-      this.setState({ joined: false })
-    }
   }
 
   openCloseNav() {
@@ -262,7 +252,7 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
       });
-    this.joinUnjoin()
+    this.joinUnjoin(true)
   }
 
   deleteMember(e) {
@@ -285,7 +275,7 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
       });
-    this.joinUnjoin()
+    this.joinUnjoin(false)
   }
 
   deleteMeet(e) {
@@ -320,12 +310,8 @@ class CommunityScreen extends React.Component {
     this.props.navigation.push("Home");
   }
 
-  joinUnjoin() {
-    if (this.state.joined === false) {
-      this.setState({ joined: true })
-    } else {
-      this.setState({ joined: false })
-    }
+  joinUnjoin(value) {
+    this.setState({ joined: value })
   }
 
   render() {
