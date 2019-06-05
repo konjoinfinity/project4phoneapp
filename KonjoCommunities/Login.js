@@ -53,7 +53,8 @@ class LoginScreen extends React.Component {
     if (username !== null) {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
-      Alert.alert("Logout Success! ✅");
+      console.log("Logout Success! ✅")
+      // Alert.alert("Logout Success! ✅");
     } else {
       console.log("User has already logged out")
     }
@@ -108,7 +109,8 @@ class LoginScreen extends React.Component {
           Alert.alert(responseData.error + " ❌");
         } else {
           Vibration.vibrate();
-          Alert.alert("Login Success! ✓");
+          // Alert.alert("Login Success! ✓");
+          console.log("Login Success! ✅")
           this.onValueChange(STORAGE_KEY, responseData.token);
           this.onValueChange(STORAGE_USER, this.state.email);
           this.loginClear();

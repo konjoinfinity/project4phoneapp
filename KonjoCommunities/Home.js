@@ -44,7 +44,8 @@ class HomeScreen extends React.Component {
     try {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
-      Alert.alert("Logout Success! ✅");
+      console.log("Logout Success! ✅")
+      // Alert.alert("Logout Success! ✅");
       Vibration.vibrate();
       this.props.navigation.push("Login")
     } catch (error) {
