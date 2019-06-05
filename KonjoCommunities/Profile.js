@@ -216,7 +216,11 @@ class ProfileScreen extends React.Component {
                                 {this.state.commcreated === true &&
                                     <Button onPress={() => this.openCloseCommCreated()}
                                         title="Hide" />}
-                                {this.state.commcreated === true && mine}
+                                <AnimatableView animation={this.state.commcreated === true ? "bounceInUp" : undefined}
+                                    delay={10}
+                                    duration={1500}>
+                                    {this.state.commcreated === true && mine}
+                                </AnimatableView>
                             </View>
                         </Card>
                         <TouchableOpacity
@@ -233,7 +237,11 @@ class ProfileScreen extends React.Component {
                                 {this.state.commjoined === true &&
                                     <Button onPress={() => this.openCloseCommJoined()}
                                         title="Hide" />}
-                                {this.state.commjoined === true && joinedcom}
+                                <AnimatableView animation={this.state.commjoined === true ? "bounceInUp" : undefined}
+                                    delay={10}
+                                    duration={1500}>
+                                    {this.state.commjoined === true && joinedcom}
+                                </AnimatableView>
                             </View>
                         </Card>
                     </Card>
