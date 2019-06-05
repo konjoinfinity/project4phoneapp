@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     Vibration,
     ScrollView,
-    Alert
+    Alert,
+    Button
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -35,8 +36,12 @@ class ProfileScreen extends React.Component {
         this.state = {
             communities: "",
             creator: "",
-            userToken: ""
+            userToken: "",
+            commcreated: false,
+            commjoined: false
         };
+        this.openCloseCommCreated = this.openCloseCommCreated.bind(this);
+        this.openCloseCommJoined = this.openCloseCommJoined.bind(this);
     }
 
     async getUsername() {
@@ -64,6 +69,22 @@ class ProfileScreen extends React.Component {
             });
         Vibration.vibrate();
         this.getUsername();
+    }
+
+    openCloseCommCreated() {
+        if (this.state.commcreated === false) {
+            this.setState({ commcreated: true })
+        } else {
+            this.setState({ commcreated: false })
+        }
+    }
+
+    openCloseCommJoined() {
+        if (this.state.commjoined === false) {
+            this.setState({ commjoined: true })
+        } else {
+            this.setState({ commjoined: false })
+        }
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -170,7 +191,6 @@ class ProfileScreen extends React.Component {
                     </TouchableOpacity>
                 );
             }));
-
         return (
             <ScrollView>
                 <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>
@@ -190,7 +210,13 @@ class ProfileScreen extends React.Component {
                         <Card borderRadius={15}>
                             <View>
                                 <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}> Communities I've Created: {created && created.length}</Text>
-                                {mine}
+                                {this.state.commcreated === false &&
+                                    <Button onPress={() => this.openCloseCommCreated()}
+                                        title="Show" />}
+                                {this.state.commcreated === true &&
+                                    <Button onPress={() => this.openCloseCommCreated()}
+                                        title="Hide" />}
+                                {this.state.commcreated === true && mine}
                             </View>
                         </Card>
                         <TouchableOpacity
@@ -201,7 +227,13 @@ class ProfileScreen extends React.Component {
                         <Card borderRadius={15}>
                             <View>
                                 <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Communities I've Joined: {joined && joined.length}</Text>
-                                {joinedcom}
+                                {this.state.commjoined === false &&
+                                    <Button onPress={() => this.openCloseCommJoined()}
+                                        title="Show" />}
+                                {this.state.commjoined === true &&
+                                    <Button onPress={() => this.openCloseCommJoined()}
+                                        title="Hide" />}
+                                {this.state.commjoined === true && joinedcom}
                             </View>
                         </Card>
                     </Card>
@@ -231,7 +263,7 @@ const styles = StyleSheet.create({
         borderColor: "#E0118A",
         backgroundColor: "#E0118A",
         padding: 15,
-        margin: 5,
+        margin: 15,
         borderRadius: 15
     },
     joinedCommunitiesButtonText: {
