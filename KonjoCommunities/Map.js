@@ -134,6 +134,7 @@ class MapScreen extends Component {
                         key={id}
                         coordinate={commlatlong}
                         title={community.name}
+                        // pinColor="#DB1062"
                         ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
                         onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
                         <Callout>
