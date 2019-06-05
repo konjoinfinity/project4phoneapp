@@ -74,16 +74,20 @@ class ProfileScreen extends React.Component {
     openCloseCommCreated() {
         if (this.state.commcreated === false) {
             this.setState({ commcreated: true })
+            Vibration.vibrate();
         } else {
             this.setState({ commcreated: false })
+            Vibration.vibrate();
         }
     }
 
     openCloseCommJoined() {
         if (this.state.commjoined === false) {
             this.setState({ commjoined: true })
+            Vibration.vibrate();
         } else {
             this.setState({ commjoined: false })
+            Vibration.vibrate();
         }
     }
 
