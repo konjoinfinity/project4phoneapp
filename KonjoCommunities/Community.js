@@ -183,7 +183,7 @@ class CommunityScreen extends React.Component {
       })
       .then(res => res.json())
       .then(res => console.log(res))
-      .then(this.props.navigation.push("Home"))
+      .then(this.props.navigation.push("NewHome"))
       .then(Vibration.vibrate());
   }
 
@@ -307,7 +307,7 @@ class CommunityScreen extends React.Component {
 
   goHome() {
     Vibration.vibrate();
-    this.props.navigation.push("Home");
+    this.props.navigation.push("NewHome");
   }
 
   joinUnjoin(value) {

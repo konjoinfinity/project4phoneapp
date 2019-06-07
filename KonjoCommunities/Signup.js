@@ -101,7 +101,7 @@ class SignupScreen extends React.Component {
                     this.onValueChange(STORAGE_KEY, responseData.token);
                     this.onValueChange(STORAGE_USER, this.state.email);
                     this.loginClear();
-                    this.props.navigation.push("Home");
+                    this.props.navigation.push("NewHome");
                 }
             })
             .catch(err => {

@@ -68,11 +68,12 @@ class NewHomeScreen extends React.Component {
                     delay={10}
                     duration={2000}>
                     <TouchableOpacity
-                        style={styles.headerButton}
-                        onPress={() => navigation.push("Home")}>
+                        style={styles.homeHeaderButton}>
                         <View>
-                            <Text
-                                style={{ fontSize: 25 }}>🏠</Text>
+                            <Image
+                                source={require("./klogo.png")}
+                                style={{ width: 20, height: 20 }}
+                            />
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
@@ -281,6 +282,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgba(250, 250, 250, 0.7)',
+        borderRadius: 50,
+        margin: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        }
+    },
+    homeHeaderButton: {
+        height: 35,
+        width: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: "#8AC1E8",
         borderRadius: 50,
         margin: 10,
         shadowColor: 'black',
