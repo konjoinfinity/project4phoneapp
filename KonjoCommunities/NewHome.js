@@ -154,7 +154,7 @@ class NewHomeScreen extends React.Component {
                             style={{
                                 borderWidth: 1,
                                 borderColor: "#FFFFFF",
-                                backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16),
+                                backgroundColor: "#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6),
                                 padding: 10,
                                 margin: 5,
                                 borderRadius: 15
