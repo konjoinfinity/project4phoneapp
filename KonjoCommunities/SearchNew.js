@@ -9,7 +9,8 @@ import {
   Keyboard,
   TouchableOpacity,
   Vibration,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -192,10 +193,20 @@ class SearchNewScreen extends React.Component {
               this.props.navigation.push("Communities");
               Vibration.vibrate();
               this.newClear();
+            } else {
+              Alert.alert("Please submit location to create.")
             }
+          } else {
+            Alert.alert("Please login to create.")
           }
+        } else {
+          Alert.alert("Please enter category to create.")
         }
+      } else {
+        Alert.alert("Please enter description to create.")
       }
+    } else {
+      Alert.alert("Please enter name to create.")
     }
   }
 
