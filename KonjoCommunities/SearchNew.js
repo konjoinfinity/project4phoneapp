@@ -166,27 +166,37 @@ class SearchNewScreen extends React.Component {
   }
 
   handleSubmit() {
-    const data = {
-      name: this.state.name,
-      description: this.state.description,
-      category: this.state.category,
-      creator: this.state.creator,
-      location: {
-        lat: this.state.location.lat,
-        long: this.state.location.long
+    if (this.state.name !== "") {
+      if (this.state.description !== "") {
+        if (this.state.category !== "") {
+          if (this.state.creator !== "") {
+            if (this.state.location.lat !== null) {
+              const data = {
+                name: this.state.name,
+                description: this.state.description,
+                category: this.state.category,
+                creator: this.state.creator,
+                location: {
+                  lat: this.state.location.lat,
+                  long: this.state.location.long
+                }
+              };
+              fetch("https://konjomeet.herokuapp.com/community", {
+                method: "POST",
+                headers: {
+                  "Content-type": "application/json",
+                  "user-token": `${this.state.userToken}`
+                },
+                body: JSON.stringify(data)
+              });
+              this.props.navigation.push("Communities");
+              Vibration.vibrate();
+              this.newClear();
+            }
+          }
+        }
       }
-    };
-    fetch("https://konjomeet.herokuapp.com/community", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "user-token": `${this.state.userToken}`
-      },
-      body: JSON.stringify(data)
-    });
-    this.props.navigation.push("Communities");
-    Vibration.vibrate();
-    this.newClear();
+    }
   }
 
   render() {
