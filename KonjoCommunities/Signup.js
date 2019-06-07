@@ -100,7 +100,7 @@ class SignupScreen extends React.Component {
                         Alert.alert(responseData.error + " ❌");
                     } else {
                         Vibration.vibrate();
-                        Alert.alert("User Signup Success! ✓");
+                        Alert.alert("User Signup Success! ✅ Welcome to Konjo!");
                         this.onValueChange(STORAGE_KEY, responseData.token);
                         this.onValueChange(STORAGE_USER, this.state.email);
                         this.loginClear();

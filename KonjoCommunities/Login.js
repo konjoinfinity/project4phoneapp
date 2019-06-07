@@ -92,34 +92,41 @@ class LoginScreen extends React.Component {
   }
 
   handleLogin() {
-    fetch("https://konjomeet.herokuapp.com/users/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
+    let text = this.state.email
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if (reg.test(text) === true) {
+      fetch("https://konjomeet.herokuapp.com/users/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+          email: this.state.email,
+          password: this.state.password
+        })
       })
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        if (responseData.error) {
-          Vibration.vibrate();
-          Alert.alert(responseData.error + " ❌");
-        } else {
-          Vibration.vibrate();
-          // Alert.alert("Login Success! ✓");
-          console.log("Login Success! ✅")
-          this.onValueChange(STORAGE_KEY, responseData.token);
-          this.onValueChange(STORAGE_USER, this.state.email);
-          this.loginClear();
-          this.props.navigation.push("NewHome");
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(response => response.json())
+        .then(responseData => {
+          if (responseData.error) {
+            Vibration.vibrate();
+            Alert.alert(responseData.error + " ❌");
+          } else {
+            Vibration.vibrate();
+            // Alert.alert("Login Success! ✓");
+            console.log("Login Success! ✅")
+            this.onValueChange(STORAGE_KEY, responseData.token);
+            this.onValueChange(STORAGE_USER, this.state.email);
+            this.loginClear();
+            this.props.navigation.push("NewHome");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      Vibration.vibrate();
+      Alert.alert("Please enter valid email");
+    }
   }
 
   render() {
