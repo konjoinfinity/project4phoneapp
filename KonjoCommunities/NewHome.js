@@ -152,7 +152,14 @@ class NewHomeScreen extends React.Component {
 
                         <TouchableOpacity
                             key={id}
-                            style={styles.communityButton}
+                            style={{
+                                borderWidth: 1,
+                                borderColor: "#FFFFFF",
+                                backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16),
+                                padding: 10,
+                                margin: 5,
+                                borderRadius: 15
+                            }}
                             onPress={() =>
                                 this.props.navigation.push("Community", {
                                     communityId: `${community._id}`
@@ -245,14 +252,14 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         textAlign: "center"
     },
-    communityButton: {
-        borderWidth: 1,
-        borderColor: "#FFFFFF",
-        backgroundColor: '#' + Math.random().toString(16).substr(-6),
-        padding: 10,
-        margin: 5,
-        borderRadius: 15
-    },
+    // communityButton: {
+    //     borderWidth: 1,
+    //     borderColor: "#FFFFFF",
+    //     backgroundColor: '#' + Math.random().toString(16).substr(-6),
+    //     padding: 10,
+    //     margin: 5,
+    //     borderRadius: 15
+    // },
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 15,
