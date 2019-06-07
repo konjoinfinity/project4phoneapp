@@ -125,7 +125,7 @@ class LoginScreen extends React.Component {
         });
     } else {
       Vibration.vibrate();
-      Alert.alert("Please enter valid email");
+      Alert.alert("Please enter valid email.");
     }
   }
 
