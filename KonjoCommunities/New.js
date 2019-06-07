@@ -192,18 +192,23 @@ class NewScreen extends React.Component {
               Vibration.vibrate();
               this.newClear();
             } else {
+              Vibration.vibrate();
               Alert.alert("Please submit location to create.")
             }
           } else {
+            Vibration.vibrate();
             Alert.alert("Please login to create.")
           }
         } else {
+          Vibration.vibrate();
           Alert.alert("Please enter category to create.")
         }
       } else {
+        Vibration.vibrate();
         Alert.alert("Please enter description to create.")
       }
     } else {
+      Vibration.vibrate();
       Alert.alert("Please enter name to create.")
     }
   }

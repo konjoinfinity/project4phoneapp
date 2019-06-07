@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Vibration,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -187,32 +188,62 @@ class MeetScreen extends React.Component {
   }
 
   handleSubmit() {
-    const data = {
-      meet: {
-        name: this.state.name,
-        description: this.state.description,
-        location: this.state.location,
-        date: this.state.date,
-        time: this.state.time,
-        creator: this.state.creator
+    if (this.state.name !== "") {
+      if (this.state.description !== "") {
+        if (this.state.location !== "") {
+          if (this.state.date !== "") {
+            if (this.state.time !== "") {
+              if (this.state.creator !== "") {
+                const data = {
+                  meet: {
+                    name: this.state.name,
+                    description: this.state.description,
+                    location: this.state.location,
+                    date: this.state.date,
+                    time: this.state.time,
+                    creator: this.state.creator
+                  }
+                };
+                fetch(`https://konjomeet.herokuapp.com/community/${
+                  this.props.navigation.state.params.communityId
+                  }/meet`,
+                  {
+                    method: "PUT",
+                    headers: {
+                      "Content-type": "application/json",
+                      "user-token": `${this.state.userToken}`
+                    },
+                    body: JSON.stringify(data)
+                  }
+                );
+                this.props.navigation.push("Community", {
+                  communityId: `${this.props.navigation.state.params.communityId}`
+                })
+                this.meetClear();
+              } else {
+                Vibration.vibrate();
+                Alert.alert("Please login to create.")
+              }
+            } else {
+              Vibration.vibrate();
+              Alert.alert("Please enter time to create.")
+            }
+          } else {
+            Vibration.vibrate();
+            Alert.alert("Please enter date to create.")
+          }
+        } else {
+          Vibration.vibrate();
+          Alert.alert("Please enter location to create.")
+        }
+      } else {
+        Vibration.vibrate();
+        Alert.alert("Please enter description to create.")
       }
-    };
-    fetch(`https://konjomeet.herokuapp.com/community/${
-      this.props.navigation.state.params.communityId
-      }/meet`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-          "user-token": `${this.state.userToken}`
-        },
-        body: JSON.stringify(data)
-      }
-    );
-    this.props.navigation.push("Community", {
-      communityId: `${this.props.navigation.state.params.communityId}`
-    })
-    this.meetClear();
+    } else {
+      Vibration.vibrate();
+      Alert.alert("Please enter name to create.")
+    }
   }
 
   render() {

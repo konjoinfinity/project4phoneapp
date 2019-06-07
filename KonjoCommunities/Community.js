@@ -232,6 +232,7 @@ class CommunityScreen extends React.Component {
           Vibration.vibrate();
         })
     } else {
+      Vibration.vibrate();
       Alert.alert("Please enter text to comment.")
     }
   }
