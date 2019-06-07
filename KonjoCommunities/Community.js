@@ -210,26 +210,28 @@ class CommunityScreen extends React.Component {
   }
 
   handleComment() {
-    const data = { comment: this.state.comment, creator: this.state.creator };
-    fetch(`https://konjomeet.herokuapp.com/community/${
-      this.state.community._id
-      }/comment`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-          "user-token": `${this.state.userToken}`
-        },
-        body: JSON.stringify(data)
-      }
-    )
-      .then(response => console.log(response))
-      .then(result => {
-        console.log(result);
-        this.getCommunity();
-        this.commentClear()
-        Vibration.vibrate();
-      })
+    if (this.state.comment !== "") {
+      const data = { comment: this.state.comment, creator: this.state.creator };
+      fetch(`https://konjomeet.herokuapp.com/community/${
+        this.state.community._id
+        }/comment`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+            "user-token": `${this.state.userToken}`
+          },
+          body: JSON.stringify(data)
+        }
+      )
+        .then(response => console.log(response))
+        .then(result => {
+          console.log(result);
+          this.getCommunity();
+          this.commentClear()
+          Vibration.vibrate();
+        })
+    }
   }
 
   joinCommunity() {

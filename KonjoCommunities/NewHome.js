@@ -149,7 +149,6 @@ class NewHomeScreen extends React.Component {
             (results = communitySearch.map((community, id) => {
                 return (
                     this.state.search !== "" && (
-
                         <TouchableOpacity
                             key={id}
                             style={{
@@ -163,9 +162,7 @@ class NewHomeScreen extends React.Component {
                             onPress={() =>
                                 this.props.navigation.push("Community", {
                                     communityId: `${community._id}`
-                                })
-                            }
-                        >
+                                })}>
                             <Text style={styles.communityButtonText}>{community.name}</Text>
                         </TouchableOpacity>
                     )
