@@ -97,7 +97,7 @@ class ProfileScreen extends React.Component {
             headerLeft: (<View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                     style={styles.headerButton}
-                    onPress={() => navigation.push("Home")}>
+                    onPress={() => navigation.push("NewHome")}>
                     <View>
                         <Text
                             style={{ fontSize: 25 }}>🏠</Text>
