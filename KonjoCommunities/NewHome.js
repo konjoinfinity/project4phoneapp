@@ -246,8 +246,8 @@ const styles = StyleSheet.create({
     },
     communityButton: {
         borderWidth: 1,
-        borderColor: "#12C16D",
-        backgroundColor: "#12C16D",
+        borderColor: "#FFFFFF",
+        backgroundColor: '#' + Math.random().toString(16).substr(-6),
         padding: 10,
         margin: 5,
         borderRadius: 15

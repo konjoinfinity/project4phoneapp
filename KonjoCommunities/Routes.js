@@ -40,7 +40,7 @@ const AppStack = createStackNavigator(
     NewHome: NewHomeScreen
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'NewHome',
   }
 );
 
