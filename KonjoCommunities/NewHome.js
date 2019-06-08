@@ -68,12 +68,11 @@ class NewHomeScreen extends React.Component {
                     delay={10}
                     duration={2000}>
                     <TouchableOpacity
-                        style={styles.homeHeaderButton}>
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("Profile")}>
                         <View>
-                            <Image
-                                source={require("./klogo.png")}
-                                style={{ width: 20, height: 20 }}
-                            />
+                            <Text
+                                style={{ fontSize: 25 }}>👤</Text>
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
@@ -83,10 +82,10 @@ class NewHomeScreen extends React.Component {
                     duration={2000}>
                     <TouchableOpacity
                         style={styles.headerButton}
-                        onPress={() => navigation.push("Profile")}>
+                        onPress={() => navigation.push("Communities")}>
                         <View>
                             <Text
-                                style={{ fontSize: 25 }}>👤</Text>
+                                style={{ fontSize: 25 }}>👥</Text>
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
