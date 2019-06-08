@@ -225,7 +225,7 @@ class NewHomeScreen extends React.Component {
                                     alignItems: 'center'
                                 }}>
                                     <Image source={require("./commicon.png")}
-                                        style={{ width: 250, height: 250 }}
+                                        style={{ width: 190, height: 190 }}
                                     />
                                 </View>
                             </Card>}
