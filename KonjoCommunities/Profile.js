@@ -162,7 +162,14 @@ class ProfileScreen extends React.Component {
                 return (
                     <TouchableOpacity
                         key={id}
-                        style={styles.communityButton}
+                        style={{
+                            borderWidth: 1,
+                            borderColor: "#FFFFFF",
+                            backgroundColor: "#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6),
+                            padding: 10,
+                            margin: 5,
+                            borderRadius: 15
+                        }}
                         onPress={() =>
                             this.props.navigation.push("Community", {
                                 communityId: `${community._id}`
@@ -184,7 +191,14 @@ class ProfileScreen extends React.Component {
                 return (
                     <TouchableOpacity
                         key={id}
-                        style={styles.communityButton}
+                        style={{
+                            borderWidth: 1,
+                            borderColor: "#FFFFFF",
+                            backgroundColor: "#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6),
+                            padding: 10,
+                            margin: 5,
+                            borderRadius: 15
+                        }}
                         onPress={() =>
                             this.props.navigation.push("Community", {
                                 communityId: `${community._id}`
@@ -295,14 +309,6 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
-    },
-    communityButton: {
-        borderWidth: 1,
-        borderColor: "#007BFF",
-        backgroundColor: "#007BFF",
-        padding: 10,
-        margin: 5,
-        borderRadius: 15
     },
     communityButtonText: {
         color: "#FFFFFF",
