@@ -213,18 +213,23 @@ class NewHomeScreen extends React.Component {
                             </Card>
                         </AnimatableView>
                     </View>
-                    {this.state.search === "" &&
-                        <Card borderRadius={15}>
-                            <View style={{
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>
-                                <Image source={require("./commicon.png")}
-                                    style={{ width: 250, height: 250 }}
-                                />
-                            </View>
-                        </Card>}
+                    <AnimatableView
+                        animation="bounceInUp"
+                        delay={10}
+                        duration={1800}>
+                        {this.state.search === "" &&
+                            <Card borderRadius={15}>
+                                <View style={{
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
+                                    <Image source={require("./commicon.png")}
+                                        style={{ width: 250, height: 250 }}
+                                    />
+                                </View>
+                            </Card>}
+                    </AnimatableView>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
                         {results}
                     </View>
