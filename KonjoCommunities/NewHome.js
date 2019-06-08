@@ -133,7 +133,7 @@ class NewHomeScreen extends React.Component {
         this.state.communities && (communitySearch = this.state.communities);
         let search;
         this.state.communities && (
-            (search = this.state.search.trim().toLowerCase()))
+            (search = this.state.search.trim().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "").toLowerCase()))
 
         this.state.communities && console.log(search);
 
@@ -249,14 +249,6 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         textAlign: "center"
     },
-    // communityButton: {
-    //     borderWidth: 1,
-    //     borderColor: "#FFFFFF",
-    //     backgroundColor: '#' + Math.random().toString(16).substr(-6),
-    //     padding: 10,
-    //     margin: 5,
-    //     borderRadius: 15
-    // },
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 15,
