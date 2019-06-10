@@ -18,6 +18,7 @@ import GrowCommunitiesScreen from "./GrowCommunities";
 import SignupScreen from "./Signup";
 import CommMapScreen from "./CommMap";
 import NewHomeScreen from "./NewHome"
+import ChangePassScreen from "./ChangePass";
 
 const AppStack = createStackNavigator(
   {
@@ -37,7 +38,8 @@ const AppStack = createStackNavigator(
     GrowCommunities: GrowCommunitiesScreen,
     Signup: SignupScreen,
     CommMap: CommMapScreen,
-    NewHome: NewHomeScreen
+    NewHome: NewHomeScreen,
+    ChangePass: ChangePassScreen
   },
   {
     initialRouteName: 'NewHome',

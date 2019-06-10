@@ -63,7 +63,8 @@ class ProfileScreen extends React.Component {
 
     async componentDidMount() {
         await this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
+        // https://konjomeet.herokuapp.com/community
+        await fetch("http://localhost:4000/community", {
             method: "GET",
             headers: {
                 "user-token": `${this.state.userToken}`
@@ -107,44 +108,7 @@ class ProfileScreen extends React.Component {
         }
     }
 
-    async changePassword() {
-        const data = {
-            email: this.state.creator,
-            password: this.state.password,
-            newpassword: this.state.newpassword,
-            confirmnewpassword: this.state.confirmnewpassword
-        };
-        Alert.alert(data)
-        // https://konjomeet.herokuapp.com/users/changepass
-        // await fetch("http://localhost:4000/users/changepass", {
-        //     method: "POST",
-        //     headers: {
-        //         "user-token": `${this.state.userToken}`
-        //     },
-        //     body: JSON.stringify(data)
-        // })
-        //     .then(res => res.json())
-        // Vibration.vibrate();
-        // this.props.navigation.push("Login")
-    }
 
-    handlePasswordChange(password) {
-        this.setState({ password });
-    }
-    handleNewPasswordChange(newpassword) {
-        this.setState({ newpassword });
-    }
-    handleConfirmNewPasswordChange(confirmnewpassword) {
-        this.setState({ confirmnewpassword });
-    }
-
-    loginClear() {
-        this.setState({
-            password: "",
-            newpassword: "",
-            confirmnewpassword: ""
-        });
-    }
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -314,74 +278,16 @@ class ProfileScreen extends React.Component {
                                     delay={10}
                                     duration={1500}>
                                     {this.state.commjoined === true && joinedcom}
+
                                 </AnimatableView>
                             </View>
                         </Card>
                         <Card borderRadius={15}>
-                            <View>
-                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Change Password</Text>
-                                {this.state.changepass === false &&
-                                    <Button onPress={() => this.openCloseChangePass()}
-                                        title="Show" />}
-                                {this.state.changepass === true &&
-                                    <Button onPress={() => this.openCloseChangePass()}
-                                        title="Hide" />}
-                                <AnimatableView animation={this.state.changepass === true ? "bounceInUp" : undefined}
-                                    delay={10}
-                                    duration={1500}>
-                                    {this.state.changepass === true && (
-                                        <View style={styles.inputContainer}>
-                                            <TextInput
-                                                style={styles.textInput}
-                                                placeholder="Current Password"
-                                                secureTextEntry={true}
-                                                autoFocus={true}
-                                                autoCapitalize="none"
-                                                name="password"
-                                                id="password"
-                                                returnKeyType={"next"}
-                                                blurOnSubmit={false}
-                                                onChangeText={this.handlePasswordChange}
-                                                value={this.state.password}
-                                                onSubmitEditing={() => { this.passInput.focus(); }} />
-                                        </View>)}
-                                    {this.state.changepass === true && (
-                                        <View style={styles.inputContainer}>
-                                            <TextInput
-                                                style={styles.textInput}
-                                                placeholder="New Password"
-                                                secureTextEntry={true}
-                                                name="newpassword"
-                                                id="newpassword"
-                                                returnKeyType={"next"}
-                                                blurOnSubmit={false}
-                                                onChangeText={this.handleNewPasswordChange}
-                                                ref={(input) => { this.passInput = input; }}
-                                                onSubmitEditing={() => { this.confirmpassInput.focus(); }}
-                                                value={this.state.newpassword} />
-                                        </View>)}
-                                    {this.state.changepass === true && (
-                                        <View style={styles.inputContainer}>
-                                            <TextInput
-                                                style={styles.textInput}
-                                                placeholder="Confirm New Password"
-                                                secureTextEntry={true}
-                                                name="confirmnewpassword"
-                                                id="confirmnewpassword"
-                                                onChangeText={this.handleConfirmNewPasswordChange}
-                                                ref={(input) => { this.confirmpassInput = input; }}
-                                                onSubmitEditing={this.changePassword}
-                                                value={this.state.confirmpass}
-                                                returnKeyType='send' />
-                                        </View>)}
-                                    {this.state.changepass === true &&
-                                        <TouchableOpacity
-                                            style={styles.changePassButton}
-                                            onPress={this.changePassword}>
-                                            <Text style={styles.changePassButtonText}>Submit ⌨️</Text>
-                                        </TouchableOpacity>}
-                                </AnimatableView>
-                            </View>
+                            <TouchableOpacity
+                                style={styles.changePassButton}
+                                onPress={() => this.props.navigation.push("ChangePass")}>
+                                <Text style={styles.changePassButtonText}>Change Password ⌨️</Text>
+                            </TouchableOpacity>
                         </Card>
                     </Card>
                 </AnimatableView>
