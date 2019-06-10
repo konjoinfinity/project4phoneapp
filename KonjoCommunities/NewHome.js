@@ -184,7 +184,7 @@ class NewHomeScreen extends React.Component {
                             })
                         }
                     >
-                        <Text style={styles.newButtonText}>{this.state.search} ➕</Text>
+                        <Text style={styles.newButtonText}>➕ {this.state.search}</Text>
                     </TouchableOpacity>
                 </Card>
             )));
@@ -225,7 +225,7 @@ class NewHomeScreen extends React.Component {
                                     alignItems: 'center'
                                 }}>
                                     <Image source={require("./commicon.png")}
-                                        style={{ width: 190, height: 190 }}
+                                        style={{ width: 180, height: 180 }}
                                     />
                                 </View>
                             </Card>}
@@ -247,10 +247,9 @@ const styles = StyleSheet.create({
         paddingTop: 5
     },
     header: {
-        fontSize: 20,
+        fontSize: 26,
         textAlign: "center",
-        margin: 5,
-        fontWeight: "bold"
+        margin: 5
     },
     inputContainer: {
         paddingTop: 15

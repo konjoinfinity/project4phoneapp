@@ -373,10 +373,9 @@ const styles = StyleSheet.create({
     paddingTop: 5
   },
   header: {
-    fontSize: 25,
+    fontSize: 30,
     textAlign: "center",
-    margin: 10,
-    fontWeight: "bold"
+    margin: 10
   },
   comm: {
     textAlign: "center",

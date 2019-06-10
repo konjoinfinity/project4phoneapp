@@ -176,6 +176,11 @@ class SignupScreen extends React.Component {
                                     onPress={this.handleSignup}>
                                     <Text style={styles.signupButtonText}>Signup ⌨️</Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.loginButton}
+                                    onPress={() => this.props.navigation.push("Login")}>
+                                    <Text style={styles.loginButtonText}>Back to Login 🔑</Text>
+                                </TouchableOpacity>
                             </View>
                         </Card>
                     </View>
@@ -192,10 +197,9 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     header: {
-        fontSize: 25,
+        fontSize: 30,
         textAlign: "center",
-        margin: 10,
-        fontWeight: "bold"
+        margin: 10
     },
     inputContainer: {
         paddingTop: 15
@@ -219,6 +223,19 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     signupButtonText: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        textAlign: "center"
+    },
+    loginButton: {
+        borderWidth: 1,
+        borderColor: "#007BFF",
+        backgroundColor: "#007BFF",
+        padding: 15,
+        margin: 5,
+        borderRadius: 15
+    },
+    loginButtonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
