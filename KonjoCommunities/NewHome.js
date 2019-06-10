@@ -235,7 +235,6 @@ class NewHomeScreen extends React.Component {
                     </View>
                     {newsearch}
                 </ScrollView>
-                <View style={{ height: 60 }} />
             </KeyboardAvoidingView>
         );
     }
