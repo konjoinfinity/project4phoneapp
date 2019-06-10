@@ -211,14 +211,11 @@ class ProfileScreen extends React.Component {
             }));
         return (
             <ScrollView>
-                <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>
-                    Profile
-        </Text>
                 <AnimatableView
                     animation="bounceInUp"
                     delay={10}
                     duration={1800}>
-                    <Card borderRadius={15}>
+                    <Card title="Profile" titleStyle={{ fontSize: 30, textAlign: "center", padding: 15, fontFamily: 'system font' }} borderRadius={15}>
                         <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
                         <TouchableOpacity
                             style={styles.myCommunitiesButton}
