@@ -40,7 +40,8 @@ class CommunityScreen extends React.Component {
       creator: "",
       nav: false,
       userToken: "",
-      joined: ""
+      joined: "",
+      memberslist: false
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -50,6 +51,7 @@ class CommunityScreen extends React.Component {
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
     this.joinUnjoin = this.joinUnjoin.bind(this);
+    this.openCloseMembersList = this.openCloseMembersList.bind(this);
   }
 
   handleCommentChange(comment) {
@@ -319,6 +321,16 @@ class CommunityScreen extends React.Component {
     this.setState({ joined: value })
   }
 
+  openCloseMembersList() {
+    if (this.state.memberslist === false) {
+      this.setState({ memberslist: true })
+      Vibration.vibrate();
+    } else {
+      this.setState({ memberslist: false })
+      Vibration.vibrate();
+    }
+  }
+
   render() {
     let members;
     this.state.community &&
@@ -426,16 +438,27 @@ class CommunityScreen extends React.Component {
               </Card>
               <Card borderRadius={15}>
                 <View>
-                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                    👥 {this.state.community.numberOfMembers}
-                  </Text>
-                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                    👤 {this.state.community.creator}
-                  </Text>
-                  {this.state.creator === this.state.community.creator && (
-                    <View>{members}</View>
-                  )}
-                  {member.length === 1 && <View>{members}</View>}
+                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>Members</Text>
+                  {this.state.memberslist === false &&
+                    <Button onPress={() => this.openCloseMembersList()}
+                      title="Show" />}
+                  {this.state.memberslist === true &&
+                    <Button onPress={() => this.openCloseMembersList()}
+                      title="Hide" />}
+                  {this.state.memberslist === true &&
+                    <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                      👥 {this.state.community.numberOfMembers}
+                    </Text>}
+                  {this.state.memberslist === true &&
+                    <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                      👤 {this.state.community.creator}
+                    </Text>}
+                  {this.state.memberslist === true && (
+                    this.state.creator === this.state.community.creator && (
+                      <View>{members}</View>
+                    ))}
+                  {this.state.memberslist === true &&
+                    member.length === 1 && <View>{members}</View>}
                 </View>
               </Card>
               <Card borderRadius={15}>
