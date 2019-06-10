@@ -307,16 +307,6 @@ class CommunityScreen extends React.Component {
       });
   }
 
-  viewCommunities() {
-    Vibration.vibrate();
-    this.props.navigation.push("Communities");
-  }
-
-  goHome() {
-    Vibration.vibrate();
-    this.props.navigation.push("NewHome");
-  }
-
   joinUnjoin(value) {
     this.setState({ joined: value })
   }
@@ -438,17 +428,13 @@ class CommunityScreen extends React.Component {
               </Card>
               <Card borderRadius={15}>
                 <View>
-                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>Members</Text>
+                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>👥 Members:  {this.state.community.numberOfMembers}</Text>
                   {this.state.memberslist === false &&
                     <Button onPress={() => this.openCloseMembersList()}
                       title="Show" />}
                   {this.state.memberslist === true &&
                     <Button onPress={() => this.openCloseMembersList()}
                       title="Hide" />}
-                  {this.state.memberslist === true &&
-                    <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                      👥 {this.state.community.numberOfMembers}
-                    </Text>}
                   {this.state.memberslist === true &&
                     <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                       👤 {this.state.community.creator}
@@ -472,34 +458,6 @@ class CommunityScreen extends React.Component {
                     }
                   >
                     <Text style={styles.mapButtonText}>Map 🗺</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.homeButton}
-                    onPress={() => this.goHome()}
-                  >
-                    <Text style={styles.homeButtonText}>Go Home 🏠</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.communityButton}
-                    onPress={() => this.viewCommunities()}
-                  >
-                    <Text style={styles.communityButtonText}>View Communites 👥</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.myCommunitiesButton}
-                    onPress={() => this.props.navigation.push("MyCommunities")}
-                  >
-                    <Text style={styles.myCommunitiesButtonText}>
-                      My Communities 👤
-                </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.joinedCommunitiesButton}
-                    onPress={() => this.props.navigation.push("JoinedCommunities")}
-                  >
-                    <Text style={styles.joinedCommunitiesButtonText}>
-                      Joined Communities 👤➡️👥
-          </Text>
                   </TouchableOpacity>
                   {this.state.creator !== this.state.community.creator &&
                     member.length === 0 && (
