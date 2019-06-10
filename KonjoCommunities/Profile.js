@@ -8,7 +8,8 @@ import {
     Vibration,
     ScrollView,
     Alert,
-    Button
+    Button,
+    TextInput
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -38,10 +39,15 @@ class ProfileScreen extends React.Component {
             creator: "",
             userToken: "",
             commcreated: false,
-            commjoined: false
+            commjoined: false,
+            changepass: false,
+            password: "",
+            newpassword: "",
+            confirmnewpassword: ""
         };
         this.openCloseCommCreated = this.openCloseCommCreated.bind(this);
         this.openCloseCommJoined = this.openCloseCommJoined.bind(this);
+        this.openCloseChangePass = this.openCloseChangePass.bind(this);
     }
 
     async getUsername() {
@@ -89,6 +95,55 @@ class ProfileScreen extends React.Component {
             this.setState({ commjoined: false })
             Vibration.vibrate();
         }
+    }
+
+    openCloseChangePass() {
+        if (this.state.changepass === false) {
+            this.setState({ changepass: true })
+            Vibration.vibrate();
+        } else {
+            this.setState({ changepass: false })
+            Vibration.vibrate();
+        }
+    }
+
+    async changePassword() {
+        const data = {
+            email: this.state.creator,
+            password: this.state.password,
+            newpassword: this.state.newpassword,
+            confirmnewpassword: this.state.confirmnewpassword
+        };
+        Alert.alert(data)
+        // https://konjomeet.herokuapp.com/users/changepass
+        // await fetch("http://localhost:4000/users/changepass", {
+        //     method: "POST",
+        //     headers: {
+        //         "user-token": `${this.state.userToken}`
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        //     .then(res => res.json())
+        // Vibration.vibrate();
+        // this.props.navigation.push("Login")
+    }
+
+    handlePasswordChange(password) {
+        this.setState({ password });
+    }
+    handleNewPasswordChange(newpassword) {
+        this.setState({ newpassword });
+    }
+    handleConfirmNewPasswordChange(confirmnewpassword) {
+        this.setState({ confirmnewpassword });
+    }
+
+    loginClear() {
+        this.setState({
+            password: "",
+            newpassword: "",
+            confirmnewpassword: ""
+        });
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -210,7 +265,10 @@ class ProfileScreen extends React.Component {
                 );
             }));
         return (
-            <ScrollView>
+            <ScrollView ref={ref => this.scrollView = ref}
+                onContentSizeChange={(contentWidth, contentHeight) => {
+                    this.scrollView.scrollToEnd({ animated: true });
+                }}>
                 <AnimatableView
                     animation="bounceInUp"
                     delay={10}
@@ -256,6 +314,72 @@ class ProfileScreen extends React.Component {
                                     delay={10}
                                     duration={1500}>
                                     {this.state.commjoined === true && joinedcom}
+                                </AnimatableView>
+                            </View>
+                        </Card>
+                        <Card borderRadius={15}>
+                            <View>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Change Password</Text>
+                                {this.state.changepass === false &&
+                                    <Button onPress={() => this.openCloseChangePass()}
+                                        title="Show" />}
+                                {this.state.changepass === true &&
+                                    <Button onPress={() => this.openCloseChangePass()}
+                                        title="Hide" />}
+                                <AnimatableView animation={this.state.changepass === true ? "bounceInUp" : undefined}
+                                    delay={10}
+                                    duration={1500}>
+                                    {this.state.changepass === true && (
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="Current Password"
+                                                secureTextEntry={true}
+                                                autoFocus={true}
+                                                autoCapitalize="none"
+                                                name="password"
+                                                id="password"
+                                                returnKeyType={"next"}
+                                                blurOnSubmit={false}
+                                                onChangeText={this.handlePasswordChange}
+                                                value={this.state.password}
+                                                onSubmitEditing={() => { this.passInput.focus(); }} />
+                                        </View>)}
+                                    {this.state.changepass === true && (
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="New Password"
+                                                secureTextEntry={true}
+                                                name="newpassword"
+                                                id="newpassword"
+                                                returnKeyType={"next"}
+                                                blurOnSubmit={false}
+                                                onChangeText={this.handleNewPasswordChange}
+                                                ref={(input) => { this.passInput = input; }}
+                                                onSubmitEditing={() => { this.confirmpassInput.focus(); }}
+                                                value={this.state.newpassword} />
+                                        </View>)}
+                                    {this.state.changepass === true && (
+                                        <View style={styles.inputContainer}>
+                                            <TextInput
+                                                style={styles.textInput}
+                                                placeholder="Confirm New Password"
+                                                secureTextEntry={true}
+                                                name="confirmnewpassword"
+                                                id="confirmnewpassword"
+                                                onChangeText={this.handleConfirmNewPasswordChange}
+                                                ref={(input) => { this.confirmpassInput = input; }}
+                                                onSubmitEditing={this.changePassword}
+                                                value={this.state.confirmpass}
+                                                returnKeyType='send' />
+                                        </View>)}
+                                    {this.state.changepass === true &&
+                                        <TouchableOpacity
+                                            style={styles.changePassButton}
+                                            onPress={this.changePassword}>
+                                            <Text style={styles.changePassButtonText}>Submit ⌨️</Text>
+                                        </TouchableOpacity>}
                                 </AnimatableView>
                             </View>
                         </Card>
@@ -326,5 +450,31 @@ const styles = StyleSheet.create({
             width: 2,
             height: 2,
         }
+    },
+    inputContainer: {
+        paddingTop: 15
+    },
+    textInput: {
+        borderColor: "#CCCCCC",
+        borderWidth: 1,
+        height: 50,
+        fontSize: 25,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 15,
+        textAlign: "center"
+    },
+    changePassButton: {
+        borderWidth: 1,
+        borderColor: "#12C16D",
+        backgroundColor: "#12C16D",
+        padding: 15,
+        margin: 15,
+        borderRadius: 15
+    },
+    changePassButtonText: {
+        color: "#FFFFFF",
+        fontSize: 20,
+        textAlign: "center"
     }
 })
