@@ -300,21 +300,6 @@ const styles = StyleSheet.create({
             width: 2,
             height: 2,
         }
-    },
-    homeHeaderButton: {
-        height: 35,
-        width: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: "#8AC1E8",
-        borderRadius: 50,
-        margin: 10,
-        shadowColor: 'black',
-        shadowOpacity: 0.5,
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        }
     }
 });
 
