@@ -217,7 +217,7 @@ class MeetScreen extends React.Component {
                   }
                 );
                 this.props.navigation.push("Community", {
-                  communityId: `${this.props.navigation.state.params.communityId}`
+                  communityId: `${this.props.navigation.state.params.communityId}`, meet: true
                 })
                 this.meetClear();
               } else {
