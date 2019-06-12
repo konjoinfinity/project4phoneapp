@@ -189,8 +189,12 @@ class SearchNewScreen extends React.Component {
                   "user-token": `${this.state.userToken}`
                 },
                 body: JSON.stringify(data)
-              });
-              this.props.navigation.push("Communities");
+              }).then(res => res.json())
+                .then(res => {
+                  this.props.navigation.push("Community", {
+                    communityId: `${res._id}`, newcomm: true
+                  });
+                });
               Vibration.vibrate();
               this.newClear();
             } else {
