@@ -12,8 +12,8 @@ import {
     KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
-import Nav from "./Nav"
 import * as Animatable from 'react-native-animatable';
+import DropdownAlert from 'react-native-dropdownalert';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -33,29 +33,22 @@ class NewHomeScreen extends React.Component {
         super(props);
         this.state = {
             communities: "",
-            search: "",
-            nav: false
+            search: ""
         };
-        this.openCloseNav = this.openCloseNav.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
+        // this.setState({ dropdown: this.props.navigation.state.params.initialLogin });
         fetch("https://konjomeet.herokuapp.com/community/search")
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
             });
         Vibration.vibrate();
-    }
-
-    openCloseNav() {
-        if (this.state.nav === false) {
-            this.setState({ nav: true });
-            Vibration.vibrate();
-        } else {
-            this.setState({ nav: false });
-            Vibration.vibrate();
+        const initlogin = this.props.navigation.getParam('initlogin', 'false');
+        if (initlogin === true) {
+            this.dropdown.alertWithType('success', 'Success', 'Login Successful, Welcome to Konjo!');
         }
     }
 
@@ -191,7 +184,6 @@ class NewHomeScreen extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <ScrollView>
-                    {this.state.nav === true && <Nav navigation={this.props.navigation} />}
                     <View>
                         <AnimatableView
                             animation="bounceInUp"
@@ -235,6 +227,7 @@ class NewHomeScreen extends React.Component {
                     </View>
                     {newsearch}
                 </ScrollView>
+                <DropdownAlert closeInterval={2000} ref={ref => this.dropdown = ref} />
             </KeyboardAvoidingView>
         );
     }

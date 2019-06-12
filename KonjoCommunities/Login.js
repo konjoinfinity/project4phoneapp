@@ -95,7 +95,7 @@ class LoginScreen extends React.Component {
     let text = this.state.email
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (reg.test(text) === true) {
-      fetch("https://konjomeet.herokuapp.com/", {
+      fetch("https://konjomeet.herokuapp.com/users/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json"
@@ -117,7 +117,9 @@ class LoginScreen extends React.Component {
             this.onValueChange(STORAGE_KEY, responseData.token);
             this.onValueChange(STORAGE_USER, this.state.email);
             this.loginClear();
-            this.props.navigation.push("NewHome");
+            this.props.navigation.push("NewHome", {
+              initlogin: true
+            });
           }
         })
         .catch(err => {
