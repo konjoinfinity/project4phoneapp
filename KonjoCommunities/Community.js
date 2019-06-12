@@ -102,6 +102,10 @@ class CommunityScreen extends React.Component {
     if (meet === true) {
       this.dropdown.alertWithType('info', 'Meet!', `You've created a new meet for ${this.state.community.name}!`);
     }
+    const edit = this.props.navigation.getParam('edit', 'false');
+    if (edit === true) {
+      this.dropdown.alertWithType('info', 'Edited!', `You've updated ${this.state.community.name}!`);
+    }
   }
 
   openCloseNav() {

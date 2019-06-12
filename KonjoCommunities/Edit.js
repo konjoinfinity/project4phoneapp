@@ -176,7 +176,7 @@ class EditScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.props.navigation.push("Community", {
-          communityId: `${this.state.id}`
+          communityId: `${this.state.id}`, edit: true
         })
         Vibration.vibrate();
         this.editClear();
