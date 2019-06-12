@@ -89,8 +89,7 @@ class ChangePassScreen extends React.Component {
                                     newpassword: this.state.newpassword,
                                     confirmnewpassword: this.state.confirmnewpassword
                                 };
-                                // https://konjomeet.herokuapp.com/users/changepass
-                                fetch("http://localhost:4000/users/changepass", {
+                                fetch("https://konjomeet.herokuapp.com/users/changepass", {
                                     method: "POST",
                                     headers: {
                                         "Content-type": "application/json",

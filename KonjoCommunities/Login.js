@@ -95,8 +95,7 @@ class LoginScreen extends React.Component {
     let text = this.state.email
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (reg.test(text) === true) {
-      // https://konjomeet.herokuapp.com/
-      fetch("http://localhost:4000/users/login", {
+      fetch("https://konjomeet.herokuapp.com/", {
         method: "POST",
         headers: {
           "Content-type": "application/json"
