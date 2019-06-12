@@ -76,7 +76,7 @@ class ChangePassScreen extends React.Component {
     }
 
 
-    async changePassword() {
+    changePassword() {
         if (this.state.creator !== "") {
             if (this.state.password !== "") {
                 if (this.state.newpassword !== "") {
@@ -90,16 +90,27 @@ class ChangePassScreen extends React.Component {
                                     confirmnewpassword: this.state.confirmnewpassword
                                 };
                                 // https://konjomeet.herokuapp.com/users/changepass
-                                await fetch("http://localhost:4000/users/changepass", {
+                                fetch("http://localhost:4000/users/changepass", {
                                     method: "POST",
                                     headers: {
+                                        "Content-type": "application/json",
                                         "user-token": `${this.state.userToken}`
                                     },
                                     body: JSON.stringify(data)
                                 })
-                                    .then(res => res.json())
-                                // Vibration.vibrate();
-                                // this.props.navigation.push("Login")
+                                    .then(response => response.json())
+                                    .then(responseData => {
+                                        if (responseData.error) {
+                                            Vibration.vibrate();
+                                            Alert.alert(responseData.error + " ❌");
+                                        } else {
+                                            Vibration.vibrate();
+                                            this.props.navigation.push("Login")
+                                        }
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                    });
                             } else {
                                 Vibration.vibrate();
                                 Alert.alert("New passwords do not match.")
