@@ -319,6 +319,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
+        this.dropdown.alertWithType('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
       });
   }
 
