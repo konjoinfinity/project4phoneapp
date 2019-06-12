@@ -39,7 +39,6 @@ class NewHomeScreen extends React.Component {
     }
 
     componentDidMount() {
-        // this.setState({ dropdown: this.props.navigation.state.params.initialLogin });
         fetch("https://konjomeet.herokuapp.com/community/search")
             .then(res => res.json())
             .then(res => {

@@ -104,7 +104,9 @@ class ChangePassScreen extends React.Component {
                                             Alert.alert(responseData.error + " ❌");
                                         } else {
                                             Vibration.vibrate();
-                                            this.props.navigation.push("Login")
+                                            this.props.navigation.push("Login", {
+                                                passchange: true
+                                            })
                                         }
                                     })
                                     .catch(err => {
