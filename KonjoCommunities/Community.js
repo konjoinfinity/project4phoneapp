@@ -16,6 +16,7 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
+import DropdownAlert from 'react-native-dropdownalert';
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -260,6 +261,7 @@ class CommunityScreen extends React.Component {
         Vibration.vibrate();
       });
     this.joinUnjoin(true)
+    this.dropdown.alertWithType('success', 'Success', `You have joined ${this.state.community.name}!`);
   }
 
   deleteMember(e) {
@@ -283,6 +285,7 @@ class CommunityScreen extends React.Component {
         Vibration.vibrate();
       });
     this.joinUnjoin(false)
+    this.dropdown.alertWithType('info', 'Info', `You've left ${this.state.community.name}.`)
   }
 
   deleteMeet(e) {
@@ -602,6 +605,7 @@ class CommunityScreen extends React.Component {
             </AnimatableView>
           </AnimatableView>
         </ScrollView>
+        <DropdownAlert closeInterval={4000} ref={ref => this.dropdown = ref} />
       </KeyboardAvoidingView>
     );
   }
