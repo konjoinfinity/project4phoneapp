@@ -293,32 +293,6 @@ class ProfileScreen extends React.Component {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-    myCommunitiesButton: {
-        borderWidth: 1,
-        borderColor: "#FF8300",
-        backgroundColor: "#FF8300",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    },
-    myCommunitiesButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
-    joinedCommunitiesButton: {
-        borderWidth: 1,
-        borderColor: "#E0118A",
-        backgroundColor: "#E0118A",
-        padding: 15,
-        margin: 15,
-        borderRadius: 15
-    },
-    joinedCommunitiesButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     homeButton: {
         borderWidth: 1,
         borderColor: "#12C16D",
