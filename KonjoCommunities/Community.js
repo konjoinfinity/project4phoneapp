@@ -42,7 +42,8 @@ class CommunityScreen extends React.Component {
       nav: false,
       userToken: "",
       joined: "",
-      memberslist: false
+      memberslist: false,
+      keyboard: false
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -53,6 +54,7 @@ class CommunityScreen extends React.Component {
     this.commentClear = this.commentClear.bind(this);
     this.joinUnjoin = this.joinUnjoin.bind(this);
     this.openCloseMembersList = this.openCloseMembersList.bind(this);
+    this.openCloseKeyboardView = this.openCloseKeyboardView.bind(this);
   }
 
   handleCommentChange(comment) {
@@ -324,6 +326,15 @@ class CommunityScreen extends React.Component {
     }
   }
 
+  openCloseKeyboardView() {
+    if (this.state.keyboard === false) {
+      this.setState({ keyboard: true })
+    } else {
+      this.setState({ keyboard: false })
+      Keyboard.dismiss();
+    }
+  }
+
   render() {
     let members;
     this.state.community &&
@@ -543,11 +554,12 @@ class CommunityScreen extends React.Component {
                       style={styles.textInput}
                       name="comment"
                       id="comment"
-                      onBlur={Keyboard.dismiss}
+                      onBlur={() => this.openCloseKeyboardView()}
                       onChangeText={this.handleCommentChange}
                       returnKeyType="send"
                       value={this.state.comment}
                       onSubmitEditing={this.handleComment}
+                      onFocus={() => this.openCloseKeyboardView()}
                     />
                   </View>
                   <View style={styles.inputContainer}>
@@ -567,11 +579,12 @@ class CommunityScreen extends React.Component {
                       style={styles.textInput}
                       name="comment"
                       id="comment"
-                      onBlur={Keyboard.dismiss}
+                      onBlur={() => this.openCloseKeyboardView()}
                       onChangeText={this.handleCommentChange}
                       returnKeyType='send'
                       value={this.state.comment}
                       onSubmitEditing={this.handleComment}
+                      onFocus={() => this.openCloseKeyboardView()}
                     />
                   </View>
                   <View style={styles.inputContainer}>
@@ -605,6 +618,7 @@ class CommunityScreen extends React.Component {
             </AnimatableView>
           </AnimatableView>
         </ScrollView>
+        {this.state.keyboard === true && <View style={{ height: 80 }} />}
         <DropdownAlert closeInterval={4000} ref={ref => this.dropdown = ref} />
       </KeyboardAvoidingView>
     );
