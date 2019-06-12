@@ -259,9 +259,9 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
+        this.dropdown.alertWithType('success', 'Success', `You have joined ${this.state.community.name}!`);
       });
     this.joinUnjoin(true)
-    this.dropdown.alertWithType('success', 'Success', `You have joined ${this.state.community.name}!`);
   }
 
   deleteMember(e) {
@@ -283,9 +283,9 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
+        this.dropdown.alertWithType('info', 'Info', `You've left ${this.state.community.name}.`)
       });
     this.joinUnjoin(false)
-    this.dropdown.alertWithType('info', 'Info', `You've left ${this.state.community.name}.`)
   }
 
   deleteMeet(e) {
