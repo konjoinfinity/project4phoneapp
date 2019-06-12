@@ -249,11 +249,13 @@ class ProfileScreen extends React.Component {
                                     <Button onPress={() => this.openCloseCommCreated()}
                                         title="Hide"
                                         color="#2A87A6" />}
-                                <AnimatableView animation={this.state.commcreated === true ? "bounceInUp" : undefined}
-                                    delay={10}
-                                    duration={1500}>
-                                    {this.state.commcreated === true && mine}
-                                </AnimatableView>
+                                {this.state.commcreated === true && <Card borderRadius={15}>
+                                    <AnimatableView animation={this.state.commcreated === true ? "bounceInUp" : undefined}
+                                        delay={10}
+                                        duration={1500}>
+                                        {this.state.commcreated === true && mine}
+                                    </AnimatableView>
+                                </Card>}
                             </View>
                         </Card>
                         <Card borderRadius={15} containerStyle={{ backgroundColor: "#E0118A" }}>
