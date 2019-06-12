@@ -49,6 +49,11 @@ class NewHomeScreen extends React.Component {
         if (initlogin === true) {
             this.dropdown.alertWithType('success', 'Success', 'Login Successful, Welcome to Konjo!');
         }
+        const name = this.props.navigation.getParam('name', 'false');
+        const delcomm = this.props.navigation.getParam('delcomm', false);
+        if (delcomm !== false) {
+            this.dropdown.alertWithType('info', 'Info', `You've have deleted ${name}!`);
+        }
     }
 
     static navigationOptions = ({ navigation }) => {

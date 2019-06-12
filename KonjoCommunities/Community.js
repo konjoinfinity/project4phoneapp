@@ -96,6 +96,10 @@ class CommunityScreen extends React.Component {
       openCloseNav: this.openCloseNav
     });
     this.meetAlert();
+    const newcomm = this.props.navigation.getParam('newcomm', 'false');
+    if (newcomm === true) {
+      this.dropdown.alertWithType('success', 'Success', `You've created ${this.state.community.name}!`);
+    }
   }
 
   openCloseNav() {
@@ -188,7 +192,9 @@ class CommunityScreen extends React.Component {
       })
       .then(res => res.json())
       .then(res => console.log(res))
-      .then(this.props.navigation.push("NewHome"))
+      .then(this.props.navigation.push("NewHome", {
+        delcomm: true, name: this.state.community.name
+      }))
       .then(Vibration.vibrate());
   }
 

@@ -118,13 +118,11 @@ class NewScreen extends React.Component {
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
-    console.log(username);
     this.setState({ creator: username });
   }
 
   async getToken() {
     var token = await AsyncStorage.getItem(STORAGE_KEY);
-    console.log(token);
     this.setState({ userToken: token });
   }
 
@@ -192,7 +190,7 @@ class NewScreen extends React.Component {
                 .then(res => res.json())
                 .then(res => {
                   this.props.navigation.push("Community", {
-                    communityId: `${res._id}`
+                    communityId: `${res._id}`, newcomm: true
                   });
                 });
               Vibration.vibrate();
