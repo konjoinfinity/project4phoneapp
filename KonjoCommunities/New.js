@@ -188,8 +188,13 @@ class NewScreen extends React.Component {
                   "user-token": `${this.state.userToken}`
                 },
                 body: JSON.stringify(data)
-              });
-              this.props.navigation.push("Communities");
+              })
+                .then(res => res.json())
+                .then(res => {
+                  this.props.navigation.push("Community", {
+                    communityId: `${res._id}`
+                  });
+                });
               Vibration.vibrate();
               this.newClear();
             } else {
