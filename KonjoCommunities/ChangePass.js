@@ -42,14 +42,15 @@ class ChangePassScreen extends React.Component {
             newpassword: "",
             confirmnewpassword: ""
         }
+        this.changePassword = this.changePassword.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
         this.handleConfirmNewPasswordChange = this.handleConfirmNewPasswordChange.bind(this);
     }
 
-    async componentDidMount() {
-        await this.getToken();
-        await this.getUsername();
+    componentDidMount() {
+        this.getToken();
+        this.getUsername();
         Vibration.vibrate();
     }
 
@@ -65,36 +66,64 @@ class ChangePassScreen extends React.Component {
     }
 
     handlePasswordChange(password) {
-        this.setState({ password: password });
+        this.setState({ password });
     }
     handleNewPasswordChange(newpassword) {
-        this.setState({ newpassword: newpassword });
+        this.setState({ newpassword });
     }
     handleConfirmNewPasswordChange(confirmnewpassword) {
-        this.setState({ confirmnewpassword: confirmnewpassword });
+        this.setState({ confirmnewpassword });
     }
 
 
     async changePassword() {
-        var username = await AsyncStorage.getItem(STORAGE_USER);
-        const data = {
-            email: username,
-            password: this.state.password,
-            newpassword: this.state.newpassword,
-            confirmnewpassword: this.state.confirmnewpassword
-        };
-        console.log(data)
-        // https://konjomeet.herokuapp.com/users/changepass
-        await fetch("http://localhost:4000/users/changepass", {
-            method: "POST",
-            headers: {
-                "user-token": `${this.state.userToken}`
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-        // Vibration.vibrate();
-        // this.props.navigation.push("Login")
+        if (this.state.creator !== "") {
+            if (this.state.password !== "") {
+                if (this.state.newpassword !== "") {
+                    if (this.state.confirmnewpassword !== "") {
+                        if (this.state.userToken !== "") {
+                            if (this.state.newpassword === this.state.confirmnewpassword) {
+                                const data = {
+                                    email: this.state.creator,
+                                    password: this.state.password,
+                                    newpassword: this.state.newpassword,
+                                    confirmnewpassword: this.state.confirmnewpassword
+                                };
+                                // https://konjomeet.herokuapp.com/users/changepass
+                                await fetch("http://localhost:4000/users/changepass", {
+                                    method: "POST",
+                                    headers: {
+                                        "user-token": `${this.state.userToken}`
+                                    },
+                                    body: JSON.stringify(data)
+                                })
+                                    .then(res => res.json())
+                                // Vibration.vibrate();
+                                // this.props.navigation.push("Login")
+                            } else {
+                                Vibration.vibrate();
+                                Alert.alert("New passwords do not match.")
+                            }
+                        } else {
+                            Vibration.vibrate();
+                            Alert.alert("Please login to create.")
+                        }
+                    } else {
+                        Vibration.vibrate();
+                        Alert.alert("Please confirm new password to change.")
+                    }
+                } else {
+                    Vibration.vibrate();
+                    Alert.alert("Please enter new password to change.")
+                }
+            } else {
+                Vibration.vibrate();
+                Alert.alert("Please enter current password to change.")
+            }
+        } else {
+            Vibration.vibrate();
+            Alert.alert("Please login to create.")
+        }
     }
 
     static navigationOptions = ({ navigation }) => {
