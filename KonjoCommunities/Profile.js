@@ -238,20 +238,17 @@ class ProfileScreen extends React.Component {
                     duration={1800}>
                     <Card title="Profile" titleStyle={{ fontSize: 30, textAlign: "center", padding: 10, fontFamily: 'system font', color: "#000000" }} borderRadius={15}>
                         <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
-                        <TouchableOpacity
-                            style={styles.myCommunitiesButton}
-                            onPress={() => this.props.navigation.push("MyCommunities")}>
-                            <Text style={styles.myCommunitiesButtonText}>My Communities 👤</Text>
-                        </TouchableOpacity>
-                        <Card borderRadius={15}>
+                        <Card borderRadius={15} containerStyle={{ backgroundColor: "#FF8300" }}>
                             <View>
-                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}> Communities I've Created: {created && created.length}</Text>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}> Communities I've Created: {created && created.length}</Text>
                                 {this.state.commcreated === false &&
                                     <Button onPress={() => this.openCloseCommCreated()}
-                                        title="Show" />}
+                                        title="Show"
+                                        color="#2A87A6" />}
                                 {this.state.commcreated === true &&
                                     <Button onPress={() => this.openCloseCommCreated()}
-                                        title="Hide" />}
+                                        title="Hide"
+                                        color="#2A87A6" />}
                                 <AnimatableView animation={this.state.commcreated === true ? "bounceInUp" : undefined}
                                     delay={10}
                                     duration={1500}>
@@ -259,20 +256,17 @@ class ProfileScreen extends React.Component {
                                 </AnimatableView>
                             </View>
                         </Card>
-                        <TouchableOpacity
-                            style={styles.joinedCommunitiesButton}
-                            onPress={() => this.props.navigation.push("JoinedCommunities")}>
-                            <Text style={styles.joinedCommunitiesButtonText}>Joined Communities 👤➡️👥</Text>
-                        </TouchableOpacity>
-                        <Card borderRadius={15}>
+                        <Card borderRadius={15} containerStyle={{ backgroundColor: "#E0118A" }}>
                             <View>
-                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15 }}>Communities I've Joined: {joined && joined.length}</Text>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}>Communities I've Joined: {joined && joined.length}</Text>
                                 {this.state.commjoined === false &&
                                     <Button onPress={() => this.openCloseCommJoined()}
-                                        title="Show" />}
+                                        title="Show"
+                                        color="#A3F100" />}
                                 {this.state.commjoined === true &&
                                     <Button onPress={() => this.openCloseCommJoined()}
-                                        title="Hide" />}
+                                        title="Hide"
+                                        color="#A3F100" />}
                                 <AnimatableView animation={this.state.commjoined === true ? "bounceInUp" : undefined}
                                     delay={10}
                                     duration={1500}>

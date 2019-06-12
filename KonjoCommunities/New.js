@@ -144,7 +144,7 @@ class NewScreen extends React.Component {
       (error) => console.log(error),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
-    this.myTextInput.focus()
+    this.nameInput.focus()
   }
 
   newClear() {
@@ -236,7 +236,7 @@ class NewScreen extends React.Component {
                       onChangeText={this.handleNameChange}
                       returnKeyType={"next"}
                       onSubmitEditing={() => { this.descInput.focus(); }}
-                      ref={(ref) => { this.myTextInput = ref }}
+                      ref={(ref) => { this.nameInput = ref }}
                       value={this.state.name}
                     />
                   </View>

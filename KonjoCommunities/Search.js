@@ -176,7 +176,6 @@ class SearchScreen extends React.Component {
           {results}
           {newsearch}
         </ScrollView>
-        <View style={{ height: 60 }} />
       </KeyboardAvoidingView>
     );
   }
