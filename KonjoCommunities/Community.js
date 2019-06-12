@@ -41,7 +41,6 @@ class CommunityScreen extends React.Component {
       creator: "",
       nav: false,
       userToken: "",
-      joined: "",
       memberslist: false,
       keyboard: false
     };
@@ -52,7 +51,6 @@ class CommunityScreen extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
-    this.joinUnjoin = this.joinUnjoin.bind(this);
     this.openCloseMembersList = this.openCloseMembersList.bind(this);
     this.openCloseKeyboardView = this.openCloseKeyboardView.bind(this);
   }
@@ -267,9 +265,8 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        this.dropdown.alertWithType('success', 'Success', `You have joined ${this.state.community.name}!`);
+        this.dropdown.alertWithType('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
       });
-    this.joinUnjoin(true)
   }
 
   deleteMember(e) {
@@ -293,7 +290,6 @@ class CommunityScreen extends React.Component {
         Vibration.vibrate();
         this.dropdown.alertWithType('info', 'Info', `You've left ${this.state.community.name}.`)
       });
-    this.joinUnjoin(false)
   }
 
   deleteMeet(e) {
@@ -316,10 +312,6 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
       });
-  }
-
-  joinUnjoin(value) {
-    this.setState({ joined: value })
   }
 
   openCloseMembersList() {
@@ -432,196 +424,194 @@ class CommunityScreen extends React.Component {
             animation="bounceInUp"
             delay={10}
             duration={1800}>
-            <AnimatableView animation={this.state.joined === true ? "flipInY" : undefined}>
-              <Card borderRadius={15}>
-                <View>
-                  <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>
-                    {this.state.community.name}
-                  </Text>
+            <Card borderRadius={15}>
+              <View>
+                <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>
+                  {this.state.community.name}
+                </Text>
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                  🗒 {this.state.community.description}
+                </Text>
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                  📝 {this.state.community.category}
+                </Text>
+              </View>
+            </Card>
+            <Card borderRadius={15}>
+              <View>
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>👥 Members:  {this.state.community.numberOfMembers}</Text>
+                {this.state.memberslist === false &&
+                  <Button onPress={() => this.openCloseMembersList()}
+                    title="Show" />}
+                {this.state.memberslist === true &&
+                  <Button onPress={() => this.openCloseMembersList()}
+                    title="Hide" />}
+                {this.state.memberslist === true &&
                   <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                    🗒 {this.state.community.description}
-                  </Text>
-                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                    📝 {this.state.community.category}
-                  </Text>
-                </View>
-              </Card>
-              <Card borderRadius={15}>
-                <View>
-                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>👥 Members:  {this.state.community.numberOfMembers}</Text>
-                  {this.state.memberslist === false &&
-                    <Button onPress={() => this.openCloseMembersList()}
-                      title="Show" />}
-                  {this.state.memberslist === true &&
-                    <Button onPress={() => this.openCloseMembersList()}
-                      title="Hide" />}
-                  {this.state.memberslist === true &&
-                    <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                      👤 {this.state.community.creator}
-                    </Text>}
-                  {this.state.memberslist === true && (
-                    this.state.creator === this.state.community.creator && (
-                      <View>{members}</View>
-                    ))}
-                  {this.state.memberslist === true &&
-                    member.length === 1 && <View>{members}</View>}
-                </View>
-              </Card>
-              <Card borderRadius={15}>
-                <View>
+                    👤 {this.state.community.creator}
+                  </Text>}
+                {this.state.memberslist === true && (
+                  this.state.creator === this.state.community.creator && (
+                    <View>{members}</View>
+                  ))}
+                {this.state.memberslist === true &&
+                  member.length === 1 && <View>{members}</View>}
+              </View>
+            </Card>
+            <Card borderRadius={15}>
+              <View>
+                <TouchableOpacity
+                  style={styles.mapButton}
+                  onPress={() =>
+                    this.props.navigation.push("CommMap", {
+                      communityId: `${this.state.community._id}`
+                    })
+                  }
+                >
+                  <Text style={styles.mapButtonText}>Map 🗺</Text>
+                </TouchableOpacity>
+                {this.state.creator !== this.state.community.creator &&
+                  member.length === 0 && (
+                    <TouchableOpacity
+                      style={styles.joinButton}
+                      onPress={this.joinCommunity}
+                    >
+                      <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
+                    </TouchableOpacity>
+                  )}
+                {this.state.creator === this.state.community.creator && (
                   <TouchableOpacity
-                    style={styles.mapButton}
+                    style={styles.editButton}
                     onPress={() =>
-                      this.props.navigation.push("CommMap", {
+                      this.props.navigation.push("Edit", {
                         communityId: `${this.state.community._id}`
                       })
                     }
                   >
-                    <Text style={styles.mapButtonText}>Map 🗺</Text>
+                    <Text style={styles.editButtonText}>Edit Community ✏️</Text>
                   </TouchableOpacity>
-                  {this.state.creator !== this.state.community.creator &&
-                    member.length === 0 && (
-                      <TouchableOpacity
-                        style={styles.joinButton}
-                        onPress={this.joinCommunity}
-                      >
-                        <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
-                      </TouchableOpacity>
-                    )}
-                  {this.state.creator === this.state.community.creator && (
+                )}
+                {this.state.creator === this.state.community.creator && (
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={this.deleteCommunity}
+                  >
+                    <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
+                  </TouchableOpacity>
+                )}
+                {this.state.community.numberOfMembers >= 3 &&
+                  member.length === 1 && (
                     <TouchableOpacity
-                      style={styles.editButton}
+                      style={styles.meetButton}
                       onPress={() =>
-                        this.props.navigation.push("Edit", {
+                        this.props.navigation.push("Meet", {
                           communityId: `${this.state.community._id}`
                         })
                       }
                     >
-                      <Text style={styles.editButtonText}>Edit Community ✏️</Text>
+                      <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
                     </TouchableOpacity>
                   )}
-                  {this.state.creator === this.state.community.creator && (
+                {this.state.community.numberOfMembers >= 3 &&
+                  this.state.creator === this.state.community.creator && (
                     <TouchableOpacity
-                      style={styles.deleteButton}
-                      onPress={this.deleteCommunity}
+                      style={styles.meetButton}
+                      onPress={() =>
+                        this.props.navigation.push("Meet", {
+                          communityId: `${this.state.community._id}`
+                        })
+                      }
                     >
-                      <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
+                      <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
                     </TouchableOpacity>
                   )}
-                  {this.state.community.numberOfMembers >= 3 &&
-                    member.length === 1 && (
-                      <TouchableOpacity
-                        style={styles.meetButton}
-                        onPress={() =>
-                          this.props.navigation.push("Meet", {
-                            communityId: `${this.state.community._id}`
-                          })
-                        }
-                      >
-                        <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
-                      </TouchableOpacity>
-                    )}
-                  {this.state.community.numberOfMembers >= 3 &&
-                    this.state.creator === this.state.community.creator && (
-                      <TouchableOpacity
-                        style={styles.meetButton}
-                        onPress={() =>
-                          this.props.navigation.push("Meet", {
-                            communityId: `${this.state.community._id}`
-                          })
-                        }
-                      >
-                        <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
-                      </TouchableOpacity>
-                    )}
-                </View>
-              </Card>
-              {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
+              </View>
+            </Card>
+            {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
+              this.state.community.meets.length !== 0 && (
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
+                  Meets
+            </Text>
+              ))}
+            {this.state.community.numberOfMembers >= 3 &&
+              this.state.creator === this.state.community.creator && (
                 this.state.community.meets.length !== 0 && (
                   <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
                     Meets
-            </Text>
-                ))}
-              {this.state.community.numberOfMembers >= 3 &&
-                this.state.creator === this.state.community.creator && (
-                  this.state.community.meets.length !== 0 && (
-                    <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                      Meets
               </Text>
-                  ))}
-              {this.state.creator === this.state.community.creator && (
-                <View>{meetlist}</View>
-              )}
-              {member.length === 1 && <View>{meetlist}</View>}
-              {member.length === 1 && (
-                <Card borderRadius={15}>
-                  <View style={styles.inputContainer}>
-                    <TextInput
-                      style={styles.textInput}
-                      name="comment"
-                      id="comment"
-                      onBlur={() => this.openCloseKeyboardView()}
-                      onChangeText={this.handleCommentChange}
-                      returnKeyType="send"
-                      value={this.state.comment}
-                      onSubmitEditing={this.handleComment}
-                      onFocus={() => this.openCloseKeyboardView()}
-                    />
-                  </View>
-                  <View style={styles.inputContainer}>
-                    <TouchableOpacity
-                      style={styles.saveButton}
-                      onPress={this.handleComment}
-                    >
-                      <Text style={styles.saveButtonText}>Add Comment 💬</Text>
-                    </TouchableOpacity>
-                  </View>
-                </Card>
-              )}
-              {this.state.creator === this.state.community.creator && (
-                <Card borderRadius={15}>
-                  <View style={styles.inputContainer}>
-                    <TextInput
-                      style={styles.textInput}
-                      name="comment"
-                      id="comment"
-                      onBlur={() => this.openCloseKeyboardView()}
-                      onChangeText={this.handleCommentChange}
-                      returnKeyType='send'
-                      value={this.state.comment}
-                      onSubmitEditing={this.handleComment}
-                      onFocus={() => this.openCloseKeyboardView()}
-                    />
-                  </View>
-                  <View style={styles.inputContainer}>
-                    <TouchableOpacity
-                      style={styles.saveButton}
-                      onPress={this.handleComment}
-                    >
-                      <Text style={styles.saveButtonText}>Add Comment 💬</Text>
-                    </TouchableOpacity>
-                  </View>
-                </Card>
-              )}
-              {this.state.creator === this.state.community.creator && (
-                this.state.community.comments.length !== 0 && (
-                  <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
-                    Comments
-            </Text>
                 ))}
-              {member.length === 1 && (
-                this.state.community.comments.length !== 0 && (
-                  <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
-                    Comments
+            {this.state.creator === this.state.community.creator && (
+              <View>{meetlist}</View>
+            )}
+            {member.length === 1 && <View>{meetlist}</View>}
+            {member.length === 1 && (
+              <Card borderRadius={15}>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.textInput}
+                    name="comment"
+                    id="comment"
+                    onBlur={() => this.openCloseKeyboardView()}
+                    onChangeText={this.handleCommentChange}
+                    returnKeyType="send"
+                    value={this.state.comment}
+                    onSubmitEditing={this.handleComment}
+                    onFocus={() => this.openCloseKeyboardView()}
+                  />
+                </View>
+                <View style={styles.inputContainer}>
+                  <TouchableOpacity
+                    style={styles.saveButton}
+                    onPress={this.handleComment}
+                  >
+                    <Text style={styles.saveButtonText}>Add Comment 💬</Text>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+            )}
+            {this.state.creator === this.state.community.creator && (
+              <Card borderRadius={15}>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.textInput}
+                    name="comment"
+                    id="comment"
+                    onBlur={() => this.openCloseKeyboardView()}
+                    onChangeText={this.handleCommentChange}
+                    returnKeyType='send'
+                    value={this.state.comment}
+                    onSubmitEditing={this.handleComment}
+                    onFocus={() => this.openCloseKeyboardView()}
+                  />
+                </View>
+                <View style={styles.inputContainer}>
+                  <TouchableOpacity
+                    style={styles.saveButton}
+                    onPress={this.handleComment}
+                  >
+                    <Text style={styles.saveButtonText}>Add Comment 💬</Text>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+            )}
+            {this.state.creator === this.state.community.creator && (
+              this.state.community.comments.length !== 0 && (
+                <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
+                  Comments
             </Text>
-                ))}
-              {this.state.creator === this.state.community.creator && (
-                <View style={{ margin: 20 }}>{commentlist}</View>
-              )}
-              {member.length === 1 && (
-                <View style={{ margin: 20 }}>{commentlist}</View>
-              )}
-            </AnimatableView>
+              ))}
+            {member.length === 1 && (
+              this.state.community.comments.length !== 0 && (
+                <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
+                  Comments
+            </Text>
+              ))}
+            {this.state.creator === this.state.community.creator && (
+              <View style={{ margin: 20 }}>{commentlist}</View>
+            )}
+            {member.length === 1 && (
+              <View style={{ margin: 20 }}>{commentlist}</View>
+            )}
           </AnimatableView>
         </ScrollView>
         {this.state.keyboard === true && <View style={{ height: 80 }} />}
