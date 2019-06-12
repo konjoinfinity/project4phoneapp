@@ -55,6 +55,7 @@ class LoginScreen extends React.Component {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
       console.log("Logout Success! ✅")
+      this.dropdown.alertWithType('info', 'Info', 'You have logged out.');
       // Alert.alert("Logout Success! ✅");
     } else {
       console.log("User has already logged out")

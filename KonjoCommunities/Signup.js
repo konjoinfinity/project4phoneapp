@@ -82,7 +82,7 @@ class SignupScreen extends React.Component {
         let text = this.state.email
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         if (reg.test(text) === true) {
-            if (this.state.password.length > 8) {
+            if (this.state.password.length >= 8) {
                 fetch("https://konjomeet.herokuapp.com/users/signup", {
                     method: "POST",
                     headers: {
@@ -101,11 +101,13 @@ class SignupScreen extends React.Component {
                             Alert.alert(responseData.error + " ❌");
                         } else {
                             Vibration.vibrate();
-                            Alert.alert("User Signup Success! ✅ Welcome to Konjo!");
+                            // Alert.alert("User Signup Success! ✅ Welcome to Konjo!");
                             this.onValueChange(STORAGE_KEY, responseData.token);
                             this.onValueChange(STORAGE_USER, this.state.email);
+                            this.props.navigation.push("NewHome", {
+                                signup: true, email: this.state.email
+                            });
                             this.loginClear();
-                            this.props.navigation.push("NewHome");
                         }
                     })
                     .catch(err => {

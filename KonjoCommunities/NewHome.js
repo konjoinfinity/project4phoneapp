@@ -54,6 +54,11 @@ class NewHomeScreen extends React.Component {
         if (delcomm !== false) {
             this.dropdown.alertWithType('info', 'Info', `You've have deleted ${name}!`);
         }
+        const email = this.props.navigation.getParam('email', 'false');
+        const signup = this.props.navigation.getParam('signup', false);
+        if (signup !== false) {
+            this.dropdown.alertWithType('info', 'Info', `You've signed up! Welcome to Konjo, ${email}!`);
+        }
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -231,7 +236,7 @@ class NewHomeScreen extends React.Component {
                     </View>
                     {newsearch}
                 </ScrollView>
-                <DropdownAlert closeInterval={2000} ref={ref => this.dropdown = ref} />
+                <DropdownAlert closeInterval={3000} ref={ref => this.dropdown = ref} />
             </KeyboardAvoidingView>
         );
     }
