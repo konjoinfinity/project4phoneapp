@@ -89,8 +89,6 @@ class SearchScreen extends React.Component {
     this.state.communities && (
       (search = this.state.search.trim().toLowerCase()))
 
-    this.state.communities && console.log(search);
-
     this.state.communities &&
       search.length > 0 && (
         (communitySearch = communitySearch.filter(function (community) {

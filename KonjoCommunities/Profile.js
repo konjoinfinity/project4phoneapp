@@ -52,7 +52,6 @@ class ProfileScreen extends React.Component {
 
     async getUsername() {
         var username = await AsyncStorage.getItem(STORAGE_USER);
-        console.log(username);
         this.setState({ creator: username });
     }
 

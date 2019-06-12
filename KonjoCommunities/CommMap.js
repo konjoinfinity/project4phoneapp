@@ -31,7 +31,6 @@ class CommMapScreen extends Component {
                 this.setState({ community: res });
             });
         Vibration.vibrate();
-        console.log(this.state.community)
     }
 
     static navigationOptions = ({ navigation }) => {

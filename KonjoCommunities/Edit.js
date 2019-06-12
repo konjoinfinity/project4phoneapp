@@ -113,7 +113,6 @@ class EditScreen extends React.Component {
 
   async getToken() {
     var token = await AsyncStorage.getItem(STORAGE_KEY);
-    console.log(token);
     this.setState({ userToken: token });
   }
 

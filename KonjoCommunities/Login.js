@@ -50,13 +50,10 @@ class LoginScreen extends React.Component {
   async componentDidMount() {
     Vibration.vibrate();
     var username = await AsyncStorage.getItem(STORAGE_USER);
-    console.log(username);
     if (username !== null) {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
-      console.log("Logout Success! ✅")
       this.dropdown.alertWithType('info', 'Info', 'You have logged out.');
-      // Alert.alert("Logout Success! ✅");
     } else {
       console.log("User has already logged out")
     }
@@ -82,7 +79,6 @@ class LoginScreen extends React.Component {
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
-    console.log(username);
     Alert.alert(
       username === null ? "No user logged in" : username + " is logged in"
     );
@@ -118,8 +114,6 @@ class LoginScreen extends React.Component {
             Alert.alert(responseData.error + " ❌");
           } else {
             Vibration.vibrate();
-            // Alert.alert("Login Success! ✓");
-            console.log("Login Success! ✅")
             this.onValueChange(STORAGE_KEY, responseData.token);
             this.onValueChange(STORAGE_USER, this.state.email);
             this.loginClear();
