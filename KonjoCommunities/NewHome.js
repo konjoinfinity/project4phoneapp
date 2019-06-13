@@ -275,25 +275,25 @@ class NewHomeScreen extends React.Component {
                                     scrollEventThrottle={16}
                                 >
                                     <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText2}>Welcome to Konjo!</Text>
+                                        <Text style={styles.scrollableModalText1}>Welcome to Konjo!</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent1}>
                                         <Text style={styles.scrollableModalText1}>Tap the 👤 icon to visit your profile</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText2}>👥 shows a list of all communities</Text>
+                                        <Text style={styles.scrollableModalText1}>👥 shows a list of all communities</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent1}>
                                         <Text style={styles.scrollableModalText1}>To create a new community tap ➕</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText2}>To see a map of all communities, tap the 🗺</Text>
+                                        <Text style={styles.scrollableModalText1}>To see a map of all communities, tap the 🗺</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent1}>
                                         <Text style={styles.scrollableModalText1}>Type the community you would like to join or create into the search ⌨️</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText2}>Swipe this menu down to close</Text>
+                                        <Text style={styles.scrollableModalText1}>Swipe this menu down to close</Text>
                                     </View>
                                 </ScrollView>
                             </View>
@@ -388,12 +388,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15
-    },
-    scrollableModalText2: {
-        fontSize: 25,
-        color: 'white',
-        padding: 10,
-        textAlign: "center"
     }
 });
 
