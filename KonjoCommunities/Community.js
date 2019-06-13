@@ -42,7 +42,8 @@ class CommunityScreen extends React.Component {
       nav: false,
       userToken: "",
       memberslist: false,
-      keyboard: false
+      keyboard: false,
+      options: false
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -53,6 +54,7 @@ class CommunityScreen extends React.Component {
     this.commentClear = this.commentClear.bind(this);
     this.openCloseMembersList = this.openCloseMembersList.bind(this);
     this.openCloseKeyboardView = this.openCloseKeyboardView.bind(this);
+    this.showHideOptions = this.showHideOptions.bind(this);
   }
 
   handleCommentChange(comment) {
@@ -341,6 +343,14 @@ class CommunityScreen extends React.Component {
     }
   }
 
+  showHideOptions() {
+    if (this.state.options === false) {
+      this.setState({ options: true })
+    } else {
+      this.setState({ options: false })
+    }
+  }
+
   render() {
     let members;
     this.state.community &&
@@ -468,71 +478,84 @@ class CommunityScreen extends React.Component {
             </Card>
             <Card borderRadius={15}>
               <View>
-                <TouchableOpacity
-                  style={styles.mapButton}
-                  onPress={() =>
-                    this.props.navigation.push("CommMap", {
-                      communityId: `${this.state.community._id}`
-                    })
-                  }
-                >
-                  <Text style={styles.mapButtonText}>Map 🗺</Text>
-                </TouchableOpacity>
-                {this.state.creator !== this.state.community.creator &&
-                  member.length === 0 && (
+                <Text style={{
+                  fontSize: 20,
+                  textAlign: "center"
+                }}>Options</Text>
+                {this.state.options === false &&
+                  <Button onPress={() => this.showHideOptions()}
+                    title="Show" />}
+                {this.state.options === true &&
+                  <Button onPress={() => this.showHideOptions()}
+                    title="Hide" />}
+                {this.state.options === true &&
+                  <View>
                     <TouchableOpacity
-                      style={styles.joinButton}
-                      onPress={this.joinCommunity}
-                    >
-                      <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
-                    </TouchableOpacity>
-                  )}
-                {this.state.creator === this.state.community.creator && (
-                  <TouchableOpacity
-                    style={styles.editButton}
-                    onPress={() =>
-                      this.props.navigation.push("Edit", {
-                        communityId: `${this.state.community._id}`
-                      })
-                    }
-                  >
-                    <Text style={styles.editButtonText}>Edit Community ✏️</Text>
-                  </TouchableOpacity>
-                )}
-                {this.state.creator === this.state.community.creator && (
-                  <TouchableOpacity
-                    style={styles.deleteButton}
-                    onPress={this.deleteCommunity}
-                  >
-                    <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
-                  </TouchableOpacity>
-                )}
-                {this.state.community.numberOfMembers >= 3 &&
-                  member.length === 1 && (
-                    <TouchableOpacity
-                      style={styles.meetButton}
+                      style={styles.mapButton}
                       onPress={() =>
-                        this.props.navigation.push("Meet", {
+                        this.props.navigation.push("CommMap", {
                           communityId: `${this.state.community._id}`
                         })
                       }
                     >
-                      <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
+                      <Text style={styles.mapButtonText}>Map 🗺</Text>
                     </TouchableOpacity>
-                  )}
-                {this.state.community.numberOfMembers >= 3 &&
-                  this.state.creator === this.state.community.creator && (
-                    <TouchableOpacity
-                      style={styles.meetButton}
-                      onPress={() =>
-                        this.props.navigation.push("Meet", {
-                          communityId: `${this.state.community._id}`
-                        })
-                      }
-                    >
-                      <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
-                    </TouchableOpacity>
-                  )}
+                    {this.state.creator !== this.state.community.creator &&
+                      member.length === 0 && (
+                        <TouchableOpacity
+                          style={styles.joinButton}
+                          onPress={this.joinCommunity}
+                        >
+                          <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
+                        </TouchableOpacity>
+                      )}
+                    {this.state.creator === this.state.community.creator && (
+                      <TouchableOpacity
+                        style={styles.editButton}
+                        onPress={() =>
+                          this.props.navigation.push("Edit", {
+                            communityId: `${this.state.community._id}`
+                          })
+                        }
+                      >
+                        <Text style={styles.editButtonText}>Edit Community ✏️</Text>
+                      </TouchableOpacity>
+                    )}
+                    {this.state.creator === this.state.community.creator && (
+                      <TouchableOpacity
+                        style={styles.deleteButton}
+                        onPress={this.deleteCommunity}
+                      >
+                        <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
+                      </TouchableOpacity>
+                    )}
+                    {this.state.community.numberOfMembers >= 3 &&
+                      member.length === 1 && (
+                        <TouchableOpacity
+                          style={styles.meetButton}
+                          onPress={() =>
+                            this.props.navigation.push("Meet", {
+                              communityId: `${this.state.community._id}`
+                            })
+                          }
+                        >
+                          <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
+                        </TouchableOpacity>
+                      )}
+                    {this.state.community.numberOfMembers >= 3 &&
+                      this.state.creator === this.state.community.creator && (
+                        <TouchableOpacity
+                          style={styles.meetButton}
+                          onPress={() =>
+                            this.props.navigation.push("Meet", {
+                              communityId: `${this.state.community._id}`
+                            })
+                          }
+                        >
+                          <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
+                        </TouchableOpacity>
+                      )}
+                  </View>}
               </View>
             </Card>
             {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
