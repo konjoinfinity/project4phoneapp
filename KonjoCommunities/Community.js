@@ -17,6 +17,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
 import { AlertHelper } from './AlertHelper';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -53,7 +54,6 @@ class CommunityScreen extends React.Component {
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
     this.openCloseMembersList = this.openCloseMembersList.bind(this);
-    this.openCloseKeyboardView = this.openCloseKeyboardView.bind(this);
     this.showHideOptions = this.showHideOptions.bind(this);
   }
 
@@ -331,15 +331,6 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
   }
 
-  openCloseKeyboardView() {
-    if (this.state.keyboard === false) {
-      this.setState({ keyboard: true })
-    } else {
-      this.setState({ keyboard: false })
-      Keyboard.dismiss();
-    }
-  }
-
   showHideOptions() {
     this.setState(prevState => ({
       options: !prevState.options
@@ -431,7 +422,7 @@ class CommunityScreen extends React.Component {
         );
       }));
     return (
-      <KeyboardAvoidingView style={styles.communities} behavior="padding">
+      <View style={styles.communities} behavior="padding">
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <AnimatableView
@@ -578,12 +569,11 @@ class CommunityScreen extends React.Component {
                     style={styles.textInput}
                     name="comment"
                     id="comment"
-                    onBlur={() => this.openCloseKeyboardView()}
+                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleCommentChange}
                     returnKeyType="send"
                     value={this.state.comment}
                     onSubmitEditing={this.handleComment}
-                    onFocus={() => this.openCloseKeyboardView()}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -603,12 +593,11 @@ class CommunityScreen extends React.Component {
                     style={styles.textInput}
                     name="comment"
                     id="comment"
-                    onBlur={() => this.openCloseKeyboardView()}
+                    onBlur={Keyboard.dismiss}
                     onChangeText={this.handleCommentChange}
                     returnKeyType='send'
                     value={this.state.comment}
                     onSubmitEditing={this.handleComment}
-                    onFocus={() => this.openCloseKeyboardView()}
                   />
                 </View>
                 <View style={styles.inputContainer}>
@@ -641,8 +630,8 @@ class CommunityScreen extends React.Component {
             )}
           </AnimatableView>
         </ScrollView>
-        {this.state.keyboard === true && <View style={{ height: 80 }} />}
-      </KeyboardAvoidingView>
+        <KeyboardSpacer />
+      </View>
     );
   }
 }
@@ -700,7 +689,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   communities: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
