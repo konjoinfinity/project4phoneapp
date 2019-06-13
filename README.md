@@ -1,6 +1,6 @@
 # Konjo Communities React Native Phone App
 
-![A6BD90A3-48A3-479E-B28E-132D215DB955](https://user-images.githubusercontent.com/46323883/59458522-a152d480-8de8-11e9-9e71-acb8d1dc6ecf.png){:height="600px" width="300px"}
+![A6BD90A3-48A3-479E-B28E-132D215DB955](https://user-images.githubusercontent.com/46323883/59458522-a152d480-8de8-11e9-9e71-acb8d1dc6ecf.pngs=200)
 ![05337768-9134-4006-B204-C9F574BE98C7](https://user-images.githubusercontent.com/46323883/59458540-a9127900-8de8-11e9-8c27-64adbe5bb623.png){:height="600px" width="300px"}
 ![3F631DB0-AAA5-459F-AB34-2F8F5491C35B](https://user-images.githubusercontent.com/46323883/59458548-ad3e9680-8de8-11e9-8f28-605e590c6a0d.png){:height="600px" width="300px"}
 
