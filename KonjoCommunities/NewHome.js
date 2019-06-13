@@ -9,11 +9,13 @@ import {
     Keyboard,
     TouchableOpacity,
     Vibration,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Button
 } from "react-native";
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
+import Modal from "react-native-modal";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -33,7 +35,8 @@ class NewHomeScreen extends React.Component {
         super(props);
         this.state = {
             communities: "",
-            search: ""
+            search: "",
+            visibleModalId: null
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -58,6 +61,11 @@ class NewHomeScreen extends React.Component {
         const signup = this.props.navigation.getParam('signup', false);
         if (signup !== false) {
             AlertHelper.show('info', 'Info', `You've signed up! Welcome to Konjo, ${email}!`);
+        }
+        if (initlogin !== false || signup !== false) {
+            setTimeout(() => {
+                this.setState({ visibleModal: 'scrollable' })
+            }, 3000)
         }
     }
 
@@ -128,6 +136,18 @@ class NewHomeScreen extends React.Component {
     handleChange(search) {
         this.setState({ search });
     }
+
+    handleOnScroll = event => {
+        this.setState({
+            scrollOffset: event.nativeEvent.contentOffset.y,
+        });
+    };
+
+    handleScrollTo = p => {
+        if (this.scrollViewRef) {
+            this.scrollViewRef.scrollTo(p);
+        }
+    };
 
     render() {
         let communitySearch;
@@ -233,6 +253,52 @@ class NewHomeScreen extends React.Component {
                         {results}
                     </View>
                     {newsearch}
+                    <View style={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'white'
+                    }}>
+                        <Modal
+                            isVisible={this.state.visibleModal === 'scrollable'}
+                            onSwipeComplete={() => this.setState({ visibleModal: null })}
+                            swipeDirection="down"
+                            scrollTo={this.handleScrollTo}
+                            scrollOffset={this.state.scrollOffset}
+                            scrollOffsetMax={400 - 300} // content height - ScrollView height
+                            style={styles.bottomModal}
+                        >
+                            <View style={styles.scrollableModal}>
+                                <ScrollView
+                                    ref={ref => (this.scrollViewRef = ref)}
+                                    onScroll={this.handleOnScroll}
+                                    scrollEventThrottle={16}
+                                >
+                                    <View style={styles.scrollableModalContent2}>
+                                        <Text style={styles.scrollableModalText2}>Welcome to Konjo!</Text>
+                                    </View>
+                                    <View style={styles.scrollableModalContent1}>
+                                        <Text style={styles.scrollableModalText1}>Tap the 👤 icon to visit your profile</Text>
+                                    </View>
+                                    <View style={styles.scrollableModalContent2}>
+                                        <Text style={styles.scrollableModalText2}>👥 shows a list of all communities</Text>
+                                    </View>
+                                    <View style={styles.scrollableModalContent1}>
+                                        <Text style={styles.scrollableModalText1}>To create a new community tap ➕</Text>
+                                    </View>
+                                    <View style={styles.scrollableModalContent2}>
+                                        <Text style={styles.scrollableModalText2}>To see a map of all communities, tap the 🗺</Text>
+                                    </View>
+                                    <View style={styles.scrollableModalContent1}>
+                                        <Text style={styles.scrollableModalText1}>Type the community you would like to join or create into the search ⌨️</Text>
+                                    </View>
+                                    <View style={styles.scrollableModalContent2}>
+                                        <Text style={styles.scrollableModalText2}>Swipe this menu down to close</Text>
+                                    </View>
+                                </ScrollView>
+                            </View>
+                        </Modal>
+                    </View>
                 </ScrollView>
             </KeyboardAvoidingView>
         );
@@ -299,6 +365,35 @@ const styles = StyleSheet.create({
             width: 2,
             height: 2,
         }
+    },
+    scrollableModal: {
+        height: 300,
+    },
+    scrollableModalContent1: {
+        height: 200,
+        backgroundColor: '#87BBE0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 15
+    },
+    scrollableModalText1: {
+        fontSize: 25,
+        color: 'white',
+        padding: 10,
+        textAlign: "center"
+    },
+    scrollableModalContent2: {
+        height: 200,
+        backgroundColor: '#A9DCD3',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 15
+    },
+    scrollableModalText2: {
+        fontSize: 25,
+        color: 'white',
+        padding: 10,
+        textAlign: "center"
     }
 });
 
