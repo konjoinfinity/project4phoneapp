@@ -8,8 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   Vibration,
-  KeyboardAvoidingView,
-  Alert
+  KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -220,27 +219,27 @@ class MeetScreen extends React.Component {
                 this.meetClear();
               } else {
                 Vibration.vibrate();
-                Alert.alert("Please login to create.")
+                AlertHelper.show('warn', 'Warning', "Please login to create.");
               }
             } else {
               Vibration.vibrate();
-              Alert.alert("Please enter time to create.")
+              AlertHelper.show('warn', 'Warning', "Please enter time to create.");
             }
           } else {
             Vibration.vibrate();
-            Alert.alert("Please enter date to create.")
+            AlertHelper.show('warn', 'Warning', "Please enter date to create.");
           }
         } else {
           Vibration.vibrate();
-          Alert.alert("Please enter location to create.")
+          AlertHelper.show('warn', 'Warning', "Please enter location to create.");
         }
       } else {
         Vibration.vibrate();
-        Alert.alert("Please enter description to create.")
+        AlertHelper.show('warn', 'Warning', "Please enter description to create.");
       }
     } else {
       Vibration.vibrate();
-      Alert.alert("Please enter name to create.")
+      AlertHelper.show('warn', 'Warning', "Please enter name to create.");
     }
   }
 
