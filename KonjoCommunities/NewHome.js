@@ -39,6 +39,7 @@ class NewHomeScreen extends React.Component {
             visibleModalId: null
         };
         this.handleChange = this.handleChange.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     componentDidMount() {
@@ -148,6 +149,10 @@ class NewHomeScreen extends React.Component {
             this.scrollViewRef.scrollTo(p);
         }
     };
+
+    hideModal() {
+        this.setState({ visibleModal: null })
+    }
 
     render() {
         let communitySearch;
@@ -261,7 +266,7 @@ class NewHomeScreen extends React.Component {
                     }}>
                         <Modal
                             isVisible={this.state.visibleModal === 'scrollable'}
-                            onSwipeComplete={() => this.setState({ visibleModal: null })}
+                            onSwipeComplete={() => this.hideModal()}
                             swipeDirection="down"
                             scrollTo={this.handleScrollTo}
                             scrollOffset={this.state.scrollOffset}
