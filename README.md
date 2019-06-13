@@ -1,8 +1,8 @@
 # Konjo Communities React Native Phone App
 
 <img src="https://user-images.githubusercontent.com/46323883/59458522-a152d480-8de8-11e9-9e71-acb8d1dc6ecf.png" width="300" height="600">
-![05337768-9134-4006-B204-C9F574BE98C7](https://user-images.githubusercontent.com/46323883/59458540-a9127900-8de8-11e9-8c27-64adbe5bb623.png){:height="600px" width="300px"}
-![3F631DB0-AAA5-459F-AB34-2F8F5491C35B](https://user-images.githubusercontent.com/46323883/59458548-ad3e9680-8de8-11e9-8f28-605e590c6a0d.png){:height="600px" width="300px"}
+<img src="https://user-images.githubusercontent.com/46323883/59458540-a9127900-8de8-11e9-8c27-64adbe5bb623.png" width="300" height="600">
+<img src="https://user-images.githubusercontent.com/46323883/59458548-ad3e9680-8de8-11e9-8f28-605e590c6a0d.png" width="300" height="600">
 
 Welcome to Konjo Communities where you can create, join, meet, grow, and comment about communities. This is the react native phone app version of the project built using react native.
 
