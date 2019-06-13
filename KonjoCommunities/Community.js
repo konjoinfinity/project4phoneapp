@@ -325,13 +325,10 @@ class CommunityScreen extends React.Component {
   }
 
   openCloseMembersList() {
-    if (this.state.memberslist === false) {
-      this.setState({ memberslist: true })
-      Vibration.vibrate();
-    } else {
-      this.setState({ memberslist: false })
-      Vibration.vibrate();
-    }
+    this.setState(prevState => ({
+      memberslist: !prevState.memberslist
+    }));
+    Vibration.vibrate();
   }
 
   openCloseKeyboardView() {
@@ -344,11 +341,10 @@ class CommunityScreen extends React.Component {
   }
 
   showHideOptions() {
-    if (this.state.options === false) {
-      this.setState({ options: true })
-    } else {
-      this.setState({ options: false })
-    }
+    this.setState(prevState => ({
+      options: !prevState.options
+    }));
+    Vibration.vibrate();
   }
 
   render() {
@@ -479,7 +475,7 @@ class CommunityScreen extends React.Component {
             <Card borderRadius={15}>
               <View>
                 <Text style={{
-                  fontSize: 20,
+                  fontSize: 25,
                   textAlign: "center"
                 }}>Options</Text>
                 {this.state.options === false &&
