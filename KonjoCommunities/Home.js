@@ -6,8 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Vibration,
-  ScrollView,
-  Alert
+  ScrollView
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -45,7 +44,6 @@ class HomeScreen extends React.Component {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
       console.log("Logout Success! ✅")
-      // Alert.alert("Logout Success! ✅");
       Vibration.vibrate();
       this.props.navigation.push("Login")
     } catch (error) {
