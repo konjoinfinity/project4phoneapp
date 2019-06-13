@@ -14,7 +14,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import DatePicker from 'react-native-datepicker'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import { AlertHelper } from './AlertHelper';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
