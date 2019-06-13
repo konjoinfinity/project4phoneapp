@@ -7,12 +7,12 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Vibration,
-  KeyboardAvoidingView
+  Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -184,7 +184,7 @@ class EditScreen extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <View style={styles.container} behavior="padding">
         <ScrollView>
           <View style={styles.container}>
             <View>
@@ -248,8 +248,8 @@ class EditScreen extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <View style={{ height: 60 }} />
-      </KeyboardAvoidingView>
+        <KeyboardSpacer />
+      </View>
     );
   }
 }

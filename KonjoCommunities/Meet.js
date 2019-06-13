@@ -7,14 +7,14 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Vibration,
-  KeyboardAvoidingView
+  Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import DatePicker from 'react-native-datepicker'
 import { AlertHelper } from './AlertHelper';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -245,7 +245,7 @@ class MeetScreen extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <View style={styles.container} behavior="padding">
         <ScrollView>
           <View>
             <View>
@@ -358,8 +358,8 @@ class MeetScreen extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <View style={{ height: 60 }} />
-      </KeyboardAvoidingView>
+        <KeyboardSpacer />
+      </View>
     );
   }
 }
