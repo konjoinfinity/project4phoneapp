@@ -8,11 +8,11 @@ import {
     TextInput,
     TouchableOpacity,
     Vibration,
-    KeyboardAvoidingView,
-    Alert
+    KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
+import { AlertHelper } from './AlertHelper';
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -98,10 +98,9 @@ class SignupScreen extends React.Component {
                     .then(responseData => {
                         if (responseData.error) {
                             Vibration.vibrate();
-                            Alert.alert(responseData.error + " ❌");
+                            AlertHelper.show('error', 'Error', `${responseData.error}`);
                         } else {
                             Vibration.vibrate();
-                            // Alert.alert("User Signup Success! ✅ Welcome to Konjo!");
                             this.onValueChange(STORAGE_KEY, responseData.token);
                             this.onValueChange(STORAGE_USER, this.state.email);
                             this.props.navigation.push("NewHome", {
@@ -115,11 +114,11 @@ class SignupScreen extends React.Component {
                     });
             } else {
                 Vibration.vibrate();
-                Alert.alert("Passwords are required to have at least 8 characters.");
+                AlertHelper.show('warn', 'Warning', "Passwords are required to have at least 8 characters.");
             }
         } else {
             Vibration.vibrate();
-            Alert.alert("Please enter valid email.");
+            AlertHelper.show('warn', 'Warning', "Please enter valid email.");
         }
     }
 
