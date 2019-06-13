@@ -9,8 +9,7 @@ import {
     Keyboard,
     TouchableOpacity,
     Vibration,
-    KeyboardAvoidingView,
-    Button
+    KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
@@ -280,7 +279,11 @@ class NewHomeScreen extends React.Component {
                                     scrollEventThrottle={16}
                                 >
                                     <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText1}>Welcome to Konjo!</Text>
+                                        <Text style={styles.scrollableModalText1}>Welcome to</Text>
+                                        <Image
+                                            source={require("./logo.png")}
+                                            style={{ width: 100, height: 50 }}
+                                        />
                                     </View>
                                     <View style={styles.scrollableModalContent1}>
                                         <Text style={styles.scrollableModalText1}>Tap the 👤 icon to visit your profile</Text>
@@ -372,10 +375,10 @@ const styles = StyleSheet.create({
         }
     },
     scrollableModal: {
-        height: 300,
+        height: 500,
     },
     scrollableModalContent1: {
-        height: 200,
+        height: 300,
         backgroundColor: '#87BBE0',
         alignItems: 'center',
         justifyContent: 'center',
@@ -388,7 +391,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     scrollableModalContent2: {
-        height: 200,
+        height: 300,
         backgroundColor: '#A9DCD3',
         alignItems: 'center',
         justifyContent: 'center',
