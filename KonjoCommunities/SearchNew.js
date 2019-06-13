@@ -15,6 +15,7 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
+import { AlertHelper } from './AlertHelper';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -197,23 +198,23 @@ class SearchNewScreen extends React.Component {
               this.newClear();
             } else {
               Vibration.vibrate();
-              Alert.alert("Please submit location to create.")
+              AlertHelper.show('warn', 'Warning', "Please submit location to create.");
             }
           } else {
             Vibration.vibrate();
-            Alert.alert("Please login to create.")
+            AlertHelper.show('warn', 'Warning', "Please login to create.");
           }
         } else {
           Vibration.vibrate();
-          Alert.alert("Please enter category to create.")
+          AlertHelper.show('warn', 'Warning', "Please enter category to create.");
         }
       } else {
         Vibration.vibrate();
-        Alert.alert("Please enter description to create.")
+        AlertHelper.show('warn', 'Warning', "Please enter description to create.");
       }
     } else {
       Vibration.vibrate();
-      Alert.alert("Please enter name to create.")
+      AlertHelper.show('warn', 'Warning', "Please enter name to create.");
     }
   }
 
