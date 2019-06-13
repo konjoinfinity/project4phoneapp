@@ -14,6 +14,7 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
+import { AlertHelper } from './AlertHelper';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -100,7 +101,7 @@ class ChangePassScreen extends React.Component {
                                     .then(responseData => {
                                         if (responseData.error) {
                                             Vibration.vibrate();
-                                            Alert.alert(responseData.error + " ❌");
+                                            AlertHelper.show('error', 'Error', `${responseData.error} ❌`);
                                         } else {
                                             Vibration.vibrate();
                                             this.props.navigation.push("Login", {
@@ -113,27 +114,27 @@ class ChangePassScreen extends React.Component {
                                     });
                             } else {
                                 Vibration.vibrate();
-                                Alert.alert("New passwords do not match.")
+                                AlertHelper.show('warn', 'Warning', "New passwords do not match.");
                             }
                         } else {
                             Vibration.vibrate();
-                            Alert.alert("Please login to create.")
+                            AlertHelper.show('warn', 'Warning', "Please login to create.");
                         }
                     } else {
                         Vibration.vibrate();
-                        Alert.alert("Please confirm new password to change.")
+                        AlertHelper.show('warn', 'Warning', "Please confirm new password to change.");
                     }
                 } else {
                     Vibration.vibrate();
-                    Alert.alert("Please enter new password to change.")
+                    AlertHelper.show('warn', 'Warning', "Please enter new password to change.");
                 }
             } else {
                 Vibration.vibrate();
-                Alert.alert("Please enter current password to change.")
+                AlertHelper.show('warn', 'Warning', "Please enter current password to change.");
             }
         } else {
             Vibration.vibrate();
-            Alert.alert("Please login to create.")
+            AlertHelper.show('warn', 'Warning', "Please login to create.");
         }
     }
 
