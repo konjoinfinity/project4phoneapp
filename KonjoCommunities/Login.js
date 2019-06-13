@@ -80,9 +80,7 @@ class LoginScreen extends React.Component {
 
   async getUsername() {
     var username = await AsyncStorage.getItem(STORAGE_USER);
-    Alert.alert(
-      username === null ? "No user logged in" : username + " is logged in"
-    );
+    AlertHelper.show('info', 'Info', username === null ? "No user logged in" : username + " is logged in");
     Vibration.vibrate();
   }
 
@@ -112,7 +110,7 @@ class LoginScreen extends React.Component {
         .then(responseData => {
           if (responseData.error) {
             Vibration.vibrate();
-            Alert.alert(responseData.error + " ❌");
+            AlertHelper.show('error', 'Error', `${responseData.error}`);
           } else {
             Vibration.vibrate();
             this.onValueChange(STORAGE_KEY, responseData.token);
@@ -128,7 +126,7 @@ class LoginScreen extends React.Component {
         });
     } else {
       Vibration.vibrate();
-      Alert.alert("Please enter valid email.");
+      AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
     }
   }
 

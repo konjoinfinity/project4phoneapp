@@ -101,7 +101,7 @@ class ChangePassScreen extends React.Component {
                                     .then(responseData => {
                                         if (responseData.error) {
                                             Vibration.vibrate();
-                                            AlertHelper.show('error', 'Error', `${responseData.error} ❌`);
+                                            AlertHelper.show('error', 'Error', `${responseData.error}`);
                                         } else {
                                             Vibration.vibrate();
                                             this.props.navigation.push("Login", {

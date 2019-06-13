@@ -251,7 +251,7 @@ class CommunityScreen extends React.Component {
         })
     } else {
       Vibration.vibrate();
-      Alert.alert("Please enter text to comment.")
+      AlertHelper.show('warn', 'Warning', "Please enter text to comment.");
     }
   }
 
