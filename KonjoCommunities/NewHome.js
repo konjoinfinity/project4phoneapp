@@ -282,7 +282,7 @@ class NewHomeScreen extends React.Component {
                                         <Text style={styles.scrollableModalText1}>Welcome to</Text>
                                         <Image
                                             source={require("./logo.png")}
-                                            style={{ width: 100, height: 50 }}
+                                            style={{ width: 200, height: 100 }}
                                         />
                                     </View>
                                     <View style={styles.scrollableModalContent1}>
