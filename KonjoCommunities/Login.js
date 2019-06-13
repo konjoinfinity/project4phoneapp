@@ -117,10 +117,10 @@ class LoginScreen extends React.Component {
             Vibration.vibrate();
             this.onValueChange(STORAGE_KEY, responseData.token);
             this.onValueChange(STORAGE_USER, this.state.email);
-            this.loginClear();
             this.props.navigation.push("NewHome", {
-              initlogin: true
+              initlogin: this.state.email
             });
+            this.loginClear();
           }
         })
         .catch(err => {

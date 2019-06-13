@@ -45,9 +45,9 @@ class NewHomeScreen extends React.Component {
                 this.setState({ communities: res });
             });
         Vibration.vibrate();
-        const initlogin = this.props.navigation.getParam('initlogin', 'false');
-        if (initlogin === true) {
-            AlertHelper.show('success', 'Success', 'Login Successful, Welcome to Konjo!');
+        const initlogin = this.props.navigation.getParam('initlogin', false);
+        if (initlogin !== false) {
+            AlertHelper.show('success', 'Success', `Login Successful - Welcome to Konjo, ${initlogin}!`);
         }
         const name = this.props.navigation.getParam('name', 'false');
         const delcomm = this.props.navigation.getParam('delcomm', false);
