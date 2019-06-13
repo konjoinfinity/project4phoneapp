@@ -14,6 +14,7 @@ import {
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import DropdownAlert from 'react-native-dropdownalert';
+import { AlertHelper } from './AlertHelper';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -45,20 +46,21 @@ class NewHomeScreen extends React.Component {
                 this.setState({ communities: res });
             });
         Vibration.vibrate();
-        const initlogin = this.props.navigation.getParam('initlogin', 'false');
-        if (initlogin === true) {
-            this.dropdown.alertWithType('success', 'Success', 'Login Successful, Welcome to Konjo!');
-        }
-        const name = this.props.navigation.getParam('name', 'false');
-        const delcomm = this.props.navigation.getParam('delcomm', false);
-        if (delcomm !== false) {
-            this.dropdown.alertWithType('info', 'Info', `You've have deleted ${name}!`);
-        }
-        const email = this.props.navigation.getParam('email', 'false');
-        const signup = this.props.navigation.getParam('signup', false);
-        if (signup !== false) {
-            this.dropdown.alertWithType('info', 'Info', `You've signed up! Welcome to Konjo, ${email}!`);
-        }
+        AlertHelper.show('info', 'Info', 'Looks good!!')
+        // const initlogin = this.props.navigation.getParam('initlogin', 'false');
+        // if (initlogin === true) {
+        //     this.dropdown.alertWithType('success', 'Success', 'Login Successful, Welcome to Konjo!');
+        // }
+        // const name = this.props.navigation.getParam('name', 'false');
+        // const delcomm = this.props.navigation.getParam('delcomm', false);
+        // if (delcomm !== false) {
+        //     this.dropdown.alertWithType('info', 'Info', `You've have deleted ${name}!`);
+        // }
+        // const email = this.props.navigation.getParam('email', 'false');
+        // const signup = this.props.navigation.getParam('signup', false);
+        // if (signup !== false) {
+        //     this.dropdown.alertWithType('info', 'Info', `You've signed up! Welcome to Konjo, ${email}!`);
+        // }
     }
 
     static navigationOptions = ({ navigation }) => {
