@@ -39,10 +39,17 @@ This app will be deployed using testflight in the future, stay tuned.
 - [React Native](https://facebook.github.io/react-native/) - Build native mobile apps using JavaScript and React
 - [React Navigation](https://reactnavigation.org/) - Navigator/Router for React Native
 - [React Native Elements](https://github.com/react-native-training/react-native-elements) - Cross Platform React Native UI Toolkit
+- [React Native Async Storage](https://www.npmjs.com/package/@react-native-community/async-storage) - An asynchronous, unencrypted, persistent, key-value storage system for React Native.
+- [React Native Maps](https://github.com/react-native-community/react-native-maps) - React Native Mapview component for iOS + Android
+- [Geolib](https://github.com/manuelbieh/geolib) - Zero dependency library to provide some basic geo functions
+- [React Native Dropdownalert](https://github.com/testshallpass/react-native-dropdownalert) - A simple alert to notify users about new chat messages, something went wrong or everything is ok.
+- [React Native Animatable](https://github.com/oblador/react-native-animatable) - Standard set of easy to use animations and declarative transitions for React Native
+- [React Native Modal](https://github.com/react-native-community/react-native-modal) - An enhanced, animated and customizable react-native modal
+- [React Native Keyboard Spacer](https://www.npmjs.com/package/react-native-keyboard-spacer) - Plug and play iOS react-native keyboard spacer view.
 
 ## Contributing
 
-If you would like to contribute to this project, please feel free to submit a pull request!
+If you would like to contribute to this project, please feel free to contact me or submit a pull request!
 
 ## Authors
 
