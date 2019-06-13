@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
-import DropdownAlert from 'react-native-dropdownalert';
+import { AlertHelper } from './AlertHelper';
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -53,13 +53,14 @@ class LoginScreen extends React.Component {
     if (username !== null) {
       await AsyncStorage.removeItem(STORAGE_KEY);
       await AsyncStorage.removeItem(STORAGE_USER);
-      this.dropdown.alertWithType('info', 'Info', 'You have logged out.');
+      const passchange = this.props.navigation.getParam('passchange', 'false');
+      if (passchange === true) {
+        AlertHelper.show('info', 'Info', 'Password changed. Please login with your new password.');
+      } else {
+        AlertHelper.show('info', 'Info', 'You have logged out.');
+      }
     } else {
       console.log("User has already logged out")
-    }
-    const passchange = this.props.navigation.getParam('passchange', 'false');
-    if (passchange === true) {
-      this.dropdown.alertWithType('info', 'Info', 'Password changed. Please login with your new password.');
     }
   }
 
@@ -188,7 +189,6 @@ class LoginScreen extends React.Component {
             </Card>
           </View>
         </ScrollView>
-        <DropdownAlert closeInterval={4000} ref={ref => this.dropdown = ref} />
       </KeyboardAvoidingView>
     );
   }

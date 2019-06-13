@@ -16,7 +16,7 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
-import DropdownAlert from 'react-native-dropdownalert';
+import { AlertHelper } from './AlertHelper';
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -95,15 +95,15 @@ class CommunityScreen extends React.Component {
     this.meetAlert();
     const newcomm = this.props.navigation.getParam('newcomm', 'false');
     if (newcomm === true) {
-      this.dropdown.alertWithType('success', 'Success', `You've created ${this.state.community.name}!`);
+      AlertHelper.show('success', 'Success', `You've created ${this.state.community.name}!`);
     }
     const meet = this.props.navigation.getParam('meet', 'false');
     if (meet === true) {
-      this.dropdown.alertWithType('info', 'Meet!', `You've created a new meet for ${this.state.community.name}!`);
+      AlertHelper.show('info', 'Meet!', `You've created a new meet for ${this.state.community.name}!`);
     }
     const edit = this.props.navigation.getParam('edit', 'false');
     if (edit === true) {
-      this.dropdown.alertWithType('info', 'Edited!', `You've updated ${this.state.community.name}!`);
+      AlertHelper.show('info', 'Edited!', `You've updated ${this.state.community.name}!`);
     }
   }
 
@@ -272,7 +272,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        this.dropdown.alertWithType('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
+        AlertHelper.show('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
       });
   }
 
@@ -295,7 +295,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        this.dropdown.alertWithType('info', 'Info', `You've left ${this.state.community.name}.`)
+        AlertHelper.show('info', 'Info', `You've left ${this.state.community.name}.`)
       });
   }
 
@@ -318,7 +318,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        this.dropdown.alertWithType('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
+        AlertHelper.show('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
       });
   }
 
@@ -623,7 +623,6 @@ class CommunityScreen extends React.Component {
           </AnimatableView>
         </ScrollView>
         {this.state.keyboard === true && <View style={{ height: 80 }} />}
-        <DropdownAlert closeInterval={4000} ref={ref => this.dropdown = ref} />
       </KeyboardAvoidingView>
     );
   }
