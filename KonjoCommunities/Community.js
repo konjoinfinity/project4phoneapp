@@ -17,6 +17,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
 import { AlertHelper } from './AlertHelper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import Modal from "react-native-modal";
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -43,7 +44,8 @@ class CommunityScreen extends React.Component {
       userToken: "",
       memberslist: false,
       keyboard: false,
-      options: false
+      options: false,
+      joinmodal: null
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -106,7 +108,25 @@ class CommunityScreen extends React.Component {
     if (edit === true) {
       AlertHelper.show('info', 'Edited!', `You've updated ${this.state.community.name}!`);
     }
+    if (this.state.creator !== this.state.community.creator) {
+      const meetMember =
+        this.state.community &&
+        this.state.community.members.filter(
+          member => member.name === this.state.creator
+        );
+      if (meetMember.length === 0) {
+        this.setState({ joinmodal: true });
+      }
+    }
   }
+
+  joinModal = () =>
+    (
+      <View style={styles.modal}>
+        <Text style={styles.modalText}>Swipe to join {this.state.community.name}</Text>
+        <Button title="Click outside or here to Close" onPress={() => this.setState({ joinmodal: null })} />
+      </View>
+    );
 
   openCloseNav() {
     if (this.state.nav === false) {
@@ -274,6 +294,9 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
         AlertHelper.show('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
+        if (this.state.joinmodal === true) {
+          this.setState({ joinmodal: null })
+        }
       });
   }
 
@@ -629,6 +652,16 @@ class CommunityScreen extends React.Component {
             )}
           </AnimatableView>
         </ScrollView>
+        <Modal
+          isVisible={this.state.joinmodal === true}
+          animationInTiming={500}
+          animationIn="slideInLeft"
+          onSwipeComplete={() => this.joinCommunity()}
+          swipeDirection={['right', 'left', 'up', 'down']}
+          onBackdropPress={() => this.setState({ joinmodal: null })}
+        >
+          {this.joinModal()}
+        </Modal>
         <KeyboardSpacer />
       </View>
     );
@@ -789,6 +822,19 @@ const styles = StyleSheet.create({
   mapButtonText: {
     color: "#FFFFFF",
     fontSize: 20,
+    textAlign: "center"
+  },
+  modal: {
+    height: 250,
+    backgroundColor: '#87BBE0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15
+  },
+  modalText: {
+    fontSize: 25,
+    color: 'white',
+    padding: 10,
     textAlign: "center"
   }
 });
