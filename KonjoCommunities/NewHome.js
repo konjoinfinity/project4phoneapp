@@ -143,7 +143,7 @@ class NewHomeScreen extends React.Component {
         };
     }
 
-    renderModalContent1 = () =>
+    modal1 = () =>
         (
             <View style={styles.modal1}>
                 <Text style={styles.modalText}>Welcome to</Text>
@@ -155,42 +155,42 @@ class NewHomeScreen extends React.Component {
             </View>
         );
 
-    renderModalContent2 = () =>
+    modal2 = () =>
         (
             <View style={styles.modal2}>
                 <Text style={styles.modalText}>Tap the 👤 icon to visit your profile</Text>
             </View>
         );
 
-    renderModalContent3 = () =>
+    modal3 = () =>
         (
             <View style={styles.modal1}>
                 <Text style={styles.modalText}>👥 shows a list of all communities</Text>
             </View>
         );
 
-    renderModalContent4 = () =>
+    modal4 = () =>
         (
             <View style={styles.modal2}>
                 <Text style={styles.modalText}>To create a new community tap ➕</Text>
             </View>
         );
 
-    renderModalContent5 = () =>
+    modal5 = () =>
         (
             <View style={styles.modal1}>
                 <Text style={styles.modalText}>To see a map of all communities, tap the 🗺</Text>
             </View>
         );
 
-    renderModalContent6 = () =>
+    modal6 = () =>
         (
             <View style={styles.modal2}>
                 <Text style={styles.modalText}>⌨️ Search for the community you would like to join or create one</Text>
             </View>
         );
 
-    renderModalContent7 = () =>
+    modal7 = () =>
         (
             <View style={styles.modal1}>
                 <Text style={styles.modalText}>Enjoy Konjo! 😊</Text>
@@ -349,7 +349,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent1()}
+                            {this.modal1()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal2 === true}
@@ -357,7 +357,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent2()}
+                            {this.modal2()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal3 === true}
@@ -365,7 +365,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent3()}
+                            {this.modal3()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal4 === true}
@@ -373,7 +373,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent4()}
+                            {this.modal4()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal5 === true}
@@ -381,7 +381,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent5()}
+                            {this.modal5()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal6 === true}
@@ -389,7 +389,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent6()}
+                            {this.modal6()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal7 === true}
@@ -397,7 +397,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent7()}
+                            {this.modal7()}
                         </Modal>
                     </View>
                 </ScrollView>

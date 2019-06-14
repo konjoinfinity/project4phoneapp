@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView,
-  Alert
+  Alert,
+  Keyboard
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -76,6 +77,7 @@ class LoginScreen extends React.Component {
       email: "",
       password: ""
     });
+    Keyboard.dismiss();
   }
 
   async getUsername() {
@@ -150,6 +152,7 @@ class LoginScreen extends React.Component {
                   blurOnSubmit={false}
                   onChangeText={this.handleEmailChange}
                   value={this.state.email}
+                  onBlur={Keyboard.dismiss}
                   onSubmitEditing={() => { this.passInput.focus(); }}
                 />
               </View>
@@ -164,6 +167,7 @@ class LoginScreen extends React.Component {
                   ref={(input) => { this.passInput = input; }}
                   onSubmitEditing={this.handleLogin}
                   value={this.state.password}
+                  onBlur={Keyboard.dismiss}
                   returnKeyType='send'
                 />
               </View>
