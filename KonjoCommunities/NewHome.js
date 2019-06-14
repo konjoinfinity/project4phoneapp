@@ -54,7 +54,6 @@ class NewHomeScreen extends React.Component {
             .then(res => {
                 this.setState({ communities: res });
             });
-        Vibration.vibrate();
         const initlogin = this.props.navigation.getParam('initlogin', false);
         if (initlogin !== false) {
             AlertHelper.show('success', 'Success', `Login Successful - Welcome to Konjo, ${initlogin}!`);
@@ -72,9 +71,11 @@ class NewHomeScreen extends React.Component {
         if (initlogin !== false || signup !== false) {
             setTimeout(() => {
                 this.setState({ modal1: 'sliding' })
+                Vibration.vibrate();
             }, 3000)
         } else {
             this.textInput.focus();
+            Vibration.vibrate();
         }
     }
 
