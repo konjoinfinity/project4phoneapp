@@ -227,8 +227,9 @@ class NewHomeScreen extends React.Component {
             }, 500)
         } else if (this.state.modal7 === 'sliding') {
             this.setState({ modal7: null })
+            Vibration.vibrate();
             setTimeout(() => {
-                Vibration.vibrate();
+                this.textInput.focus();
             }, 500)
         }
     }
@@ -310,9 +311,8 @@ class NewHomeScreen extends React.Component {
                                         placeholder="Verb, Activity"
                                         name="search"
                                         id="search"
-                                        onBlur={Keyboard.dismiss}
                                         onChangeText={this.handleChange}
-                                        autoFocus={true}
+                                        ref={(input) => { this.textInput = input; }}
                                     />
                                 </View>
                             </Card>
