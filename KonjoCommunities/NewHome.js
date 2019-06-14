@@ -37,7 +37,12 @@ class NewHomeScreen extends React.Component {
             communities: "",
             search: "",
             modal1: null,
-            modal2: null
+            modal2: null,
+            modal3: null,
+            modal4: null,
+            modal5: null,
+            modal6: null,
+            modal7: null
         };
         this.handleChange = this.handleChange.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -136,17 +141,57 @@ class NewHomeScreen extends React.Component {
         };
     }
 
-    renderModalContent = () =>
+    renderModalContent1 = () =>
         (
-            <View style={styles.scrollableModalContent1}>
-                <Text style={styles.scrollableModalText1}>Konjo 😊!</Text>
+            <View style={styles.modal1}>
+                <Text style={styles.modalText}>Welcome to</Text>
+                <Image
+                    source={require("./logo.png")}
+                    style={{ width: 200, height: 100 }}
+                />
+                <Text style={styles.modalText}>Swipe to continue</Text>
             </View>
         );
 
-    renderModalContent1 = () =>
+    renderModalContent2 = () =>
         (
-            <View style={styles.scrollableModalContent2}>
-                <Text style={styles.scrollableModalText1}>Page 2 😊!</Text>
+            <View style={styles.modal2}>
+                <Text style={styles.modalText}>Tap the 👤 icon to visit your profile</Text>
+            </View>
+        );
+
+    renderModalContent3 = () =>
+        (
+            <View style={styles.modal1}>
+                <Text style={styles.modalText}>👥 shows a list of all communities</Text>
+            </View>
+        );
+
+    renderModalContent4 = () =>
+        (
+            <View style={styles.modal2}>
+                <Text style={styles.modalText}>To create a new community tap ➕</Text>
+            </View>
+        );
+
+    renderModalContent5 = () =>
+        (
+            <View style={styles.modal1}>
+                <Text style={styles.modalText}>To see a map of all communities, tap the 🗺</Text>
+            </View>
+        );
+
+    renderModalContent6 = () =>
+        (
+            <View style={styles.modal2}>
+                <Text style={styles.modalText}>⌨️ Search for the community you would like to join or create one</Text>
+            </View>
+        );
+
+    renderModalContent7 = () =>
+        (
+            <View style={styles.modal1}>
+                <Text style={styles.modalText}>Enjoy Konjo! 😊</Text>
             </View>
         );
 
@@ -159,8 +204,30 @@ class NewHomeScreen extends React.Component {
         } else if (this.state.modal2 === 'sliding') {
             this.setState({ modal2: null })
             setTimeout(() => {
-                this.setState({ modal1: 'sliding' })
+                this.setState({ modal3: 'sliding' })
             }, 500)
+        } else if (this.state.modal3 === 'sliding') {
+            this.setState({ modal3: null })
+            setTimeout(() => {
+                this.setState({ modal4: 'sliding' })
+            }, 500)
+        } else if (this.state.modal4 === 'sliding') {
+            this.setState({ modal4: null })
+            setTimeout(() => {
+                this.setState({ modal5: 'sliding' })
+            }, 500)
+        } else if (this.state.modal5 === 'sliding') {
+            this.setState({ modal5: null })
+            setTimeout(() => {
+                this.setState({ modal6: 'sliding' })
+            }, 500)
+        } else if (this.state.modal6 === 'sliding') {
+            this.setState({ modal6: null })
+            setTimeout(() => {
+                this.setState({ modal7: 'sliding' })
+            }, 500)
+        } else if (this.state.modal7 === 'sliding') {
+            this.setState({ modal7: null })
         }
     }
 
@@ -336,7 +403,7 @@ class NewHomeScreen extends React.Component {
                                         <Text style={styles.scrollableModalText1}>To see a map of all communities, tap the 🗺</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent1}>
-                                        <Text style={styles.scrollableModalText1}>Type the community you would like to join or create into the search ⌨️</Text>
+                                        <Text style={styles.scrollableModalText1}>⌨️ Search for the community you would like to join or create one</Text>
                                     </View>
                                     <View style={styles.scrollableModalContent2}>
                                         <Text style={styles.scrollableModalText1}>Swipe this menu down to close</Text>
@@ -353,7 +420,7 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent()}
+                            {this.renderModalContent1()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal2 === 'sliding'}
@@ -362,7 +429,52 @@ class NewHomeScreen extends React.Component {
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
-                            {this.renderModalContent1()}
+                            {this.renderModalContent2()}
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.modal3 === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.showModal()}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent3()}
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.modal4 === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.showModal()}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent4()}
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.modal5 === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.showModal()}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent5()}
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.modal6 === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.showModal()}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent6()}
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.modal7 === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.showModal()}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent7()}
                         </Modal>
                     </View>
                 </ScrollView>
@@ -435,37 +547,25 @@ const styles = StyleSheet.create({
     scrollableModal: {
         height: 500,
     },
-    scrollableModalContent1: {
+    modal1: {
         height: 300,
         backgroundColor: '#87BBE0',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15
     },
-    scrollableModalText1: {
+    modalText: {
         fontSize: 25,
         color: 'white',
         padding: 10,
         textAlign: "center"
     },
-    scrollableModalContent2: {
+    modal2: {
         height: 300,
         backgroundColor: '#A9DCD3',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15
-    },
-    content: {
-        backgroundColor: 'white',
-        padding: 22,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
-        borderColor: 'rgba(0, 0, 0, 0.1)',
-    },
-    contentTitle: {
-        fontSize: 20,
-        marginBottom: 12,
     }
 });
 
