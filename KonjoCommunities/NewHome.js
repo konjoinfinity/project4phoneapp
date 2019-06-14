@@ -73,6 +73,8 @@ class NewHomeScreen extends React.Component {
             setTimeout(() => {
                 this.setState({ modal1: 'sliding' })
             }, 3000)
+        } else {
+            this.textInput.focus();
         }
     }
 
