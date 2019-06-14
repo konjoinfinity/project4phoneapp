@@ -45,7 +45,6 @@ class NewHomeScreen extends React.Component {
             modal7: null
         };
         this.handleChange = this.handleChange.bind(this);
-        this.hideModal = this.hideModal.bind(this);
         this.showModal = this.showModal.bind(this);
     }
 
@@ -228,16 +227,14 @@ class NewHomeScreen extends React.Component {
             }, 500)
         } else if (this.state.modal7 === 'sliding') {
             this.setState({ modal7: null })
+            setTimeout(() => {
+                Vibration.vibrate();
+            }, 500)
         }
     }
 
     handleChange(search) {
         this.setState({ search });
-    }
-
-    hideModal() {
-        this.setState({ visibleModal: null })
-        Vibration.vibrate();
     }
 
     render() {
