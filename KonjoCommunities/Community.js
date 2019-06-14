@@ -56,6 +56,7 @@ class CommunityScreen extends React.Component {
     this.commentClear = this.commentClear.bind(this);
     this.openCloseMembersList = this.openCloseMembersList.bind(this);
     this.showHideOptions = this.showHideOptions.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleCommentChange(comment) {
@@ -124,9 +125,14 @@ class CommunityScreen extends React.Component {
     (
       <View style={styles.modal}>
         <Text style={styles.modalText}>Swipe to join {this.state.community.name}</Text>
-        <Button title="Click outside or here to Close" onPress={() => this.setState({ joinmodal: null })} />
+        <Button title="Tap here or outside to close" onPress={() => this.closeModal()} />
       </View>
     );
+
+  closeModal() {
+    Vibration.vibrate();
+    this.setState({ joinmodal: null })
+  }
 
   openCloseNav() {
     if (this.state.nav === false) {
@@ -655,10 +661,10 @@ class CommunityScreen extends React.Component {
         <Modal
           isVisible={this.state.joinmodal === true}
           animationInTiming={500}
-          animationIn="slideInLeft"
+          animationIn="slideInDown"
           onSwipeComplete={() => this.joinCommunity()}
           swipeDirection={['right', 'left', 'up', 'down']}
-          onBackdropPress={() => this.setState({ joinmodal: null })}
+          onBackdropPress={() => this.closeModal()}
         >
           {this.joinModal()}
         </Modal>
