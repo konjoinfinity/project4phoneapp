@@ -70,7 +70,7 @@ class NewHomeScreen extends React.Component {
         }
         if (initlogin !== false || signup !== false) {
             setTimeout(() => {
-                this.setState({ modal1: 'sliding' })
+                this.setState({ modal1: true })
                 Vibration.vibrate();
             }, 3000)
         } else {
@@ -198,37 +198,37 @@ class NewHomeScreen extends React.Component {
         );
 
     showModal() {
-        if (this.state.modal1 === 'sliding') {
+        if (this.state.modal1 === true) {
             this.setState({ modal1: null })
             setTimeout(() => {
-                this.setState({ modal2: 'sliding' })
+                this.setState({ modal2: true })
             }, 500)
-        } else if (this.state.modal2 === 'sliding') {
+        } else if (this.state.modal2 === true) {
             this.setState({ modal2: null })
             setTimeout(() => {
-                this.setState({ modal3: 'sliding' })
+                this.setState({ modal3: true })
             }, 500)
-        } else if (this.state.modal3 === 'sliding') {
+        } else if (this.state.modal3 === true) {
             this.setState({ modal3: null })
             setTimeout(() => {
-                this.setState({ modal4: 'sliding' })
+                this.setState({ modal4: true })
             }, 500)
-        } else if (this.state.modal4 === 'sliding') {
+        } else if (this.state.modal4 === true) {
             this.setState({ modal4: null })
             setTimeout(() => {
-                this.setState({ modal5: 'sliding' })
+                this.setState({ modal5: true })
             }, 500)
-        } else if (this.state.modal5 === 'sliding') {
+        } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
-                this.setState({ modal6: 'sliding' })
+                this.setState({ modal6: true })
             }, 500)
-        } else if (this.state.modal6 === 'sliding') {
+        } else if (this.state.modal6 === true) {
             this.setState({ modal6: null })
             setTimeout(() => {
-                this.setState({ modal7: 'sliding' })
+                this.setState({ modal7: true })
             }, 500)
-        } else if (this.state.modal7 === 'sliding') {
+        } else if (this.state.modal7 === true) {
             this.setState({ modal7: null })
             Vibration.vibrate();
             setTimeout(() => {
@@ -344,63 +344,56 @@ class NewHomeScreen extends React.Component {
                     {newsearch}
                     <View>
                         <Modal
-                            isVisible={this.state.modal1 === 'sliding'}
+                            isVisible={this.state.modal1 === true}
                             animationIn="slideInLeft"
-                            animationOut="slideOutRight"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent1()}
                         </Modal>
                         <Modal
-                            isVisible={this.state.modal2 === 'sliding'}
-                            animationIn="slideInLeft"
-                            animationOut="slideOutRight"
+                            isVisible={this.state.modal2 === true}
+                            animationIn="slideInDown"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent2()}
                         </Modal>
                         <Modal
-                            isVisible={this.state.modal3 === 'sliding'}
-                            animationIn="slideInLeft"
-                            animationOut="slideOutRight"
+                            isVisible={this.state.modal3 === true}
+                            animationIn="slideInRight"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent3()}
                         </Modal>
                         <Modal
-                            isVisible={this.state.modal4 === 'sliding'}
-                            animationIn="slideInLeft"
-                            animationOut="slideOutRight"
+                            isVisible={this.state.modal4 === true}
+                            animationIn="slideInUp"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent4()}
                         </Modal>
                         <Modal
-                            isVisible={this.state.modal5 === 'sliding'}
+                            isVisible={this.state.modal5 === true}
                             animationIn="slideInLeft"
-                            animationOut="slideOutRight"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent5()}
                         </Modal>
                         <Modal
-                            isVisible={this.state.modal6 === 'sliding'}
-                            animationIn="slideInLeft"
-                            animationOut="slideOutRight"
+                            isVisible={this.state.modal6 === true}
+                            animationIn="slideInDown"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent6()}
                         </Modal>
                         <Modal
-                            isVisible={this.state.modal7 === 'sliding'}
-                            animationIn="slideInLeft"
-                            animationOut="slideOutRight"
+                            isVisible={this.state.modal7 === true}
+                            animationIn="slideInRight"
                             onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
