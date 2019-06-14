@@ -72,7 +72,7 @@ class NewHomeScreen extends React.Component {
         }
         if (initlogin !== false || signup !== false) {
             setTimeout(() => {
-                this.setState({ visibleModal: 'scrollable' })
+                this.setState({ modal1: 'sliding' })
             }, 3000)
         }
     }
@@ -235,18 +235,6 @@ class NewHomeScreen extends React.Component {
         this.setState({ search });
     }
 
-    handleOnScroll(event) {
-        this.setState({
-            scrollOffset: event.nativeEvent.contentOffset.y,
-        });
-    };
-
-    handleScrollTo(p) {
-        if (this.scrollViewRef) {
-            this.scrollViewRef.scrollTo(p);
-        }
-    };
-
     hideModal() {
         this.setState({ visibleModal: null })
         Vibration.vibrate();
@@ -304,9 +292,7 @@ class NewHomeScreen extends React.Component {
                         onPress={() =>
                             this.props.navigation.push("SearchNew", {
                                 newName: this.state.search
-                            })
-                        }
-                    >
+                            })}>
                         <Text style={styles.newButtonText}>➕ {this.state.search}</Text>
                     </TouchableOpacity>
                 </Card>
@@ -356,62 +342,6 @@ class NewHomeScreen extends React.Component {
                         {results}
                     </View>
                     {newsearch}
-                    <View>
-                        <Button
-                            onPress={() => this.setState({ modal1: 'sliding' })}
-                            title="Sliding from the sides"
-                        />
-                    </View>
-                    <View style={{
-                        flex: 1,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: 'white'
-                    }}>
-                        <Modal
-                            isVisible={this.state.visibleModal === 'scrollable'}
-                            onSwipeComplete={() => this.hideModal()}
-                            swipeDirection="down"
-                            scrollTo={this.handleScrollTo}
-                            scrollOffset={this.state.scrollOffset}
-                            scrollOffsetMax={400 - 300} // content height - ScrollView height
-                            style={styles.bottomModal}
-                        >
-                            <View style={styles.scrollableModal}>
-                                <ScrollView
-                                    ref={ref => (this.scrollViewRef = ref)}
-                                    onScroll={this.handleOnScroll}
-                                    scrollEventThrottle={16}
-                                >
-                                    <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText1}>Welcome to</Text>
-                                        <Image
-                                            source={require("./logo.png")}
-                                            style={{ width: 200, height: 100 }}
-                                        />
-                                    </View>
-                                    <View style={styles.scrollableModalContent1}>
-                                        <Text style={styles.scrollableModalText1}>Tap the 👤 icon to visit your profile</Text>
-                                    </View>
-                                    <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText1}>👥 shows a list of all communities</Text>
-                                    </View>
-                                    <View style={styles.scrollableModalContent1}>
-                                        <Text style={styles.scrollableModalText1}>To create a new community tap ➕</Text>
-                                    </View>
-                                    <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText1}>To see a map of all communities, tap the 🗺</Text>
-                                    </View>
-                                    <View style={styles.scrollableModalContent1}>
-                                        <Text style={styles.scrollableModalText1}>⌨️ Search for the community you would like to join or create one</Text>
-                                    </View>
-                                    <View style={styles.scrollableModalContent2}>
-                                        <Text style={styles.scrollableModalText1}>Swipe this menu down to close</Text>
-                                    </View>
-                                </ScrollView>
-                            </View>
-                        </Modal>
-                    </View>
                     <View>
                         <Modal
                             isVisible={this.state.modal1 === 'sliding'}
@@ -543,9 +473,6 @@ const styles = StyleSheet.create({
             width: 2,
             height: 2,
         }
-    },
-    scrollableModal: {
-        height: 500,
     },
     modal1: {
         height: 300,
