@@ -36,10 +36,12 @@ class NewHomeScreen extends React.Component {
         this.state = {
             communities: "",
             search: "",
-            visibleModal: null
+            modal1: null,
+            modal2: null
         };
         this.handleChange = this.handleChange.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.showModal = this.showModal.bind(this);
     }
 
     componentDidMount() {
@@ -136,10 +138,31 @@ class NewHomeScreen extends React.Component {
 
     renderModalContent = () =>
         (
-            <View style={styles.content}>
-                <Text style={styles.contentTitle}>Konjo 😊!</Text>
+            <View style={styles.scrollableModalContent1}>
+                <Text style={styles.scrollableModalText1}>Konjo 😊!</Text>
             </View>
         );
+
+    renderModalContent1 = () =>
+        (
+            <View style={styles.scrollableModalContent2}>
+                <Text style={styles.scrollableModalText1}>Page 2 😊!</Text>
+            </View>
+        );
+
+    showModal() {
+        if (this.state.modal1 === 'sliding') {
+            this.setState({ modal1: null })
+            setTimeout(() => {
+                this.setState({ modal2: 'sliding' })
+            }, 500)
+        } else if (this.state.modal2 === 'sliding') {
+            this.setState({ modal2: null })
+            setTimeout(() => {
+                this.setState({ modal1: 'sliding' })
+            }, 500)
+        }
+    }
 
     handleChange(search) {
         this.setState({ search });
@@ -268,7 +291,7 @@ class NewHomeScreen extends React.Component {
                     {newsearch}
                     <View>
                         <Button
-                            onPress={() => this.setState({ visibleModal: 'sliding' })}
+                            onPress={() => this.setState({ modal1: 'sliding' })}
                             title="Sliding from the sides"
                         />
                     </View>
@@ -324,13 +347,22 @@ class NewHomeScreen extends React.Component {
                     </View>
                     <View>
                         <Modal
-                            isVisible={this.state.visibleModal === 'sliding'}
+                            isVisible={this.state.modal1 === 'sliding'}
                             animationIn="slideInLeft"
                             animationOut="slideOutRight"
-                            onSwipeComplete={() => this.setState({ visibleModal: null })}
+                            onSwipeComplete={() => this.showModal()}
                             swipeDirection={['up', 'left', 'right', 'down']}
                         >
                             {this.renderModalContent()}
+                        </Modal>
+                        <Modal
+                            isVisible={this.state.modal2 === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.showModal()}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent1()}
                         </Modal>
                     </View>
                 </ScrollView>
