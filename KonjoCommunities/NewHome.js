@@ -9,7 +9,8 @@ import {
     Keyboard,
     TouchableOpacity,
     Vibration,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Button
 } from "react-native";
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
@@ -35,7 +36,7 @@ class NewHomeScreen extends React.Component {
         this.state = {
             communities: "",
             search: "",
-            visibleModalId: null
+            visibleModal: null
         };
         this.handleChange = this.handleChange.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -133,17 +134,24 @@ class NewHomeScreen extends React.Component {
         };
     }
 
+    renderModalContent = () =>
+        (
+            <View style={styles.content}>
+                <Text style={styles.contentTitle}>Konjo 😊!</Text>
+            </View>
+        );
+
     handleChange(search) {
         this.setState({ search });
     }
 
-    handleOnScroll = event => {
+    handleOnScroll(event) {
         this.setState({
             scrollOffset: event.nativeEvent.contentOffset.y,
         });
     };
 
-    handleScrollTo = p => {
+    handleScrollTo(p) {
         if (this.scrollViewRef) {
             this.scrollViewRef.scrollTo(p);
         }
@@ -151,6 +159,7 @@ class NewHomeScreen extends React.Component {
 
     hideModal() {
         this.setState({ visibleModal: null })
+        Vibration.vibrate();
     }
 
     render() {
@@ -257,6 +266,12 @@ class NewHomeScreen extends React.Component {
                         {results}
                     </View>
                     {newsearch}
+                    <View>
+                        <Button
+                            onPress={() => this.setState({ visibleModal: 'sliding' })}
+                            title="Sliding from the sides"
+                        />
+                    </View>
                     <View style={{
                         flex: 1,
                         justifyContent: 'center',
@@ -307,8 +322,19 @@ class NewHomeScreen extends React.Component {
                             </View>
                         </Modal>
                     </View>
+                    <View>
+                        <Modal
+                            isVisible={this.state.visibleModal === 'sliding'}
+                            animationIn="slideInLeft"
+                            animationOut="slideOutRight"
+                            onSwipeComplete={() => this.setState({ visibleModal: null })}
+                            swipeDirection={['up', 'left', 'right', 'down']}
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
+                    </View>
                 </ScrollView>
-            </KeyboardAvoidingView>
+            </KeyboardAvoidingView >
         );
     }
 }
@@ -396,6 +422,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15
+    },
+    content: {
+        backgroundColor: 'white',
+        padding: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+    },
+    contentTitle: {
+        fontSize: 20,
+        marginBottom: 12,
     }
 });
 
