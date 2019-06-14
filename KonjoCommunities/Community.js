@@ -428,7 +428,7 @@ class CommunityScreen extends React.Component {
             animation="bounceInUp"
             delay={10}
             duration={1800}>
-            <Card borderRadius={15}>
+            <Card borderRadius={15} minWidth={330}>
               <View>
                 <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>
                   {this.state.community.name}
