@@ -152,7 +152,6 @@ class LoginScreen extends React.Component {
                   blurOnSubmit={false}
                   onChangeText={this.handleEmailChange}
                   value={this.state.email}
-                  onBlur={Keyboard.dismiss}
                   onSubmitEditing={() => { this.passInput.focus(); }}
                 />
               </View>
@@ -167,7 +166,6 @@ class LoginScreen extends React.Component {
                   ref={(input) => { this.passInput = input; }}
                   onSubmitEditing={this.handleLogin}
                   value={this.state.password}
-                  onBlur={Keyboard.dismiss}
                   returnKeyType='send'
                 />
               </View>

@@ -70,6 +70,7 @@ class NewHomeScreen extends React.Component {
         }
         if (initlogin !== false || signup !== false) {
             setTimeout(() => {
+                Keyboard.dismiss();
                 this.setState({ modal1: true })
                 Vibration.vibrate();
             }, 3000)
