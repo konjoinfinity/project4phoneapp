@@ -16,6 +16,7 @@ import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
 import Modal from "react-native-modal";
+import RNShake from 'react-native-shake';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -78,6 +79,11 @@ class NewHomeScreen extends React.Component {
             this.textInput.focus();
             Vibration.vibrate();
         }
+        RNShake.addEventListener('ShakeEvent', () => {
+            this.setState({ modal1: true })
+            Vibration.vibrate();
+            RNShake.removeEventListener('ShakeEvent');
+        });
     }
 
     static navigationOptions = ({ navigation }) => {
