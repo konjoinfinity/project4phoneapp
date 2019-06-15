@@ -80,8 +80,8 @@ class NewHomeScreen extends React.Component {
             Vibration.vibrate();
         }
         RNShake.addEventListener('ShakeEvent', () => {
-            this.setState({ modal1: true })
             Vibration.vibrate();
+            AlertHelper.show('info', 'Info', "Konjo!");
             RNShake.removeEventListener('ShakeEvent');
         });
     }
