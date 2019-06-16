@@ -61,6 +61,7 @@ class ProfileScreen extends React.Component {
     }
 
     async componentDidMount() {
+        Vibration.vibrate();
         await this.getToken();
         await fetch("https://konjomeet.herokuapp.com/community", {
             method: "GET",
@@ -72,7 +73,6 @@ class ProfileScreen extends React.Component {
             .then(res => {
                 this.setState({ communities: res });
             });
-        Vibration.vibrate();
         this.getUsername();
     }
 

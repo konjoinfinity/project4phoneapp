@@ -261,6 +261,7 @@ class NewHomeScreen extends React.Component {
     }
 
     handleChange(search) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ search });
     }
 
