@@ -17,6 +17,7 @@ import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
 import Modal from "react-native-modal";
 import RNShake from 'react-native-shake';
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -80,7 +81,8 @@ class NewHomeScreen extends React.Component {
             Vibration.vibrate();
         }
         RNShake.addEventListener('ShakeEvent', () => {
-            Vibration.vibrate();
+            // Vibration.vibrate();
+            ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
             AlertHelper.show('info', 'Info', "Konjo!");
             RNShake.removeEventListener('ShakeEvent');
         });
