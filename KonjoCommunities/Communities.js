@@ -45,6 +45,7 @@ class CommunitiesScreen extends React.Component {
   }
 
   async componentDidMount() {
+    Vibration.vibrate();
     await this.getToken();
     await fetch("https://konjomeet.herokuapp.com/community", {
       method: "GET",
@@ -56,7 +57,6 @@ class CommunitiesScreen extends React.Component {
       .then(res => {
         this.setState({ communities: res });
       });
-    Vibration.vibrate();
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
     });
