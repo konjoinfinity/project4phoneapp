@@ -211,41 +211,49 @@ class NewHomeScreen extends React.Component {
             this.setState({ modal1: null })
             setTimeout(() => {
                 this.setState({ modal2: true })
-                Vibration.vibrate();
+                ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+                // Vibration.vibrate();
             }, 500)
         } else if (this.state.modal2 === true) {
             this.setState({ modal2: null })
             setTimeout(() => {
                 this.setState({ modal3: true })
-                Vibration.vibrate();
+                ReactNativeHapticFeedback.trigger("impactMedium", { enableVibrateFallback: true });
+                // Vibration.vibrate();
             }, 500)
         } else if (this.state.modal3 === true) {
             this.setState({ modal3: null })
             setTimeout(() => {
                 this.setState({ modal4: true })
-                Vibration.vibrate();
+                ReactNativeHapticFeedback.trigger("impactHeavy", { enableVibrateFallback: true });
+                // Vibration.vibrate();
             }, 500)
         } else if (this.state.modal4 === true) {
             this.setState({ modal4: null })
             setTimeout(() => {
                 this.setState({ modal5: true })
-                Vibration.vibrate();
+                ReactNativeHapticFeedback.trigger("notificationSuccess", { enableVibrateFallback: true });
+                // Vibration.vibrate();
             }, 500)
         } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
                 this.setState({ modal6: true })
-                Vibration.vibrate();
+                ReactNativeHapticFeedback.trigger("notificationWarning", { enableVibrateFallback: true });
+                // Vibration.vibrate();
             }, 500)
         } else if (this.state.modal6 === true) {
             this.setState({ modal6: null })
             setTimeout(() => {
                 this.setState({ modal7: true })
-                Vibration.vibrate();
+                ReactNativeHapticFeedback.trigger("notificationError", { enableVibrateFallback: true });
+                // Vibration.vibrate();
             }, 500)
         } else if (this.state.modal7 === true) {
             this.setState({ modal7: null })
-            Vibration.vibrate();
+            ReactNativeHapticFeedback.trigger("selection", { enableVibrateFallback: true });
+            // Vibration.vibrate();
+            RNShake.removeEventListener('ShakeEvent');
             setTimeout(() => {
                 this.textInput.focus();
             }, 500)
