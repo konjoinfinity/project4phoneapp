@@ -83,8 +83,10 @@ class NewHomeScreen extends React.Component {
         const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
         RNShake.addEventListener('ShakeEvent', () => {
             this.props.navigation.push("Community", { communityId: `${random._id}` })
-            RNShake.removeEventListener('ShakeEvent');
         });
+    }
+    componentWillUnmount() {
+        RNShake.removeEventListener('ShakeEvent');
     }
 
     static navigationOptions = ({ navigation }) => {
