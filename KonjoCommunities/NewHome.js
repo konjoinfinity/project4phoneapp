@@ -78,11 +78,12 @@ class NewHomeScreen extends React.Component {
             this.textInput.focus();
             Vibration.vibrate();
         }
-        RNShake.addEventListener('ShakeEvent', () => {
-            RNShake.removeEventListener('ShakeEvent');
-            const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
-            this.props.navigation.push("Community", { communityId: `${random._id}` })
-        });
+        this.state.communities !== "" && (
+            RNShake.addEventListener('ShakeEvent', () => {
+                RNShake.removeEventListener('ShakeEvent');
+                const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
+                this.props.navigation.push("Community", { communityId: `${random._id}` })
+            }))
     }
 
     static navigationOptions = ({ navigation }) => {
