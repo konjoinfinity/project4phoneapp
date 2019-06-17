@@ -290,55 +290,57 @@ class MeetScreen extends React.Component {
                       value={this.state.location}
                     />
                   </View>
-                  <DatePicker
-                    style={{ width: 300, paddingTop: 25 }}
-                    date={this.state.date}
-                    showIcon={false}
-                    customStyles={{
-                      dateInput: {
-                        borderColor: "#CCCCCC",
-                        borderWidth: 1,
-                        height: 50,
-                        placeholderText: 25,
-                        dateText: 25,
-                        paddingLeft: 20,
-                        paddingRight: 20,
-                        borderRadius: 15
-                      },
-                      placeholderText: { fontSize: 25 },
-                      dateText: { fontSize: 25 }
-                    }}
-                    mode="date"
-                    placeholder="Select Date"
-                    format="MMMM Do YYYY"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    ref={(input) => { this.dateInput = input; }}
-                    onDateChange={(date) => this.handleDateChange(date)}
-                  />
-                  <DatePicker
-                    style={{ width: 300, paddingTop: 25 }}
-                    showIcon={false}
-                    date={this.state.time}
-                    customStyles={{
-                      dateInput: {
-                        borderColor: "#CCCCCC",
-                        borderWidth: 1,
-                        height: 50,
-                        paddingLeft: 20,
-                        paddingRight: 20,
-                        borderRadius: 15
-                      },
-                      placeholderText: { fontSize: 25 },
-                      dateText: { fontSize: 25 }
-                    }}
-                    mode="time"
-                    placeholder="Select Time"
-                    format="h:mm A"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    onDateChange={(time) => this.handleTimeChange(time)}
-                  />
+                  <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <DatePicker
+                      style={{ width: 300, paddingTop: 25 }}
+                      date={this.state.date}
+                      showIcon={false}
+                      customStyles={{
+                        dateInput: {
+                          borderColor: "#CCCCCC",
+                          borderWidth: 1,
+                          height: 50,
+                          placeholderText: 25,
+                          dateText: 25,
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          borderRadius: 15
+                        },
+                        placeholderText: { fontSize: 25 },
+                        dateText: { fontSize: 25 }
+                      }}
+                      mode="date"
+                      placeholder="Select Date"
+                      format="MMMM Do YYYY"
+                      confirmBtnText="Confirm"
+                      cancelBtnText="Cancel"
+                      ref={(input) => { this.dateInput = input; }}
+                      onDateChange={(date) => this.handleDateChange(date)}
+                    />
+                    <DatePicker
+                      style={{ width: 300, paddingTop: 25 }}
+                      showIcon={false}
+                      date={this.state.time}
+                      customStyles={{
+                        dateInput: {
+                          borderColor: "#CCCCCC",
+                          borderWidth: 1,
+                          height: 50,
+                          paddingLeft: 20,
+                          paddingRight: 20,
+                          borderRadius: 15
+                        },
+                        placeholderText: { fontSize: 25 },
+                        dateText: { fontSize: 25 }
+                      }}
+                      mode="time"
+                      placeholder="Select Time"
+                      format="h:mm A"
+                      confirmBtnText="Confirm"
+                      cancelBtnText="Cancel"
+                      onDateChange={(time) => this.handleTimeChange(time)}
+                    />
+                  </View>
                   <View style={styles.inputContainer}>
                     <TouchableOpacity
                       style={styles.saveButton}
