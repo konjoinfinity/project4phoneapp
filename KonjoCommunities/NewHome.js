@@ -42,9 +42,7 @@ class NewHomeScreen extends React.Component {
             modal2: null,
             modal3: null,
             modal4: null,
-            modal5: null,
-            modal6: null,
-            modal7: null
+            modal5: null
         };
         this.handleChange = this.handleChange.bind(this);
         this.showModal = this.showModal.bind(this);
@@ -159,7 +157,7 @@ class NewHomeScreen extends React.Component {
                     source={require("./logo.png")}
                     style={{ width: 200, height: 100 }}
                 />
-                <Text style={styles.modalText}>Swipe to continue</Text>
+                <Text style={styles.modalText}>Swipe any direction to continue</Text>
             </View>
         );
 
@@ -167,41 +165,30 @@ class NewHomeScreen extends React.Component {
         (
             <View style={styles.modal2}>
                 <Text style={styles.modalText}>Tap the 👤 icon to visit your profile</Text>
+                <Text style={styles.modalText}>👥 shows a list of all communities</Text>
             </View>
         );
 
     modal3 = () =>
         (
             <View style={styles.modal1}>
-                <Text style={styles.modalText}>👥 shows a list of all communities</Text>
+                <Text style={styles.modalText}>To create a new community tap ➕</Text>
+                <Text style={styles.modalText}>To see a map of all communities, tap the 🗺</Text>
             </View>
         );
 
     modal4 = () =>
         (
             <View style={styles.modal2}>
-                <Text style={styles.modalText}>To create a new community tap ➕</Text>
+                <Text style={styles.modalText}>⌨️ Search for the community you would like to join or create one</Text>
+                <Text style={styles.modalText}>Shake your phone 📱 to discover a random community</Text>
             </View>
         );
 
     modal5 = () =>
         (
             <View style={styles.modal1}>
-                <Text style={styles.modalText}>To see a map of all communities, tap the 🗺</Text>
-            </View>
-        );
-
-    modal6 = () =>
-        (
-            <View style={styles.modal2}>
-                <Text style={styles.modalText}>⌨️ Search for the community you would like to join or create one</Text>
-            </View>
-        );
-
-    modal7 = () =>
-        (
-            <View style={styles.modal1}>
-                <Text style={styles.modalText}>Enjoy Konjo! 😊</Text>
+                <Text style={styles.modalText}>Find your community and enjoy Konjo! 😊</Text>
             </View>
         );
 
@@ -237,23 +224,9 @@ class NewHomeScreen extends React.Component {
         } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
-                this.setState({ modal6: true })
+                this.textInput.focus();
                 ReactNativeHapticFeedback.trigger("notificationWarning", { enableVibrateFallback: true });
                 // Vibration.vibrate();
-            }, 500)
-        } else if (this.state.modal6 === true) {
-            this.setState({ modal6: null })
-            setTimeout(() => {
-                this.setState({ modal7: true })
-                ReactNativeHapticFeedback.trigger("notificationError", { enableVibrateFallback: true });
-                // Vibration.vibrate();
-            }, 500)
-        } else if (this.state.modal7 === true) {
-            this.setState({ modal7: null })
-            ReactNativeHapticFeedback.trigger("selection", { enableVibrateFallback: true });
-            // Vibration.vibrate();
-            setTimeout(() => {
-                this.textInput.focus();
             }, 500)
         }
     }
@@ -405,22 +378,6 @@ class NewHomeScreen extends React.Component {
                         >
                             {this.modal5()}
                         </Modal>
-                        <Modal
-                            isVisible={this.state.modal6 === true}
-                            animationIn="slideInDown"
-                            onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
-                            {this.modal6()}
-                        </Modal>
-                        <Modal
-                            isVisible={this.state.modal7 === true}
-                            animationIn="slideInRight"
-                            onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
-                            {this.modal7()}
-                        </Modal>
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView >
@@ -490,7 +447,7 @@ const styles = StyleSheet.create({
         }
     },
     modal1: {
-        height: 300,
+        height: 400,
         backgroundColor: '#87BBE0',
         alignItems: 'center',
         justifyContent: 'center',
@@ -503,7 +460,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     modal2: {
-        height: 300,
+        height: 400,
         backgroundColor: '#A9DCD3',
         alignItems: 'center',
         justifyContent: 'center',
