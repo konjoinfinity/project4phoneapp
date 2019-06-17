@@ -19,6 +19,7 @@ import { AlertHelper } from './AlertHelper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Modal from "react-native-modal";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import Confetti from 'react-native-confetti';
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -302,6 +303,7 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
         AlertHelper.show('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
+        this.confetti.startConfetti();
         if (this.state.joinmodal === true) {
           this.setState({ joinmodal: null })
         }
@@ -453,6 +455,7 @@ class CommunityScreen extends React.Component {
       }));
     return (
       <View style={styles.communities} behavior="padding">
+        <Confetti ref={(node) => this.confetti = node} />
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <AnimatableView
