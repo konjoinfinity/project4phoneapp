@@ -673,7 +673,7 @@ class CommunityScreen extends React.Component {
           {this.joinModal()}
         </Modal>
         <KeyboardSpacer />
-        <Confetti confettiCount={60} duration={3000} ref={(node) => this.confetti = node} />
+        <Confetti timeout={1} size={2} confettiCount={50} duration={3000} ref={(node) => this.confetti = node} />
       </View>
     );
   }
