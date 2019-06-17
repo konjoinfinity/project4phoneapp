@@ -197,36 +197,31 @@ class NewHomeScreen extends React.Component {
             this.setState({ modal1: null })
             setTimeout(() => {
                 this.setState({ modal2: true })
-                ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
-                // Vibration.vibrate();
+                Vibration.vibrate();
             }, 500)
         } else if (this.state.modal2 === true) {
             this.setState({ modal2: null })
             setTimeout(() => {
                 this.setState({ modal3: true })
-                ReactNativeHapticFeedback.trigger("impactMedium", { enableVibrateFallback: true });
-                // Vibration.vibrate();
+                Vibration.vibrate();
             }, 500)
         } else if (this.state.modal3 === true) {
             this.setState({ modal3: null })
             setTimeout(() => {
                 this.setState({ modal4: true })
-                ReactNativeHapticFeedback.trigger("impactHeavy", { enableVibrateFallback: true });
-                // Vibration.vibrate();
+                Vibration.vibrate();
             }, 500)
         } else if (this.state.modal4 === true) {
             this.setState({ modal4: null })
             setTimeout(() => {
                 this.setState({ modal5: true })
-                ReactNativeHapticFeedback.trigger("notificationSuccess", { enableVibrateFallback: true });
-                // Vibration.vibrate();
+                Vibration.vibrate();
             }, 500)
         } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
                 this.textInput.focus();
-                ReactNativeHapticFeedback.trigger("notificationWarning", { enableVibrateFallback: true });
-                // Vibration.vibrate();
+                Vibration.vibrate();
             }, 500)
         }
     }
