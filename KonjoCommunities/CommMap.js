@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-
-class LogoTitle extends React.Component {
-    render() {
-        return (
-            <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-            />
-        );
-    }
-}
+import LogoTitle from "./LogoTitle"
 
 class CommMapScreen extends Component {
     constructor(props) {

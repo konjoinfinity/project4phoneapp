@@ -15,19 +15,9 @@ import { Card } from "react-native-elements";
 import Nav from "./Nav"
 import * as Animatable from 'react-native-animatable';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
-
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
 
 class SearchScreen extends React.Component {
   constructor(props) {

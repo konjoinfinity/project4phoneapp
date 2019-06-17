@@ -14,22 +14,12 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
+import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
-
-class LogoTitle extends React.Component {
-    render() {
-        return (
-            <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-            />
-        );
-    }
-}
 
 class ProfileScreen extends React.Component {
     constructor(props) {

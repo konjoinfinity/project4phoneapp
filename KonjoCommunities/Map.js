@@ -3,17 +3,7 @@ import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text, TextInput }
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
-
-class LogoTitle extends React.Component {
-    render() {
-        return (
-            <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-            />
-        );
-    }
-}
+import LogoTitle from "./LogoTitle"
 
 class MapScreen extends Component {
     constructor(props) {

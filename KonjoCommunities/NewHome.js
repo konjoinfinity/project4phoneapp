@@ -9,8 +9,7 @@ import {
     Keyboard,
     TouchableOpacity,
     Vibration,
-    KeyboardAvoidingView,
-    Button
+    KeyboardAvoidingView
 } from "react-native";
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
@@ -18,19 +17,9 @@ import { AlertHelper } from './AlertHelper';
 import Modal from "react-native-modal";
 import RNShake from 'react-native-shake';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
-
-class LogoTitle extends React.Component {
-    render() {
-        return (
-            <Image
-                source={require("./logo.png")}
-                style={{ width: 60, height: 30 }}
-            />
-        );
-    }
-}
 
 class NewHomeScreen extends React.Component {
     constructor(props) {
@@ -78,7 +67,6 @@ class NewHomeScreen extends React.Component {
             this.textInput.focus();
             Vibration.vibrate();
         }
-
         RNShake.addEventListener('ShakeEvent', () => {
             if (this.state.communities !== "") {
                 RNShake.removeEventListener('ShakeEvent');

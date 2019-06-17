@@ -16,22 +16,12 @@ import DatePicker from 'react-native-datepicker'
 import { AlertHelper } from './AlertHelper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
-
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
 
 class MeetScreen extends React.Component {
   constructor(props) {

@@ -14,21 +14,11 @@ import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
 var STORAGE_KEY = "id_token";
-
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
 
 class EditScreen extends React.Component {
   constructor(props) {

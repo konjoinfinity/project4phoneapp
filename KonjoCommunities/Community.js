@@ -20,20 +20,10 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Modal from "react-native-modal";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Confetti from 'react-native-confetti';
+import LogoTitle from "./LogoTitle"
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
-
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image
-        source={require("./logo.png")}
-        style={{ width: 60, height: 30 }}
-      />
-    );
-  }
-}
 
 class CommunityScreen extends React.Component {
   constructor(props) {
