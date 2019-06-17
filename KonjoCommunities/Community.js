@@ -78,6 +78,7 @@ class CommunityScreen extends React.Component {
   }
 
   async componentDidMount() {
+    Vibration.vibrate();
     await this.getToken();
     await this.getUsername();
     console.log(this.props.navigation.state.params.communityId)
@@ -93,7 +94,6 @@ class CommunityScreen extends React.Component {
       .then(res => {
         this.setState({ community: res });
       });
-    Vibration.vibrate();
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
     });

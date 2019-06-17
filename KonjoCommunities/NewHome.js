@@ -80,23 +80,11 @@ class NewHomeScreen extends React.Component {
             this.textInput.focus();
             Vibration.vibrate();
         }
-        // RNShake.addEventListener('ShakeEvent', () => {
-        //     Vibration.vibrate();
-        //     const random = this.state.communities[Math.floor(Math.random * this.state.communities.length)]._id
-        //     AlertHelper.show('info', 'Info', `${random}`);
-        // Map through the communities and chose one based on random function (passing in communities.length)
-        // After communities is selected, run code below
-        // this.props.navigation.push("Community", { communityId: `${community._id}` })
-        // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
-        //     RNShake.removeEventListener('ShakeEvent');
-        // });
-        setTimeout(() => {
-            const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
-            console.log(random._id)
-            setTimeout(() => {
-                this.props.navigation.push("Community", { communityId: `${random._id}` })
-            }, 2000)
-        }, 2000)
+        const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
+        RNShake.addEventListener('ShakeEvent', () => {
+            this.props.navigation.push("Community", { communityId: `${random._id}` })
+            RNShake.removeEventListener('ShakeEvent');
+        });
     }
 
     static navigationOptions = ({ navigation }) => {
