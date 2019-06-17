@@ -20,6 +20,8 @@ import CommMapScreen from "./CommMap";
 import NewHomeScreen from "./NewHome"
 import ChangePassScreen from "./ChangePass";
 import { AlertHelper } from "./AlertHelper";
+import LogoTitle from "./LogoTitle"
+import HeaderLeft from "./HeaderLeft"
 
 const AppStack = createStackNavigator(
   {

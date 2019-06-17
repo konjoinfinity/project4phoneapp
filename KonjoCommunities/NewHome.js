@@ -108,8 +108,7 @@ class NewHomeScreen extends React.Component {
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
-            </View>
-            ),
+            </View>),
             headerRight: (<View style={{ flexDirection: "row" }}>
                 <AnimatableView
                     animation="bounceInRight"
