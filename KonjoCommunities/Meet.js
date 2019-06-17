@@ -170,22 +170,12 @@ class MeetScreen extends React.Component {
     this.setState({ location });
   }
 
-  updateDateState() {
-    console.log(this.state.date);
-  }
-
-  updateTimeState() {
-    console.log(this.state.time);
-  }
-
   handleDateChange(date) {
-    console.log(date)
-    this.setState({ date }, () => this.updateDateState())
+    this.setState({ date })
   }
 
   handleTimeChange(time) {
-    console.log(time)
-    this.setState({ time }, () => this.updateTimeState())
+    this.setState({ time })
   }
 
   handleSubmit() {
