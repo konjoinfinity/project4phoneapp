@@ -15,6 +15,7 @@ import * as Animatable from 'react-native-animatable';
 import DatePicker from 'react-native-datepicker'
 import { AlertHelper } from './AlertHelper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -157,12 +158,15 @@ class MeetScreen extends React.Component {
   }
 
   handleNameChange(name) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ name });
   }
   handleDescriptionChange(description) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ description });
   }
   handleLocationChange(location) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ location });
   }
 

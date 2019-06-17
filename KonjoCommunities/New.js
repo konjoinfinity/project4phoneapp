@@ -14,6 +14,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -154,12 +155,15 @@ class NewScreen extends React.Component {
   }
 
   handleNameChange(name) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ name });
   }
   handleDescriptionChange(description) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ description });
   }
   handleCategoryChange(category) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ category });
   }
 

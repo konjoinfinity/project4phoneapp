@@ -447,7 +447,7 @@ const styles = StyleSheet.create({
         }
     },
     modal1: {
-        height: 400,
+        height: 300,
         backgroundColor: '#87BBE0',
         alignItems: 'center',
         justifyContent: 'center',
@@ -460,7 +460,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     modal2: {
-        height: 400,
+        height: 300,
         backgroundColor: '#A9DCD3',
         alignItems: 'center',
         justifyContent: 'center',

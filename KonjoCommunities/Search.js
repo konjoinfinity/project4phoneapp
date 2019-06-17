@@ -14,6 +14,7 @@ import {
 import { Card } from "react-native-elements";
 import Nav from "./Nav"
 import * as Animatable from 'react-native-animatable';
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -79,6 +80,7 @@ class SearchScreen extends React.Component {
   }
 
   handleChange(search) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ search });
   }
 

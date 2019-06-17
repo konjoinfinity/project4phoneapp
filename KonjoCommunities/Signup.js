@@ -13,6 +13,7 @@ import {
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import { AlertHelper } from './AlertHelper';
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -53,12 +54,15 @@ class SignupScreen extends React.Component {
     }
 
     handleEmailChange(email) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ email });
     }
     handlePasswordChange(password) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ password });
     }
     handleConfirmPassChange(confirmpass) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ confirmpass });
     }
 

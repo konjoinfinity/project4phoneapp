@@ -18,6 +18,7 @@ import Nav from "./Nav"
 import { AlertHelper } from './AlertHelper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Modal from "react-native-modal";
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -60,6 +61,7 @@ class CommunityScreen extends React.Component {
   }
 
   handleCommentChange(comment) {
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ comment });
   }
 

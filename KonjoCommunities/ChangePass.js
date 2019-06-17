@@ -15,6 +15,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -66,12 +67,15 @@ class ChangePassScreen extends React.Component {
     }
 
     handlePasswordChange(password) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ password });
     }
     handleNewPasswordChange(newpassword) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ newpassword });
     }
     handleConfirmNewPasswordChange(confirmnewpassword) {
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ confirmnewpassword });
     }
 
