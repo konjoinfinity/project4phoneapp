@@ -455,7 +455,6 @@ class CommunityScreen extends React.Component {
       }));
     return (
       <View style={styles.communities} behavior="padding">
-        <Confetti ref={(node) => this.confetti = node} />
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <AnimatableView
@@ -674,6 +673,7 @@ class CommunityScreen extends React.Component {
           {this.joinModal()}
         </Modal>
         <KeyboardSpacer />
+        <Confetti confettiCount={60} duration={3000} ref={(node) => this.confetti = node} />
       </View>
     );
   }
