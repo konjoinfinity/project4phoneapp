@@ -61,14 +61,9 @@ class GrowCommunitiesScreen extends React.Component {
     }
 
     openCloseNav() {
-        if (this.state.nav === false) {
-            this.setState({ nav: true });
-            this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-            Vibration.vibrate();
-        } else {
-            this.setState({ nav: false });
-            Vibration.vibrate();
-        }
+        this.setState(prevState => ({ nav: !prevState.nav }));
+        this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
+        Vibration.vibrate();
     }
 
     static navigationOptions = ({ navigation }) => {

@@ -7,8 +7,6 @@ import {
     TouchableOpacity,
     Vibration,
     ScrollView,
-    Alert,
-    Button,
     TextInput
 } from "react-native";
 import { Card } from "react-native-elements";

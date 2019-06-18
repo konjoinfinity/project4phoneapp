@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import LogoTitle from "./LogoTitle"

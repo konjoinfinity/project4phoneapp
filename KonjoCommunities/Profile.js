@@ -64,7 +64,6 @@ class ProfileScreen extends React.Component {
             commcreated: !prevState.commcreated
         }));
         Vibration.vibrate();
-
     }
 
     openCloseCommJoined() {
