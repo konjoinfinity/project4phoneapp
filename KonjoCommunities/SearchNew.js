@@ -96,10 +96,10 @@ class SearchNewScreen extends React.Component {
           duration={2000}>
           <TouchableOpacity
             style={styles.headerButton}
-            onPress={() => navigation.push("Search")}>
+            onPress={() => navigation.push("Communities")}>
             <View>
               <Text
-                style={{ fontSize: 25 }}>🔎</Text>
+                style={{ fontSize: 25 }}>👥</Text>
             </View>
           </TouchableOpacity>
         </AnimatableView>
