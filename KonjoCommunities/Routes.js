@@ -1,5 +1,4 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from "react-navigation";
-import HomeScreen from "./Home";
 import CommunitiesScreen from "./Communities";
 import CommunityScreen from "./Community";
 import NewScreen from "./New";
@@ -31,7 +30,6 @@ const AppStack = createStackNavigator(
     Login: LoginScreen,
     SearchNew: SearchNewScreen,
     Profile: ProfileScreen,
-    Home: HomeScreen,
     Map: MapScreen,
     GrowCommunities: GrowCommunitiesScreen,
     Signup: SignupScreen,
