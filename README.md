@@ -32,7 +32,7 @@ Click build and enjoy using the app with the xcode simulator.
 
 ## Deployment
 
-This app will be deployed using testflight in the future, stay tuned.
+This app will be deployed using testflight in the future, stay tuned.  After beta testing, it will be released in the appstore.
 
 ## Built With
 
