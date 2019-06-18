@@ -30,14 +30,9 @@ class ProfileScreen extends React.Component {
             userToken: "",
             commcreated: false,
             commjoined: false,
-            changepass: false,
-            password: "",
-            newpassword: "",
-            confirmnewpassword: ""
         };
         this.openCloseCommCreated = this.openCloseCommCreated.bind(this);
         this.openCloseCommJoined = this.openCloseCommJoined.bind(this);
-        this.openCloseChangePass = this.openCloseChangePass.bind(this);
     }
 
     async getUsername() {
@@ -67,10 +62,14 @@ class ProfileScreen extends React.Component {
     }
 
     openCloseCommCreated() {
-        this.setState(prevState => ({
-            commcreated: !prevState.commcreated
-        }));
-        Vibration.vibrate();
+        if (this.state.commcreated === false) {
+            this.setState({ commcreated: true })
+            Vibration.vibrate();
+        } else {
+            this.setState({ commcreated: false })
+            Vibration.vibrate();
+        }
+
     }
 
     openCloseCommJoined() {
@@ -79,18 +78,6 @@ class ProfileScreen extends React.Component {
         }));
         Vibration.vibrate();
     }
-
-    openCloseChangePass() {
-        if (this.state.changepass === false) {
-            this.setState({ changepass: true })
-            Vibration.vibrate();
-        } else {
-            this.setState({ changepass: false })
-            Vibration.vibrate();
-        }
-    }
-
-
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -213,7 +200,7 @@ class ProfileScreen extends React.Component {
         return (
             <ScrollView ref={ref => this.scrollView = ref}
                 onContentSizeChange={(contentWidth, contentHeight) => {
-                    this.scrollView.scrollToEnd({ animated: true });
+                    this.scrollView.scrollTo({ y: 200, animated: true });
                 }}>
                 <AnimatableView
                     animation="bounceInUp"
