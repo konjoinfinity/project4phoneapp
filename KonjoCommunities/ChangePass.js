@@ -137,7 +137,7 @@ class ChangePassScreen extends React.Component {
             headerLeft: (<View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                     style={styles.headerButton}
-                    onPress={() => navigation.push("NewHome")}>
+                    onPress={() => navigation.push("Home")}>
                     <View>
                         <Text
                             style={{ fontSize: 25 }}>🏠</Text>

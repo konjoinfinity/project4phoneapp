@@ -53,7 +53,7 @@ class NewScreen extends React.Component {
           duration={2000}>
           <TouchableOpacity
             style={styles.headerButton}
-            onPress={() => navigation.push("NewHome")}>
+            onPress={() => navigation.push("Home")}>
             <View>
               <Text
                 style={{ fontSize: 25 }}>🏠</Text>

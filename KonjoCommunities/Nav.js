@@ -41,7 +41,7 @@ class Nav extends React.Component {
                             duration={1500}>
                             <TouchableOpacity
                                 style={styles.homeButton}
-                                onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("NewHome") }}>
+                                onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Home") }}>
                                 <Text style={styles.homeButtonText}>Go Home 🏠</Text>
                             </TouchableOpacity>
                         </AnimatableView>

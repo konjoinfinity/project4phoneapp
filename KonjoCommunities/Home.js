@@ -21,7 +21,7 @@ import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
-class NewHomeScreen extends React.Component {
+class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -455,4 +455,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default NewHomeScreen;
+export default HomeScreen;

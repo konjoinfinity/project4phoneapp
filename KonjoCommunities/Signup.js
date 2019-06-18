@@ -107,7 +107,7 @@ class SignupScreen extends React.Component {
                             Vibration.vibrate();
                             this.onValueChange(STORAGE_KEY, responseData.token);
                             this.onValueChange(STORAGE_USER, this.state.email);
-                            this.props.navigation.push("NewHome", {
+                            this.props.navigation.push("Home", {
                                 signup: true, email: this.state.email
                             });
                             this.loginClear();

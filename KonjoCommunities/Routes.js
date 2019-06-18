@@ -14,7 +14,7 @@ import MapScreen from "./Map"
 import GrowCommunitiesScreen from "./GrowCommunities";
 import SignupScreen from "./Signup";
 import CommMapScreen from "./CommMap";
-import NewHomeScreen from "./NewHome"
+import HomeScreen from "./Home"
 import ChangePassScreen from "./ChangePass";
 import { AlertHelper } from "./AlertHelper";
 
@@ -34,12 +34,12 @@ const AppStack = createStackNavigator(
     GrowCommunities: GrowCommunitiesScreen,
     Signup: SignupScreen,
     CommMap: CommMapScreen,
-    NewHome: NewHomeScreen,
+    Home: HomeScreen,
     ChangePass: ChangePassScreen,
     Helper: AlertHelper
   },
   {
-    initialRouteName: 'NewHome',
+    initialRouteName: 'Home',
     defaultNavigationOptions: {
       gesturesEnabled: false
     }

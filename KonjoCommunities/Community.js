@@ -217,7 +217,7 @@ class CommunityScreen extends React.Component {
       })
       .then(res => res.json())
       .then(res => console.log(res))
-      .then(this.props.navigation.push("NewHome", {
+      .then(this.props.navigation.push("Home", {
         delcomm: true, name: this.state.community.name
       }))
       .then(Vibration.vibrate());
