@@ -7,9 +7,7 @@ import {
     TouchableOpacity,
     Vibration,
     ScrollView,
-    Alert,
-    Button,
-    TextInput
+    Button
 } from "react-native";
 import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -80,44 +78,63 @@ class ProfileScreen extends React.Component {
         return {
             headerTitle: <LogoTitle />,
             headerLeft: (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("NewHome")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>🏠</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Search")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>🔎</Text>
-                    </View>
-                </TouchableOpacity>
+                <AnimatableView
+                    animation="bounceInLeft"
+                    delay={10}
+                    duration={2000}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("NewHome")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>🏠</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInLeft"
+                    delay={10}
+                    duration={2000}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("Search")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>🔎</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
             </View>
             ),
             headerRight: (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("New")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>➕</Text>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Login")}>
-                    <View>
-                        <Image
-                            source={require("./logout.png")}
-                            style={{ width: 20, height: 20 }}
-                        />
-                    </View>
-                </TouchableOpacity>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={10}
+                    duration={2000}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("New")}>
+                        <View>
+                            <Text
+                                style={{ fontSize: 25 }}>➕</Text>
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
+                <AnimatableView
+                    animation="bounceInRight"
+                    delay={10}
+                    duration={2000}>
+                    <TouchableOpacity
+                        style={styles.headerButton}
+                        onPress={() => navigation.push("Login")}>
+                        <View>
+                            <Image
+                                source={require("./logout.png")}
+                                style={{ width: 20, height: 20 }}
+                            />
+                        </View>
+                    </TouchableOpacity>
+                </AnimatableView>
             </View>
             )
         };
