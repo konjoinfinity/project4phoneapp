@@ -297,8 +297,7 @@ class HomeScreen extends React.Component {
                                         name="search"
                                         id="search"
                                         onChangeText={this.handleChange}
-                                        ref={(input) => { this.textInput = input; }}
-                                    />
+                                        ref={(input) => { this.textInput = input; }} />
                                 </View>
                             </Card>
                         </AnimatableView>
@@ -315,8 +314,7 @@ class HomeScreen extends React.Component {
                                     alignItems: 'center'
                                 }}>
                                     <Image source={require("./commicon.png")}
-                                        style={{ width: 180, height: 180 }}
-                                    />
+                                        style={{ width: 180, height: 180 }} />
                                 </View>
                             </Card>}
                     </AnimatableView>
@@ -329,40 +327,35 @@ class HomeScreen extends React.Component {
                             isVisible={this.state.modal1 === true}
                             animationIn="slideInLeft"
                             onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
+                            swipeDirection={['up', 'left', 'right', 'down']}>
                             {this.modal1()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal2 === true}
                             animationIn="slideInDown"
                             onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
+                            swipeDirection={['up', 'left', 'right', 'down']}>
                             {this.modal2()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal3 === true}
                             animationIn="slideInRight"
                             onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
+                            swipeDirection={['up', 'left', 'right', 'down']}>
                             {this.modal3()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal4 === true}
                             animationIn="slideInUp"
                             onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
+                            swipeDirection={['up', 'left', 'right', 'down']}>
                             {this.modal4()}
                         </Modal>
                         <Modal
                             isVisible={this.state.modal5 === true}
                             animationIn="slideInLeft"
                             onSwipeComplete={() => this.showModal()}
-                            swipeDirection={['up', 'left', 'right', 'down']}
-                        >
+                            swipeDirection={['up', 'left', 'right', 'down']}>
                             {this.modal5()}
                         </Modal>
                     </View>

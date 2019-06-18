@@ -9,8 +9,7 @@ const App = () => <View style={{ flex: 1 }}>
     <DropdownAlert
         defaultContainer={{ padding: 8, paddingTop: StatusBar.currentHeight, flexDirection: 'row' }}
         ref={ref => AlertHelper.setDropDown(ref)}
-        onClose={() => AlertHelper.invokeOnClose()}
-    />
+        onClose={() => AlertHelper.invokeOnClose()} />
 </View>;
 
 export default App;

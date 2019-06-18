@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, Vibration, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
@@ -19,8 +19,6 @@ class MapScreen extends Component {
     }
 
     componentDidMount() {
-        // switch to http://localhost:4000/community for dev
-        // https://konjomeet.herokuapp.com/community for production
         fetch("https://konjomeet.herokuapp.com/community/search")
             .then(res => res.json())
             .then(res => {
@@ -124,7 +122,6 @@ class MapScreen extends Component {
                         key={id}
                         coordinate={commlatlong}
                         title={community.name}
-                        // pinColor="#DB1062"
                         ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
                         onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
                         <Callout>
@@ -143,8 +140,7 @@ class MapScreen extends Component {
                     <MapView
                         style={styles.map}
                         initialRegion={{
-                            //replace with this.state.latitude, this.state.longitude, for production
-                            //dev - latitude: 38.875917, longitude: -77.122655
+                            //dev - latitude: 38.875917, longitude: -77.122655, prod - this.state.latitude/longitude
                             latitude: this.state.latitude,
                             longitude: this.state.longitude,
                             latitudeDelta: 0.1011,

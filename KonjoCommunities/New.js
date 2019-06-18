@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Image,
   StyleSheet,
   Text,
   View,
@@ -234,8 +233,7 @@ class NewScreen extends React.Component {
                       returnKeyType={"next"}
                       onSubmitEditing={() => { this.descInput.focus(); }}
                       ref={(ref) => { this.nameInput = ref }}
-                      value={this.state.name}
-                    />
+                      value={this.state.name} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TextInput
@@ -248,8 +246,7 @@ class NewScreen extends React.Component {
                       returnKeyType={"next"}
                       ref={(input) => { this.descInput = input; }}
                       onSubmitEditing={() => { this.catInput.focus(); }}
-                      value={this.state.description}
-                    />
+                      value={this.state.description} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TextInput
@@ -261,14 +258,12 @@ class NewScreen extends React.Component {
                       ref={(input) => { this.catInput = input; }}
                       onSubmitEditing={this.handleSubmit}
                       value={this.state.category}
-                      returnKeyType='send'
-                    />
+                      returnKeyType='send' />
                   </View>
                   <View style={styles.inputContainer}>
                     <TouchableOpacity
                       style={styles.saveButton}
-                      onPress={this.handleSubmit}
-                    >
+                      onPress={this.handleSubmit}>
                       <Text style={styles.saveButtonText}>Create</Text>
                     </TouchableOpacity>
                   </View>

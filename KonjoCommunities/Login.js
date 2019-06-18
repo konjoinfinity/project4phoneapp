@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView,
-  Alert,
   Keyboard
 } from "react-native";
 import { Card } from "react-native-elements";
@@ -155,8 +154,7 @@ class LoginScreen extends React.Component {
                   blurOnSubmit={false}
                   onChangeText={this.handleEmailChange}
                   value={this.state.email}
-                  onSubmitEditing={() => { this.passInput.focus(); }}
-                />
+                  onSubmitEditing={() => { this.passInput.focus(); }} />
               </View>
               <View style={styles.inputContainer}>
                 <TextInput
@@ -169,8 +167,7 @@ class LoginScreen extends React.Component {
                   ref={(input) => { this.passInput = input; }}
                   onSubmitEditing={this.handleLogin}
                   value={this.state.password}
-                  returnKeyType='send'
-                />
+                  returnKeyType='send' />
               </View>
               <View style={styles.inputContainer}>
                 <TouchableOpacity

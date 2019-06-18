@@ -174,9 +174,7 @@ class ProfileScreen extends React.Component {
                         onPress={() =>
                             this.props.navigation.push("Community", {
                                 communityId: `${community._id}`
-                            })
-                        }
-                    >
+                            })}>
                         <Text style={styles.communityButtonText}>{community.name}</Text>
                     </TouchableOpacity>
                 );
@@ -203,9 +201,7 @@ class ProfileScreen extends React.Component {
                         onPress={() =>
                             this.props.navigation.push("Community", {
                                 communityId: `${community._id}`
-                            })
-                        }
-                    >
+                            })}>
                         <Text style={styles.communityButtonText}>{community.name}</Text>
                     </TouchableOpacity>
                 );
@@ -256,7 +252,6 @@ class ProfileScreen extends React.Component {
                                     delay={10}
                                     duration={1500}>
                                     {this.state.commjoined === true && joinedcom}
-
                                 </AnimatableView>
                             </View>
                         </Card>

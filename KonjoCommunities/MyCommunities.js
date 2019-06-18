@@ -97,9 +97,7 @@ class MyCommunitiesScreen extends React.Component {
               onPress={() =>
                 this.props.navigation.push("Community", {
                   communityId: `${community._id}`
-                })
-              }
-            >
+                })}>
               <Text style={styles.communityButtonText}>{community.name}</Text>
             </TouchableOpacity>
             <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>

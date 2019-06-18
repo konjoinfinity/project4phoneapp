@@ -366,21 +366,16 @@ class CommunityScreen extends React.Component {
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center"
-              }}
-            >
+              }}>
               <Text style={{ fontSize: 20 }}>👤 {member.name}</Text>
               {this.state.creator === this.state.community.creator && (
                 <Button
                   title="🗑 Remove"
-                  onPress={() => this.deleteMember(`${member._id}`)}
-                />
-              )}
+                  onPress={() => this.deleteMember(`${member._id}`)} />)}
               {this.state.creator === member.name && (
                 <Button
                   title="🗑 Remove"
-                  onPress={() => this.deleteMember(`${member._id}`)}
-                />
-              )}
+                  onPress={() => this.deleteMember(`${member._id}`)} />)}
             </View>
           </Card>
         );
@@ -395,9 +390,7 @@ class CommunityScreen extends React.Component {
             {this.state.creator === comment.creator && (
               <Button
                 title="🗑 Delete"
-                onPress={() => this.deleteComment(`${comment._id}`)}
-              />
-            )}
+                onPress={() => this.deleteComment(`${comment._id}`)} />)}
           </TouchableOpacity>
         );
       }));
@@ -413,27 +406,15 @@ class CommunityScreen extends React.Component {
           <Card borderRadius={15} key={id}>
             <View>
               <Text style={{ fontSize: 30, padding: 5, textAlign: "center" }}>{meet.name}</Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
-                🗒 {meet.description}
-              </Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
-                📍 {meet.location}
-              </Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
-                📆 {meet.date}
-              </Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>
-                🕒 {meet.time}
-              </Text>
-              <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>
-                👤 {meet.creator}
-              </Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🗒 {meet.description}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📍 {meet.location}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
+              <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
               {this.state.creator === meet.creator && (
                 <Button
                   title="🗑 Delete"
-                  onPress={() => this.deleteMeet(`${meet._id}`)}
-                />
-              )}
+                  onPress={() => this.deleteMeet(`${meet._id}`)} />)}
             </View>
           </Card>
         );
@@ -448,15 +429,9 @@ class CommunityScreen extends React.Component {
             duration={1800}>
             <Card borderRadius={15} minWidth={330}>
               <View>
-                <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>
-                  {this.state.community.name}
-                </Text>
-                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                  🗒 {this.state.community.description}
-                </Text>
-                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                  📝 {this.state.community.category}
-                </Text>
+                <Text style={{ fontSize: 40, padding: 10, textAlign: "center" }}>{this.state.community.name}</Text>
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>🗒 {this.state.community.description}</Text>
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>📝 {this.state.community.category}</Text>
               </View>
             </Card>
             <Card borderRadius={15}>
@@ -474,8 +449,7 @@ class CommunityScreen extends React.Component {
                   </Text>}
                 {this.state.memberslist === true && (
                   this.state.creator === this.state.community.creator && (
-                    <View>{members}</View>
-                  ))}
+                    <View>{members}</View>))}
                 {this.state.memberslist === true &&
                   member.length === 1 && <View>{members}</View>}
               </View>
@@ -499,40 +473,31 @@ class CommunityScreen extends React.Component {
                       onPress={() =>
                         this.props.navigation.push("CommMap", {
                           communityId: `${this.state.community._id}`
-                        })
-                      }
-                    >
+                        })}>
                       <Text style={styles.mapButtonText}>Map 🗺</Text>
                     </TouchableOpacity>
                     {this.state.creator !== this.state.community.creator &&
                       member.length === 0 && (
                         <TouchableOpacity
                           style={styles.joinButton}
-                          onPress={this.joinCommunity}
-                        >
+                          onPress={this.joinCommunity}>
                           <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
-                        </TouchableOpacity>
-                      )}
+                        </TouchableOpacity>)}
                     {this.state.creator === this.state.community.creator && (
                       <TouchableOpacity
                         style={styles.editButton}
                         onPress={() =>
                           this.props.navigation.push("Edit", {
                             communityId: `${this.state.community._id}`
-                          })
-                        }
-                      >
+                          })}>
                         <Text style={styles.editButtonText}>Edit Community ✏️</Text>
-                      </TouchableOpacity>
-                    )}
+                      </TouchableOpacity>)}
                     {this.state.creator === this.state.community.creator && (
                       <TouchableOpacity
                         style={styles.deleteButton}
-                        onPress={this.deleteCommunity}
-                      >
+                        onPress={this.deleteCommunity}>
                         <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
-                      </TouchableOpacity>
-                    )}
+                      </TouchableOpacity>)}
                     {this.state.community.numberOfMembers >= 3 &&
                       member.length === 1 && (
                         <TouchableOpacity
@@ -540,12 +505,9 @@ class CommunityScreen extends React.Component {
                           onPress={() =>
                             this.props.navigation.push("Meet", {
                               communityId: `${this.state.community._id}`
-                            })
-                          }
-                        >
+                            })}>
                           <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
-                        </TouchableOpacity>
-                      )}
+                        </TouchableOpacity>)}
                     {this.state.community.numberOfMembers >= 3 &&
                       this.state.creator === this.state.community.creator && (
                         <TouchableOpacity
@@ -553,31 +515,21 @@ class CommunityScreen extends React.Component {
                           onPress={() =>
                             this.props.navigation.push("Meet", {
                               communityId: `${this.state.community._id}`
-                            })
-                          }
-                        >
+                            })}>
                           <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
-                        </TouchableOpacity>
-                      )}
+                        </TouchableOpacity>)}
                   </View>}
               </View>
             </Card>
             {this.state.community.numberOfMembers >= 3 && member.length === 1 && (
               this.state.community.meets.length !== 0 && (
-                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                  Meets
-            </Text>
-              ))}
+                <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>Meets</Text>))}
             {this.state.community.numberOfMembers >= 3 &&
               this.state.creator === this.state.community.creator && (
                 this.state.community.meets.length !== 0 && (
-                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>
-                    Meets
-              </Text>
-                ))}
+                  <Text style={{ fontSize: 30, padding: 10, textAlign: "center" }}>Meets</Text>))}
             {this.state.creator === this.state.community.creator && (
-              <View>{meetlist}</View>
-            )}
+              <View>{meetlist}</View>)}
             {member.length === 1 && <View>{meetlist}</View>}
             {member.length === 1 && (
               <Card borderRadius={15}>
@@ -590,19 +542,16 @@ class CommunityScreen extends React.Component {
                     onChangeText={this.handleCommentChange}
                     returnKeyType="send"
                     value={this.state.comment}
-                    onSubmitEditing={this.handleComment}
-                  />
+                    onSubmitEditing={this.handleComment} />
                 </View>
                 <View style={styles.inputContainer}>
                   <TouchableOpacity
                     style={styles.saveButton}
-                    onPress={this.handleComment}
-                  >
+                    onPress={this.handleComment}>
                     <Text style={styles.saveButtonText}>Add Comment 💬</Text>
                   </TouchableOpacity>
                 </View>
-              </Card>
-            )}
+              </Card>)}
             {this.state.creator === this.state.community.creator && (
               <Card borderRadius={15}>
                 <View style={styles.inputContainer}>
@@ -614,37 +563,26 @@ class CommunityScreen extends React.Component {
                     onChangeText={this.handleCommentChange}
                     returnKeyType='send'
                     value={this.state.comment}
-                    onSubmitEditing={this.handleComment}
-                  />
+                    onSubmitEditing={this.handleComment} />
                 </View>
                 <View style={styles.inputContainer}>
                   <TouchableOpacity
                     style={styles.saveButton}
-                    onPress={this.handleComment}
-                  >
+                    onPress={this.handleComment}>
                     <Text style={styles.saveButtonText}>Add Comment 💬</Text>
                   </TouchableOpacity>
                 </View>
-              </Card>
-            )}
+              </Card>)}
             {this.state.creator === this.state.community.creator && (
               this.state.community.comments.length !== 0 && (
-                <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
-                  Comments
-            </Text>
-              ))}
+                <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>Comments</Text>))}
             {member.length === 1 && (
               this.state.community.comments.length !== 0 && (
-                <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>
-                  Comments
-            </Text>
-              ))}
+                <Text style={{ fontSize: 35, padding: 20, textAlign: "center" }}>Comments</Text>))}
             {this.state.creator === this.state.community.creator && (
-              <View style={{ margin: 20 }}>{commentlist}</View>
-            )}
+              <View style={{ margin: 20 }}>{commentlist}</View>)}
             {member.length === 1 && (
-              <View style={{ margin: 20 }}>{commentlist}</View>
-            )}
+              <View style={{ margin: 20 }}>{commentlist}</View>)}
           </AnimatableView>
         </ScrollView>
         <Modal
@@ -653,8 +591,7 @@ class CommunityScreen extends React.Component {
           animationIn="slideInDown"
           onSwipeComplete={() => this.joinCommunity()}
           swipeDirection={['right', 'left', 'up', 'down']}
-          onBackdropPress={() => this.closeModal()}
-        >
+          onBackdropPress={() => this.closeModal()}>
           {this.joinModal()}
         </Modal>
         <KeyboardSpacer />

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Image,
   StyleSheet,
   Text,
   View,
@@ -251,8 +250,7 @@ class MeetScreen extends React.Component {
                       blurOnSubmit={false}
                       autoFocus={true}
                       onSubmitEditing={() => { this.descInput.focus(); }}
-                      value={this.state.name}
-                    />
+                      value={this.state.name} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TextInput
@@ -265,8 +263,7 @@ class MeetScreen extends React.Component {
                       blurOnSubmit={false}
                       ref={(input) => { this.descInput = input; }}
                       onSubmitEditing={() => { this.locInput.focus(); }}
-                      value={this.state.description}
-                    />
+                      value={this.state.description} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TextInput
@@ -277,8 +274,7 @@ class MeetScreen extends React.Component {
                       onChangeText={this.handleLocationChange}
                       blurOnSubmit={true}
                       ref={(input) => { this.locInput = input; }}
-                      value={this.state.location}
-                    />
+                      value={this.state.location} />
                   </View>
                   <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <DatePicker
@@ -305,8 +301,7 @@ class MeetScreen extends React.Component {
                       confirmBtnText="Confirm"
                       cancelBtnText="Cancel"
                       ref={(input) => { this.dateInput = input; }}
-                      onDateChange={(date) => this.handleDateChange(date)}
-                    />
+                      onDateChange={(date) => this.handleDateChange(date)} />
                     <DatePicker
                       style={{ width: 300, paddingTop: 25 }}
                       showIcon={false}
@@ -328,14 +323,12 @@ class MeetScreen extends React.Component {
                       format="h:mm A"
                       confirmBtnText="Confirm"
                       cancelBtnText="Cancel"
-                      onDateChange={(time) => this.handleTimeChange(time)}
-                    />
+                      onDateChange={(time) => this.handleTimeChange(time)} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TouchableOpacity
                       style={styles.saveButton}
-                      onPress={this.handleSubmit}
-                    >
+                      onPress={this.handleSubmit}>
                       <Text style={styles.saveButtonText}>Create Meet</Text>
                     </TouchableOpacity>
                   </View>
