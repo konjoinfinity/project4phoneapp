@@ -217,37 +217,33 @@ class ProfileScreen extends React.Component {
                     duration={1800}>
                     <Card title="Profile" titleStyle={{ fontSize: 30, textAlign: "center", padding: 10, fontFamily: 'system font', color: "#000000" }} borderRadius={15}>
                         <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
-                        <Card borderRadius={15} containerStyle={{ backgroundColor: "#FF8300" }}>
+                        <Card borderRadius={15} containerStyle={{ backgroundColor: "#12C16D" }}>
                             <View>
                                 <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}> Communities I've Created: {created && created.length}</Text>
                                 {this.state.commcreated === false &&
                                     <Button onPress={() => this.openCloseCommCreated()}
-                                        title="Show"
-                                        color="#2A87A6" />}
+                                        title="Show" />}
                                 {this.state.commcreated === true &&
                                     <Button onPress={() => this.openCloseCommCreated()}
-                                        title="Hide"
-                                        color="#2A87A6" />}
-                                {this.state.commcreated === true && <Card borderRadius={15}>
-                                    <AnimatableView animation={this.state.commcreated === true ? "bounceInUp" : undefined}
-                                        delay={10}
-                                        duration={1500}>
-                                        {this.state.commcreated === true && mine}
-                                    </AnimatableView>
-                                </Card>}
+                                        title="Hide" />}
+                                <AnimatableView animation={this.state.commcreated === true ? "bounceInUp" : undefined}
+                                    delay={10}
+                                    duration={1500}>
+                                    {this.state.commcreated === true && mine}
+                                </AnimatableView>
                             </View>
                         </Card>
-                        <Card borderRadius={15} containerStyle={{ backgroundColor: "#E0118A" }}>
+                        <Card borderRadius={15} containerStyle={{ backgroundColor: "#007BFF" }}>
                             <View>
                                 <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}>Communities I've Joined: {joined && joined.length}</Text>
                                 {this.state.commjoined === false &&
                                     <Button onPress={() => this.openCloseCommJoined()}
                                         title="Show"
-                                        color="#A3F100" />}
+                                        color="#FF9900" />}
                                 {this.state.commjoined === true &&
                                     <Button onPress={() => this.openCloseCommJoined()}
                                         title="Hide"
-                                        color="#A3F100" />}
+                                        color="#FF9900" />}
                                 <AnimatableView animation={this.state.commjoined === true ? "bounceInUp" : undefined}
                                     delay={10}
                                     duration={1500}>
@@ -271,19 +267,6 @@ class ProfileScreen extends React.Component {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-    homeButton: {
-        borderWidth: 1,
-        borderColor: "#12C16D",
-        backgroundColor: "#12C16D",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    },
-    homeButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     communityButtonText: {
         color: "#FFFFFF",
         fontSize: 15,
@@ -319,8 +302,8 @@ const styles = StyleSheet.create({
     },
     changePassButton: {
         borderWidth: 1,
-        borderColor: "#12C16D",
-        backgroundColor: "#12C16D",
+        borderColor: "#752794",
+        backgroundColor: "#752794",
         padding: 15,
         margin: 15,
         borderRadius: 15
