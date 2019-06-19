@@ -415,11 +415,6 @@ class CommunityScreen extends React.Component {
           </Card>
         );
       }));
-    const membertoleave =
-      this.state.community &&
-      this.state.community.members.filter(
-        member => member.name === this.state.creator
-      );
     return (
       <View style={styles.communities} behavior="padding">
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
@@ -488,7 +483,7 @@ class CommunityScreen extends React.Component {
                       member.length === 1 && (
                         <TouchableOpacity
                           style={styles.leaveButton}
-                          onPress={() => this.deleteMember(membertoleave[0]._id)}>
+                          onPress={() => this.deleteMember(member[0]._id)}>
                           <Text style={styles.leaveButtonText}>Leave Community ⬅️👤</Text>
                         </TouchableOpacity>)}
                     {this.state.creator === this.state.community.creator && (
