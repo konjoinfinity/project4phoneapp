@@ -4,6 +4,7 @@ import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
 import LogoTitle from "./LogoTitle"
+import { AlertHelper } from './AlertHelper';
 
 class MapScreen extends Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class MapScreen extends Component {
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
+            }).catch(error => {
+                AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
         Vibration.vibrate();
         navigator.geolocation.getCurrentPosition(

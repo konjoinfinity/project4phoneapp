@@ -14,6 +14,7 @@ import * as Animatable from 'react-native-animatable';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
+import { AlertHelper } from './AlertHelper';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -124,6 +125,8 @@ class EditScreen extends React.Component {
           description: res.description,
           category: res.category
         });
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
     Vibration.vibrate();
   }
@@ -172,6 +175,8 @@ class EditScreen extends React.Component {
         })
         Vibration.vibrate();
         this.editClear();
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 

@@ -133,6 +133,8 @@ class MeetScreen extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 
@@ -195,7 +197,9 @@ class MeetScreen extends React.Component {
                     },
                     body: JSON.stringify(data)
                   }
-                );
+                ).catch(error => {
+                  AlertHelper.show('warn', 'Error', `${error.message}!`);
+                });
                 this.props.navigation.push("Community", {
                   communityId: `${this.props.navigation.state.params.communityId}`, meet: true
                 })

@@ -100,8 +100,8 @@ class ChangePassScreen extends React.Component {
                                             })
                                         }
                                     })
-                                    .catch(err => {
-                                        console.log(err);
+                                    .catch(error => {
+                                        AlertHelper.show('warn', 'Error', `${error.message}!`);
                                     });
                             } else {
                                 Vibration.vibrate();

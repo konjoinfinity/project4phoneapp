@@ -185,6 +185,8 @@ class NewScreen extends React.Component {
                   this.props.navigation.push("Community", {
                     communityId: `${res._id}`, newcomm: true
                   });
+                }).catch(error => {
+                  AlertHelper.show('warn', 'Error', `${error.message}!`);
                 });
               Vibration.vibrate();
               this.newClear();

@@ -125,9 +125,6 @@ class LoginScreen extends React.Component {
             this.loginClear();
           }
         })
-        .catch(err => {
-          console.log(err);
-        });
     } else {
       Vibration.vibrate();
       AlertHelper.show('warn', 'Warning', "Please enter a valid email.");

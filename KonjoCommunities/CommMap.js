@@ -3,6 +3,7 @@ import { View, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-nativ
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import LogoTitle from "./LogoTitle"
+import { AlertHelper } from './AlertHelper';
 
 class CommMapScreen extends Component {
     constructor(props) {
@@ -19,6 +20,8 @@ class CommMapScreen extends Component {
             .then(res => res.json())
             .then(res => {
                 this.setState({ community: res });
+            }).catch(error => {
+                AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
         Vibration.vibrate();
     }

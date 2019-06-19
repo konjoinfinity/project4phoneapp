@@ -13,6 +13,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
 import * as Animatable from 'react-native-animatable';
 import LogoTitle from "./LogoTitle"
+import { AlertHelper } from './AlertHelper';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -52,6 +53,8 @@ class MyCommunitiesScreen extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({ communities: res });
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
     Vibration.vibrate();
     this.getUsername();
