@@ -231,7 +231,7 @@ class ChangePassScreen extends React.Component {
                             <TouchableOpacity
                                 style={styles.changePassButton}
                                 onPress={this.changePassword}>
-                                <Text style={styles.changePassButtonText}>Submit ⌨️</Text>
+                                <Text style={styles.buttonText}>Submit ⌨️</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                     </View>
@@ -245,48 +245,9 @@ class ChangePassScreen extends React.Component {
 export default ChangePassScreen;
 
 const styles = StyleSheet.create({
-    myCommunitiesButton: {
-        borderWidth: 1,
-        borderColor: "#FF8300",
-        backgroundColor: "#FF8300",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    },
-    myCommunitiesButtonText: {
+    buttonText: {
         color: "#FFFFFF",
         fontSize: 20,
-        textAlign: "center"
-    },
-    joinedCommunitiesButton: {
-        borderWidth: 1,
-        borderColor: "#E0118A",
-        backgroundColor: "#E0118A",
-        padding: 15,
-        margin: 15,
-        borderRadius: 15
-    },
-    joinedCommunitiesButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
-    homeButton: {
-        borderWidth: 1,
-        borderColor: "#12C16D",
-        backgroundColor: "#12C16D",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    },
-    homeButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
-    communityButtonText: {
-        color: "#FFFFFF",
-        fontSize: 15,
         textAlign: "center"
     },
     headerButton: {
@@ -324,10 +285,5 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 15,
         borderRadius: 15
-    },
-    changePassButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
     }
 })
