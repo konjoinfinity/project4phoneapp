@@ -42,6 +42,8 @@ class HomeScreen extends React.Component {
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
+            }).catch(error => {
+                AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
         const initlogin = this.props.navigation.getParam('initlogin', false);
         if (initlogin !== false) {
