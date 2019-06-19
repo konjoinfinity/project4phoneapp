@@ -372,10 +372,6 @@ class CommunityScreen extends React.Component {
                 <Button
                   title="🗑 Remove"
                   onPress={() => this.deleteMember(`${member._id}`)} />)}
-              {this.state.creator === member.name && (
-                <Button
-                  title="🗑 Remove"
-                  onPress={() => this.deleteMember(`${member._id}`)} />)}
             </View>
           </Card>
         );
@@ -419,6 +415,11 @@ class CommunityScreen extends React.Component {
           </Card>
         );
       }));
+    const membertoleave =
+      this.state.community &&
+      this.state.community.members.filter(
+        member => member.name === this.state.creator
+      );
     return (
       <View style={styles.communities} behavior="padding">
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
@@ -482,6 +483,13 @@ class CommunityScreen extends React.Component {
                           style={styles.joinButton}
                           onPress={this.joinCommunity}>
                           <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
+                        </TouchableOpacity>)}
+                    {this.state.creator !== this.state.community.creator &&
+                      member.length === 1 && (
+                        <TouchableOpacity
+                          style={styles.leaveButton}
+                          onPress={() => this.deleteMember(membertoleave[0]._id)}>
+                          <Text style={styles.leaveButtonText}>Leave Community ⬅️👤</Text>
                         </TouchableOpacity>)}
                     {this.state.creator === this.state.community.creator && (
                       <TouchableOpacity
@@ -768,6 +776,19 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'white',
     padding: 10,
+    textAlign: "center"
+  },
+  leaveButton: {
+    borderWidth: 1,
+    borderColor: "#FF8300",
+    backgroundColor: "#FF8300",
+    padding: 15,
+    margin: 5,
+    borderRadius: 15
+  },
+  leaveButtonText: {
+    color: "#FFFFFF",
+    fontSize: 20,
     textAlign: "center"
   }
 });
