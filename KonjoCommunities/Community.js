@@ -85,6 +85,8 @@ class CommunityScreen extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
@@ -199,6 +201,8 @@ class CommunityScreen extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 
@@ -215,7 +219,9 @@ class CommunityScreen extends React.Component {
       .then(this.props.navigation.push("Home", {
         delcomm: true, name: this.state.community.name
       }))
-      .then(Vibration.vibrate());
+      .then(Vibration.vibrate()).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
+      });
   }
 
   deleteComment(e) {
@@ -237,6 +243,8 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 
@@ -264,7 +272,7 @@ class CommunityScreen extends React.Component {
           setTimeout(() => {
             this.scrolltop.scrollToEnd({ animated: true });
           }, 300)
-        }).catch(function (error) {
+        }).catch(error => {
           AlertHelper.show('warn', 'Error', `${error.message}!`);
         });
     } else {
@@ -297,7 +305,7 @@ class CommunityScreen extends React.Component {
         if (this.state.joinmodal === true) {
           this.setState({ joinmodal: null })
         }
-      }).catch(function (error) {
+      }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
@@ -322,6 +330,8 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
         AlertHelper.show('info', 'Info', `You've left ${this.state.community.name}.`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 
@@ -345,6 +355,8 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
         AlertHelper.show('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 
