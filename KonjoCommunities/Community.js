@@ -164,14 +164,8 @@ class CommunityScreen extends React.Component {
             { cancelable: false },
           );
           Vibration.vibrate();
-        } else {
-          console.log("Meets already created")
         }
-      } else {
-        console.log("More members required")
       }
-    } else {
-      console.log("Required to Join")
     }
   }
 
