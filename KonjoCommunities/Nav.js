@@ -60,7 +60,7 @@ class Nav extends React.Component {
                             delay={50}
                             duration={1500}>
                             <TouchableOpacity
-                                style={styles.joinbutton}
+                                style={styles.joinButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("MyCommunities") }}>
                                 <Text style={styles.buttonText}>My Communities 👤</Text>
                             </TouchableOpacity>

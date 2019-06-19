@@ -470,21 +470,21 @@ class CommunityScreen extends React.Component {
                         this.props.navigation.push("CommMap", {
                           communityId: `${this.state.community._id}`
                         })}>
-                      <Text style={styles.mapButtonText}>Map 🗺</Text>
+                      <Text style={styles.buttonText}>Map 🗺</Text>
                     </TouchableOpacity>
                     {this.state.creator !== this.state.community.creator &&
                       member.length === 0 && (
                         <TouchableOpacity
                           style={styles.joinButton}
                           onPress={this.joinCommunity}>
-                          <Text style={styles.joinButtonText}>Join Community ➕👥</Text>
+                          <Text style={styles.buttonText}>Join Community ➕👥</Text>
                         </TouchableOpacity>)}
                     {this.state.creator !== this.state.community.creator &&
                       member.length === 1 && (
                         <TouchableOpacity
                           style={styles.leaveButton}
                           onPress={() => this.deleteMember(member[0]._id)}>
-                          <Text style={styles.leaveButtonText}>Leave Community ⬅️👤</Text>
+                          <Text style={styles.buttonText}>Leave Community ⬅️👤</Text>
                         </TouchableOpacity>)}
                     {this.state.creator === this.state.community.creator && (
                       <TouchableOpacity
@@ -493,13 +493,13 @@ class CommunityScreen extends React.Component {
                           this.props.navigation.push("Edit", {
                             communityId: `${this.state.community._id}`
                           })}>
-                        <Text style={styles.editButtonText}>Edit Community ✏️</Text>
+                        <Text style={styles.buttonText}>Edit Community ✏️</Text>
                       </TouchableOpacity>)}
                     {this.state.creator === this.state.community.creator && (
                       <TouchableOpacity
                         style={styles.deleteButton}
                         onPress={this.deleteCommunity}>
-                        <Text style={styles.deleteButtonText}>Delete Community 🗑</Text>
+                        <Text style={styles.buttonText}>Delete Community 🗑</Text>
                       </TouchableOpacity>)}
                     {this.state.community.numberOfMembers >= 3 &&
                       member.length === 1 && (
@@ -509,7 +509,7 @@ class CommunityScreen extends React.Component {
                             this.props.navigation.push("Meet", {
                               communityId: `${this.state.community._id}`
                             })}>
-                          <Text style={styles.meetButtonText}>Create Meet ➕📆</Text>
+                          <Text style={styles.buttonText}>Create Meet ➕📆</Text>
                         </TouchableOpacity>)}
                     {this.state.community.numberOfMembers >= 3 &&
                       this.state.creator === this.state.community.creator && (
@@ -519,7 +519,7 @@ class CommunityScreen extends React.Component {
                             this.props.navigation.push("Meet", {
                               communityId: `${this.state.community._id}`
                             })}>
-                          <Text style={styles.meetButtonText}>Create Meet ➕🗓</Text>
+                          <Text style={styles.buttonText}>Create Meet ➕🗓</Text>
                         </TouchableOpacity>)}
                   </View>}
               </View>
@@ -551,7 +551,7 @@ class CommunityScreen extends React.Component {
                   <TouchableOpacity
                     style={styles.saveButton}
                     onPress={this.handleComment}>
-                    <Text style={styles.saveButtonText}>Add Comment 💬</Text>
+                    <Text style={styles.buttonText}>Add Comment 💬</Text>
                   </TouchableOpacity>
                 </View>
               </Card>)}
@@ -572,7 +572,7 @@ class CommunityScreen extends React.Component {
                   <TouchableOpacity
                     style={styles.saveButton}
                     onPress={this.handleComment}>
-                    <Text style={styles.saveButtonText}>Add Comment 💬</Text>
+                    <Text style={styles.buttonText}>Add Comment 💬</Text>
                   </TouchableOpacity>
                 </View>
               </Card>)}
@@ -625,7 +625,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  deleteButtonText: {
+  buttonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
@@ -638,11 +638,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  joinButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   communityButton: {
     borderWidth: 1,
     borderColor: "#007BFF",
@@ -650,11 +645,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 15
-  },
-  communityButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
   },
   communities: {
     flex: 1,
@@ -669,11 +659,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  editButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   meetButton: {
     borderWidth: 1,
     borderColor: "#752794",
@@ -681,11 +666,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 15
-  },
-  meetButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
   },
   comment: {
     borderWidth: 1,
@@ -703,11 +683,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  saveButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   myCommunitiesButton: {
     borderWidth: 1,
     borderColor: "#FF8300",
@@ -715,11 +690,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 15
-  },
-  myCommunitiesButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
   },
   homeButton: {
     borderWidth: 1,
@@ -729,11 +699,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  homeButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   joinedCommunitiesButton: {
     borderWidth: 1,
     borderColor: "#E0118A",
@@ -742,11 +707,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  joinedCommunitiesButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   mapButton: {
     borderWidth: 1,
     borderColor: "#00B6B6",
@@ -754,11 +714,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 15
-  },
-  mapButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
   },
   modal: {
     height: 250,
@@ -780,11 +735,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 15
-  },
-  leaveButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
   }
 });
 

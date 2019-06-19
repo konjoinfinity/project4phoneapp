@@ -173,17 +173,17 @@ class LoginScreen extends React.Component {
                 <TouchableOpacity
                   style={styles.loginButton}
                   onPress={this.handleLogin}>
-                  <Text style={styles.loginButtonText}>Login 🔑</Text>
+                  <Text style={styles.buttonText}>Login 🔑</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.signupButton}
                   onPress={() => this.props.navigation.push("Signup")}>
-                  <Text style={styles.signupButtonText}>Don't have an Account? Signup! ⌨️</Text>
+                  <Text style={styles.buttonText}>Don't have an Account? Signup! ⌨️</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.checkButton}
                   onPress={this.getUsername}>
-                  <Text style={styles.checkButtonText}>Check User ❔</Text>
+                  <Text style={styles.buttonText}>Check User ❔</Text>
                 </TouchableOpacity>
               </View>
             </Card>
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  loginButtonText: {
+  buttonText: {
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center"
@@ -239,11 +239,6 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 15
   },
-  checkButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
-  },
   signupButton: {
     borderWidth: 1,
     borderColor: "#12C16D",
@@ -251,10 +246,5 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 15
-  },
-  signupButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    textAlign: "center"
   }
 });
