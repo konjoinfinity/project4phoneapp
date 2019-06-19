@@ -261,7 +261,12 @@ class CommunityScreen extends React.Component {
           this.getCommunity();
           this.commentClear()
           Vibration.vibrate();
-        })
+          setTimeout(() => {
+            this.scrolltop.scrollToEnd({ animated: true });
+          }, 300)
+        }).catch(function (error) {
+          AlertHelper.show('warn', 'Error', `${error.message}!`);
+        });
     } else {
       Vibration.vibrate();
       AlertHelper.show('warn', 'Warning', "Please enter text to comment.");
@@ -292,6 +297,8 @@ class CommunityScreen extends React.Component {
         if (this.state.joinmodal === true) {
           this.setState({ joinmodal: null })
         }
+      }).catch(function (error) {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
 
