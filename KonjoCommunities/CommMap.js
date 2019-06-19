@@ -4,6 +4,9 @@ import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
+import AsyncStorage from "@react-native-community/async-storage";
+
+const STORAGE_KEY = "id_token";
 
 class CommMapScreen extends Component {
     constructor(props) {
@@ -13,10 +16,16 @@ class CommMapScreen extends Component {
         };
     }
 
-    componentDidMount() {
-        fetch(`https://konjomeet.herokuapp.com/community/${
+    async componentDidMount() {
+        const token = await AsyncStorage.getItem(STORAGE_KEY);
+        await fetch(`https://konjomeet.herokuapp.com/community/${
             this.props.navigation.state.params.communityId
-            }/map`)
+            }`, {
+                method: "GET",
+                headers: {
+                    "user-token": `${token}`
+                }
+            })
             .then(res => res.json())
             .then(res => {
                 this.setState({ community: res });

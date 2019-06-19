@@ -5,6 +5,9 @@ import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
+import AsyncStorage from "@react-native-community/async-storage";
+
+const STORAGE_KEY = "id_token";
 
 class MapScreen extends Component {
     constructor(props) {
@@ -19,8 +22,14 @@ class MapScreen extends Component {
         this.iAmHere = this.iAmHere.bind(this);
     }
 
-    componentDidMount() {
-        fetch("https://konjomeet.herokuapp.com/community/search")
+    async componentDidMount() {
+        const token = await AsyncStorage.getItem(STORAGE_KEY);
+        await fetch("https://konjomeet.herokuapp.com/community", {
+            method: "GET",
+            headers: {
+                "user-token": `${token}`
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
