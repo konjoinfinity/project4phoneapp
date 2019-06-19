@@ -42,7 +42,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.homeButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Home") }}>
-                                <Text style={styles.homeButtonText}>Go Home 🏠</Text>
+                                <Text style={styles.buttonText}>Go Home 🏠</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -52,7 +52,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.communityButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Communities") }}>
-                                <Text style={styles.communityButtonText}>View Communites 👥</Text>
+                                <Text style={styles.buttonText}>View Communites 👥</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -60,9 +60,9 @@ class Nav extends React.Component {
                             delay={50}
                             duration={1500}>
                             <TouchableOpacity
-                                style={styles.joinButton}
+                                style={styles.joinbutton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("MyCommunities") }}>
-                                <Text style={styles.joinButtonText}>My Communities 👤</Text>
+                                <Text style={styles.buttonText}>My Communities 👤</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -72,7 +72,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.joinedCommunitiesButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("JoinedCommunities") }}>
-                                <Text style={styles.joinedCommunitiesButtonText}>Joined Communities 👤➡️👥</Text>
+                                <Text style={styles.buttonText}>Joined Communities 👤➡️👥</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -82,7 +82,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.growButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("GrowCommunities") }}>
-                                <Text style={styles.growButtonText}>Growing Communities 👤🌻</Text>
+                                <Text style={styles.buttonText}>Growing Communities 👤🌻</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -92,7 +92,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.newButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("New") }}>
-                                <Text style={styles.newButtonText}>New Community ➕</Text>
+                                <Text style={styles.buttonText}>New Community ➕</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -102,7 +102,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.myCommunitiesButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Profile") }}>
-                                <Text style={styles.myCommunitiesButtonText}>Profile 👤</Text>
+                                <Text style={styles.buttonText}>Profile 👤</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -112,7 +112,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.searchButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Search") }}>
-                                <Text style={styles.searchButtonText}>Search 🔍</Text>
+                                <Text style={styles.buttonText}>Search 🔍</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -122,7 +122,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.mapButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Map") }}>
-                                <Text style={styles.mapButtonText}>Map 🗺</Text>
+                                <Text style={styles.buttonText}>Map 🗺</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -132,7 +132,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.logoutButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.userLogout() }}>
-                                <Text style={styles.logoutButtonText}>Logout ➡🚪</Text>
+                                <Text style={styles.buttonText}>Logout ➡🚪</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                     </View>
@@ -146,14 +146,14 @@ export default Nav;
 
 const styles = StyleSheet.create({
     joinButton: {
-        borderWidth: 1,
         borderColor: "#3D7E9A",
         backgroundColor: "#3D7E9A",
+        borderWidth: 1,
         padding: 15,
         margin: 5,
         borderRadius: 15
     },
-    joinButtonText: {
+    buttonText: {
         color: "#FFFFFF",
         fontSize: 20,
         textAlign: "center"
@@ -166,24 +166,6 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    communityButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
-    editButton: {
-        borderWidth: 1,
-        borderColor: "#FFD517",
-        backgroundColor: "#FFD517",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    },
-    editButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     searchButton: {
         borderWidth: 1,
         borderColor: "#752794",
@@ -191,11 +173,6 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
-    },
-    searchButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
     },
     myCommunitiesButton: {
         borderWidth: 1,
@@ -205,11 +182,6 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    myCommunitiesButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     homeButton: {
         borderWidth: 1,
         borderColor: "#12C16D",
@@ -217,11 +189,6 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
-    },
-    homeButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
     },
     joinedCommunitiesButton: {
         borderWidth: 1,
@@ -231,11 +198,6 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    joinedCommunitiesButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     logoutButton: {
         borderWidth: 1,
         borderColor: "#FFE713",
@@ -243,24 +205,6 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
-    },
-    logoutButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
-    loginButton: {
-        borderWidth: 1,
-        borderColor: "#E0118A",
-        backgroundColor: "#E0118A",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    },
-    loginButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
     },
     newButton: {
         borderWidth: 1,
@@ -270,11 +214,6 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    newButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     mapButton: {
         borderWidth: 1,
         borderColor: "#B8E35D",
@@ -283,11 +222,6 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 15
     },
-    mapButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
     growButton: {
         borderWidth: 1,
         borderColor: "#00B6B6",
@@ -295,10 +229,5 @@ const styles = StyleSheet.create({
         padding: 15,
         margin: 5,
         borderRadius: 15
-    },
-    growButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
     }
 });
