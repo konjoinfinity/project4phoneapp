@@ -14,6 +14,7 @@ import {
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
+import AsyncStorage from "@react-native-community/async-storage";
 import Modal from "react-native-modal";
 import RNShake from 'react-native-shake';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
@@ -21,12 +22,15 @@ import LogoTitle from "./LogoTitle"
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
+var STORAGE_KEY = "id_token";
+
 class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             communities: "",
             search: "",
+            userToken: "",
             modal1: null,
             modal2: null,
             modal3: null,
@@ -37,8 +41,19 @@ class HomeScreen extends React.Component {
         this.showModal = this.showModal.bind(this);
     }
 
-    componentDidMount() {
-        fetch("https://konjomeet.herokuapp.com/community/search")
+    async getToken() {
+        var token = await AsyncStorage.getItem(STORAGE_KEY);
+        this.setState({ userToken: token });
+    }
+
+    async componentDidMount() {
+        await this.getToken();
+        await fetch("https://konjomeet.herokuapp.com/community", {
+            method: "GET",
+            headers: {
+                "user-token": `${this.state.userToken}`
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
@@ -264,7 +279,7 @@ class HomeScreen extends React.Component {
                 );
             }));
         let newsearch;
-        this.state.communities && (
+        this.state.communities !== "" && (
             newsearch =
             this.state.search !== "" &&
             (results.length === 0 && (
@@ -284,7 +299,7 @@ class HomeScreen extends React.Component {
             )));
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <ScrollView>
+                <ScrollView ref={ref => this.scrollView = ref}>
                     <View>
                         <AnimatableView
                             animation="bounceInUp"
