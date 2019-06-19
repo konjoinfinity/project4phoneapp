@@ -320,9 +320,10 @@ class HomeScreen extends React.Component {
                                 </View>
                             </Card>}
                     </AnimatableView>
-                    <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
-                        {results}
-                    </View>
+                    {this.state.search !== "" &&
+                        <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", backgroundColor: "#12C16D", borderRadius: 15 }}>
+                            {results}
+                        </View>}
                     {newsearch}
                     <View>
                         <Modal
