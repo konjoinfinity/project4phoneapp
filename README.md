@@ -1,8 +1,9 @@
 # Konjo Communities React Native Phone App
 <div class="row space-between">
-<img src="https://user-images.githubusercontent.com/46323883/59458522-a152d480-8de8-11e9-9e71-acb8d1dc6ecf.png" width="280" height="480">
+<img src="https://user-images.githubusercontent.com/46323883/59878020-46375980-9375-11e9-8f05-5581bfd2090e.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59458540-a9127900-8de8-11e9-8c27-64adbe5bb623.png" width="280" height="480">
-<img src="https://user-images.githubusercontent.com/46323883/59458548-ad3e9680-8de8-11e9-8f28-605e590c6a0d.png" width="280" height="480">
+<img src="https://user-images.githubusercontent.com/46323883/59877997-3ddf1e80-9375-11e9-9827-ec184057f192.png" width="280" height="480">
+<img src="https://user-images.githubusercontent.com/46323883/59877987-391a6a80-9375-11e9-88d5-f6fe81ae12d0.png" width="280" height="480">
 </div>
 Welcome to Konjo Communities where you can create, join, meet, grow, and comment about communities. This is the react native phone app version of the project built using react native.
 
@@ -39,13 +40,14 @@ This app will be deployed using testflight in the future, stay tuned.  After bet
 - [React Native](https://facebook.github.io/react-native/) - Build native mobile apps using JavaScript and React
 - [React Navigation](https://reactnavigation.org/) - Navigator/Router for React Native
 - [React Native Elements](https://github.com/react-native-training/react-native-elements) - Cross Platform React Native UI Toolkit
-- [React Native Async Storage](https://www.npmjs.com/package/@react-native-community/async-storage) - An asynchronous, unencrypted, persistent, key-value storage system for React Native.
+- [React Native Sensitive Info](https://github.com/mcodex/react-native-sensitive-info) - Android Shared Preferences and iOS Keychain for React Native.
 - [React Native Maps](https://github.com/react-native-community/react-native-maps) - React Native Mapview component for iOS + Android
 - [Geolib](https://github.com/manuelbieh/geolib) - Zero dependency library to provide some basic geo functions
 - [React Native Dropdownalert](https://github.com/testshallpass/react-native-dropdownalert) - A simple alert to notify users about new chat messages, something went wrong or everything is ok.
 - [React Native Animatable](https://github.com/oblador/react-native-animatable) - Standard set of easy to use animations and declarative transitions for React Native
 - [React Native Modal](https://github.com/react-native-community/react-native-modal) - An enhanced, animated and customizable react-native modal
 - [React Native Keyboard Spacer](https://www.npmjs.com/package/react-native-keyboard-spacer) - Plug and play iOS react-native keyboard spacer view.
+- [React Native Confetti] (https://github.com/cdvntr/react-native-confetti) - Raining confetti made with react native animations
 
 ## Contributing
 
