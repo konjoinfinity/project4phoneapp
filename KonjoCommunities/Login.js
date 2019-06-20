@@ -12,7 +12,6 @@ import {
   Keyboard
 } from "react-native";
 import { Card } from "react-native-elements";
-import AsyncStorage from "@react-native-community/async-storage";
 import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';

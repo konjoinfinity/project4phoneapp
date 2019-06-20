@@ -10,7 +10,6 @@ import {
     Button
 } from "react-native";
 import { Card } from "react-native-elements";
-import AsyncStorage from "@react-native-community/async-storage";
 import { AlertHelper } from './AlertHelper';
 import * as Animatable from 'react-native-animatable';
 import LogoTitle from "./LogoTitle"

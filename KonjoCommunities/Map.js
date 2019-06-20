@@ -5,7 +5,6 @@ import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
-import AsyncStorage from "@react-native-community/async-storage";
 import SInfo from 'react-native-sensitive-info';
 
 const STORAGE_KEY = "id_token";

@@ -7,7 +7,6 @@ import {
     Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
-import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
@@ -27,7 +26,7 @@ class Nav extends React.Component {
             Vibration.vibrate();
             this.props.navigation.push("Login")
         } catch (error) {
-            console.log("AsyncStorage error: " + error.message);
+            console.log("SensitiveInfoStorage error: " + error.message);
         }
     }
 

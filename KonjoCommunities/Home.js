@@ -14,7 +14,6 @@ import {
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
-import AsyncStorage from "@react-native-community/async-storage";
 import Modal from "react-native-modal";
 import RNShake from 'react-native-shake';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";

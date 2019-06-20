@@ -9,7 +9,6 @@ import {
   Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
-import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";

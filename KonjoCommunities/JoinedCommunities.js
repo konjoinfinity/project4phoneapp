@@ -9,7 +9,6 @@ import {
   Vibration
 } from "react-native";
 import { Card } from "react-native-elements";
-import AsyncStorage from "@react-native-community/async-storage";
 import Nav from "./Nav"
 import * as Animatable from 'react-native-animatable';
 import LogoTitle from "./LogoTitle"
