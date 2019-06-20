@@ -74,7 +74,8 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
     await this.getToken();
     await this.getUsername();
-    await fetch(`https://konjomeet.herokuapp.com/community/${
+    // https://konjomeet.herokuapp.com/community
+    await fetch(`http://localhost:4000/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
