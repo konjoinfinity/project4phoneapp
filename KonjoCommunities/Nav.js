@@ -110,16 +110,6 @@ class Nav extends React.Component {
                             delay={150}
                             duration={1500}>
                             <TouchableOpacity
-                                style={styles.searchButton}
-                                onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Search") }}>
-                                <Text style={styles.buttonText}>Search 🔍</Text>
-                            </TouchableOpacity>
-                        </AnimatableView>
-                        <AnimatableView
-                            animation="bounceInRight"
-                            delay={170}
-                            duration={1500}>
-                            <TouchableOpacity
                                 style={styles.mapButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Map") }}>
                                 <Text style={styles.buttonText}>Map 🗺</Text>
@@ -127,7 +117,7 @@ class Nav extends React.Component {
                         </AnimatableView>
                         <AnimatableView
                             animation="bounceInRight"
-                            delay={190}
+                            delay={170}
                             duration={1500}>
                             <TouchableOpacity
                                 style={styles.logoutButton}
