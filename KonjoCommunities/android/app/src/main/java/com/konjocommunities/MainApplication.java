@@ -8,7 +8,6 @@ import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import com.clipsub.RNShake.RNShakeEventPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -35,7 +34,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNShakeEventPackage(),
             new MapsPackage(),
             new VectorIconsPackage(),
-            new AsyncStoragePackage(),
             new RNGestureHandlerPackage()
       );
     }
