@@ -15,6 +15,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import SInfo from 'react-native-sensitive-info';
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -48,7 +49,37 @@ class LoginScreen extends React.Component {
     headerLeft: null
   };
 
+  sensitiveInfo() {
+    SInfo.setItem('key1', 'konjo', {
+      sharedPreferencesName: 'mySharedPrefs',
+      keychainService: 'myKeychain'
+    }).then((value) =>
+      console.log(value) //value 1
+    );
+
+    SInfo.setItem('key2', 'beautiful', {});
+
+    SInfo.getItem('key1', {
+      sharedPreferencesName: 'mySharedPrefs',
+      keychainService: 'myKeychain'
+    }).then(value => {
+      console.log(value) //value1
+    });
+
+    SInfo.getItem('key2', {}).then(value => {
+      console.log(value) //value2
+    });
+
+    SInfo.getAllItems({
+      sharedPreferencesName: 'mySharedPrefs',
+      keychainService: 'myKeychain'
+    }).then(values => {
+      console.log(values) //value1, value2
+    });
+  }
+
   async componentDidMount() {
+    this.sensitiveInfo();
     Vibration.vibrate();
     var username = await AsyncStorage.getItem(STORAGE_USER);
     if (username !== null) {
