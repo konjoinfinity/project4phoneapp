@@ -39,18 +39,14 @@ class ChangePassScreen extends React.Component {
 
     componentDidMount() {
         this.getToken();
-        this.getUsername();
         Vibration.vibrate();
-    }
-
-    async getUsername() {
-        var username = await SInfo.getItem(STORAGE_USER, {});
-        this.setState({ creator: username });
     }
 
     async getToken() {
         var token = await SInfo.getItem(STORAGE_KEY, {});
         this.setState({ userToken: token });
+        var username = await SInfo.getItem(STORAGE_USER, {});
+        this.setState({ creator: username });
     }
 
     handlePasswordChange(password) {

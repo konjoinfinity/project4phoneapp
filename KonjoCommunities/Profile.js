@@ -34,14 +34,11 @@ class ProfileScreen extends React.Component {
         this.openCloseCommJoined = this.openCloseCommJoined.bind(this);
     }
 
-    async getUsername() {
-        var username = await SInfo.getItem(STORAGE_USER, {});
-        this.setState({ creator: username });
-    }
-
     async getToken() {
         var token = await SInfo.getItem(STORAGE_KEY, {});
         this.setState({ userToken: token });
+        var username = await SInfo.getItem(STORAGE_USER, {});
+        this.setState({ creator: username });
     }
 
     async componentDidMount() {
@@ -60,7 +57,6 @@ class ProfileScreen extends React.Component {
             .catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        this.getUsername();
     }
 
     openCloseCommCreated() {

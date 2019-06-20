@@ -32,14 +32,11 @@ class GrowCommunitiesScreen extends React.Component {
         this.openCloseNav = this.openCloseNav.bind(this);
     }
 
-    async getUsername() {
-        var username = await SInfo.getItem(STORAGE_USER, {});
-        this.setState({ creator: username });
-    }
-
     async getToken() {
         var token = await SInfo.getItem(STORAGE_KEY, {});
         this.setState({ userToken: token });
+        var username = await SInfo.getItem(STORAGE_USER, {});
+        this.setState({ creator: username });
     }
 
     async componentDidMount() {
@@ -57,7 +54,6 @@ class GrowCommunitiesScreen extends React.Component {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
         Vibration.vibrate();
-        this.getUsername();
         this.props.navigation.setParams({
             openCloseNav: this.openCloseNav
         });

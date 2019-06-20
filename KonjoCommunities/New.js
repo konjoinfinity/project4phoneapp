@@ -106,19 +106,15 @@ class NewScreen extends React.Component {
     };
   }
 
-  async getUsername() {
+  async getToken() {
+    var token = await SInfo.getItem(STORAGE_KEY, {});
+    this.setState({ userToken: token });
     var username = await SInfo.getItem(STORAGE_USER, {});
     this.setState({ creator: username });
   }
 
-  async getToken() {
-    var token = await SInfo.getItem(STORAGE_KEY, {});
-    this.setState({ userToken: token });
-  }
-
   componentDidMount() {
     Vibration.vibrate();
-    this.getUsername();
     this.getToken();
     navigator.geolocation.getCurrentPosition(
       (position) => {

@@ -108,20 +108,16 @@ class MeetScreen extends React.Component {
     };
   }
 
-  async getUsername() {
-    var username = await SInfo.getItem(STORAGE_USER, {});
-    this.setState({ creator: username });
-  }
-
   async getToken() {
     var token = await SInfo.getItem(STORAGE_KEY, {});
     this.setState({ userToken: token });
+    var username = await SInfo.getItem(STORAGE_USER, {});
+    this.setState({ creator: username });
   }
 
   async componentDidMount() {
     Vibration.vibrate();
     await this.getToken();
-    await this.getUsername();
     await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
