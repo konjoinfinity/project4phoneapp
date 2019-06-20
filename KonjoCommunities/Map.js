@@ -6,6 +6,7 @@ import * as geolib from 'geolib';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import AsyncStorage from "@react-native-community/async-storage";
+import SInfo from 'react-native-sensitive-info';
 
 const STORAGE_KEY = "id_token";
 
@@ -23,7 +24,7 @@ class MapScreen extends Component {
     }
 
     async componentDidMount() {
-        const token = await AsyncStorage.getItem(STORAGE_KEY);
+        const token = await SInfo.getItem(STORAGE_KEY, {});
         await fetch("https://konjomeet.herokuapp.com/community", {
             method: "GET",
             headers: {

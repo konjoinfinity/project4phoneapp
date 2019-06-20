@@ -14,6 +14,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import SInfo from 'react-native-sensitive-info';
 
 var STORAGE_KEY = "id_token";
 var STORAGE_USER = "username";
@@ -76,9 +77,9 @@ class SignupScreen extends React.Component {
 
     async onValueChange(item, selectedValue) {
         try {
-            await AsyncStorage.setItem(item, selectedValue);
+            await SInfo.setItem(item, selectedValue, {});
         } catch (error) {
-            console.log("AsyncStorage error: " + error.message);
+            console.log("SensitiveInfoStorage error: " + error.message);
         }
     }
 

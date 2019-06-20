@@ -21,6 +21,7 @@ import Modal from "react-native-modal";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Confetti from 'react-native-confetti';
 import LogoTitle from "./LogoTitle"
+import SInfo from 'react-native-sensitive-info';
 
 var STORAGE_USER = "username";
 var STORAGE_KEY = "id_token";
@@ -61,12 +62,12 @@ class CommunityScreen extends React.Component {
   }
 
   async getUsername() {
-    var username = await AsyncStorage.getItem(STORAGE_USER);
+    var username = await SInfo.getItem(STORAGE_USER, {});
     this.setState({ creator: username });
   }
 
   async getToken() {
-    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    var token = await SInfo.getItem(STORAGE_KEY, {});
     this.setState({ userToken: token });
   }
 
@@ -74,8 +75,7 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
     await this.getToken();
     await this.getUsername();
-    // https://konjomeet.herokuapp.com/community
-    await fetch(`http://localhost:4000/community/${
+    await fetch(`https://konjomeet.herokuapp.com/community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",

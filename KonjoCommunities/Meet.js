@@ -16,6 +16,7 @@ import { AlertHelper } from './AlertHelper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
+import SInfo from 'react-native-sensitive-info';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -109,12 +110,12 @@ class MeetScreen extends React.Component {
   }
 
   async getUsername() {
-    var username = await AsyncStorage.getItem(STORAGE_USER);
+    var username = await SInfo.getItem(STORAGE_USER, {});
     this.setState({ creator: username });
   }
 
   async getToken() {
-    var token = await AsyncStorage.getItem(STORAGE_KEY);
+    var token = await SInfo.getItem(STORAGE_KEY, {});
     this.setState({ userToken: token });
   }
 

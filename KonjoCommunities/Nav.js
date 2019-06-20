@@ -10,6 +10,7 @@ import { Card } from "react-native-elements";
 import AsyncStorage from "@react-native-community/async-storage";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
+import SInfo from 'react-native-sensitive-info';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -20,8 +21,8 @@ class Nav extends React.Component {
 
     async userLogout() {
         try {
-            await AsyncStorage.removeItem(STORAGE_KEY);
-            await AsyncStorage.removeItem(STORAGE_USER);
+            await SInfo.deleteItem(STORAGE_KEY, {});
+            await SInfo.deleteItem(STORAGE_USER, {});
             AlertHelper.show('info', 'Info', 'You have logged out.');
             Vibration.vibrate();
             this.props.navigation.push("Login")
