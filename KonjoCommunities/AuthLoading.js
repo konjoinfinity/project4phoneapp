@@ -5,6 +5,7 @@ import {
     View,
 } from 'react-native';
 import AsyncStorage from "@react-native-community/async-storage";
+import SInfo from 'react-native-sensitive-info';
 
 class AuthLoadingScreen extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class AuthLoadingScreen extends React.Component {
     }
 
     bootstrapAsync = async () => {
-        const userToken = await AsyncStorage.getItem('id_token');
+        const userToken = await SInfo.getItem('id_token', {});
         this.props.navigation.navigate(userToken ? 'App' : 'Auth');
     };
 

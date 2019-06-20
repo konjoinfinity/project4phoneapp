@@ -49,50 +49,18 @@ class LoginScreen extends React.Component {
     headerLeft: null
   };
 
-  sensitiveInfo() {
-    SInfo.setItem('key1', 'konjo', {
-      sharedPreferencesName: 'mySharedPrefs',
-      keychainService: 'myKeychain'
-    }).then((value) =>
-      console.log(value) //value 1
-    );
-
-    SInfo.setItem('key2', 'beautiful', {});
-
-    SInfo.getItem('key1', {
-      sharedPreferencesName: 'mySharedPrefs',
-      keychainService: 'myKeychain'
-    }).then(value => {
-      console.log(value) //value1
-    });
-
-    SInfo.getItem('key2', {}).then(value => {
-      console.log(value) //value2
-    });
-
-    SInfo.getAllItems({
-      sharedPreferencesName: 'mySharedPrefs',
-      keychainService: 'myKeychain'
-    }).then(values => {
-      console.log(values) //value1, value2
-    });
-  }
-
   async componentDidMount() {
-    this.sensitiveInfo();
     Vibration.vibrate();
-    var username = await AsyncStorage.getItem(STORAGE_USER);
-    if (username !== null) {
-      await AsyncStorage.removeItem(STORAGE_KEY);
-      await AsyncStorage.removeItem(STORAGE_USER);
+    var username = await SInfo.getItem(STORAGE_USER, {});
+    if (username !== undefined) {
+      await SInfo.deleteItem(STORAGE_KEY, {});
+      await SInfo.deleteItem(STORAGE_USER, {});
       const passchange = this.props.navigation.getParam('passchange', 'false');
       if (passchange === true) {
         AlertHelper.show('info', 'Info', 'Password changed. Please login with your new password.');
       } else {
         AlertHelper.show('info', 'Info', 'You have logged out.');
       }
-    } else {
-      console.log("User has already logged out")
     }
   }
 
@@ -114,16 +82,16 @@ class LoginScreen extends React.Component {
   }
 
   async getUsername() {
-    var username = await AsyncStorage.getItem(STORAGE_USER);
+    var username = await SInfo.getItem(STORAGE_USER, {});
     AlertHelper.show('info', 'Info', username === null ? "No user logged in" : username + " is logged in");
     Vibration.vibrate();
   }
 
   async onValueChange(item, selectedValue) {
     try {
-      await AsyncStorage.setItem(item, selectedValue);
+      await SInfo.setItem(item, selectedValue, {});
     } catch (error) {
-      console.log("AsyncStorage error: " + error.message);
+      console.log("SensitiveInfoStorage error: " + error.message);
     }
   }
 

@@ -19,6 +19,7 @@ import Modal from "react-native-modal";
 import RNShake from 'react-native-shake';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
+import SInfo from 'react-native-sensitive-info';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -42,7 +43,7 @@ class HomeScreen extends React.Component {
     }
 
     async getToken() {
-        var token = await AsyncStorage.getItem(STORAGE_KEY);
+        var token = await SInfo.getItem(STORAGE_KEY, {});
         this.setState({ userToken: token });
     }
 
