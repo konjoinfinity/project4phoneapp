@@ -51,7 +51,7 @@ This app will be deployed using testflight in the future, stay tuned.  After bet
 - [React Native Animatable](https://github.com/oblador/react-native-animatable) - Standard set of easy to use animations and declarative transitions for React Native
 - [React Native Modal](https://github.com/react-native-community/react-native-modal) - An enhanced, animated and customizable react-native modal
 - [React Native Keyboard Spacer](https://www.npmjs.com/package/react-native-keyboard-spacer) - Plug and play iOS react-native keyboard spacer view.
-- [React Native Confetti] (https://github.com/cdvntr/react-native-confetti) - Raining confetti made with react native animations
+- [React Native Confetti](https://github.com/cdvntr/react-native-confetti) - Raining confetti made with react native animations
 
 ## Contributing
 
