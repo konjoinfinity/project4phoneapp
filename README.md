@@ -1,13 +1,13 @@
 # Konjo Communities React Native Phone App
+<h3>___________Home Page_________________New Community_____________________Profile</h3>
 <div class="row space-between">
 <img src="https://user-images.githubusercontent.com/46323883/59878020-46375980-9375-11e9-8f05-5581bfd2090e.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59878771-23a64000-9377-11e9-8ed8-dc2fb7a94e29.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59877997-3ddf1e80-9375-11e9-9827-ec184057f192.png" width="280" height="480">
-<h3>___________Home Page_________________New Community_____________________Profile</h3>
+<h3>___________Home Page_________________New Community_____________________Profile</h3>  
 <img src="https://user-images.githubusercontent.com/46323883/59877987-391a6a80-9375-11e9-88d5-f6fe81ae12d0.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59878817-3e78b480-9377-11e9-8097-ea2bba2a7dbf.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59878873-6700ae80-9377-11e9-8d2e-7108c3bda7fb.png" width="280" height="480">
-<h3>___________Home Page_________________New Community_____________________Profile</h3>  
 </div>
 Welcome to Konjo Communities where you can create, join, meet, grow, and comment about communities. This is the react native phone app version of the project built using react native.
 
