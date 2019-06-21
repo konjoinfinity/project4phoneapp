@@ -284,9 +284,7 @@ class HomeScreen extends React.Component {
             this.state.search !== "" &&
             (results.length === 0 && (
                 <Card borderRadius={15}>
-                    <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>
-                        Create a New Community
-          </Text>
+                    <Text style={{ fontSize: 20, textAlign: "center", padding: 5 }}>Create a New Community</Text>
                     <TouchableOpacity
                         style={styles.newButton}
                         onPress={() =>

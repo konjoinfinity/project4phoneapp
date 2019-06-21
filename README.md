@@ -1,3 +1,4 @@
+<img src="https://user-images.githubusercontent.com/46323883/59937920-a4ba1180-9421-11e9-9d6b-97f52d9a71c5.jpg" width="500" height="300">
 # Konjo Communities React Native Phone App
 <div class="row space-between">
 <img src="https://user-images.githubusercontent.com/46323883/59878020-46375980-9375-11e9-8f05-5581bfd2090e.png" width="280" height="480">
