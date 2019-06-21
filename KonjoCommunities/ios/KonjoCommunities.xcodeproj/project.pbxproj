@@ -62,6 +62,7 @@
 		D58EC0222260DD3300E7DB89 /* klogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D58EC0212260DD3300E7DB89 /* klogo.png */; };
 		D5BCFFA622661CC700ED40D1 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D5BCFF7D22661CC700ED40D1 /* main.jsbundle */; };
 		D5C14B3622BD758900CD163B /* logokonjo.png in Resources */ = {isa = PBXBuildFile; fileRef = D5C14B3522BD758900CD163B /* logokonjo.png */; };
+		D5C14B3822BDA02E00CD163B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C14B3722BDA02E00CD163B /* LaunchScreen.xib */; };
 		E0B0450C27184E3A99522DE8 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5737310AA8CC4FAAA0BD0719 /* FontAwesome5_Brands.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
@@ -447,6 +448,7 @@
 		D58EC0212260DD3300E7DB89 /* klogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = klogo.png; path = ../../../../../Downloads/klogo.png; sourceTree = "<group>"; };
 		D5BCFF7D22661CC700ED40D1 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		D5C14B3522BD758900CD163B /* logokonjo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logokonjo.png; path = ../../../../../Downloads/logokonjo.png; sourceTree = "<group>"; };
+		D5C14B3722BDA02E00CD163B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../../../../../.Trash/LaunchScreen.xib; sourceTree = "<group>"; };
 		DB356ABE35554FE0B8728A64 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		DB547E7C27054FE6ADEE4DFC /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		DD12B56815DB4DD88BB3ACB2 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 		13B07FAE1A68108700A75B9A /* KonjoCommunities */ = {
 			isa = PBXGroup;
 			children = (
+				D5C14B3722BDA02E00CD163B /* LaunchScreen.xib */,
 				D5C14B3522BD758900CD163B /* logokonjo.png */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				D5BCFF7D22661CC700ED40D1 /* main.jsbundle */,
@@ -1361,6 +1364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C14B3822BDA02E00CD163B /* LaunchScreen.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				D58EC0222260DD3300E7DB89 /* klogo.png in Resources */,
 				D5BCFFA622661CC700ED40D1 /* main.jsbundle in Resources */,
