@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-    ActivityIndicator,
-    StatusBar,
-    View,
+    Image,
+    View
 } from 'react-native';
 import SInfo from 'react-native-sensitive-info';
 
@@ -14,14 +13,23 @@ class AuthLoadingScreen extends React.Component {
 
     bootstrapAsync = async () => {
         const userToken = await SInfo.getItem('id_token', {});
-        this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        setTimeout(() => {
+            this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        }, 1500);
     };
 
     render() {
         return (
-            <View>
-                <ActivityIndicator />
-                <StatusBar barStyle="default" />
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: "#42A163"
+            }}>
+                <Image
+                    source={require("./logo.png")}
+                    style={{ width: 275, height: 150 }} />
             </View>
         );
     }
