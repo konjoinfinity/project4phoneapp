@@ -13,8 +13,8 @@ import SInfo from 'react-native-sensitive-info';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
-var STORAGE_KEY = "id_token";
-var STORAGE_USER = "username";
+const STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
 
 class Nav extends React.Component {
 

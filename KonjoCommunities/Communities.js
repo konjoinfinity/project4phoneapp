@@ -17,7 +17,7 @@ import SInfo from 'react-native-sensitive-info';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
-var STORAGE_KEY = "id_token";
+const STORAGE_KEY = "id_token";
 
 class CommunitiesScreen extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class CommunitiesScreen extends React.Component {
   }
 
   async getToken() {
-    var token = await SInfo.getItem(STORAGE_KEY, {});
+    const token = await SInfo.getItem(STORAGE_KEY, {});
     this.setState({ userToken: token });
   }
 

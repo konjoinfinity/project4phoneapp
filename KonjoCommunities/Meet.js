@@ -19,8 +19,8 @@ import SInfo from 'react-native-sensitive-info';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
-var STORAGE_USER = "username";
-var STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
+const STORAGE_KEY = "id_token";
 
 class MeetScreen extends React.Component {
   constructor(props) {
@@ -109,9 +109,9 @@ class MeetScreen extends React.Component {
   }
 
   async getToken() {
-    var token = await SInfo.getItem(STORAGE_KEY, {});
+    const token = await SInfo.getItem(STORAGE_KEY, {});
     this.setState({ userToken: token });
-    var username = await SInfo.getItem(STORAGE_USER, {});
+    const username = await SInfo.getItem(STORAGE_USER, {});
     this.setState({ creator: username });
   }
 

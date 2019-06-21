@@ -15,8 +15,8 @@ import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
 
-var STORAGE_KEY = "id_token";
-var STORAGE_USER = "username";
+const STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
 
 class LogoTitle extends React.Component {
     render() {

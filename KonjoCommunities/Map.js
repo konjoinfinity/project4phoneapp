@@ -8,7 +8,7 @@ import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
 
 const STORAGE_KEY = "id_token";
-var STORAGE_USER = "username";
+const STORAGE_USER = "username";
 
 class MapScreen extends Component {
     constructor(props) {
@@ -31,154 +31,6 @@ class MapScreen extends Component {
         this.showMine = this.showMine.bind(this);
         this.showGrowing = this.showGrowing.bind(this);
         this.showAll = this.showAll.bind(this);
-    }
-
-    async getToken() {
-        var token = await SInfo.getItem(STORAGE_KEY, {});
-        this.setState({ userToken: token });
-        var username = await SInfo.getItem(STORAGE_USER, {});
-        this.setState({ creator: username });
-    }
-
-    async componentDidMount() {
-        var token = await SInfo.getItem(STORAGE_KEY, {});
-        this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
-            method: "GET",
-            headers: {
-                "user-token": `${token}`
-            }
-        })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({ communities: res });
-            }).catch(error => {
-                AlertHelper.show('warn', 'Error', `${error.message}!`);
-            });
-        Vibration.vibrate();
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                this.setState({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    error: null,
-                });
-            },
-            (error) => this.setState({ error: error.message }),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-        )
-        setTimeout(() => {
-            this.state.communities !== "" && (
-                this.state.all === true && (
-                    this.closestCommunity()))
-        }, 1000);
-    }
-
-    showJoined() {
-        AlertHelper.show('info', 'Info', "Joined!");
-        this.setState({
-            joined: true,
-            mine: false,
-            growing: false,
-            all: false
-        })
-        let joinedcommunities = this.state.communities.filter(community =>
-            community.members.some(member => member.name === this.state.creator)
-        );
-        const coords = []
-        joinedcommunities.map(community => {
-            latlong = {
-                latitude: community.location.lat,
-                longitude: community.location.long
-            };
-            coords.push(latlong)
-        })
-        let value;
-        coords !== [] && (
-            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
-        setTimeout(() => {
-            value !== undefined &&
-                this.setState({ coord: value })
-        }, 2000);
-        setTimeout(() => {
-            this.state.coord !== "" &&
-                this.marker.showCallout()
-        }, 3000);
-    }
-
-    showMine() {
-        AlertHelper.show('info', 'Info', "Mine!");
-        this.setState({
-            joined: false,
-            mine: true,
-            growing: false,
-            all: false
-        })
-        let mycommunities = this.state.communities.filter(
-            community => community.creator === this.state.creator
-        );
-        const coords = []
-        mycommunities.map(community => {
-            latlong = {
-                latitude: community.location.lat,
-                longitude: community.location.long
-            };
-            coords.push(latlong)
-        })
-        let value;
-        coords !== [] && (
-            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
-        setTimeout(() => {
-            value !== undefined &&
-                this.setState({ coord: value })
-        }, 2000);
-        setTimeout(() => {
-            this.state.coord !== "" &&
-                this.marker.showCallout()
-        }, 3000);
-    }
-
-    showGrowing() {
-        AlertHelper.show('info', 'Info', "Growing!");
-        this.setState({
-            joined: false,
-            mine: false,
-            growing: true,
-            all: false
-        })
-        let growcommunities = this.state.communities.filter(
-            community => community.numberOfMembers < 3
-        );
-        const coords = []
-        growcommunities.map(community => {
-            latlong = {
-                latitude: community.location.lat,
-                longitude: community.location.long
-            };
-            coords.push(latlong)
-        })
-        let value;
-        coords !== [] && (
-            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
-        setTimeout(() => {
-            value !== undefined &&
-                this.setState({ coord: value })
-        }, 2000);
-        setTimeout(() => {
-            this.state.coord !== "" &&
-                this.marker.showCallout()
-        }, 3000);
-    }
-
-    showAll() {
-        AlertHelper.show('info', 'Info', "All!");
-        this.setState({
-            joined: false,
-            mine: false,
-            growing: false,
-            all: true
-        })
-        this.closestCommunity()
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -225,9 +77,103 @@ class MapScreen extends Component {
         };
     }
 
-    closestCommunity() {
+    async getToken() {
+        const token = await SInfo.getItem(STORAGE_KEY, {});
+        this.setState({ userToken: token });
+        const username = await SInfo.getItem(STORAGE_USER, {});
+        this.setState({ creator: username });
+    }
+
+    async componentDidMount() {
+        const token = await SInfo.getItem(STORAGE_KEY, {});
+        this.getToken();
+        await fetch("https://konjomeet.herokuapp.com/community", {
+            method: "GET",
+            headers: {
+                "user-token": `${token}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({ communities: res });
+            }).catch(error => {
+                AlertHelper.show('warn', 'Error', `${error.message}!`);
+            });
+        Vibration.vibrate();
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    error: null,
+                });
+            },
+            (error) => this.setState({ error: error.message }),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+        )
+        setTimeout(() => {
+            this.state.communities !== "" && (
+                this.state.all === true && (
+                    this.closestCommunity(this.state.communities)))
+        }, 1000);
+    }
+
+    showJoined() {
+        Vibration.vibrate();
+        this.setState({
+            joined: true,
+            mine: false,
+            growing: false,
+            all: false
+        })
+        let joinedcommunities = this.state.communities.filter(community =>
+            community.members.some(member => member.name === this.state.creator)
+        );
+        this.closestCommunity(joinedcommunities)
+    }
+
+    showMine() {
+        Vibration.vibrate();
+        this.setState({
+            joined: false,
+            mine: true,
+            growing: false,
+            all: false
+        })
+        let mycommunities = this.state.communities.filter(
+            community => community.creator === this.state.creator
+        );
+        this.closestCommunity(mycommunities)
+    }
+
+    showGrowing() {
+        Vibration.vibrate();
+        this.setState({
+            joined: false,
+            mine: false,
+            growing: true,
+            all: false
+        })
+        let growcommunities = this.state.communities.filter(
+            community => community.numberOfMembers < 3
+        );
+        this.closestCommunity(growcommunities)
+    }
+
+    showAll() {
+        Vibration.vibrate();
+        this.setState({
+            joined: false,
+            mine: false,
+            growing: false,
+            all: true
+        })
+        this.closestCommunity(this.state.communities)
+    }
+
+    closestCommunity(communities) {
         const coords = []
-        this.state.communities !== "" && this.state.communities.map(community => {
+        this.state.communities !== "" && communities.map(community => {
             latlong = {
                 latitude: community.location.lat,
                 longitude: community.location.long

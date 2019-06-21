@@ -16,8 +16,8 @@ import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
 
-var STORAGE_KEY = "id_token";
-var STORAGE_USER = "username";
+const STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
 
 class LogoTitle extends React.Component {
   render() {
@@ -50,7 +50,7 @@ class LoginScreen extends React.Component {
 
   async componentDidMount() {
     Vibration.vibrate();
-    var username = await SInfo.getItem(STORAGE_USER, {});
+    const username = await SInfo.getItem(STORAGE_USER, {});
     if (username !== undefined) {
       await SInfo.deleteItem(STORAGE_KEY, {});
       await SInfo.deleteItem(STORAGE_USER, {});
@@ -81,7 +81,7 @@ class LoginScreen extends React.Component {
   }
 
   async getUsername() {
-    var username = await SInfo.getItem(STORAGE_USER, {});
+    const username = await SInfo.getItem(STORAGE_USER, {});
     AlertHelper.show('info', 'Info', username === null ? "No user logged in" : username + " is logged in");
     Vibration.vibrate();
   }

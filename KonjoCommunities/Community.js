@@ -22,8 +22,8 @@ import Confetti from 'react-native-confetti';
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
 
-var STORAGE_USER = "username";
-var STORAGE_KEY = "id_token";
+const STORAGE_USER = "username";
+const STORAGE_KEY = "id_token";
 
 class CommunityScreen extends React.Component {
   constructor(props) {
@@ -61,9 +61,9 @@ class CommunityScreen extends React.Component {
   }
 
   async getToken() {
-    var token = await SInfo.getItem(STORAGE_KEY, {});
+    const token = await SInfo.getItem(STORAGE_KEY, {});
     this.setState({ userToken: token });
-    var username = await SInfo.getItem(STORAGE_USER, {});
+    const username = await SInfo.getItem(STORAGE_USER, {});
     this.setState({ creator: username });
   }
 
