@@ -337,7 +337,7 @@ class MapScreen extends Component {
                 <View
                     style={{
                         position: 'absolute',
-                        top: '90%',
+                        top: '85%',
                         flexDirection: "row",
                         justifyContent: "space-between"
                     }}>
