@@ -48,13 +48,13 @@ This app will be deployed using testflight in the future, stay tuned.  After bet
 - [React Native](https://facebook.github.io/react-native/) - Build native mobile apps using JavaScript and React
 - [React Navigation](https://reactnavigation.org/) - Navigator/Router for React Native
 - [React Native Elements](https://github.com/react-native-training/react-native-elements) - Cross Platform React Native UI Toolkit
-- [React Native Sensitive Info](https://github.com/mcodex/react-native-sensitive-info) - Android Shared Preferences and iOS Keychain for React Native.
+- [React Native Sensitive Info](https://github.com/mcodex/react-native-sensitive-info) - Android Shared Preferences and iOS Keychain for React Native
 - [React Native Maps](https://github.com/react-native-community/react-native-maps) - React Native Mapview component for iOS + Android
 - [Geolib](https://github.com/manuelbieh/geolib) - Zero dependency library to provide some basic geo functions
-- [React Native Dropdownalert](https://github.com/testshallpass/react-native-dropdownalert) - A simple alert to notify users about new chat messages, something went wrong or everything is ok.
+- [React Native Dropdownalert](https://github.com/testshallpass/react-native-dropdownalert) - A simple alert to notify users about new chat messages, something went wrong or everything is ok
 - [React Native Animatable](https://github.com/oblador/react-native-animatable) - Standard set of easy to use animations and declarative transitions for React Native
 - [React Native Modal](https://github.com/react-native-community/react-native-modal) - An enhanced, animated and customizable react-native modal
-- [React Native Keyboard Spacer](https://www.npmjs.com/package/react-native-keyboard-spacer) - Plug and play iOS react-native keyboard spacer view.
+- [React Native Keyboard Spacer](https://www.npmjs.com/package/react-native-keyboard-spacer) - Plug and play iOS react-native keyboard spacer view
 - [React Native Confetti](https://github.com/cdvntr/react-native-confetti) - Raining confetti made with react native animations
 
 ## Contributing
