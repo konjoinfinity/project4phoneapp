@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Vibration, TouchableOpacity, Text, Button } from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
@@ -52,6 +52,22 @@ class MapScreen extends Component {
             this.state.communities !== "" &&
                 this.iAmHere()
         }, 1000);
+    }
+
+    showJoined() {
+        AlertHelper.show('info', 'Info', "Joined!");
+    }
+
+    showMine() {
+        AlertHelper.show('info', 'Info', "Mine!");
+    }
+
+    showGrowing() {
+        AlertHelper.show('info', 'Info', "Growing!");
+    }
+
+    showAll() {
+        AlertHelper.show('info', 'Info', "All!");
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -161,6 +177,34 @@ class MapScreen extends Component {
                         }}>
                         {commcoords}
                     </MapView>}
+                <View
+                    style={{
+                        position: 'absolute',
+                        top: '90%',
+                        flexDirection: "row",
+                        justifyContent: "space-between"
+                    }}>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={() => this.showJoined()}>
+                        <Text style={styles.communityButtonText}>Joined</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={() => this.showMine()}>
+                        <Text style={styles.communityButtonText}>Mine</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={() => this.showGrowing()}>
+                        <Text style={styles.communityButtonText}>Growing</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={() => this.showAll()}>
+                        <Text style={styles.communityButtonText}>All</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -217,5 +261,13 @@ const styles = StyleSheet.create({
             width: 2,
             height: 2,
         }
+    },
+    filterButtons: {
+        borderWidth: 1,
+        borderColor: "#007BFF",
+        backgroundColor: "#007BFF",
+        padding: 15,
+        margin: 5,
+        borderRadius: 15
     }
 });
