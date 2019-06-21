@@ -82,6 +82,28 @@ class MapScreen extends Component {
             growing: false,
             all: false
         })
+        let joinedcommunities = this.state.communities.filter(community =>
+            community.members.some(member => member.name === this.state.creator)
+        );
+        const coords = []
+        joinedcommunities.map(community => {
+            latlong = {
+                latitude: community.location.lat,
+                longitude: community.location.long
+            };
+            coords.push(latlong)
+        })
+        let value;
+        coords !== [] && (
+            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
+        setTimeout(() => {
+            value !== undefined &&
+                this.setState({ coord: value })
+        }, 2000);
+        setTimeout(() => {
+            this.state.coord !== "" &&
+                this.marker.showCallout()
+        }, 3000);
     }
 
     showMine() {
@@ -112,6 +134,7 @@ class MapScreen extends Component {
             growing: false,
             all: true
         })
+        this.closestCommunity()
     }
 
     static navigationOptions = ({ navigation }) => {
