@@ -17,9 +17,16 @@ class MapScreen extends Component {
             longitude: null,
             error: null,
             communities: "",
-            coord: ""
+            coord: "",
+            joined: false,
+            growing: false,
+            mine: false
         };
         this.iAmHere = this.iAmHere.bind(this);
+        this.showJoined = this.showJoined.bind(this);
+        this.showMine = this.showMine.bind(this);
+        this.showGrowing = this.showGrowing.bind(this);
+        this.showAll = this.showAll.bind(this);
     }
 
     async componentDidMount() {
@@ -56,18 +63,39 @@ class MapScreen extends Component {
 
     showJoined() {
         AlertHelper.show('info', 'Info', "Joined!");
+        this.setState({
+            joined: true,
+            mine: false,
+            growing: false
+        })
     }
 
     showMine() {
         AlertHelper.show('info', 'Info', "Mine!");
+        this.setState({
+            joined: false,
+            mine: true,
+            growing: false
+        })
     }
 
     showGrowing() {
         AlertHelper.show('info', 'Info', "Growing!");
+        this.setState({
+            joined: false,
+            mine: false,
+            growing: true
+        })
     }
 
     showAll() {
         AlertHelper.show('info', 'Info', "All!");
+        this.setState({
+            joined: false,
+            mine: false,
+            growing: false
+        })
+
     }
 
     static navigationOptions = ({ navigation }) => {
