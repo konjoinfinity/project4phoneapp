@@ -7,6 +7,8 @@
 <img src="https://user-images.githubusercontent.com/46323883/59937043-6e7b9280-941f-11e9-8e05-76adeb511630.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59878873-6700ae80-9377-11e9-8d2e-7108c3bda7fb.png" width="280" height="480">
 </div>
+## Konjo
+
 Welcome to Konjo Communities where you can create, join, meet, grow, and comment about communities. This is the react native phone app version of the project built using react native.
 
 <div>
