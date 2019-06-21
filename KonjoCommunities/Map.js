@@ -247,7 +247,39 @@ class MapScreen extends Component {
                         </Marker>
                     );
                 }))));
-
+        let growcommunities;
+        this.state.communities && (
+            this.state.growing === true && (
+                (growcommunities = this.state.communities.filter(
+                    community => community.numberOfMembers < 3
+                ))));
+        let growing;
+        this.state.communities && (
+            this.state.growing === true && (
+                (growing = growcommunities.map((community, id) => {
+                    let commlatlong;
+                    commlatlong = {
+                        latitude: community.location.lat,
+                        longitude: community.location.long
+                    };
+                    return (
+                        <Marker
+                            key={id}
+                            coordinate={commlatlong}
+                            title={community.name}
+                            pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
+                            ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
+                            onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
+                            <Callout>
+                                <TouchableOpacity
+                                    style={styles.communityButton}>
+                                    <Text style={styles.communityButtonText}>{community.name}</Text>
+                                    <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text>
+                                </TouchableOpacity>
+                            </Callout>
+                        </Marker>
+                    );
+                }))));
         let commcoords;
         this.state.communities && (
             this.state.all === true && (
@@ -287,7 +319,7 @@ class MapScreen extends Component {
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011
                         }}>
-                        {joined}{commcoords}{mine}
+                        {joined}{commcoords}{mine}{growing}
                     </MapView>}
                 <View
                     style={{
