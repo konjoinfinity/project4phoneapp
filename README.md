@@ -10,7 +10,7 @@
 
 ## Konjo
 
-Welcome to Konjo Communities where you can create, join, meet, grow, and comment about communities. This is the react native phone app version of the project built using react native.
+Welcome to Konjo Communities where you can create, join, meet, grow, and discover communities. This is app is currently being developed using react native.
 
 <div>
 <img src="https://user-images.githubusercontent.com/46323883/59937920-a4ba1180-9421-11e9-9d6b-97f52d9a71c5.jpg" width="350" height="200"></div>
