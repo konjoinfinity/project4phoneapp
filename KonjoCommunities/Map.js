@@ -26,7 +26,7 @@ class MapScreen extends Component {
             creator: "",
             userToken: ""
         };
-        this.iAmHere = this.iAmHere.bind(this);
+        this.closestCommunity = this.closestCommunity.bind(this);
         this.showJoined = this.showJoined.bind(this);
         this.showMine = this.showMine.bind(this);
         this.showGrowing = this.showGrowing.bind(this);
@@ -70,7 +70,7 @@ class MapScreen extends Component {
         setTimeout(() => {
             this.state.communities !== "" && (
                 this.state.all === true && (
-                    this.iAmHere()))
+                    this.closestCommunity()))
         }, 1000);
     }
 
@@ -112,7 +112,6 @@ class MapScreen extends Component {
             growing: false,
             all: true
         })
-
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -159,7 +158,7 @@ class MapScreen extends Component {
         };
     }
 
-    iAmHere() {
+    closestCommunity() {
         const coords = []
         this.state.communities !== "" && this.state.communities.map(community => {
             latlong = {
@@ -188,7 +187,6 @@ class MapScreen extends Component {
                 (joinedcommunities = this.state.communities.filter(community =>
                     community.members.some(member => member.name === this.state.creator)
                 ))));
-        console.log(joinedcommunities)
         let joined;
         this.state.communities && (
             this.state.joined === true && (
@@ -198,7 +196,39 @@ class MapScreen extends Component {
                         latitude: community.location.lat,
                         longitude: community.location.long
                     };
-                    console.log(joined)
+                    return (
+                        <Marker
+                            key={id}
+                            coordinate={commlatlong}
+                            title={community.name}
+                            pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
+                            ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
+                            onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
+                            <Callout>
+                                <TouchableOpacity
+                                    style={styles.communityButton}>
+                                    <Text style={styles.communityButtonText}>{community.name}</Text>
+                                    <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text>
+                                </TouchableOpacity>
+                            </Callout>
+                        </Marker>
+                    );
+                }))));
+        let mycommunities;
+        this.state.communities && (
+            this.state.mine === true && (
+                (mycommunities = this.state.communities.filter(
+                    community => community.creator === this.state.creator
+                ))));
+        let mine;
+        this.state.communities && (
+            this.state.mine === true && (
+                (mine = mycommunities.map((community, id) => {
+                    let commlatlong;
+                    commlatlong = {
+                        latitude: community.location.lat,
+                        longitude: community.location.long
+                    };
                     return (
                         <Marker
                             key={id}
@@ -257,7 +287,7 @@ class MapScreen extends Component {
                             latitudeDelta: 0.1011,
                             longitudeDelta: 0.1011
                         }}>
-                        {joined}{commcoords}
+                        {joined}{commcoords}{mine}
                     </MapView>}
                 <View
                     style={{
