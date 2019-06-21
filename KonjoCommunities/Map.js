@@ -114,6 +114,28 @@ class MapScreen extends Component {
             growing: false,
             all: false
         })
+        let mycommunities = this.state.communities.filter(
+            community => community.creator === this.state.creator
+        );
+        const coords = []
+        mycommunities.map(community => {
+            latlong = {
+                latitude: community.location.lat,
+                longitude: community.location.long
+            };
+            coords.push(latlong)
+        })
+        let value;
+        coords !== [] && (
+            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
+        setTimeout(() => {
+            value !== undefined &&
+                this.setState({ coord: value })
+        }, 2000);
+        setTimeout(() => {
+            this.state.coord !== "" &&
+                this.marker.showCallout()
+        }, 3000);
     }
 
     showGrowing() {
@@ -124,6 +146,28 @@ class MapScreen extends Component {
             growing: true,
             all: false
         })
+        let growcommunities = this.state.communities.filter(
+            community => community.numberOfMembers < 3
+        );
+        const coords = []
+        growcommunities.map(community => {
+            latlong = {
+                latitude: community.location.lat,
+                longitude: community.location.long
+            };
+            coords.push(latlong)
+        })
+        let value;
+        coords !== [] && (
+            value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
+        setTimeout(() => {
+            value !== undefined &&
+                this.setState({ coord: value })
+        }, 2000);
+        setTimeout(() => {
+            this.state.coord !== "" &&
+                this.marker.showCallout()
+        }, 3000);
     }
 
     showAll() {
