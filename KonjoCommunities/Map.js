@@ -121,7 +121,6 @@ class MapScreen extends Component {
     }
 
     rendering() {
-        console.log(this.state.rendering)
         this.setState(prevState => ({ rendering: !prevState.rendering }))
     }
 
@@ -205,7 +204,7 @@ class MapScreen extends Component {
         setTimeout(() => {
             this.state.rendering === true &&
                 this.rendering();
-        }, 4000);
+        }, 3500);
     }
 
     render() {
@@ -356,30 +355,26 @@ class MapScreen extends Component {
                         flexDirection: "row",
                         justifyContent: "space-between"
                     }}>
-                    {this.state.rendering === false &&
-                        <TouchableOpacity
-                            style={styles.filterButtons}
-                            onPress={() => this.showJoined()}>
-                            <Text style={styles.communityButtonText}>Joined</Text>
-                        </TouchableOpacity>}
-                    {this.state.rendering === false &&
-                        <TouchableOpacity
-                            style={styles.filterButtons}
-                            onPress={() => this.showMine()}>
-                            <Text style={styles.communityButtonText}>Mine</Text>
-                        </TouchableOpacity>}
-                    {this.state.rendering === false &&
-                        <TouchableOpacity
-                            style={styles.filterButtons}
-                            onPress={() => this.showGrowing()}>
-                            <Text style={styles.communityButtonText}>Growing</Text>
-                        </TouchableOpacity>}
-                    {this.state.rendering === false &&
-                        <TouchableOpacity
-                            style={styles.filterButtons}
-                            onPress={() => this.showAll()}>
-                            <Text style={styles.communityButtonText}>All</Text>
-                        </TouchableOpacity>}
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={this.state.rendering === false ? () => this.showJoined() : null}>
+                        <Text style={styles.communityButtonText}>Joined</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={this.state.rendering === false ? () => this.showMine() : null}>
+                        <Text style={styles.communityButtonText}>Mine</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={this.state.rendering === false ? () => this.showGrowing() : null}>
+                        <Text style={styles.communityButtonText}>Growing</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.filterButtons}
+                        onPress={this.state.rendering === false ? () => this.showAll() : null}>
+                        <Text style={styles.communityButtonText}>All</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
