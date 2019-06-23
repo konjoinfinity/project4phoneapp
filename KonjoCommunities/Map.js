@@ -32,6 +32,7 @@ class MapScreen extends Component {
         this.showMine = this.showMine.bind(this);
         this.showGrowing = this.showGrowing.bind(this);
         this.showAll = this.showAll.bind(this);
+        this.rendering = this.rendering.bind(this);
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -119,77 +120,66 @@ class MapScreen extends Component {
         }, 1000);
     }
 
+    rendering() {
+        console.log(this.state.rendering)
+        this.setState(prevState => ({ rendering: !prevState.rendering }))
+    }
+
     showJoined() {
-        if (this.state.rendering === false) {
-            this.setState({ rendering: true })
-            Vibration.vibrate();
-            this.setState({
-                joined: true,
-                mine: false,
-                growing: false,
-                all: false
-            })
-            let joinedcommunities = this.state.communities.filter(community =>
-                community.members.some(member => member.name === this.state.creator)
-            );
-            this.closestCommunity(joinedcommunities)
-        } else {
-            Vibration.vibrate();
-        }
+        this.state.rendering === false && (this.rendering())
+        Vibration.vibrate();
+        this.setState({
+            joined: true,
+            mine: false,
+            growing: false,
+            all: false
+        })
+        let joinedcommunities = this.state.communities.filter(community =>
+            community.members.some(member => member.name === this.state.creator)
+        );
+        this.closestCommunity(joinedcommunities)
     }
 
     showMine() {
-        if (this.state.rendering === false) {
-            this.setState({ rendering: true })
-            Vibration.vibrate();
-            this.setState({
-                joined: false,
-                mine: true,
-                growing: false,
-                all: false
-            })
-            let mycommunities = this.state.communities.filter(
-                community => community.creator === this.state.creator
-            );
-            this.closestCommunity(mycommunities)
-        } else {
-            Vibration.vibrate();
-        }
+        this.state.rendering === false && (this.rendering())
+        Vibration.vibrate();
+        this.setState({
+            joined: false,
+            mine: true,
+            growing: false,
+            all: false
+        })
+        let mycommunities = this.state.communities.filter(
+            community => community.creator === this.state.creator
+        );
+        this.closestCommunity(mycommunities)
     }
 
     showGrowing() {
-        if (this.state.rendering === false) {
-            this.setState({ rendering: true })
-            Vibration.vibrate();
-            this.setState({
-                joined: false,
-                mine: false,
-                growing: true,
-                all: false
-            })
-            let growcommunities = this.state.communities.filter(
-                community => community.numberOfMembers < 3
-            );
-            this.closestCommunity(growcommunities)
-        } else {
-            Vibration.vibrate();
-        }
+        this.state.rendering === false && (this.rendering())
+        Vibration.vibrate();
+        this.setState({
+            joined: false,
+            mine: false,
+            growing: true,
+            all: false
+        })
+        let growcommunities = this.state.communities.filter(
+            community => community.numberOfMembers < 3
+        );
+        this.closestCommunity(growcommunities)
     }
 
     showAll() {
-        if (this.state.rendering === false) {
-            this.setState({ rendering: true })
-            Vibration.vibrate();
-            this.setState({
-                joined: false,
-                mine: false,
-                growing: false,
-                all: true
-            })
-            this.closestCommunity(this.state.communities)
-        } else {
-            Vibration.vibrate();
-        }
+        this.state.rendering === false && (this.rendering())
+        Vibration.vibrate();
+        this.setState({
+            joined: false,
+            mine: false,
+            growing: false,
+            all: true
+        })
+        this.closestCommunity(this.state.communities)
     }
 
     closestCommunity(communities) {
@@ -213,9 +203,9 @@ class MapScreen extends Component {
                 this.marker.showCallout()
         }, 3000);
         setTimeout(() => {
-            this.state.coord !== "" &&
-                this.setState({ rendering: false })
-        }, 3500);
+            this.state.rendering === true &&
+                this.rendering();
+        }, 4000);
     }
 
     render() {
