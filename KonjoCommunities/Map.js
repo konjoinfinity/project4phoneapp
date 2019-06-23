@@ -24,7 +24,8 @@ class MapScreen extends Component {
             mine: false,
             all: true,
             creator: "",
-            userToken: ""
+            userToken: "",
+            rendering: false
         };
         this.closestCommunity = this.closestCommunity.bind(this);
         this.showJoined = this.showJoined.bind(this);
@@ -119,56 +120,76 @@ class MapScreen extends Component {
     }
 
     showJoined() {
-        Vibration.vibrate();
-        this.setState({
-            joined: true,
-            mine: false,
-            growing: false,
-            all: false
-        })
-        let joinedcommunities = this.state.communities.filter(community =>
-            community.members.some(member => member.name === this.state.creator)
-        );
-        this.closestCommunity(joinedcommunities)
+        if (this.state.rendering === false) {
+            this.setState({ rendering: true })
+            Vibration.vibrate();
+            this.setState({
+                joined: true,
+                mine: false,
+                growing: false,
+                all: false
+            })
+            let joinedcommunities = this.state.communities.filter(community =>
+                community.members.some(member => member.name === this.state.creator)
+            );
+            this.closestCommunity(joinedcommunities)
+        } else {
+            Vibration.vibrate();
+        }
     }
 
     showMine() {
-        Vibration.vibrate();
-        this.setState({
-            joined: false,
-            mine: true,
-            growing: false,
-            all: false
-        })
-        let mycommunities = this.state.communities.filter(
-            community => community.creator === this.state.creator
-        );
-        this.closestCommunity(mycommunities)
+        if (this.state.rendering === false) {
+            this.setState({ rendering: true })
+            Vibration.vibrate();
+            this.setState({
+                joined: false,
+                mine: true,
+                growing: false,
+                all: false
+            })
+            let mycommunities = this.state.communities.filter(
+                community => community.creator === this.state.creator
+            );
+            this.closestCommunity(mycommunities)
+        } else {
+            Vibration.vibrate();
+        }
     }
 
     showGrowing() {
-        Vibration.vibrate();
-        this.setState({
-            joined: false,
-            mine: false,
-            growing: true,
-            all: false
-        })
-        let growcommunities = this.state.communities.filter(
-            community => community.numberOfMembers < 3
-        );
-        this.closestCommunity(growcommunities)
+        if (this.state.rendering === false) {
+            this.setState({ rendering: true })
+            Vibration.vibrate();
+            this.setState({
+                joined: false,
+                mine: false,
+                growing: true,
+                all: false
+            })
+            let growcommunities = this.state.communities.filter(
+                community => community.numberOfMembers < 3
+            );
+            this.closestCommunity(growcommunities)
+        } else {
+            Vibration.vibrate();
+        }
     }
 
     showAll() {
-        Vibration.vibrate();
-        this.setState({
-            joined: false,
-            mine: false,
-            growing: false,
-            all: true
-        })
-        this.closestCommunity(this.state.communities)
+        if (this.state.rendering === false) {
+            this.setState({ rendering: true })
+            Vibration.vibrate();
+            this.setState({
+                joined: false,
+                mine: false,
+                growing: false,
+                all: true
+            })
+            this.closestCommunity(this.state.communities)
+        } else {
+            Vibration.vibrate();
+        }
     }
 
     closestCommunity(communities) {
@@ -191,6 +212,10 @@ class MapScreen extends Component {
             this.state.coord !== "" &&
                 this.marker.showCallout()
         }, 3000);
+        setTimeout(() => {
+            this.state.coord !== "" &&
+                this.setState({ rendering: false })
+        }, 3500);
     }
 
     render() {
