@@ -356,26 +356,30 @@ class MapScreen extends Component {
                         flexDirection: "row",
                         justifyContent: "space-between"
                     }}>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={() => this.showJoined()}>
-                        <Text style={styles.communityButtonText}>Joined</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={() => this.showMine()}>
-                        <Text style={styles.communityButtonText}>Mine</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={() => this.showGrowing()}>
-                        <Text style={styles.communityButtonText}>Growing</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={() => this.showAll()}>
-                        <Text style={styles.communityButtonText}>All</Text>
-                    </TouchableOpacity>
+                    {this.state.rendering === false &&
+                        <TouchableOpacity
+                            style={styles.filterButtons}
+                            onPress={() => this.showJoined()}>
+                            <Text style={styles.communityButtonText}>Joined</Text>
+                        </TouchableOpacity>}
+                    {this.state.rendering === false &&
+                        <TouchableOpacity
+                            style={styles.filterButtons}
+                            onPress={() => this.showMine()}>
+                            <Text style={styles.communityButtonText}>Mine</Text>
+                        </TouchableOpacity>}
+                    {this.state.rendering === false &&
+                        <TouchableOpacity
+                            style={styles.filterButtons}
+                            onPress={() => this.showGrowing()}>
+                            <Text style={styles.communityButtonText}>Growing</Text>
+                        </TouchableOpacity>}
+                    {this.state.rendering === false &&
+                        <TouchableOpacity
+                            style={styles.filterButtons}
+                            onPress={() => this.showAll()}>
+                            <Text style={styles.communityButtonText}>All</Text>
+                        </TouchableOpacity>}
                 </View>
             </View>
         );
