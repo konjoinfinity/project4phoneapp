@@ -97,6 +97,10 @@ class CommunityScreen extends React.Component {
     if (meet === true) {
       AlertHelper.show('info', 'Meet!', `You've created a new meet for ${this.state.community.name}!`);
     }
+    const editmeet = this.props.navigation.getParam('editmeet', 'false');
+    if (editmeet === true) {
+      AlertHelper.show('info', 'Meet!', `You've edited a meet for ${this.state.community.name}!`);
+    }
     const edit = this.props.navigation.getParam('edit', 'false');
     if (edit === true) {
       AlertHelper.show('info', 'Edited!', `You've updated ${this.state.community.name}!`);

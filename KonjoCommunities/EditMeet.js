@@ -188,11 +188,12 @@ class EditMeetScreen extends React.Component {
                                         date: this.state.date,
                                         time: this.state.time,
                                         creator: this.state.creator
-                                    }
+                                    },
+                                    meetId: this.props.navigation.state.params.meet
                                 };
                                 fetch(`${konjoUrl}community/${
                                     this.props.navigation.state.params.communityId
-                                    }/meet${this.props.navigation.state.params.meetId}`,
+                                    }/meet/edit`,
                                     {
                                         method: "PUT",
                                         headers: {
@@ -205,7 +206,7 @@ class EditMeetScreen extends React.Component {
                                     AlertHelper.show('warn', 'Error', `${error.message}!`);
                                 });
                                 this.props.navigation.push("Community", {
-                                    communityId: `${this.props.navigation.state.params.communityId}`, meet: true
+                                    communityId: `${this.props.navigation.state.params.communityId}`, editmeet: true
                                 })
                                 this.meetClear();
                             } else {
@@ -247,6 +248,7 @@ class EditMeetScreen extends React.Component {
                                 <Card borderRadius={15}>
                                     <Text style={styles.header}>Edit Meet</Text>
                                     <Text style={styles.comm}>{this.state.community !== "" && this.state.community.name}</Text>
+                                    <Text style={styles.comm}>{this.state.community !== "" && this.state.name}</Text>
                                     <View style={styles.inputContainer}>
                                         <TextInput
                                             style={styles.textInput}
@@ -363,7 +365,8 @@ const styles = StyleSheet.create({
     },
     comm: {
         textAlign: "center",
-        fontSize: 15
+        fontSize: 15,
+        padding: 3
     },
     inputContainer: {
         paddingTop: 15
