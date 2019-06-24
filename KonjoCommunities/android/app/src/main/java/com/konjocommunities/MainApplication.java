@@ -3,6 +3,7 @@ package com.konjocommunities;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import br.com.classapp.RNSensitiveInfo.RNSensitiveInfoPackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import com.clipsub.RNShake.RNShakeEventPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
             new RNSensitiveInfoPackage(),
             new RNReactNativeHapticFeedbackPackage(),
             new RNShakeEventPackage(),

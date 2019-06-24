@@ -407,22 +407,34 @@ class CommunityScreen extends React.Component {
     let meetlist;
     this.state.community &&
       (meetlist = this.state.community.meets.map((meet, id) => {
-        return (
-          <Card borderRadius={15} key={id}>
-            <View>
-              <Text style={{ fontSize: 30, padding: 5, textAlign: "center" }}>{meet.name}</Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🗒 {meet.description}</Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📍 {meet.location}</Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
-              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
-              <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
-              {this.state.creator === meet.creator && (
-                <Button
-                  title="🗑 Delete"
-                  onPress={() => this.deleteMeet(`${meet._id}`)} />)}
-            </View>
-          </Card>
-        );
+        meet.attening.map((attending) => {
+          meet.notattening.map((notattending) => {
+            meet.maybeattening.map((maybeattending) => {
+              return (
+                <Card borderRadius={15} key={id}>
+                  <View>
+                    <Text style={{ fontSize: 30, padding: 5, textAlign: "center" }}>{meet.name}</Text>
+                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🗒 {meet.description}</Text>
+                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📍 {meet.location}</Text>
+                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
+                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
+                    <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
+                    <Card borderRadius={15}>
+                      <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>Who's Going?</Text>
+                      {attending && <Text>style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {attending.name}</Text>}
+                      {notattending && <Text>style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notattending.name}</Text>}
+                      {maybeattending && <Text>style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybeattending.name}</Text>}
+                    </Card>
+                    {this.state.creator === meet.creator && (
+                      <Button
+                        title="🗑 Delete"
+                        onPress={() => this.deleteMeet(`${meet._id}`)} />)}
+                  </View>
+                </Card>
+              );
+            })
+          })
+        })
       }));
     return (
       <View style={styles.communities} behavior="padding">
