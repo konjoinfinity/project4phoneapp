@@ -408,9 +408,6 @@ class CommunityScreen extends React.Component {
     let meetlist;
     this.state.community &&
       (meetlist = this.state.community.meets.map((meet, id) => {
-        console.log(meet.attending)
-        console.log(meet.notAttending)
-        console.log(meet.maybeAttending)
         return (
           <Card borderRadius={15} key={id}>
             <View>
