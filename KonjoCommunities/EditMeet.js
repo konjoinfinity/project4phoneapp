@@ -339,7 +339,7 @@ class EditMeetScreen extends React.Component {
                                         <TouchableOpacity
                                             style={styles.saveButton}
                                             onPress={this.handleSubmit}>
-                                            <Text style={styles.saveButtonText}>Create Meet</Text>
+                                            <Text style={styles.saveButtonText}>Edit Meet</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </Card>
