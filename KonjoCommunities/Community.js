@@ -182,7 +182,7 @@ class CommunityScreen extends React.Component {
   }
 
   getCommunity() {
-    fetch(`https://konjomeet.herokuapp.com/community/${this.state.community._id}`
+    fetch(`${konjoUrl}community/${this.state.community._id}`
       , {
         method: "GET",
         headers: {
@@ -198,7 +198,7 @@ class CommunityScreen extends React.Component {
   }
 
   deleteCommunity() {
-    fetch(`https://konjomeet.herokuapp.com/community/${this.state.community._id}`,
+    fetch(`${konjoUrl}community/${this.state.community._id}`,
       {
         method: "DELETE",
         headers: {
@@ -217,7 +217,7 @@ class CommunityScreen extends React.Component {
 
   deleteComment(e) {
     const data = { body: e };
-    fetch(`https://konjomeet.herokuapp.com/community/${
+    fetch(`${konjoUrl}community/${
       this.state.community._id
       }/delete`,
       {
@@ -242,7 +242,7 @@ class CommunityScreen extends React.Component {
   handleComment() {
     if (this.state.comment !== "") {
       const data = { comment: this.state.comment, creator: this.state.creator };
-      fetch(`https://konjomeet.herokuapp.com/community/${
+      fetch(`${konjoUrl}community/${
         this.state.community._id
         }/comment`,
         {
@@ -274,7 +274,7 @@ class CommunityScreen extends React.Component {
 
   joinCommunity() {
     const data = { member: this.state.creator };
-    fetch(`https://konjomeet.herokuapp.com/community/${
+    fetch(`${konjoUrl}community/${
       this.state.community._id
       }/adduser`,
       {
@@ -303,7 +303,7 @@ class CommunityScreen extends React.Component {
 
   deleteMember(e) {
     const data = { body: e };
-    fetch(`https://konjomeet.herokuapp.com/community/${
+    fetch(`${konjoUrl}community/${
       this.state.community._id
       }/removeuser`,
       {
@@ -328,7 +328,7 @@ class CommunityScreen extends React.Component {
 
   deleteMeet(e) {
     const data = { body: e };
-    fetch(`https://konjomeet.herokuapp.com/community/${
+    fetch(`${konjoUrl}community/${
       this.state.community._id
       }/meet/delete`,
       {

@@ -14,6 +14,7 @@ import { Card } from "react-native-elements";
 import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -87,7 +88,7 @@ class SignupScreen extends React.Component {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         if (reg.test(text) === true) {
             if (this.state.password.length >= 8) {
-                fetch("https://konjomeet.herokuapp.com/users/signup", {
+                fetch(konjoUrl + "users/signup", {
                     method: "POST",
                     headers: {
                         "Content-type": "application/json"

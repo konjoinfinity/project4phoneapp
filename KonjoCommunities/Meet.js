@@ -16,6 +16,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -118,7 +119,7 @@ class MeetScreen extends React.Component {
   async componentDidMount() {
     Vibration.vibrate();
     await this.getToken();
-    await fetch(`https://konjomeet.herokuapp.com/community/${
+    await fetch(`${konjoUrl}community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -182,7 +183,7 @@ class MeetScreen extends React.Component {
                     creator: this.state.creator
                   }
                 };
-                fetch(`https://konjomeet.herokuapp.com/community/${
+                fetch(`${konjoUrl}community/${
                   this.props.navigation.state.params.communityId
                   }/meet`,
                   {

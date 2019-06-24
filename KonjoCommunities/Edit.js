@@ -15,6 +15,7 @@ import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -109,7 +110,7 @@ class EditScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
-    await fetch(`https://konjomeet.herokuapp.com/community/${
+    await fetch(`${konjoUrl}community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -159,7 +160,7 @@ class EditScreen extends React.Component {
       description: this.state.description,
       category: this.state.category
     };
-    fetch(`https://konjomeet.herokuapp.com/community/${this.state.id}`, {
+    fetch(`${konjoUrl}community/${this.state.id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

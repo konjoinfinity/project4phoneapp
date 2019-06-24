@@ -14,6 +14,7 @@ import { AlertHelper } from './AlertHelper';
 import * as Animatable from 'react-native-animatable';
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -44,7 +45,7 @@ class ProfileScreen extends React.Component {
     async componentDidMount() {
         Vibration.vibrate();
         await this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
+        await fetch(konjoUrl + "community", {
             method: "GET",
             headers: {
                 "user-token": `${this.state.userToken}`

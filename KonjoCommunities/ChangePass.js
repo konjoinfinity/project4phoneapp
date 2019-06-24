@@ -15,6 +15,7 @@ import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -76,7 +77,7 @@ class ChangePassScreen extends React.Component {
                                     newpassword: this.state.newpassword,
                                     confirmnewpassword: this.state.confirmnewpassword
                                 };
-                                fetch("https://konjomeet.herokuapp.com/users/changepass", {
+                                fetch(konjoUrl + "users/changepass", {
                                     method: "POST",
                                     headers: {
                                         "Content-type": "application/json",

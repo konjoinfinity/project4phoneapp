@@ -5,6 +5,7 @@ import { Marker } from 'react-native-maps';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from './Urls';
 
 const STORAGE_KEY = "id_token";
 
@@ -18,7 +19,7 @@ class CommMapScreen extends Component {
 
     async componentDidMount() {
         const token = await SInfo.getItem(STORAGE_KEY, {});
-        await fetch(`https://konjomeet.herokuapp.com/community/${
+        await fetch(`${konjoUrl}community/${
             this.props.navigation.state.params.communityId
             }`, {
                 method: "GET",

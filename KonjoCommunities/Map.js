@@ -6,6 +6,7 @@ import * as geolib from 'geolib';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from './Urls';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -89,7 +90,7 @@ class MapScreen extends Component {
     async componentDidMount() {
         const token = await SInfo.getItem(STORAGE_KEY, {});
         this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
+        await fetch(konjoUrl + "community", {
             method: "GET",
             headers: {
                 "user-token": `${token}`

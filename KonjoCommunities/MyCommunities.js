@@ -14,6 +14,7 @@ import * as Animatable from 'react-native-animatable';
 import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -41,7 +42,7 @@ class MyCommunitiesScreen extends React.Component {
 
   async componentDidMount() {
     await this.getToken();
-    await fetch("https://konjomeet.herokuapp.com/community", {
+    await fetch(konjoUrl + "community", {
       method: "GET",
       headers: {
         "user-token": `${this.state.userToken}`

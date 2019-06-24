@@ -15,6 +15,7 @@ import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -168,7 +169,7 @@ class NewScreen extends React.Component {
                   long: this.state.location.long
                 }
               };
-              fetch("https://konjomeet.herokuapp.com/community", {
+              fetch(konjoUrl + "community", {
                 method: "POST",
                 headers: {
                   "Content-type": "application/json",
