@@ -21,6 +21,7 @@ import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import Confetti from 'react-native-confetti';
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 const STORAGE_USER = "username";
 const STORAGE_KEY = "id_token";
@@ -70,7 +71,7 @@ class CommunityScreen extends React.Component {
   async componentDidMount() {
     Vibration.vibrate();
     await this.getToken();
-    await fetch(`https://konjomeet.herokuapp.com/community/${
+    await fetch(`${konjoUrl}community/${
       this.props.navigation.state.params.communityId
       }`, {
         method: "GET",
@@ -407,37 +408,48 @@ class CommunityScreen extends React.Component {
     let meetlist;
     this.state.community &&
       (meetlist = this.state.community.meets.map((meet, id) => {
-        meet.attening.map((attending) => {
-          meet.notattening.map((notattending) => {
-            meet.maybeattening.map((maybeattending) => {
-              return (
-                <Card borderRadius={15} key={id}>
-                  <View>
-                    <Text style={{ fontSize: 30, padding: 5, textAlign: "center" }}>{meet.name}</Text>
-                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🗒 {meet.description}</Text>
-                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📍 {meet.location}</Text>
-                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
-                    <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
-                    <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
-                    <Card borderRadius={15}>
-                      <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>Who's Going?</Text>
-                      {attending && <Text>style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {attending.name}</Text>}
-                      {notattending && <Text>style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notattending.name}</Text>}
-                      {maybeattending && <Text>style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybeattending.name}</Text>}
-                    </Card>
-                    {this.state.creator === meet.creator && (
-                      <Button
-                        title="🗑 Delete"
-                        onPress={() => this.deleteMeet(`${meet._id}`)} />)}
-                  </View>
-                </Card>
-              );
-            })
-          })
-        })
+        console.log(meet.attending)
+        console.log(meet.notAttending)
+        console.log(meet.maybeAttending)
+        return (
+          <Card borderRadius={15} key={id}>
+            <View>
+              <Text style={{ fontSize: 30, padding: 5, textAlign: "center" }}>{meet.name}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🗒 {meet.description}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📍 {meet.location}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
+              <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
+              <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
+              <Card borderRadius={15}>
+                <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>Who's Going?</Text>
+                <View>
+                  {meet.attending.map((going, id) => {
+                    return (
+                      <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {going.name}</Text>
+                    )
+                  })}
+                  {meet.notAttending.map((notgoing, id) => {
+                    return (
+                      <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
+                    )
+                  })}
+                  {meet.maybeAttending.map((maybegoing, id) => {
+                    return (
+                      <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybegoing.name}</Text>
+                    )
+                  })}
+                </View>
+              </Card>
+              {this.state.creator === meet.creator && (
+                <Button
+                  title="🗑 Delete"
+                  onPress={() => this.deleteMeet(`${meet._id}`)} />)}
+            </View>
+          </Card>
+        );
       }));
     return (
-      <View style={styles.communities} behavior="padding">
+      <View style={styles.communities} behavior="padding" >
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <AnimatableView
