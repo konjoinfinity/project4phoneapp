@@ -423,6 +423,15 @@ class CommunityScreen extends React.Component {
               <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
               <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
               <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
+              {this.state.creator === meet.creator && (
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() =>
+                    this.props.navigation.push("EditMeet", {
+                      communityId: `${this.state.community._id}`, meet: `${meet._id}`
+                    })}>
+                  <Text style={styles.buttonText}>Edit Meet ✏️</Text>
+                </TouchableOpacity>)}
               <Card borderRadius={15}>
                 <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>Who's Going?</Text>
                 <View>
@@ -446,21 +455,21 @@ class CommunityScreen extends React.Component {
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Going 👍🏻"
-                          onPress={() => AlertHelper.show('success', 'Going', "Going!")} />
+                          onPress={() => AlertHelper.show('success', 'Going', `${meet._id}`)} />
                       )))}
                   {userattending.length === 0 && (
                     usernotattending.length === 0 && (
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Not Going 👎🏻"
-                          onPress={() => AlertHelper.show('warn', 'Not', "Not Going!")} />
+                          onPress={() => AlertHelper.show('warn', 'Not', `${meet._id}`)} />
                       )))}
                   {userattending.length === 0 && (
                     usernotattending.length === 0 && (
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Maybe Going 🤷🏻‍🤷🏻‍"
-                          onPress={() => AlertHelper.show('info', 'Maybe', "Maybe Going!")} />
+                          onPress={() => AlertHelper.show('info', 'Maybe', `${meet._id}`)} />
                       )))}
                 </View>
               </Card>

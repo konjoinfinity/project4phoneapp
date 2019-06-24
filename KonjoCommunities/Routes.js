@@ -17,6 +17,7 @@ import CommMapScreen from "./CommMap";
 import HomeScreen from "./Home"
 import ChangePassScreen from "./ChangePass";
 import { AlertHelper } from "./AlertHelper";
+import EditMeetScreen from "./EditMeet";
 
 const AppStack = createStackNavigator(
   {
@@ -36,7 +37,8 @@ const AppStack = createStackNavigator(
     CommMap: CommMapScreen,
     Home: HomeScreen,
     ChangePass: ChangePassScreen,
-    Helper: AlertHelper
+    Helper: AlertHelper,
+    EditMeet: EditMeetScreen
   },
   {
     initialRouteName: 'Home',
