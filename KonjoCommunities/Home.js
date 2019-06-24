@@ -108,8 +108,7 @@ class HomeScreen extends React.Component {
                         style={styles.headerButton}
                         onPress={() => navigation.push("Profile")}>
                         <View>
-                            <Text
-                                style={{ fontSize: 25 }}>👤</Text>
+                            <Text style={{ fontSize: 25 }}>👤</Text>
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
@@ -121,8 +120,7 @@ class HomeScreen extends React.Component {
                         style={styles.headerButton}
                         onPress={() => navigation.push("Communities")}>
                         <View>
-                            <Text
-                                style={{ fontSize: 25 }}>👥</Text>
+                            <Text style={{ fontSize: 25 }}>👥</Text>
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
@@ -136,8 +134,7 @@ class HomeScreen extends React.Component {
                         style={styles.headerButton}
                         onPress={() => navigation.push("New")}>
                         <View>
-                            <Text
-                                style={{ fontSize: 25 }}>➕</Text>
+                            <Text style={{ fontSize: 25 }}>➕</Text>
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
@@ -149,8 +146,7 @@ class HomeScreen extends React.Component {
                         style={styles.headerButton}
                         onPress={() => navigation.push("Map")}>
                         <View>
-                            <Text
-                                style={{ fontSize: 25 }}>🗺</Text>
+                            <Text style={{ fontSize: 25 }}>🗺</Text>
                         </View>
                     </TouchableOpacity>
                 </AnimatableView>
@@ -254,7 +250,6 @@ class HomeScreen extends React.Component {
                     return community.name.toLowerCase().match(search);
                 }))
             )
-
         let results;
         this.state.communities &&
             (results = communitySearch.map((community, id) => {

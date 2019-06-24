@@ -406,8 +406,14 @@ class CommunityScreen extends React.Component {
         member => member.name === this.state.creator
       );
     let meetlist;
+    let userattending;
+    let usernotattending;
+    let usermaybeattending;
     this.state.community &&
       (meetlist = this.state.community.meets.map((meet, id) => {
+        userattending = meet.attending.filter(user => user.name === this.state.creator);
+        usernotattending = meet.notAttending.filter(user => user.name === this.state.creator);
+        usermaybeattending = meet.maybeAttending.filter(user => user.name === this.state.creator);
         return (
           <Card borderRadius={15} key={id}>
             <View>
@@ -425,6 +431,13 @@ class CommunityScreen extends React.Component {
                       <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {going.name}</Text>
                     )
                   })}
+                  {userattending.length === 0 && (
+                    usernotattending.length === 0 && (
+                      usermaybeattending.length === 0 && (
+                        <Button
+                          title="Going 👍🏻"
+                          onPress={() => AlertHelper.show('success', 'Going', "Going!")} />
+                      )))}
                   {meet.notAttending.map((notgoing, id) => {
                     return (
                       <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
