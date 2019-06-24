@@ -431,13 +431,6 @@ class CommunityScreen extends React.Component {
                       <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {going.name}</Text>
                     )
                   })}
-                  {userattending.length === 0 && (
-                    usernotattending.length === 0 && (
-                      usermaybeattending.length === 0 && (
-                        <Button
-                          title="Going 👍🏻"
-                          onPress={() => AlertHelper.show('success', 'Going', "Going!")} />
-                      )))}
                   {meet.notAttending.map((notgoing, id) => {
                     return (
                       <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
@@ -448,6 +441,27 @@ class CommunityScreen extends React.Component {
                       <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybegoing.name}</Text>
                     )
                   })}
+                  {userattending.length === 0 && (
+                    usernotattending.length === 0 && (
+                      usermaybeattending.length === 0 && (
+                        <Button
+                          title="Going 👍🏻"
+                          onPress={() => AlertHelper.show('success', 'Going', "Going!")} />
+                      )))}
+                  {userattending.length === 0 && (
+                    usernotattending.length === 0 && (
+                      usermaybeattending.length === 0 && (
+                        <Button
+                          title="Not Going 👎🏻"
+                          onPress={() => AlertHelper.show('warn', 'Not', "Not Going!")} />
+                      )))}
+                  {userattending.length === 0 && (
+                    usernotattending.length === 0 && (
+                      usermaybeattending.length === 0 && (
+                        <Button
+                          title="Maybe Going 🤷🏻‍🤷🏻‍"
+                          onPress={() => AlertHelper.show('info', 'Maybe', "Maybe Going!")} />
+                      )))}
                 </View>
               </Card>
               {this.state.creator === meet.creator && (
