@@ -15,6 +15,7 @@ import { Card } from "react-native-elements";
 import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -98,7 +99,7 @@ class LoginScreen extends React.Component {
     let text = this.state.email
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     if (reg.test(text) === true) {
-      fetch("https://konjomeet.herokuapp.com/users/login", {
+      fetch(konjoUrl + "users/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json"

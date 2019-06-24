@@ -19,6 +19,7 @@ import RNShake from 'react-native-shake';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
+import konjoUrl from "./Urls";
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -48,7 +49,7 @@ class HomeScreen extends React.Component {
 
     async componentDidMount() {
         await this.getToken();
-        await fetch("https://konjomeet.herokuapp.com/community", {
+        await fetch(konjoUrl + "community", {
             method: "GET",
             headers: {
                 "user-token": `${this.state.userToken}`
