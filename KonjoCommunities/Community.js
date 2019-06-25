@@ -667,9 +667,11 @@ class CommunityScreen extends React.Component {
                   <Text style={styles.buttonText}>Edit Meet ✏️</Text>
                 </TouchableOpacity>)}
               {this.state.creator === meet.creator && (
-                <Button
-                  title="🗑 Delete Meet"
-                  onPress={() => this.deleteMeet(`${meet._id}`)} />)}
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={() => this.deleteMeet(`${meet._id}`)}>
+                  <Text style={styles.buttonText}>Delete Meet 🗑</Text>
+                </TouchableOpacity>)}
             </View>
           </Card>
         );
