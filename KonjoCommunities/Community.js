@@ -481,7 +481,7 @@ class CommunityScreen extends React.Component {
                             <Text style={{ fontSize: 15, padding: 3, textAlign: "center" }}>{going.name}</Text>
                             {going.name === this.state.creator &&
                               <Button
-                                title="Remove"
+                                title="Change"
                                 onPress={() => this.attendAll(`${meet._id}`, `${meet.name}`, pull, attending)} />}
                           </View>
                         )
@@ -497,7 +497,7 @@ class CommunityScreen extends React.Component {
                             <Text style={{ fontSize: 15, padding: 3, textAlign: "center" }}>{notgoing.name}</Text>
                             {notgoing.name === this.state.creator &&
                               <Button
-                                title="Remove"
+                                title="Change"
                                 onPress={() => this.attendAll(`${meet._id}`, `${meet.name}`, pull, notattending)} />}
                           </View>
                         )
@@ -513,7 +513,7 @@ class CommunityScreen extends React.Component {
                             <Text style={{ fontSize: 15, padding: 3, textAlign: "center" }}>{maybegoing.name}</Text>
                             {maybegoing.name === this.state.creator &&
                               <Button
-                                title="Remove"
+                                title="Change"
                                 onPress={() => this.attendAll(`${meet._id}`, `${meet.name}`, pull, maybeattending)} />}
                           </View>
                         )
