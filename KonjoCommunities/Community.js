@@ -369,7 +369,7 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
   }
 
-  attending(meetid, meetname) {
+  attendMeet(meetid, meetname) {
     fetch(`${konjoUrl}community/${
       this.state.community._id
       }/meet/attend`,
@@ -390,6 +390,58 @@ class CommunityScreen extends React.Component {
         this.getCommunity();
         Vibration.vibrate();
         AlertHelper.show('info', 'Info', `You are attending ${meetname}!`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
+      });
+  }
+
+  delAttendMeet(meetid, meetname) {
+    fetch(`${konjoUrl}community/${
+      this.state.community._id
+      }/meet/delattend`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
+        },
+        body: JSON.stringify({
+          meet: meetid,
+          name: this.state.creator
+        })
+      }
+    ).then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+        AlertHelper.show('info', 'Info', `You are no longer attending ${meetname}!`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
+      });
+  }
+
+  notAttendMeet(meetid, meetname) {
+    fetch(`${konjoUrl}community/${
+      this.state.community._id
+      }/meet/notattend`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
+        },
+        body: JSON.stringify({
+          meet: meetid,
+          name: this.state.creator
+        })
+      }
+    ).then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+        AlertHelper.show('info', 'Info', `You are not attending ${meetname}!`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
@@ -453,21 +505,18 @@ class CommunityScreen extends React.Component {
               <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>📆 {meet.date}</Text>
               <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>🕒 {meet.time}</Text>
               <Text style={{ fontSize: 10, padding: 5, textAlign: "center" }}>👤 {meet.creator}</Text>
-              {this.state.creator === meet.creator && (
-                <TouchableOpacity
-                  style={styles.editButton}
-                  onPress={() =>
-                    this.props.navigation.push("EditMeet", {
-                      communityId: `${this.state.community._id}`, meet: `${meet._id}`
-                    })}>
-                  <Text style={styles.buttonText}>Edit Meet ✏️</Text>
-                </TouchableOpacity>)}
               <Card borderRadius={15}>
                 <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>Who's Going?</Text>
                 <View>
                   {meet.attending.map((going, id) => {
                     return (
-                      <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {going.name}</Text>
+                      <View key={id}>
+                        <Text style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {going.name}</Text>
+                        {going.name === this.state.creator &&
+                          <Button
+                            title="Remove"
+                            onPress={() => this.delAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                      </View>
                     )
                   })}
                   {meet.notAttending.map((notgoing, id) => {
@@ -485,27 +534,36 @@ class CommunityScreen extends React.Component {
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Going 👍🏻"
-                          onPress={() => this.attending(`${meet._id}`, `${meet.name}`)} />
+                          onPress={() => this.attendMeet(`${meet._id}`, `${meet.name}`)} />
                       )))}
                   {userattending.length === 0 && (
                     usernotattending.length === 0 && (
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Not Going 👎🏻"
-                          onPress={() => AlertHelper.show('warn', 'Not', `${meet._id}`)} />
+                          onPress={() => this.notAttendMeet(`${meet._id}`, `${meet.name}`)} />
                       )))}
                   {userattending.length === 0 && (
                     usernotattending.length === 0 && (
                       usermaybeattending.length === 0 && (
                         <Button
-                          title="Maybe Going 🤷🏻‍🤷🏻‍"
+                          title="Maybe Going 🤷🏻‍♂️🤷🏻‍♀️"
                           onPress={() => AlertHelper.show('info', 'Maybe', `${meet._id}`)} />
                       )))}
                 </View>
               </Card>
               {this.state.creator === meet.creator && (
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() =>
+                    this.props.navigation.push("EditMeet", {
+                      communityId: `${this.state.community._id}`, meet: `${meet._id}`
+                    })}>
+                  <Text style={styles.buttonText}>Edit Meet ✏️</Text>
+                </TouchableOpacity>)}
+              {this.state.creator === meet.creator && (
                 <Button
-                  title="🗑 Delete"
+                  title="🗑 Delete Meet"
                   onPress={() => this.deleteMeet(`${meet._id}`)} />)}
             </View>
           </Card>
