@@ -447,6 +447,32 @@ class CommunityScreen extends React.Component {
       });
   }
 
+  delNotAttendMeet(meetid, meetname) {
+    fetch(`${konjoUrl}community/${
+      this.state.community._id
+      }/meet/delnotattend`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
+        },
+        body: JSON.stringify({
+          meet: meetid,
+          name: this.state.creator
+        })
+      }
+    ).then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+        AlertHelper.show('info', 'Info', `You are no longer attending ${meetname}!`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
+      });
+  }
+
   render() {
     let members;
     this.state.community &&
@@ -521,12 +547,24 @@ class CommunityScreen extends React.Component {
                   })}
                   {meet.notAttending.map((notgoing, id) => {
                     return (
-                      <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
+                      <View key={id}>
+                        <Text style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
+                        {notgoing.name === this.state.creator &&
+                          <Button
+                            title="Remove"
+                            onPress={() => this.delNotAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                      </View>
                     )
                   })}
                   {meet.maybeAttending.map((maybegoing, id) => {
                     return (
-                      <Text key={id} style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybegoing.name}</Text>
+                      <View key={id}>
+                        <Text style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybegoing.name}</Text>
+                        {maybegoing.name === this.state.creator &&
+                          <Button
+                            title="Remove"
+                            onPress={() => this.delMaybeAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                      </View>
                     )
                   })}
                   {userattending.length === 0 && (
