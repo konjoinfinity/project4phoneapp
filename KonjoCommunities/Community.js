@@ -589,33 +589,45 @@ class CommunityScreen extends React.Component {
                   {meet.attending.map((going, id) => {
                     return (
                       <View key={id}>
-                        <Text style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Attending: {going.name}</Text>
-                        {going.name === this.state.creator &&
-                          <Button
-                            title="Remove"
-                            onPress={() => this.delAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                        <Card borderRadius={15}>
+                          <View>
+                            <Text style={{ fontSize: 15, textAlign: "center" }}>Attending: {going.name}</Text>
+                            {going.name === this.state.creator &&
+                              <Button
+                                title="Remove"
+                                onPress={() => this.delAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                          </View>
+                        </Card>
                       </View>
                     )
                   })}
                   {meet.notAttending.map((notgoing, id) => {
                     return (
                       <View key={id}>
-                        <Text style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
-                        {notgoing.name === this.state.creator &&
-                          <Button
-                            title="Remove"
-                            onPress={() => this.delNotAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                        <Card borderRadius={15}>
+                          <View>
+                            <Text style={{ fontSize: 15, textAlign: "center" }}>Not Attending: {notgoing.name}</Text>
+                            {notgoing.name === this.state.creator &&
+                              <Button
+                                title="Remove"
+                                onPress={() => this.delNotAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                          </View>
+                        </Card>
                       </View>
                     )
                   })}
                   {meet.maybeAttending.map((maybegoing, id) => {
                     return (
                       <View key={id}>
-                        <Text style={{ fontSize: 15, padding: 5, textAlign: "center" }}>Maybe Attending: {maybegoing.name}</Text>
-                        {maybegoing.name === this.state.creator &&
-                          <Button
-                            title="Remove"
-                            onPress={() => this.delMaybeAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                        <Card borderRadius={15}>
+                          <View>
+                            <Text style={{ fontSize: 15, textAlign: "center" }}>Maybe Attending: {maybegoing.name}</Text>
+                            {maybegoing.name === this.state.creator &&
+                              <Button
+                                title="Remove"
+                                onPress={() => this.delMaybeAttendMeet(`${meet._id}`, `${meet.name}`)} />}
+                          </View>
+                        </Card>
                       </View>
                     )
                   })}

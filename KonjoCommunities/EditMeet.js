@@ -34,7 +34,10 @@ class EditMeetScreen extends React.Component {
             time: "",
             creator: "",
             userToken: "",
-            community: ""
+            community: "",
+            attending: "",
+            notAttending: "",
+            maybeAttending: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -136,7 +139,10 @@ class EditMeetScreen extends React.Component {
                     description: editmeet[0].description,
                     location: editmeet[0].location,
                     date: editmeet[0].date,
-                    time: editmeet[0].time
+                    time: editmeet[0].time,
+                    attending: editmeet[0].attending,
+                    notAttending: editmeet[0].notAttending,
+                    maybeAttending: editmeet[0].maybeAttending
                 })
             }).catch(error => { AlertHelper.show('warn', 'Error', `${error.message}!`); });
         console.log(this.state)
@@ -187,7 +193,10 @@ class EditMeetScreen extends React.Component {
                                         location: this.state.location,
                                         date: this.state.date,
                                         time: this.state.time,
-                                        creator: this.state.creator
+                                        creator: this.state.creator,
+                                        attending: this.state.attending,
+                                        notAttending: this.state.notAttending,
+                                        maybeAttending: this.state.maybeAttending
                                     },
                                     meetId: this.props.navigation.state.params.meet
                                 };
