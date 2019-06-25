@@ -369,7 +369,7 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
   }
 
-  attending(meetid) {
+  attending(meetid, meetname) {
     fetch(`${konjoUrl}community/${
       this.state.community._id
       }/meet/attend`,
@@ -377,9 +377,7 @@ class CommunityScreen extends React.Component {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
-          "user-token": `${this.state.userToken}`,
-          "meet": `${meetid}`,
-          "name": this.state.creator
+          "user-token": `${this.state.userToken}`
         },
         body: JSON.stringify({
           meet: meetid,
@@ -391,7 +389,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        AlertHelper.show('info', 'Info', `You are attending a meet for ${this.state.community.name}!`)
+        AlertHelper.show('info', 'Info', `You are attending ${meetname}!`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
@@ -487,7 +485,7 @@ class CommunityScreen extends React.Component {
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Going 👍🏻"
-                          onPress={() => this.attending(`${meet._id}`)} />
+                          onPress={() => this.attending(`${meet._id}`, `${meet.name}`)} />
                       )))}
                   {userattending.length === 0 && (
                     usernotattending.length === 0 && (
