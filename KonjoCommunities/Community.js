@@ -38,7 +38,8 @@ class CommunityScreen extends React.Component {
       memberslist: false,
       keyboard: false,
       options: false,
-      joinmodal: null
+      joinmodal: null,
+      meetoptions: false
     };
     this.openCloseNav = this.openCloseNav.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -48,6 +49,7 @@ class CommunityScreen extends React.Component {
     this.joinCommunity = this.joinCommunity.bind(this);
     this.commentClear = this.commentClear.bind(this);
     this.openCloseMembersList = this.openCloseMembersList.bind(this);
+    this.openCloseMeetOptions = this.openCloseMeetOptions.bind(this);
     this.showHideOptions = this.showHideOptions.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -362,6 +364,13 @@ class CommunityScreen extends React.Component {
     Vibration.vibrate();
   }
 
+  openCloseMeetOptions() {
+    this.setState(prevState => ({
+      meetoptions: !prevState.meetoptions
+    }));
+    Vibration.vibrate();
+  }
+
   showHideOptions() {
     this.setState(prevState => ({
       options: !prevState.options
@@ -657,21 +666,33 @@ class CommunityScreen extends React.Component {
                       )))}
                 </View>
               </Card>
-              {this.state.creator === meet.creator && (
-                <TouchableOpacity
-                  style={styles.editButton}
-                  onPress={() =>
-                    this.props.navigation.push("EditMeet", {
-                      communityId: `${this.state.community._id}`, meet: `${meet._id}`
-                    })}>
-                  <Text style={styles.buttonText}>Edit Meet ✏️</Text>
-                </TouchableOpacity>)}
-              {this.state.creator === meet.creator && (
-                <TouchableOpacity
-                  style={styles.deleteButton}
-                  onPress={() => this.deleteMeet(`${meet._id}`)}>
-                  <Text style={styles.buttonText}>Delete Meet 🗑</Text>
-                </TouchableOpacity>)}
+              {this.state.creator === meet.creator &&
+                <Text style={{ fontSize: 20, padding: 5, textAlign: "center" }}>Options</Text>}
+              {this.state.meetoptions === false && (
+                this.state.creator === meet.creator && (
+                  <Button onPress={() => this.openCloseMeetOptions()}
+                    title="Show" />))}
+              {this.state.meetoptions === true && (
+                this.state.creator === meet.creator && (
+                  <Button onPress={() => this.openCloseMeetOptions()}
+                    title="Hide" />))}
+              {this.state.meetoptions === true && (
+                this.state.creator === meet.creator && (
+                  <TouchableOpacity
+                    style={styles.editButton}
+                    onPress={() =>
+                      this.props.navigation.push("EditMeet", {
+                        communityId: `${this.state.community._id}`, meet: `${meet._id}`
+                      })}>
+                    <Text style={styles.buttonText}>Edit Meet ✏️</Text>
+                  </TouchableOpacity>))}
+              {this.state.meetoptions === true && (
+                this.state.creator === meet.creator && (
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={() => this.deleteMeet(`${meet._id}`)}>
+                    <Text style={styles.buttonText}>Delete Meet 🗑</Text>
+                  </TouchableOpacity>))}
             </View>
           </Card>
         );
