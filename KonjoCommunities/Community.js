@@ -574,9 +574,6 @@ class CommunityScreen extends React.Component {
         userattending = meet.attending.filter(user => user.name === this.state.creator);
         usernotattending = meet.notAttending.filter(user => user.name === this.state.creator);
         usermaybeattending = meet.maybeAttending.filter(user => user.name === this.state.creator);
-        console.log(meet.attending)
-        console.log(meet.notAttending)
-        console.log(meet.maybeAttending)
         return (
           <Card borderRadius={15} key={id}>
             <View>
