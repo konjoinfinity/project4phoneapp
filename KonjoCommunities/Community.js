@@ -415,7 +415,7 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        AlertHelper.show('info', 'Info', `You are no longer attending ${meetname}!`)
+        AlertHelper.show('info', 'Info', `You are no longer decided for ${meetname}!`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
@@ -467,7 +467,59 @@ class CommunityScreen extends React.Component {
         console.log(result);
         this.getCommunity();
         Vibration.vibrate();
-        AlertHelper.show('info', 'Info', `You are no longer attending ${meetname}!`)
+        AlertHelper.show('info', 'Info', `You are no longer decided for ${meetname}!`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
+      });
+  }
+
+  maybeAttendMeet(meetid, meetname) {
+    fetch(`${konjoUrl}community/${
+      this.state.community._id
+      }/meet/maybeattend`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
+        },
+        body: JSON.stringify({
+          meet: meetid,
+          name: this.state.creator
+        })
+      }
+    ).then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+        AlertHelper.show('info', 'Info', `You might attend ${meetname}!`)
+      }).catch(error => {
+        AlertHelper.show('warn', 'Error', `${error.message}!`);
+      });
+  }
+
+  delMaybeAttendMeet(meetid, meetname) {
+    fetch(`${konjoUrl}community/${
+      this.state.community._id
+      }/meet/delmaybeattend`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          "user-token": `${this.state.userToken}`
+        },
+        body: JSON.stringify({
+          meet: meetid,
+          name: this.state.creator
+        })
+      }
+    ).then(response => console.log(response))
+      .then(result => {
+        console.log(result);
+        this.getCommunity();
+        Vibration.vibrate();
+        AlertHelper.show('info', 'Info', `You are no longer decided for ${meetname}!`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
@@ -586,7 +638,7 @@ class CommunityScreen extends React.Component {
                       usermaybeattending.length === 0 && (
                         <Button
                           title="Maybe Going 🤷🏻‍♂️🤷🏻‍♀️"
-                          onPress={() => AlertHelper.show('info', 'Maybe', `${meet._id}`)} />
+                          onPress={() => this.maybeAttendMeet(`${meet._id}`, `${meet.name}`)} />
                       )))}
                 </View>
               </Card>
