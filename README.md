@@ -5,7 +5,7 @@
 <img src="https://user-images.githubusercontent.com/46323883/59877997-3ddf1e80-9375-11e9-9827-ec184057f192.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59878817-3e78b480-9377-11e9-8097-ea2bba2a7dbf.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59937043-6e7b9280-941f-11e9-8e05-76adeb511630.png" width="280" height="480">
-<img src="https://user-images.githubusercontent.com/46323883/59878873-6700ae80-9377-11e9-8d2e-7108c3bda7fb.png" width="280" height="480">
+<img src="https://user-images.githubusercontent.com/46323883/60308361-596a9c00-9916-11e9-8072-466a794f669e.png" width="280" height="480">
 </div>
 
 ## Konjo
