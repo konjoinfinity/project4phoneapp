@@ -1,4 +1,4 @@
-# Konjo Communities React Native Phone App
+# Konjo Communities App
 <div class="row space-between">
 <img src="https://user-images.githubusercontent.com/46323883/59878020-46375980-9375-11e9-8f05-5581bfd2090e.png" width="280" height="480">
 <img src="https://user-images.githubusercontent.com/46323883/59878771-23a64000-9377-11e9-8ed8-dc2fb7a94e29.png" width="280" height="480">
@@ -10,7 +10,7 @@
 
 ## Konjo
 
-Welcome to Konjo Communities where you can create, join, meet, grow, and discover communities. This is app is currently being developed using react native.
+Welcome to Konjo Communities. Create, join, meet, grow, and discover local communities. This is app is currently being developed using react native building to iOS.
 
 <div>
 <img src="https://user-images.githubusercontent.com/46323883/59937920-a4ba1180-9421-11e9-9d6b-97f52d9a71c5.jpg" width="350" height="200"></div>
