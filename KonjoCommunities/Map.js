@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Vibration, TouchableOpacity, Text } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as geolib from 'geolib';
@@ -103,7 +104,7 @@ class MapScreen extends Component {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
         Vibration.vibrate();
-        navigator.geolocation.getCurrentPosition(
+        Geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
                     latitude: position.coords.latitude,

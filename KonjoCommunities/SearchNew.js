@@ -9,6 +9,7 @@ import {
   Vibration,
   KeyboardAvoidingView
 } from "react-native";
+import Geolocation from '@react-native-community/geolocation';
 import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
@@ -118,7 +119,7 @@ class SearchNewScreen extends React.Component {
     Vibration.vibrate();
     this.getToken();
     this.setState({ name: this.props.navigation.state.params.newName });
-    navigator.geolocation.getCurrentPosition(
+    Geolocation.getCurrentPosition(
       (position) => {
         this.setState({
           location: {
