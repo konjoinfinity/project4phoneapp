@@ -7,7 +7,7 @@ target 'KonjoCommunities' do
 
   # Pods for KonjoCommunities
 
-  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+  pod 'react-native-geolocation', path: '../node_modules/@react-native-community/geolocation'
 
   target 'KonjoCommunitiesTests' do
     inherit! :search_paths
