@@ -210,9 +210,6 @@ class MapScreen extends Component {
     }
 
     render() {
-        console.log(this.state.latitude)
-        console.log(this.state.longitude)
-        console.log(this.state.initialPosition)
         let joinedcommunities;
         this.state.communities && (
             this.state.joined === true && (
