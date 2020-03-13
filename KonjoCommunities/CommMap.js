@@ -6,6 +6,7 @@ import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from './Urls';
+import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_KEY = "id_token";
 
@@ -22,18 +23,18 @@ class CommMapScreen extends Component {
         await fetch(`${konjoUrl}community/${
             this.props.navigation.state.params.communityId
             }`, {
-                method: "GET",
-                headers: {
-                    "user-token": `${token}`
-                }
-            })
+            method: "GET",
+            headers: {
+                "user-token": `${token}`
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 this.setState({ community: res });
             }).catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
     }
 
     static navigationOptions = ({ navigation }) => {

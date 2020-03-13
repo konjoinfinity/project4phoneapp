@@ -16,6 +16,7 @@ import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -113,11 +114,11 @@ class EditScreen extends React.Component {
     await fetch(`${konjoUrl}community/${
       this.props.navigation.state.params.communityId
       }`, {
-        method: "GET",
-        headers: {
-          "user-token": `${this.state.userToken}`
-        }
-      })
+      method: "GET",
+      headers: {
+        "user-token": `${this.state.userToken}`
+      }
+    })
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -129,7 +130,7 @@ class EditScreen extends React.Component {
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   editClear() {
@@ -174,7 +175,7 @@ class EditScreen extends React.Component {
         this.props.navigation.push("Community", {
           communityId: `${this.state.id}`, edit: true
         })
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         this.editClear();
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);

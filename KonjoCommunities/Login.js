@@ -16,6 +16,7 @@ import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -50,7 +51,7 @@ class LoginScreen extends React.Component {
   };
 
   async componentDidMount() {
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
     const username = await SInfo.getItem(STORAGE_USER, {});
     if (username !== undefined) {
       await SInfo.deleteItem(STORAGE_KEY, {});
@@ -84,7 +85,7 @@ class LoginScreen extends React.Component {
   async getUsername() {
     const username = await SInfo.getItem(STORAGE_USER, {});
     AlertHelper.show('info', 'Info', username === null ? "No user logged in" : username + " is logged in");
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   async onValueChange(item, selectedValue) {
@@ -112,10 +113,10 @@ class LoginScreen extends React.Component {
         .then(response => response.json())
         .then(responseData => {
           if (responseData.error) {
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('error', 'Error', `${responseData.error}`);
           } else {
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
             this.onValueChange(STORAGE_KEY, responseData.token);
             this.onValueChange(STORAGE_USER, this.state.email);
             this.props.navigation.push("Home", {
@@ -125,7 +126,7 @@ class LoginScreen extends React.Component {
           }
         })
     } else {
-      Vibration.vibrate();
+      ReactNativeHaptic.generate('selection');
       AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
     }
   }

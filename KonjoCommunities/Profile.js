@@ -15,6 +15,7 @@ import * as Animatable from 'react-native-animatable';
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -43,7 +44,7 @@ class ProfileScreen extends React.Component {
     }
 
     async componentDidMount() {
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         await this.getToken();
         await fetch(konjoUrl + "community", {
             method: "GET",
@@ -64,14 +65,14 @@ class ProfileScreen extends React.Component {
         this.setState(prevState => ({
             commcreated: !prevState.commcreated
         }));
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
     }
 
     openCloseCommJoined() {
         this.setState(prevState => ({
             commjoined: !prevState.commjoined
         }));
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
     }
 
     static navigationOptions = ({ navigation }) => {

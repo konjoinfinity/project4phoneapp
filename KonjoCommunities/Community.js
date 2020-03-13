@@ -22,6 +22,7 @@ import Confetti from 'react-native-confetti';
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_USER = "username";
 const STORAGE_KEY = "id_token";
@@ -76,16 +77,16 @@ class CommunityScreen extends React.Component {
   }
 
   async componentDidMount() {
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
     await this.getToken();
     await fetch(`${konjoUrl}community/${
       this.props.navigation.state.params.communityId
       }`, {
-        method: "GET",
-        headers: {
-          "user-token": `${this.state.userToken}`
-        }
-      })
+      method: "GET",
+      headers: {
+        "user-token": `${this.state.userToken}`
+      }
+    })
       .then(res => res.json())
       .then(res => {
         this.setState({ community: res });
@@ -133,14 +134,14 @@ class CommunityScreen extends React.Component {
     );
 
   closeModal() {
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
     this.setState({ joinmodal: null })
   }
 
   openCloseNav() {
     this.setState(prevState => ({ nav: !prevState.nav }));
     this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   meetNav() {
@@ -164,14 +165,14 @@ class CommunityScreen extends React.Component {
             [
               {
                 text: 'Cancel',
-                onPress: () => Vibration.vibrate(),
+                onPress: () => ReactNativeHaptic.generate('selection'),
                 style: 'cancel',
               },
               { text: 'Create', onPress: () => this.meetNav() },
             ],
             { cancelable: false },
           );
-          Vibration.vibrate();
+          ReactNativeHaptic.generate('selection');
         }
       }
     }
@@ -221,7 +222,7 @@ class CommunityScreen extends React.Component {
       .then(this.props.navigation.push("Home", {
         delcomm: true, name: this.state.community.name
       }))
-      .then(Vibration.vibrate()).catch(error => {
+      .then(ReactNativeHaptic.generate('selection')).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
   }
@@ -244,7 +245,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
@@ -270,7 +271,7 @@ class CommunityScreen extends React.Component {
           console.log(result);
           this.getCommunity();
           this.commentClear()
-          Vibration.vibrate();
+          ReactNativeHaptic.generate('selection');
           setTimeout(() => {
             this.scrolltop.scrollToEnd({ animated: true });
           }, 300)
@@ -278,7 +279,7 @@ class CommunityScreen extends React.Component {
           AlertHelper.show('warn', 'Error', `${error.message}!`);
         });
     } else {
-      Vibration.vibrate();
+      ReactNativeHaptic.generate('selection');
       AlertHelper.show('warn', 'Warning', "Please enter text to comment.");
     }
   }
@@ -301,7 +302,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         AlertHelper.show('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
         this.confetti.startConfetti();
         if (this.state.joinmodal === true) {
@@ -330,7 +331,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `You've left ${this.state.community.name}.`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
@@ -355,7 +356,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
@@ -366,21 +367,21 @@ class CommunityScreen extends React.Component {
     this.setState(prevState => ({
       memberslist: !prevState.memberslist
     }));
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   openCloseMeetOptions() {
     this.setState(prevState => ({
       meetoptions: !prevState.meetoptions
     }));
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   showHideOptions() {
     this.setState(prevState => ({
       options: !prevState.options
     }));
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   attendAll(meetid, meetname, method, type) {
@@ -404,7 +405,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `Attendance updated for ${meetname}!`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);

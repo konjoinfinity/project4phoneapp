@@ -337,6 +337,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNCGeolocation;
 		};
+		D5AE6ADC241C25AC00AC20CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5AE6AD8241C25AC00AC20CF /* ReactNativeHaptic.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = ReactNativeHaptic;
+		};
 		D5BECFBB22B5690600B97C04 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7E50EACA2C374CBF921150E2 /* RNShakeEvent.xcodeproj */;
@@ -465,6 +472,7 @@
 		D520FB3522A6FF57004C98BA /* dclocal.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = dclocal.gpx; path = ../../../../../Downloads/dclocal.gpx; sourceTree = "<group>"; };
 		D58EC0212260DD3300E7DB89 /* klogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = klogo.png; path = ../../../../../Downloads/klogo.png; sourceTree = "<group>"; };
 		D5AE6A4E241982C500AC20CF /* RNCGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCGeolocation.xcodeproj; path = "../node_modules/@react-native-community/geolocation/ios/RNCGeolocation.xcodeproj"; sourceTree = "<group>"; };
+		D5AE6AD8241C25AC00AC20CF /* ReactNativeHaptic.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeHaptic.xcodeproj; path = "../node_modules/react-native-haptic/ios/ReactNativeHaptic.xcodeproj"; sourceTree = "<group>"; };
 		D5BCFF7D22661CC700ED40D1 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		D5C14B3522BD758900CD163B /* logokonjo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logokonjo.png; path = ../../../../../Downloads/logokonjo.png; sourceTree = "<group>"; };
 		DB356ABE35554FE0B8728A64 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
@@ -697,6 +705,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D5AE6AD8241C25AC00AC20CF /* ReactNativeHaptic.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				D5AE6A4E241982C500AC20CF /* RNCGeolocation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -811,6 +820,14 @@
 			isa = PBXGroup;
 			children = (
 				D5AE6A78241982C500AC20CF /* libRNCGeolocation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5AE6AD9241C25AC00AC20CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5AE6ADD241C25AC00AC20CF /* libReactNativeHaptic.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1040,6 +1057,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = D5AE6AD9241C25AC00AC20CF /* Products */;
+					ProjectRef = D5AE6AD8241C25AC00AC20CF /* ReactNativeHaptic.xcodeproj */;
 				},
 				{
 					ProductGroup = D5AE6A4F241982C500AC20CF /* Products */;
@@ -1331,6 +1352,13 @@
 			fileType = archive.ar;
 			path = libRNCGeolocation.a;
 			remoteRef = D5AE6A77241982C500AC20CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5AE6ADD241C25AC00AC20CF /* libReactNativeHaptic.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeHaptic.a;
+			remoteRef = D5AE6ADC241C25AC00AC20CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D5BECFBC22B5690600B97C04 /* libRNShakeEvent.a */ = {

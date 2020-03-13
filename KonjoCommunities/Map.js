@@ -8,6 +8,7 @@ import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from './Urls';
+import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -103,7 +104,7 @@ class MapScreen extends Component {
             }).catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         Geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -128,7 +129,7 @@ class MapScreen extends Component {
 
     showJoined() {
         this.state.rendering === false && (this.rendering())
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: true,
             mine: false,
@@ -143,7 +144,7 @@ class MapScreen extends Component {
 
     showMine() {
         this.state.rendering === false && (this.rendering())
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: false,
             mine: true,
@@ -158,7 +159,7 @@ class MapScreen extends Component {
 
     showGrowing() {
         this.state.rendering === false && (this.rendering())
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: false,
             mine: false,
@@ -173,7 +174,7 @@ class MapScreen extends Component {
 
     showAll() {
         this.state.rendering === false && (this.rendering())
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: false,
             mine: false,

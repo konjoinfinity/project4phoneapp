@@ -16,6 +16,7 @@ import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -40,7 +41,7 @@ class ChangePassScreen extends React.Component {
 
     componentDidMount() {
         this.getToken();
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
     }
 
     async getToken() {
@@ -88,10 +89,10 @@ class ChangePassScreen extends React.Component {
                                     .then(response => response.json())
                                     .then(responseData => {
                                         if (responseData.error) {
-                                            Vibration.vibrate();
+                                            ReactNativeHaptic.generate('selection');
                                             AlertHelper.show('error', 'Error', `${responseData.error}`);
                                         } else {
-                                            Vibration.vibrate();
+                                            ReactNativeHaptic.generate('selection');
                                             this.props.navigation.push("Login", {
                                                 passchange: true
                                             })
@@ -101,27 +102,27 @@ class ChangePassScreen extends React.Component {
                                         AlertHelper.show('warn', 'Error', `${error.message}!`);
                                     });
                             } else {
-                                Vibration.vibrate();
+                                ReactNativeHaptic.generate('selection');
                                 AlertHelper.show('warn', 'Warning', "New passwords do not match.");
                             }
                         } else {
-                            Vibration.vibrate();
+                            ReactNativeHaptic.generate('selection');
                             AlertHelper.show('warn', 'Warning', "Please login to create.");
                         }
                     } else {
-                        Vibration.vibrate();
+                        ReactNativeHaptic.generate('selection');
                         AlertHelper.show('warn', 'Warning', "Please confirm new password to change.");
                     }
                 } else {
-                    Vibration.vibrate();
+                    ReactNativeHaptic.generate('selection');
                     AlertHelper.show('warn', 'Warning', "Please enter new password to change.");
                 }
             } else {
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
                 AlertHelper.show('warn', 'Warning', "Please enter current password to change.");
             }
         } else {
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please login to create.");
         }
     }

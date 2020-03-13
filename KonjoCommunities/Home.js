@@ -20,6 +20,7 @@ import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -79,11 +80,11 @@ class HomeScreen extends React.Component {
             setTimeout(() => {
                 Keyboard.dismiss();
                 this.setState({ modal1: true })
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }, 3000)
         } else {
             this.textInput.focus();
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
         }
         RNShake.addEventListener('ShakeEvent', () => {
             if (this.state.communities !== "") {
@@ -91,7 +92,7 @@ class HomeScreen extends React.Component {
                 const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
                 this.props.navigation.push("Community", { communityId: `${random._id}` })
             } else {
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }
         })
     }
@@ -203,31 +204,31 @@ class HomeScreen extends React.Component {
             this.setState({ modal1: null })
             setTimeout(() => {
                 this.setState({ modal2: true })
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal2 === true) {
             this.setState({ modal2: null })
             setTimeout(() => {
                 this.setState({ modal3: true })
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal3 === true) {
             this.setState({ modal3: null })
             setTimeout(() => {
                 this.setState({ modal4: true })
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal4 === true) {
             this.setState({ modal4: null })
             setTimeout(() => {
                 this.setState({ modal5: true })
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
                 this.textInput.focus();
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
             }, 500)
         }
     }

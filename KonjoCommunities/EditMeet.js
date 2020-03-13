@@ -17,6 +17,7 @@ import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LogoTitle from "./LogoTitle"
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -120,16 +121,16 @@ class EditMeetScreen extends React.Component {
     }
 
     async componentDidMount() {
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
         await this.getToken();
         await fetch(`${konjoUrl}community/${
             this.props.navigation.state.params.communityId
             }`, {
-                method: "GET",
-                headers: {
-                    "user-token": `${this.state.userToken}`
-                }
-            })
+            method: "GET",
+            headers: {
+                "user-token": `${this.state.userToken}`
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 this.setState({ community: res })
@@ -219,27 +220,27 @@ class EditMeetScreen extends React.Component {
                                 })
                                 this.meetClear();
                             } else {
-                                Vibration.vibrate();
+                                ReactNativeHaptic.generate('selection');
                                 AlertHelper.show('warn', 'Warning', "Please login to create.");
                             }
                         } else {
-                            Vibration.vibrate();
+                            ReactNativeHaptic.generate('selection');
                             AlertHelper.show('warn', 'Warning', "Please enter time to create.");
                         }
                     } else {
-                        Vibration.vibrate();
+                        ReactNativeHaptic.generate('selection');
                         AlertHelper.show('warn', 'Warning', "Please enter date to create.");
                     }
                 } else {
-                    Vibration.vibrate();
+                    ReactNativeHaptic.generate('selection');
                     AlertHelper.show('warn', 'Warning', "Please enter location to create.");
                 }
             } else {
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
                 AlertHelper.show('warn', 'Warning', "Please enter description to create.");
             }
         } else {
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please enter name to create.");
         }
     }

@@ -15,6 +15,7 @@ import { AlertHelper } from './AlertHelper';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -51,7 +52,7 @@ class SignupScreen extends React.Component {
     };
 
     componentDidMount() {
-        Vibration.vibrate();
+        ReactNativeHaptic.generate('selection');
     }
 
     handleEmailChange(email) {
@@ -102,10 +103,10 @@ class SignupScreen extends React.Component {
                     .then(response => response.json())
                     .then(responseData => {
                         if (responseData.error) {
-                            Vibration.vibrate();
+                            ReactNativeHaptic.generate('selection');
                             AlertHelper.show('error', 'Error', `${responseData.error}`);
                         } else {
-                            Vibration.vibrate();
+                            ReactNativeHaptic.generate('selection');
                             this.onValueChange(STORAGE_KEY, responseData.token);
                             this.onValueChange(STORAGE_USER, this.state.email);
                             this.props.navigation.push("Home", {
@@ -118,11 +119,11 @@ class SignupScreen extends React.Component {
                         console.log(err);
                     });
             } else {
-                Vibration.vibrate();
+                ReactNativeHaptic.generate('selection');
                 AlertHelper.show('warn', 'Warning', "Passwords are required to have at least 8 characters.");
             }
         } else {
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please enter valid email.");
         }
     }

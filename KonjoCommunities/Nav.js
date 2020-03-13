@@ -10,6 +10,7 @@ import { Card } from "react-native-elements";
 import * as Animatable from 'react-native-animatable';
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -23,7 +24,7 @@ class Nav extends React.Component {
             await SInfo.deleteItem(STORAGE_KEY, {});
             await SInfo.deleteItem(STORAGE_USER, {});
             AlertHelper.show('info', 'Info', 'You have logged out.');
-            Vibration.vibrate();
+            ReactNativeHaptic.generate('selection');
             this.props.navigation.push("Login")
         } catch (error) {
             console.log("SensitiveInfoStorage error: " + error.message);

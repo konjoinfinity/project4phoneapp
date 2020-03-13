@@ -15,6 +15,7 @@ import LogoTitle from "./LogoTitle"
 import { AlertHelper } from './AlertHelper';
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
+import ReactNativeHaptic from 'react-native-haptic';
 
 AnimatableView = Animatable.createAnimatableComponent(View);
 
@@ -54,7 +55,7 @@ class MyCommunitiesScreen extends React.Component {
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
     this.props.navigation.setParams({
       openCloseNav: this.openCloseNav
     });
@@ -63,7 +64,7 @@ class MyCommunitiesScreen extends React.Component {
   openCloseNav() {
     this.setState(prevState => ({ nav: !prevState.nav }));
     this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-    Vibration.vibrate();
+    ReactNativeHaptic.generate('selection');
   }
 
   static navigationOptions = ({ navigation }) => {
