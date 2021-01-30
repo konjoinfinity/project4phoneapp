@@ -97,37 +97,41 @@ class LoginScreen extends React.Component {
   }
 
   handleLogin() {
-    let text = this.state.email
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    if (reg.test(text) === true) {
-      fetch(konjoUrl + "users/login", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
+    try {
+      let text = this.state.email
+      let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      if (reg.test(text) === true) {
+        fetch(konjoUrl + "users/login", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password
+          })
         })
-      })
-        .then(response => response.json())
-        .then(responseData => {
-          if (responseData.error) {
-            ReactNativeHaptic.generate('selection');
-            AlertHelper.show('error', 'Error', `${responseData.error}`);
-          } else {
-            ReactNativeHaptic.generate('selection');
-            this.onValueChange(STORAGE_KEY, responseData.token);
-            this.onValueChange(STORAGE_USER, this.state.email);
-            this.props.navigation.push("Home", {
-              initlogin: this.state.email
-            });
-            this.loginClear();
-          }
-        })
-    } else {
-      ReactNativeHaptic.generate('selection');
-      AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
+          .then(response => response.json())
+          .then(responseData => {
+            if (responseData.error) {
+              ReactNativeHaptic.generate('selection');
+              AlertHelper.show('error', 'Error', `${responseData.error}`);
+            } else {
+              ReactNativeHaptic.generate('selection');
+              this.onValueChange(STORAGE_KEY, responseData.token);
+              this.onValueChange(STORAGE_USER, this.state.email);
+              this.props.navigation.push("Home", {
+                initlogin: this.state.email
+              });
+              this.loginClear();
+            }
+          })
+      } else {
+        ReactNativeHaptic.generate('selection');
+        AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
