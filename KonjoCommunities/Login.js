@@ -131,6 +131,8 @@ class LoginScreen extends React.Component {
         AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
       }
     } catch (error) {
+      ReactNativeHaptic.generate('selection');
+      AlertHelper.show('error', 'Error', `${error}`);
       console.log(error)
     }
   }
