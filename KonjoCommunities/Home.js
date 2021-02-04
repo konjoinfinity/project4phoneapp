@@ -80,11 +80,11 @@ class HomeScreen extends React.Component {
             setTimeout(() => {
                 Keyboard.dismiss();
                 this.setState({ modal1: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 3000)
         } else {
             this.textInput.focus();
-            ReactNativeHaptic.generate('selection');
+            // ReactNativeHaptic.generate('selection');
         }
         RNShake.addEventListener('ShakeEvent', () => {
             if (this.state.communities !== "") {
@@ -92,7 +92,7 @@ class HomeScreen extends React.Component {
                 const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
                 this.props.navigation.push("Community", { communityId: `${random._id}` })
             } else {
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }
         })
     }
@@ -157,84 +157,84 @@ class HomeScreen extends React.Component {
     }
 
     modal1 = () =>
-        (
-            <View style={styles.modal1}>
-                <Text style={styles.modalText}>Welcome to</Text>
-                <Image
-                    source={require("./logo.png")}
-                    style={{ width: 200, height: 100 }}
-                />
-                <Text style={styles.modalText}>Swipe any direction to continue</Text>
-            </View>
-        );
+    (
+        <View style={styles.modal1}>
+            <Text style={styles.modalText}>Welcome to</Text>
+            <Image
+                source={require("./logo.png")}
+                style={{ width: 200, height: 100 }}
+            />
+            <Text style={styles.modalText}>Swipe any direction to continue</Text>
+        </View>
+    );
 
     modal2 = () =>
-        (
-            <View style={styles.modal2}>
-                <Text style={styles.modalText}>Tap the 👤 icon to visit your profile</Text>
-                <Text style={styles.modalText}>👥 shows a list of all communities</Text>
-            </View>
-        );
+    (
+        <View style={styles.modal2}>
+            <Text style={styles.modalText}>Tap the 👤 icon to visit your profile</Text>
+            <Text style={styles.modalText}>👥 shows a list of all communities</Text>
+        </View>
+    );
 
     modal3 = () =>
-        (
-            <View style={styles.modal1}>
-                <Text style={styles.modalText}>To create a new community tap ➕</Text>
-                <Text style={styles.modalText}>To see a map of all communities, tap the 🗺</Text>
-            </View>
-        );
+    (
+        <View style={styles.modal1}>
+            <Text style={styles.modalText}>To create a new community tap ➕</Text>
+            <Text style={styles.modalText}>To see a map of all communities, tap the 🗺</Text>
+        </View>
+    );
 
     modal4 = () =>
-        (
-            <View style={styles.modal2}>
-                <Text style={styles.modalText}>⌨️ Search for the community you would like to join or create one</Text>
-                <Text style={styles.modalText}>Shake your phone 📱 to discover a random community</Text>
-            </View>
-        );
+    (
+        <View style={styles.modal2}>
+            <Text style={styles.modalText}>⌨️ Search for the community you would like to join or create one</Text>
+            <Text style={styles.modalText}>Shake your phone 📱 to discover a random community</Text>
+        </View>
+    );
 
     modal5 = () =>
-        (
-            <View style={styles.modal1}>
-                <Text style={styles.modalText}>Find your community and enjoy Konjo! 😊</Text>
-            </View>
-        );
+    (
+        <View style={styles.modal1}>
+            <Text style={styles.modalText}>Find your community and enjoy Konjo! 😊</Text>
+        </View>
+    );
 
     showModal() {
         if (this.state.modal1 === true) {
             this.setState({ modal1: null })
             setTimeout(() => {
                 this.setState({ modal2: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal2 === true) {
             this.setState({ modal2: null })
             setTimeout(() => {
                 this.setState({ modal3: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal3 === true) {
             this.setState({ modal3: null })
             setTimeout(() => {
                 this.setState({ modal4: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal4 === true) {
             this.setState({ modal4: null })
             setTimeout(() => {
                 this.setState({ modal5: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
                 this.textInput.focus();
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         }
     }
 
     handleChange(search) {
-        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ search });
     }
 

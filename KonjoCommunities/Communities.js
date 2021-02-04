@@ -38,7 +38,7 @@ class CommunitiesScreen extends React.Component {
   }
 
   async componentDidMount() {
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
     await this.getToken();
     await fetch(konjoUrl + "community", {
       method: "GET",
@@ -60,7 +60,7 @@ class CommunitiesScreen extends React.Component {
   openCloseNav() {
     this.setState(prevState => ({ nav: !prevState.nav }));
     this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
   }
 
   static navigationOptions = ({ navigation }) => {

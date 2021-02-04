@@ -118,10 +118,9 @@ class MeetScreen extends React.Component {
   }
 
   async componentDidMount() {
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
     await this.getToken();
-    await fetch(`${konjoUrl}community/${
-      this.props.navigation.state.params.communityId
+    await fetch(`${konjoUrl}community/${this.props.navigation.state.params.communityId
       }`, {
       method: "GET",
       headers: {
@@ -147,15 +146,15 @@ class MeetScreen extends React.Component {
   }
 
   handleNameChange(name) {
-    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ name });
   }
   handleDescriptionChange(description) {
-    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ description });
   }
   handleLocationChange(location) {
-    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ location });
   }
 
@@ -184,8 +183,7 @@ class MeetScreen extends React.Component {
                     creator: this.state.creator
                   }
                 };
-                fetch(`${konjoUrl}community/${
-                  this.props.navigation.state.params.communityId
+                fetch(`${konjoUrl}community/${this.props.navigation.state.params.communityId
                   }/meet`,
                   {
                     method: "PUT",
@@ -203,27 +201,27 @@ class MeetScreen extends React.Component {
                 })
                 this.meetClear();
               } else {
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
                 AlertHelper.show('warn', 'Warning', "Please login to create.");
               }
             } else {
-              ReactNativeHaptic.generate('selection');
+              // ReactNativeHaptic.generate('selection');
               AlertHelper.show('warn', 'Warning', "Please enter time to create.");
             }
           } else {
-            ReactNativeHaptic.generate('selection');
+            // ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please enter date to create.");
           }
         } else {
-          ReactNativeHaptic.generate('selection');
+          // ReactNativeHaptic.generate('selection');
           AlertHelper.show('warn', 'Warning', "Please enter location to create.");
         }
       } else {
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
         AlertHelper.show('warn', 'Warning', "Please enter description to create.");
       }
     } else {
-      ReactNativeHaptic.generate('selection');
+      // ReactNativeHaptic.generate('selection');
       AlertHelper.show('warn', 'Warning', "Please enter name to create.");
     }
   }

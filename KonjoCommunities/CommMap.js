@@ -20,8 +20,7 @@ class CommMapScreen extends Component {
 
     async componentDidMount() {
         const token = await SInfo.getItem(STORAGE_KEY, {});
-        await fetch(`${konjoUrl}community/${
-            this.props.navigation.state.params.communityId
+        await fetch(`${konjoUrl}community/${this.props.navigation.state.params.communityId
             }`, {
             method: "GET",
             headers: {
@@ -34,7 +33,7 @@ class CommMapScreen extends Component {
             }).catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
     }
 
     static navigationOptions = ({ navigation }) => {

@@ -61,7 +61,7 @@ class CommunityScreen extends React.Component {
   }
 
   handleCommentChange(comment) {
-    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ comment });
   }
 
@@ -77,10 +77,9 @@ class CommunityScreen extends React.Component {
   }
 
   async componentDidMount() {
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
     await this.getToken();
-    await fetch(`${konjoUrl}community/${
-      this.props.navigation.state.params.communityId
+    await fetch(`${konjoUrl}community/${this.props.navigation.state.params.communityId
       }`, {
       method: "GET",
       headers: {
@@ -126,22 +125,22 @@ class CommunityScreen extends React.Component {
   }
 
   joinModal = () =>
-    (
-      <View style={styles.modal}>
-        <Text style={styles.modalText}>Swipe to join {this.state.community.name}</Text>
-        <Button title="Tap here or outside to close" onPress={() => this.closeModal()} />
-      </View>
-    );
+  (
+    <View style={styles.modal}>
+      <Text style={styles.modalText}>Swipe to join {this.state.community.name}</Text>
+      <Button title="Tap here or outside to close" onPress={() => this.closeModal()} />
+    </View>
+  );
 
   closeModal() {
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
     this.setState({ joinmodal: null })
   }
 
   openCloseNav() {
     this.setState(prevState => ({ nav: !prevState.nav }));
     this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
   }
 
   meetNav() {
@@ -172,7 +171,7 @@ class CommunityScreen extends React.Component {
             ],
             { cancelable: false },
           );
-          ReactNativeHaptic.generate('selection');
+          // ReactNativeHaptic.generate('selection');
         }
       }
     }
@@ -229,8 +228,7 @@ class CommunityScreen extends React.Component {
 
   deleteComment(e) {
     const data = { body: e };
-    fetch(`${konjoUrl}community/${
-      this.state.community._id
+    fetch(`${konjoUrl}community/${this.state.community._id
       }/delete`,
       {
         method: "PUT",
@@ -245,7 +243,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
@@ -254,8 +252,7 @@ class CommunityScreen extends React.Component {
   handleComment() {
     if (this.state.comment !== "") {
       const data = { comment: this.state.comment, creator: this.state.creator };
-      fetch(`${konjoUrl}community/${
-        this.state.community._id
+      fetch(`${konjoUrl}community/${this.state.community._id
         }/comment`,
         {
           method: "PUT",
@@ -271,7 +268,7 @@ class CommunityScreen extends React.Component {
           console.log(result);
           this.getCommunity();
           this.commentClear()
-          ReactNativeHaptic.generate('selection');
+          // ReactNativeHaptic.generate('selection');
           setTimeout(() => {
             this.scrolltop.scrollToEnd({ animated: true });
           }, 300)
@@ -279,15 +276,14 @@ class CommunityScreen extends React.Component {
           AlertHelper.show('warn', 'Error', `${error.message}!`);
         });
     } else {
-      ReactNativeHaptic.generate('selection');
+      // ReactNativeHaptic.generate('selection');
       AlertHelper.show('warn', 'Warning', "Please enter text to comment.");
     }
   }
 
   joinCommunity() {
     const data = { member: this.state.creator };
-    fetch(`${konjoUrl}community/${
-      this.state.community._id
+    fetch(`${konjoUrl}community/${this.state.community._id
       }/adduser`,
       {
         method: "PUT",
@@ -302,7 +298,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
         AlertHelper.show('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
         this.confetti.startConfetti();
         if (this.state.joinmodal === true) {
@@ -315,8 +311,7 @@ class CommunityScreen extends React.Component {
 
   deleteMember(e) {
     const data = { body: e };
-    fetch(`${konjoUrl}community/${
-      this.state.community._id
+    fetch(`${konjoUrl}community/${this.state.community._id
       }/removeuser`,
       {
         method: "PUT",
@@ -331,7 +326,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `You've left ${this.state.community.name}.`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
@@ -340,8 +335,7 @@ class CommunityScreen extends React.Component {
 
   deleteMeet(e) {
     const data = { body: e };
-    fetch(`${konjoUrl}community/${
-      this.state.community._id
+    fetch(`${konjoUrl}community/${this.state.community._id
       }/meet/delete`,
       {
         method: "PUT",
@@ -356,7 +350,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
@@ -367,26 +361,25 @@ class CommunityScreen extends React.Component {
     this.setState(prevState => ({
       memberslist: !prevState.memberslist
     }));
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
   }
 
   openCloseMeetOptions() {
     this.setState(prevState => ({
       meetoptions: !prevState.meetoptions
     }));
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
   }
 
   showHideOptions() {
     this.setState(prevState => ({
       options: !prevState.options
     }));
-    ReactNativeHaptic.generate('selection');
+    // ReactNativeHaptic.generate('selection');
   }
 
   attendAll(meetid, meetname, method, type) {
-    fetch(`${konjoUrl}community/${
-      this.state.community._id
+    fetch(`${konjoUrl}community/${this.state.community._id
       }/meet/attendall`,
       {
         method: "PUT",
@@ -405,7 +398,7 @@ class CommunityScreen extends React.Component {
       .then(result => {
         console.log(result);
         this.getCommunity();
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `Attendance updated for ${meetname}!`)
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
