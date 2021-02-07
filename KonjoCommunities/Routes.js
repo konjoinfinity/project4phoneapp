@@ -1,4 +1,5 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from "react-navigation";
+import { ScreenContainer } from 'react-native-screens';
 import CommunitiesScreen from "./Communities";
 import CommunityScreen from "./Community";
 import NewScreen from "./New";
