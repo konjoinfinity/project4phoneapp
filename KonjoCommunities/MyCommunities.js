@@ -118,7 +118,7 @@ class MyCommunitiesScreen extends React.Component {
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
-            My Communities
+            My Konjos
           </Text>
           <AnimatableView
             animation="bounceInUp"

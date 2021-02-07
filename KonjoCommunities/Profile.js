@@ -221,7 +221,7 @@ class ProfileScreen extends React.Component {
                         <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
                         <Card borderRadius={15} containerStyle={{ backgroundColor: "#12C16D" }}>
                             <View>
-                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}> Communities I've Created: {created && created.length}</Text>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}> Konjos I've Created: {created && created.length}</Text>
                                 {this.state.commcreated === false &&
                                     <Button onPress={() => this.openCloseCommCreated()}
                                         title="Show" />}
@@ -237,7 +237,7 @@ class ProfileScreen extends React.Component {
                         </Card>
                         <Card borderRadius={15} containerStyle={{ backgroundColor: "#007BFF" }}>
                             <View>
-                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}>Communities I've Joined: {joined && joined.length}</Text>
+                                <Text style={{ fontSize: 25, textAlign: "center", padding: 15, color: "#FFFFFF" }}>Konjos I've Joined: {joined && joined.length}</Text>
                                 {this.state.commjoined === false &&
                                     <Button onPress={() => this.openCloseCommJoined()}
                                         title="Show"

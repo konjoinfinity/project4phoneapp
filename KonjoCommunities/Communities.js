@@ -104,12 +104,13 @@ class CommunitiesScreen extends React.Component {
           </Card>
         );
       }));
+    console.log(communities)
     return (
       <View style={styles.communities}>
         <ScrollView ref={(ref) => { this.scrolltop = ref; }}>
           {this.state.nav === true && <Nav navigation={this.props.navigation} />}
           <Text style={{ fontSize: 30, textAlign: "center", padding: 20 }}>
-            Communities
+            {this.state.communites == undefined ? "No Konjos" : "Konjos"}
           </Text>
           <AnimatableView
             animation="bounceInUp"

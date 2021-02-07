@@ -234,7 +234,7 @@ class HomeScreen extends React.Component {
     }
 
     handleChange(search) {
-        // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ search });
     }
 
@@ -301,7 +301,7 @@ class HomeScreen extends React.Component {
                             delay={10}
                             duration={1800}>
                             <Card borderRadius={15}>
-                                <Text style={styles.header}>What would you like to do?</Text>
+                                <Text style={styles.header}>Find Your Passion</Text>
                                 <View style={styles.inputContainer}>
                                     <TextInput
                                         style={styles.textInput}

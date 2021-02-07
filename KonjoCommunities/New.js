@@ -222,7 +222,7 @@ class NewScreen extends React.Component {
                 delay={10}
                 duration={1800}>
                 <Card borderRadius={15}>
-                  <Text style={styles.header}>New Community</Text>
+                  <Text style={styles.header}>New Konjo</Text>
                   <View style={styles.inputContainer}>
                     <TextInput
                       style={styles.textInput}

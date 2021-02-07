@@ -53,7 +53,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.communityButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("Communities") }}>
-                                <Text style={styles.buttonText}>View Communites 👥</Text>
+                                <Text style={styles.buttonText}>View Konjos 👥</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -63,7 +63,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.joinButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("MyCommunities") }}>
-                                <Text style={styles.buttonText}>My Communities 👤</Text>
+                                <Text style={styles.buttonText}>My Konjos 👤</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -73,7 +73,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.joinedCommunitiesButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("JoinedCommunities") }}>
-                                <Text style={styles.buttonText}>Joined Communities 👤➡️👥</Text>
+                                <Text style={styles.buttonText}>Joined Konjos 👤➡️👥</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -83,7 +83,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.growButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("GrowCommunities") }}>
-                                <Text style={styles.buttonText}>Growing Communities 👤🌻</Text>
+                                <Text style={styles.buttonText}>Growing Konjos 👤🌻</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
@@ -93,7 +93,7 @@ class Nav extends React.Component {
                             <TouchableOpacity
                                 style={styles.newButton}
                                 onPress={() => { this.props.navigation.getParam('openCloseNav'); this.props.navigation.push("New") }}>
-                                <Text style={styles.buttonText}>New Community ➕</Text>
+                                <Text style={styles.buttonText}>New Konjo ➕</Text>
                             </TouchableOpacity>
                         </AnimatableView>
                         <AnimatableView
