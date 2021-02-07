@@ -305,7 +305,7 @@ class HomeScreen extends React.Component {
                                 <View style={styles.inputContainer}>
                                     <TextInput
                                         style={styles.textInput}
-                                        placeholder="Konjos"
+                                        placeholder="Verb, Activity"
                                         name="search"
                                         id="search"
                                         onChangeText={this.handleChange}
