@@ -1,8 +1,4 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer } from "react-navigation";
-<<<<<<< HEAD
-import { ScreenContainer } from 'react-native-screens';
-=======
->>>>>>> parent of d0823e7... updated bottom nav and header nav, need to fix extra nav screens
 import CommunitiesScreen from "./Communities";
 import CommunityScreen from "./Community";
 import NewScreen from "./New";
