@@ -217,7 +217,7 @@ class ProfileScreen extends React.Component {
                     animation="bounceInUp"
                     delay={10}
                     duration={1800}>
-                    <Card title="Profile" titleStyle={{ fontSize: 30, textAlign: "center", padding: 10, fontFamily: 'system font', color: "#000000" }} borderRadius={15}>
+                    <Card title="Profile" titleStyle={{ fontSize: 30, textAlign: "center", padding: 10 }} borderRadius={15}>
                         <Text style={{ fontSize: 30, textAlign: "center", padding: 15 }}>👤 {this.state.creator && this.state.creator}</Text>
                         <Card borderRadius={15} containerStyle={{ backgroundColor: "#12C16D" }}>
                             <View>
