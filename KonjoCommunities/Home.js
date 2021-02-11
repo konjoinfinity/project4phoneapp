@@ -64,7 +64,7 @@ class HomeScreen extends React.Component {
             });
         const initlogin = this.props.navigation.getParam('initlogin', false);
         if (initlogin !== false) {
-            AlertHelper.show('success', 'Success', `Login Successful - Welcome to Konjo, ${initlogin}!`);
+            AlertHelper.show('success', 'Konjo', `Welcome to Konjo, ${initlogin}!`);
         }
         const name = this.props.navigation.getParam('name', 'false');
         const delcomm = this.props.navigation.getParam('delcomm', false);
@@ -80,11 +80,11 @@ class HomeScreen extends React.Component {
             setTimeout(() => {
                 Keyboard.dismiss();
                 this.setState({ modal1: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 3000)
         } else {
             this.textInput.focus();
-            ReactNativeHaptic.generate('selection');
+            // ReactNativeHaptic.generate('selection');
         }
         RNShake.addEventListener('ShakeEvent', () => {
             if (this.state.communities !== "") {
@@ -92,7 +92,7 @@ class HomeScreen extends React.Component {
                 const random = this.state.communities[Math.floor(Math.random() * this.state.communities.length)]
                 this.props.navigation.push("Community", { communityId: `${random._id}` })
             } else {
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }
         })
     }
@@ -204,31 +204,31 @@ class HomeScreen extends React.Component {
             this.setState({ modal1: null })
             setTimeout(() => {
                 this.setState({ modal2: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal2 === true) {
             this.setState({ modal2: null })
             setTimeout(() => {
                 this.setState({ modal3: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal3 === true) {
             this.setState({ modal3: null })
             setTimeout(() => {
                 this.setState({ modal4: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal4 === true) {
             this.setState({ modal4: null })
             setTimeout(() => {
                 this.setState({ modal5: true })
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         } else if (this.state.modal5 === true) {
             this.setState({ modal5: null })
             setTimeout(() => {
                 this.textInput.focus();
-                ReactNativeHaptic.generate('selection');
+                // ReactNativeHaptic.generate('selection');
             }, 500)
         }
     }
@@ -239,7 +239,6 @@ class HomeScreen extends React.Component {
     }
 
     render() {
-        console.log(this.state.userToken)
         let communitySearch;
         this.state.communities && (communitySearch = this.state.communities);
         let search;
@@ -302,11 +301,11 @@ class HomeScreen extends React.Component {
                             delay={10}
                             duration={1800}>
                             <Card borderRadius={15}>
-                                <Text style={styles.header}>Find Your Passion</Text>
+                                <Text style={styles.header}>Find Your Konjo</Text>
                                 <View style={styles.inputContainer}>
                                     <TextInput
                                         style={styles.textInput}
-                                        placeholder="Verb, Activity"
+                                        placeholder="Search"
                                         name="search"
                                         id="search"
                                         onChangeText={this.handleChange}

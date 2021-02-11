@@ -33,7 +33,7 @@ class CommMapScreen extends Component {
             }).catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        ReactNativeHaptic.generate('selection');
+        // ReactNativeHaptic.generate('selection');
     }
 
     static navigationOptions = ({ navigation }) => {
