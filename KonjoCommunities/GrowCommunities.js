@@ -55,7 +55,7 @@ class GrowCommunitiesScreen extends React.Component {
             }).catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         this.props.navigation.setParams({
             openCloseNav: this.openCloseNav
         });
@@ -64,7 +64,7 @@ class GrowCommunitiesScreen extends React.Component {
     openCloseNav() {
         this.setState(prevState => ({ nav: !prevState.nav }));
         this.scrolltop.scrollTo({ x: 0, y: 0, animated: true })
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
     }
 
     static navigationOptions = ({ navigation }) => {

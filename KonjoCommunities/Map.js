@@ -104,7 +104,7 @@ class MapScreen extends Component {
             }).catch(error => {
                 AlertHelper.show('warn', 'Error', `${error.message}!`);
             });
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         Geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -129,7 +129,7 @@ class MapScreen extends Component {
 
     showJoined() {
         this.state.rendering === false && (this.rendering())
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: true,
             mine: false,
@@ -144,7 +144,7 @@ class MapScreen extends Component {
 
     showMine() {
         this.state.rendering === false && (this.rendering())
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: false,
             mine: true,
@@ -159,7 +159,7 @@ class MapScreen extends Component {
 
     showGrowing() {
         this.state.rendering === false && (this.rendering())
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: false,
             mine: false,
@@ -174,7 +174,7 @@ class MapScreen extends Component {
 
     showAll() {
         this.state.rendering === false && (this.rendering())
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         this.setState({
             joined: false,
             mine: false,

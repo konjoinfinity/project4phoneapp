@@ -129,7 +129,7 @@ class EditScreen extends React.Component {
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);
       });
-    // ReactNativeHaptic.generate('selection');
+    ReactNativeHaptic.generate('selection');
   }
 
   editClear() {
@@ -141,15 +141,15 @@ class EditScreen extends React.Component {
   }
 
   handleNameChange(name) {
-    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ name });
   }
   handleDescriptionChange(description) {
-    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ description });
   }
   handleCategoryChange(category) {
-    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ category });
   }
 
@@ -174,7 +174,7 @@ class EditScreen extends React.Component {
         this.props.navigation.push("Community", {
           communityId: `${this.state.id}`, edit: true
         })
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         this.editClear();
       }).catch(error => {
         AlertHelper.show('warn', 'Error', `${error.message}!`);

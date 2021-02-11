@@ -117,7 +117,7 @@ class NewScreen extends React.Component {
   }
 
   componentDidMount() {
-    // ReactNativeHaptic.generate('selection');
+    ReactNativeHaptic.generate('selection');
     this.getToken();
     Geolocation.getCurrentPosition(
       (position) => {
@@ -143,15 +143,15 @@ class NewScreen extends React.Component {
   }
 
   handleNameChange(name) {
-    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ name });
   }
   handleDescriptionChange(description) {
-    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ description });
   }
   handleCategoryChange(category) {
-    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ category });
   }
 
@@ -187,26 +187,26 @@ class NewScreen extends React.Component {
                 }).catch(error => {
                   AlertHelper.show('warn', 'Error', `${error.message}!`);
                 });
-              // ReactNativeHaptic.generate('selection');
+              ReactNativeHaptic.generate('selection');
               this.newClear();
             } else {
-              // ReactNativeHaptic.generate('selection');
+              ReactNativeHaptic.generate('selection');
               AlertHelper.show('warn', 'Warning', "Please submit location to create.");
             }
           } else {
-            // ReactNativeHaptic.generate('selection');
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please login to create.");
           }
         } else {
-          // ReactNativeHaptic.generate('selection');
+          ReactNativeHaptic.generate('selection');
           AlertHelper.show('warn', 'Warning', "Please enter category to create.");
         }
       } else {
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         AlertHelper.show('warn', 'Warning', "Please enter description to create.");
       }
     } else {
-      // ReactNativeHaptic.generate('selection');
+      ReactNativeHaptic.generate('selection');
       AlertHelper.show('warn', 'Warning', "Please enter name to create.");
     }
   }

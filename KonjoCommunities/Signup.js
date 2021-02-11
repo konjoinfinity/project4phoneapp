@@ -52,19 +52,19 @@ class SignupScreen extends React.Component {
     };
 
     componentDidMount() {
-        // // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
     }
 
     handleEmailChange(email) {
-        // // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ email });
     }
     handlePasswordChange(password) {
-        // // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ password });
     }
     handleConfirmPassChange(confirmpass) {
-        // // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ confirmpass });
     }
 
@@ -103,10 +103,10 @@ class SignupScreen extends React.Component {
                     .then(response => response.json())
                     .then(responseData => {
                         if (responseData.error) {
-                            // // ReactNativeHaptic.generate('selection');
+                            ReactNativeHaptic.generate('selection');
                             AlertHelper.show('error', 'Error', `${responseData.error}`);
                         } else {
-                            // // ReactNativeHaptic.generate('selection');
+                            ReactNativeHaptic.generate('selection');
                             this.onValueChange(STORAGE_KEY, responseData.token);
                             this.onValueChange(STORAGE_USER, this.state.email);
                             this.props.navigation.push("Home", {
@@ -119,11 +119,11 @@ class SignupScreen extends React.Component {
                         console.log(err);
                     });
             } else {
-                // // ReactNativeHaptic.generate('selection');
+                ReactNativeHaptic.generate('selection');
                 AlertHelper.show('warn', 'Warning', "Passwords are required to have at least 8 characters.");
             }
         } else {
-            // // ReactNativeHaptic.generate('selection');
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please enter valid email.");
         }
     }

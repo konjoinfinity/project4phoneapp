@@ -24,7 +24,7 @@ class Nav extends React.Component {
             await SInfo.deleteItem(STORAGE_KEY, {});
             await SInfo.deleteItem(STORAGE_USER, {});
             AlertHelper.show('info', 'Info', 'You have logged out.');
-            // ReactNativeHaptic.generate('selection');
+            ReactNativeHaptic.generate('selection');
             this.props.navigation.push("Login")
         } catch (error) {
             console.log("SensitiveInfoStorage error: " + error.message);

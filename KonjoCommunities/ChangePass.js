@@ -41,7 +41,7 @@ class ChangePassScreen extends React.Component {
 
     componentDidMount() {
         this.getToken();
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
     }
 
     async getToken() {
@@ -52,15 +52,15 @@ class ChangePassScreen extends React.Component {
     }
 
     handlePasswordChange(password) {
-        // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ password });
     }
     handleNewPasswordChange(newpassword) {
-        // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ newpassword });
     }
     handleConfirmNewPasswordChange(confirmnewpassword) {
-        // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+        ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
         this.setState({ confirmnewpassword });
     }
 
@@ -89,10 +89,10 @@ class ChangePassScreen extends React.Component {
                                     .then(response => response.json())
                                     .then(responseData => {
                                         if (responseData.error) {
-                                            // ReactNativeHaptic.generate('selection');
+                                            ReactNativeHaptic.generate('selection');
                                             AlertHelper.show('error', 'Error', `${responseData.error}`);
                                         } else {
-                                            // ReactNativeHaptic.generate('selection');
+                                            ReactNativeHaptic.generate('selection');
                                             this.props.navigation.push("Login", {
                                                 passchange: true
                                             })
@@ -102,27 +102,27 @@ class ChangePassScreen extends React.Component {
                                         AlertHelper.show('warn', 'Error', `${error.message}!`);
                                     });
                             } else {
-                                // ReactNativeHaptic.generate('selection');
+                                ReactNativeHaptic.generate('selection');
                                 AlertHelper.show('warn', 'Warning', "New passwords do not match.");
                             }
                         } else {
-                            // ReactNativeHaptic.generate('selection');
+                            ReactNativeHaptic.generate('selection');
                             AlertHelper.show('warn', 'Warning', "Please login to create.");
                         }
                     } else {
-                        // ReactNativeHaptic.generate('selection');
+                        ReactNativeHaptic.generate('selection');
                         AlertHelper.show('warn', 'Warning', "Please confirm new password to change.");
                     }
                 } else {
-                    // ReactNativeHaptic.generate('selection');
+                    ReactNativeHaptic.generate('selection');
                     AlertHelper.show('warn', 'Warning', "Please enter new password to change.");
                 }
             } else {
-                // ReactNativeHaptic.generate('selection');
+                ReactNativeHaptic.generate('selection');
                 AlertHelper.show('warn', 'Warning', "Please enter current password to change.");
             }
         } else {
-            // ReactNativeHaptic.generate('selection');
+            ReactNativeHaptic.generate('selection');
             AlertHelper.show('warn', 'Warning', "Please login to create.");
         }
     }

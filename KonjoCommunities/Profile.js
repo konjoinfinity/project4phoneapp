@@ -44,7 +44,7 @@ class ProfileScreen extends React.Component {
     }
 
     async componentDidMount() {
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
         await this.getToken();
         await fetch(konjoUrl + "community", {
             method: "GET",
@@ -65,14 +65,14 @@ class ProfileScreen extends React.Component {
         this.setState(prevState => ({
             commcreated: !prevState.commcreated
         }));
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
     }
 
     openCloseCommJoined() {
         this.setState(prevState => ({
             commjoined: !prevState.commjoined
         }));
-        // ReactNativeHaptic.generate('selection');
+        ReactNativeHaptic.generate('selection');
     }
 
     static navigationOptions = ({ navigation }) => {
