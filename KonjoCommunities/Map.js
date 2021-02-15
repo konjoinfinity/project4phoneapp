@@ -210,6 +210,23 @@ class MapScreen extends Component {
         }, 3500);
     }
 
+    centerPoint(communities) {
+        const coords = []
+        this.state.communities !== "" && communities.map(community => {
+            latlong = {
+                latitude: community.location.lat,
+                longitude: community.location.long
+            };
+            coords.push(latlong)
+        })
+        console.log(coords)
+        console.log(geolib.getCenter(coords));
+        let sorted;
+        coords !== [] && (
+            sorted = geolib.orderByDistance({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
+        setTimeout(() => { console.log(sorted) }, 2000);
+    }
+
     render() {
         let joinedcommunities;
         this.state.communities && (
@@ -365,7 +382,7 @@ class MapScreen extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.filterButtons}
-                        onPress={this.state.rendering === false ? () => this.showMine() : null}>
+                        onPress={this.state.rendering === false ? () => this.centerPoint(this.state.communities) : null}>
                         <Text style={styles.communityButtonText}>Mine</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
