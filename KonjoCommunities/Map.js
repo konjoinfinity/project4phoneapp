@@ -18,18 +18,7 @@ class MapScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            latitude: null,
-            longitude: null,
-            error: null,
-            communities: "",
-            coord: "",
-            joined: false,
-            growing: false,
-            mine: false,
-            all: true,
-            creator: "",
-            userToken: "",
-            rendering: false
+            latitude: null, longitude: null, error: null, communities: "", coord: "", joined: false, growing: false, mine: false, all: true, creator: "", userToken: "", rendering: false
         };
         this.closestCommunity = this.closestCommunity.bind(this);
         this.showJoined = this.showJoined.bind(this);
@@ -44,43 +33,15 @@ class MapScreen extends Component {
         return {
             headerTitle: <LogoTitle />,
             headerLeft: (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Home")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>🏠</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Profile")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>👤</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-            ),
+                <TouchableOpacity style={styles.headerButton} onPress={() => navigation.push("Home")}>
+                    <View><Text style={{ fontSize: 25 }}>🏠</Text></View></TouchableOpacity>
+                <TouchableOpacity style={styles.headerButton} onPress={() => navigation.push("Profile")}>
+                    <View><Text style={{ fontSize: 25 }}>👤</Text></View></TouchableOpacity></View>),
             headerRight: (<View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("New")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>➕</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.headerButton}
-                    onPress={() => navigation.push("Communities")}>
-                    <View>
-                        <Text
-                            style={{ fontSize: 25 }}>👥</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-            )
+                <TouchableOpacity style={styles.headerButton} onPress={() => navigation.push("New")}>
+                    <View><Text style={{ fontSize: 25 }}>➕</Text></View></TouchableOpacity>
+                <TouchableOpacity style={styles.headerButton} onPress={() => navigation.push("Communities")}>
+                    <View><Text style={{ fontSize: 25 }}>👥</Text></View></TouchableOpacity></View>)
         };
     }
 
@@ -96,33 +57,21 @@ class MapScreen extends Component {
         this.getToken();
         await fetch(konjoUrl + "community", {
             method: "GET",
-            headers: {
-                "user-token": `${token}`
-            }
+            headers: { "user-token": `${token}` }
         })
             .then(res => res.json())
             .then(res => {
                 this.setState({ communities: res });
-            }).catch(error => {
-                AlertHelper.show('warn', 'Error', `${error.message}!`);
-            });
+            }).catch(error => { AlertHelper.show('warn', 'Error', `${error.message}!`) });
         // ReactNativeHaptic.generate('selection');
         Geolocation.getCurrentPosition(
             (position) => {
-                this.setState({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    error: null,
-                });
+                this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude, error: null });
             },
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         )
-        setTimeout(() => {
-            this.state.communities !== "" && (
-                this.state.all === true && (
-                    this.closestCommunity(this.state.communities)))
-        }, 1000);
+        setTimeout(() => { this.state.communities !== "" && (this.state.all === true && (this.closestCommunity(this.state.communities))) }, 1000);
     }
 
     rendering() {
@@ -132,30 +81,16 @@ class MapScreen extends Component {
     showJoined() {
         this.state.rendering === false && (this.rendering())
         // ReactNativeHaptic.generate('selection');
-        this.setState({
-            joined: true,
-            mine: false,
-            growing: false,
-            all: false
-        })
-        let joinedcommunities = this.state.communities.filter(community =>
-            community.members.some(member => member.name === this.state.creator)
-        );
+        this.setState({ joined: true, mine: false, growing: false, all: false })
+        let joinedcommunities = this.state.communities.filter(community => community.members.some(member => member.name === this.state.creator));
         this.closestCommunity(joinedcommunities)
     }
 
     showMine() {
         this.state.rendering === false && (this.rendering())
         // ReactNativeHaptic.generate('selection');
-        this.setState({
-            joined: false,
-            mine: true,
-            growing: false,
-            all: false
-        })
-        // let mycommunities = this.state.communities.filter(
-        //     community => community.creator === this.state.creator
-        // );
+        this.setState({ joined: false, mine: true, growing: false, all: false })
+        // let mycommunities = this.state.communities.filter(community => community.creator === this.state.creator);
         // this.closestCommunity(mycommunities)
         this.centerPoint(this.state.communities)
     }
@@ -163,63 +98,36 @@ class MapScreen extends Component {
     showGrowing() {
         this.state.rendering === false && (this.rendering())
         // ReactNativeHaptic.generate('selection');
-        this.setState({
-            joined: false,
-            mine: false,
-            growing: true,
-            all: false
-        })
-        let growcommunities = this.state.communities.filter(
-            community => community.numberOfMembers < 3
-        );
+        this.setState({ joined: false, mine: false, growing: true, all: false })
+        let growcommunities = this.state.communities.filter(community => community.numberOfMembers < 3);
         this.closestCommunity(growcommunities)
     }
 
     showAll() {
         this.state.rendering === false && (this.rendering())
         // ReactNativeHaptic.generate('selection');
-        this.setState({
-            joined: false,
-            mine: false,
-            growing: false,
-            all: true
-        })
+        this.setState({ joined: false, mine: false, growing: false, all: true })
         this.closestCommunity(this.state.communities)
     }
 
     closestCommunity(communities) {
         const coords = []
         this.state.communities !== "" && communities.map(community => {
-            latlong = {
-                latitude: community.location.lat,
-                longitude: community.location.long
-            };
+            latlong = { latitude: community.location.lat, longitude: community.location.long };
             coords.push(latlong)
         })
         let value;
         coords !== [] && (
             value = geolib.findNearest({ latitude: this.state.latitude, longitude: this.state.longitude }, coords))
-        setTimeout(() => {
-            value !== undefined &&
-                this.setState({ coord: value })
-        }, 2000);
-        setTimeout(() => {
-            this.state.coord !== "" &&
-                this.marker.showCallout()
-        }, 3000);
-        setTimeout(() => {
-            this.state.rendering === true &&
-                this.rendering();
-        }, 3500);
+        setTimeout(() => { value !== undefined && this.setState({ coord: value }) }, 2000);
+        setTimeout(() => { this.state.coord !== "" && this.marker.showCallout() }, 3000);
+        setTimeout(() => { this.state.rendering === true && this.rendering() }, 3500);
     }
 
     centerPoint(communities) {
         const coords = []
         this.state.communities !== "" && communities.map(community => {
-            latlong = {
-                latitude: community.location.lat,
-                longitude: community.location.long
-            };
+            latlong = { latitude: community.location.lat, longitude: community.location.long };
             coords.push(latlong)
         })
         let sorted;
@@ -237,20 +145,10 @@ class MapScreen extends Component {
     render() {
         let centerlatlong = { latitude: this.state.coord.latitude, longitude: this.state.coord.longitude }
         let mine;
-        this.state.mine === true ? mine = <Marker
-            coordinate={centerlatlong}
-            title={"Meet Location"}
-            pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
+        this.state.mine === true ? mine = <Marker coordinate={centerlatlong} title={"Meet Location"} pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
             ref={marker => (this.marker = marker)}>
-            <Callout>
-                <TouchableOpacity
-                    style={styles.communityButton}>
-                    <Text style={styles.communityButtonText}>Name</Text>
-                    <Text style={styles.membersText}>Members</Text>
-                </TouchableOpacity>
-            </Callout>
-        </Marker> :
-            <View></View>
+            <Callout><TouchableOpacity style={styles.communityButton}><Text style={styles.communityButtonText}>Closest</Text>
+                <Text style={styles.membersText}>Meet Location</Text></TouchableOpacity></Callout></Marker> : <View></View>
         let joinedcommunities;
         this.state.communities && (
             this.state.joined === true && (
@@ -267,21 +165,12 @@ class MapScreen extends Component {
                         longitude: community.location.long
                     };
                     return (
-                        <Marker
-                            key={id}
-                            coordinate={commlatlong}
-                            title={community.name}
-                            pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
+                        <Marker key={id} coordinate={commlatlong} title={community.name} pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
                             ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
                             onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
-                            <Callout>
-                                <TouchableOpacity
-                                    style={styles.communityButton}>
-                                    <Text style={styles.communityButtonText}>{community.name}</Text>
-                                    <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text>
-                                </TouchableOpacity>
-                            </Callout>
-                        </Marker>
+                            <Callout><TouchableOpacity style={styles.communityButton}>
+                                <Text style={styles.communityButtonText}>{community.name}</Text>
+                                <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text></TouchableOpacity></Callout></Marker>
                     );
                 }))));
         let growcommunities;
@@ -300,21 +189,13 @@ class MapScreen extends Component {
                         longitude: community.location.long
                     };
                     return (
-                        <Marker
-                            key={id}
-                            coordinate={commlatlong}
-                            title={community.name}
+                        <Marker key={id} coordinate={commlatlong} title={community.name}
                             pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
                             ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
                             onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
-                            <Callout>
-                                <TouchableOpacity
-                                    style={styles.communityButton}>
-                                    <Text style={styles.communityButtonText}>{community.name}</Text>
-                                    <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text>
-                                </TouchableOpacity>
-                            </Callout>
-                        </Marker>
+                            <Callout><TouchableOpacity style={styles.communityButton}>
+                                <Text style={styles.communityButtonText}>{community.name}</Text>
+                                <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text></TouchableOpacity></Callout></Marker>
                     );
                 }))));
         let commcoords;
@@ -327,21 +208,13 @@ class MapScreen extends Component {
                         longitude: community.location.long
                     };
                     return (
-                        <Marker
-                            key={id}
-                            coordinate={commlatlong}
-                            title={community.name}
+                        <Marker key={id} coordinate={commlatlong} title={community.name}
                             pinColor={"#" + ("000" + (Math.random() * (1 << 24) | 0).toString(16)).substr(-6)}
                             ref={community.location.lat === this.state.coord.latitude ? marker => (this.marker = marker) : React.createRef()}
                             onCalloutPress={() => this.props.navigation.push("Community", { communityId: `${community._id}` })}>
-                            <Callout>
-                                <TouchableOpacity
-                                    style={styles.communityButton}>
-                                    <Text style={styles.communityButtonText}>{community.name}</Text>
-                                    <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text>
-                                </TouchableOpacity>
-                            </Callout>
-                        </Marker>
+                            <Callout><TouchableOpacity style={styles.communityButton}>
+                                <Text style={styles.communityButtonText}>{community.name}</Text>
+                                <Text style={styles.membersText}>Members: {community.numberOfMembers}</Text></TouchableOpacity></Callout></Marker>
                     )
                 }))))
         return (
@@ -358,35 +231,19 @@ class MapScreen extends Component {
                         }}>
                         {joined}{commcoords}{mine}{growing}
                     </MapView>}
-                <View
-                    style={{
-                        position: 'absolute',
-                        top: '85%',
-                        flexDirection: "row",
-                        justifyContent: "space-between"
-                    }}>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={this.state.rendering === false ? () => this.showJoined() : null}>
+                <View style={{ position: 'absolute', top: '85%', flexDirection: "row", justifyContent: "space-between" }}>
+                    <TouchableOpacity style={styles.filterButtons} onPress={this.state.rendering === false ? () => this.showJoined() : null}>
                         <Text style={styles.communityButtonText}>Joined</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={this.state.rendering === false ? () => this.showMine() : null}>
+                    <TouchableOpacity style={styles.filterButtons} onPress={this.state.rendering === false ? () => this.showMine() : null}>
                         <Text style={styles.communityButtonText}>Mine</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={this.state.rendering === false ? () => this.showGrowing() : null}>
+                    <TouchableOpacity style={styles.filterButtons} onPress={this.state.rendering === false ? () => this.showGrowing() : null}>
                         <Text style={styles.communityButtonText}>Growing</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.filterButtons}
-                        onPress={this.state.rendering === false ? () => this.showAll() : null}>
+                    <TouchableOpacity style={styles.filterButtons} onPress={this.state.rendering === false ? () => this.showAll() : null}>
                         <Text style={styles.communityButtonText}>All</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                    </TouchableOpacity></View></View>
         );
     }
 }
@@ -394,61 +251,11 @@ class MapScreen extends Component {
 export default MapScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    map: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    },
-    communityButton: {
-        borderWidth: 1,
-        borderColor: "#12C16D",
-        backgroundColor: "#12C16D",
-        padding: 10,
-        borderRadius: 15
-    },
-    communityButtonText: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        textAlign: "center"
-    },
-    membersText: {
-        color: "#FFFFFF",
-        fontSize: 17,
-        textAlign: "center",
-        paddingTop: 5
-    },
-    headerButton: {
-        height: 35,
-        width: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(250, 250, 250, 0.7)',
-        borderRadius: 50,
-        margin: 10,
-        shadowColor: 'black',
-        shadowOpacity: 0.5,
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        }
-    },
-    filterButtons: {
-        borderWidth: 1,
-        borderColor: "#007BFF",
-        backgroundColor: "#007BFF",
-        padding: 15,
-        margin: 5,
-        borderRadius: 15
-    }
+    container: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', alignItems: 'center' },
+    map: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
+    communityButton: { borderWidth: 1, borderColor: "#12C16D", backgroundColor: "#12C16D", padding: 10, borderRadius: 15 },
+    communityButtonText: { color: "#FFFFFF", fontSize: 20, textAlign: "center" },
+    membersText: { color: "#FFFFFF", fontSize: 17, textAlign: "center", paddingTop: 5 },
+    headerButton: { height: 35, width: 35, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(250, 250, 250, 0.7)', borderRadius: 50, margin: 10, shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 2, height: 2 } },
+    filterButtons: { borderWidth: 1, borderColor: "#007BFF", backgroundColor: "#007BFF", padding: 15, margin: 5, borderRadius: 15 }
 });
