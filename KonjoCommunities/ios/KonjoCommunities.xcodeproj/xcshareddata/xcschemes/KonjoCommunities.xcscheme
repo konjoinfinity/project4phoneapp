@@ -120,6 +120,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "KonjoCommunities"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
