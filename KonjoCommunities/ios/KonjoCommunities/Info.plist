@@ -41,8 +41,12 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>Konjo Communites requires your location to display created communites on a map for others to join.  The location is also used to find the closest community to your present location.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>Konjo Communites requires your location to display created communites on a map for others to join.  The location is also used to find the closest community to your present location.</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Konjo Communites requires your location to display created communites on a map for others to join.  The location is also used to find the closest community to your present location.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
