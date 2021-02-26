@@ -119,7 +119,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       customArchiveName = "KonjoCommunities"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
