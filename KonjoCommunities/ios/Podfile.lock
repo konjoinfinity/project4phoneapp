@@ -1,25 +1,3 @@
-PODS:
-  - React (0.11.0):
-    - React/Core (= 0.11.0)
-  - react-native-geolocation (2.0.2):
-    - React
-  - React/Core (0.11.0)
-
-DEPENDENCIES:
-  - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
-
-SPEC REPOS:
-  trunk:
-    - React
-
-EXTERNAL SOURCES:
-  react-native-geolocation:
-    :path: "../node_modules/@react-native-community/geolocation"
-
-SPEC CHECKSUMS:
-  React: ab1a2e21deb34965c38328d5ec40cc7d12c6050a
-  react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
-
-PODFILE CHECKSUM: 512360fe27cc4690d7dccb19e1650f00da34e7d4
+PODFILE CHECKSUM: 52cd4b68b14b883952c27c7d4eee906f1be25d39
 
 COCOAPODS: 1.10.1

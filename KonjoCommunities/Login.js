@@ -9,14 +9,15 @@ import {
   TouchableOpacity,
   Vibration,
   KeyboardAvoidingView,
-  Keyboard
+  Keyboard,
+  Alert
 } from "react-native";
 import { Card } from "react-native-elements";
-import { AlertHelper } from './AlertHelper';
-import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+// import { AlertHelper } from './AlertHelper';
+// import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import SInfo from 'react-native-sensitive-info';
 import konjoUrl from "./Urls";
-import ReactNativeHaptic from 'react-native-haptic';
+// import ReactNativeHaptic from 'react-native-haptic';
 
 const STORAGE_KEY = "id_token";
 const STORAGE_USER = "username";
@@ -58,19 +59,21 @@ class LoginScreen extends React.Component {
       await SInfo.deleteItem(STORAGE_USER, {});
       const passchange = this.props.navigation.getParam('passchange', 'false');
       if (passchange === true) {
-        AlertHelper.show('info', 'Info', 'Password changed. Please login with your new password.');
+        // AlertHelper.show('info', 'Info', 'Password changed. Please login with your new password.');
+        Alert.alert('Password changed. Please login with your new password.')
       } else {
-        AlertHelper.show('info', 'Info', 'You have logged out.');
+        // AlertHelper.show('info', 'Info', 'You have logged out.');
+        Alert.alert('You have logged out.')
       }
     }
   }
 
   handleEmailChange(email) {
-    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ email });
   }
   handlePasswordChange(password) {
-    ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
+    // ReactNativeHapticFeedback.trigger("impactLight", { enableVibrateFallback: true });
     this.setState({ password });
   }
 
@@ -84,7 +87,8 @@ class LoginScreen extends React.Component {
 
   async getUsername() {
     const username = await SInfo.getItem(STORAGE_USER, {});
-    AlertHelper.show('info', 'Info', username === null ? "No user logged in" : username + " is logged in");
+    // AlertHelper.show('info', 'Info', username === null ? "No user logged in" : username + " is logged in");
+    Alert.alert(username === null ? "No user logged in" : username + " is logged in")
     // ReactNativeHaptic.generate('selection');
   }
 
@@ -114,7 +118,8 @@ class LoginScreen extends React.Component {
         .then(responseData => {
           if (responseData.error) {
             // ReactNativeHaptic.generate('selection');
-            AlertHelper.show('error', 'Error', `${responseData.error}`);
+            // AlertHelper.show('error', 'Error', `${responseData.error}`);
+            Alert.alert(`${responseData.error}`)
           } else {
             // ReactNativeHaptic.generate('selection');
             this.onValueChange(STORAGE_KEY, responseData.token);
@@ -127,7 +132,8 @@ class LoginScreen extends React.Component {
         })
     } else {
       // ReactNativeHaptic.generate('selection');
-      AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
+      // AlertHelper.show('warn', 'Warning', "Please enter a valid email.");
+      Alert.alert("Please enter a valid email.")
     }
   }
 

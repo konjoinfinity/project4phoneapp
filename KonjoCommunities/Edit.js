@@ -170,7 +170,6 @@ class EditScreen extends React.Component {
     })
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         this.props.navigation.push("Community", {
           communityId: `${this.state.id}`, edit: true
         })
@@ -203,8 +202,7 @@ class EditScreen extends React.Component {
                       blurOnSubmit={false}
                       onChangeText={this.handleNameChange}
                       autoFocus={true}
-                      onSubmitEditing={() => { this.descInput.focus(); }}
-                      value={this.state.name} />
+                      onSubmitEditing={() => { this.descInput.focus(); }} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TextInput
@@ -216,8 +214,7 @@ class EditScreen extends React.Component {
                       blurOnSubmit={false}
                       onChangeText={this.handleDescriptionChange}
                       ref={(input) => { this.descInput = input; }}
-                      onSubmitEditing={() => { this.catInput.focus(); }}
-                      value={this.state.description} />
+                      onSubmitEditing={() => { this.catInput.focus(); }} />
                   </View>
                   <View style={styles.inputContainer}>
                     <TextInput
@@ -228,7 +225,6 @@ class EditScreen extends React.Component {
                       onChangeText={this.handleCategoryChange}
                       ref={(input) => { this.catInput = input; }}
                       onSubmitEditing={this.handleSubmit}
-                      value={this.state.category}
                       returnKeyType='send' />
                   </View>
                   <View style={styles.inputContainer}>

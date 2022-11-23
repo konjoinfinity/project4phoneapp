@@ -217,7 +217,6 @@ class CommunityScreen extends React.Component {
         }
       })
       .then(res => res.json())
-      .then(res => console.log(res))
       .then(this.props.navigation.push("Home", {
         delcomm: true, name: this.state.community.name
       }))
@@ -238,10 +237,7 @@ class CommunityScreen extends React.Component {
         },
         body: JSON.stringify(data)
       }
-    )
-      .then(response => console.log(response))
-      .then(result => {
-        console.log(result);
+    ).then(result => {
         this.getCommunity();
         // ReactNativeHaptic.generate('selection');
       }).catch(error => {
@@ -262,10 +258,7 @@ class CommunityScreen extends React.Component {
           },
           body: JSON.stringify(data)
         }
-      )
-        .then(response => console.log(response))
-        .then(result => {
-          console.log(result);
+      ).then(result => {
           this.getCommunity();
           this.commentClear()
           // ReactNativeHaptic.generate('selection');
@@ -293,10 +286,7 @@ class CommunityScreen extends React.Component {
         },
         body: JSON.stringify(data)
       }
-    )
-      .then(response => console.log(response))
-      .then(result => {
-        console.log(result);
+    ).then(result => {
         this.getCommunity();
         // ReactNativeHaptic.generate('selection');
         AlertHelper.show('success', 'Konjo!', `You have joined ${this.state.community.name}!`);
@@ -322,9 +312,7 @@ class CommunityScreen extends React.Component {
         body: JSON.stringify(data)
       }
     )
-      .then(response => console.log(response))
       .then(result => {
-        console.log(result);
         this.getCommunity();
         // ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `You've left ${this.state.community.name}.`)
@@ -345,10 +333,7 @@ class CommunityScreen extends React.Component {
         },
         body: JSON.stringify(data)
       }
-    )
-      .then(response => console.log(response))
-      .then(result => {
-        console.log(result);
+    ).then(result => {
         this.getCommunity();
         // ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `You've deleted a meet for ${this.state.community.name}.`)
@@ -394,9 +379,7 @@ class CommunityScreen extends React.Component {
           attendance: type
         })
       }
-    ).then(response => console.log(response))
-      .then(result => {
-        console.log(result);
+    ).then(result => {
         this.getCommunity();
         // ReactNativeHaptic.generate('selection');
         AlertHelper.show('info', 'Info', `Attendance updated for ${meetname}!`)
