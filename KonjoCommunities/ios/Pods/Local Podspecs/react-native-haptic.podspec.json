@@ -1,0 +1,21 @@
+{
+  "name": "react-native-haptic",
+  "version": "1.0.1",
+  "source_files": "ios/*.{h,m}",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "authors": "Charles Vinette",
+  "license": "MIT",
+  "summary": "iOS 10 and up, haptic feedback for React Native applications",
+  "homepage": "https://github.com/charlesvinette/react-native-haptic#readme",
+  "source": {
+    "git": "https://github.com/charlesvinette/react-native-haptic.git",
+    "tag": "v1.0.1"
+  },
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+../../../../../node_modules/react-native-haptic/ios/ReactNativeHaptic.h

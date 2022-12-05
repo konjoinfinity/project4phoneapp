@@ -1,0 +1,6 @@
+module Pods_KonjoCommunities {
+  umbrella header "Pods-KonjoCommunities-umbrella.h"
+
+  export *
+  module * { export * }
+}
